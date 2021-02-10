@@ -130,6 +130,16 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedIn
 		//Check if the empty soulstone slot contains at least one empty soulstone.
 		Item item = items.get(EMPTYSTONE_SLOTS[0]).getItem();
 		if (!(item == AriseMyMinionsMod.SOULSTONE)) { return false; }
+		//Check if there is at least one empty output slot.
+		boolean empty_slot = false;
+		for (int i: OUTPUT_SLOTS) {
+			ItemStack outputStack = items.get(i);
+			if (outputStack == ItemStack.EMPTY) {
+				empty_slot = true;
+				break;
+			}
+		}
+		if (!empty_slot) { return false; }
 		//If all conditions are filled, graft can proceed.
 		return true;
 	}
