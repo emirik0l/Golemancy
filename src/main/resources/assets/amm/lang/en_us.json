@@ -12,5 +12,12 @@
 	"entity.amm.summoned_creeper": "Creeper",
 	"entity.amm.summoned_enderman": "Enderman",
 	"entity.amm.summoned_skeleton": "Skeleton",
-	"entity.amm.summoned_zombie": "Zombie"
+	"entity.amm.summoned_zombie": "Zombie",
+	"text.amm.potency": "Potency",
+	"text.amm.damage": "Damage",
+	"text.amm.knockback": "Knockback",
+	"text.amm.armor": "Armor",
+	"text.amm.speed": "Speed",
+	"text.amm.dom_column": "DOM",
+	"text.amm.rec_column": "REC"
 }

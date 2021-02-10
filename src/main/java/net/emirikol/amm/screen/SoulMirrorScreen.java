@@ -52,32 +52,32 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		int x = (backgroundWidth - textRenderer.getWidth(soulText)) / 2;
 		this.textRenderer.draw(matrices, soulText, (float) x, (float) TITLE_Y, serializedGenome.getNameColor());
 		//Draw column headers.
-		Text dominantText = new LiteralText("DOM");
-		Text recessiveText = new LiteralText("REC");
+		Text dominantText = new TranslatableText("text.amm.dom_column");
+		Text recessiveText = new TranslatableText("text.amm.rec_column");
 		this.textRenderer.draw(matrices, dominantText, (float) COLUMN_DOM_X, (float) COLUMN_HEADER_Y, 4210752);
 		this.textRenderer.draw(matrices, recessiveText, (float) COLUMN_REC_X, (float) COLUMN_HEADER_Y, 4210752);
 		//Draw potency row.
-		Text potencyText = new LiteralText("Potency");
+		Text potencyText = new TranslatableText("text.amm.potency");
 		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("potency"), (float) COLUMN_DOM_X, (float) POTENCY_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("potency"), (float) COLUMN_REC_X, (float) POTENCY_ROW_Y, 4210752);
 		//Draw damage row.
-		Text damageText = new LiteralText("Damage");
+		Text damageText = new TranslatableText("text.amm.damage");
 		this.textRenderer.draw(matrices, damageText, (float) ROW_START_X, (float) DAMAGE_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("damage"), (float) COLUMN_DOM_X, (float) DAMAGE_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("damage"), (float) COLUMN_REC_X, (float) DAMAGE_ROW_Y, 4210752);
 		//Draw knockback row.
-		Text knockbackText = new LiteralText("Knockback");
+		Text knockbackText = new TranslatableText("text.amm.knockback");
 		this.textRenderer.draw(matrices, knockbackText, (float) ROW_START_X, (float) KNOCKBACK_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("knockback"), (float) COLUMN_DOM_X, (float) KNOCKBACK_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("knockback"), (float) COLUMN_REC_X, (float) KNOCKBACK_ROW_Y, 4210752);
 		//Draw armor row.
-		Text armorText = new LiteralText("Armor");
+		Text armorText = new TranslatableText("text.amm.armor");
 		this.textRenderer.draw(matrices, armorText, (float) ROW_START_X, (float) ARMOR_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("armor"), (float) COLUMN_DOM_X, (float) ARMOR_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("armor"), (float) COLUMN_REC_X, (float) ARMOR_ROW_Y, 4210752);
 		//Draw speed row.
-		Text speedText = new LiteralText("Speed");
+		Text speedText = new TranslatableText("text.amm.speed");
 		this.textRenderer.draw(matrices, speedText, (float) ROW_START_X, (float) SPEED_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("movement_speed"), (float) COLUMN_DOM_X, (float) SPEED_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("movement_speed"), (float) COLUMN_REC_X, (float) SPEED_ROW_Y, 4210752);
