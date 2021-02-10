@@ -21,7 +21,7 @@ import net.minecraft.util.collection.*;
 import java.util.*;
 import org.jetbrains.annotations.Nullable;
 
-public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedInventory,SidedInventory,NamedScreenHandlerFactory,Tickable {
+public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSidedInventory,NamedScreenHandlerFactory,Tickable {
 	private final DefaultedList<ItemStack> items = DefaultedList.ofSize(10, ItemStack.EMPTY);
 	public static final int[] PARENT_SLOTS = {0,1};
 	public static final int[] EMPTYSTONE_SLOTS = {2};
@@ -129,7 +129,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedIn
 		for(int i: OUTPUT_SLOTS) {
 			ItemStack outputStack = items.get(i);
 			//Check if the given output slot is empty.
-			if(outputStack == ItemStack.EMPTY) {
+			if(outputStack.isEmpty()) {
 				this.setStack(i, stack);
 				this.markDirty();
 				return true;
@@ -157,7 +157,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedIn
 		boolean empty_slot = false;
 		for (int i: OUTPUT_SLOTS) {
 			ItemStack outputStack = items.get(i);
-			if (outputStack == ItemStack.EMPTY) {
+			if (outputStack.isEmpty()) {
 				empty_slot = true;
 				break;
 			}
