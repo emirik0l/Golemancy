@@ -4,8 +4,12 @@ import net.emirikol.amm.*;
 import net.emirikol.amm.genetics.*;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.world.*;
 import net.minecraft.nbt.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
 
 public class SoulstoneEnderman extends Soulstone implements FilledSoulstone {
 	
@@ -23,6 +27,13 @@ public class SoulstoneEnderman extends Soulstone implements FilledSoulstone {
 	//Return the EntityType that should be spawned from this soulstone.
 	public EntityType getEntityType() {
 		return AriseMyMinionsMod.SUMMONED_ENDERMAN;
+	}
+	
+	@Override
+	public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
+		ItemStack stack = playerEntity.getStackInHand(hand);
+		playerEntity.playSound(SoundEvents.ENTITY_ENDERMAN_AMBIENT, 0.35F, 1.0F);
+		return TypedActionResult.pass(stack);
 	}
 
 	
