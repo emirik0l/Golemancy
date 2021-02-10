@@ -17,6 +17,7 @@ public class SoulstoneFillHandler {
 		put(EntityType.CREEPER, AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put(EntityType.ENDERMAN, AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put(EntityType.SKELETON, AriseMyMinionsMod.SOULSTONE_SKELETON);
+		put(EntityType.SPIDER, AriseMyMinionsMod.SOULSTONE_SPIDER);
 		put(EntityType.ZOMBIE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 	}};
 

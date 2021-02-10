@@ -27,6 +27,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static SoulstoneCreeper SOULSTONE_CREEPER;
 	public static SoulstoneEnderman SOULSTONE_ENDERMAN;
 	public static SoulstoneSkeleton SOULSTONE_SKELETON;
+	public static SoulstoneSpider SOULSTONE_SPIDER;
 	public static SoulstoneZombie SOULSTONE_ZOMBIE;
 	
 	public static ClayEffigy CLAY_EFFIGY;
@@ -35,6 +36,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static EntityType<SummonedCreeperEntity> SUMMONED_CREEPER;
 	public static EntityType<SummonedEndermanEntity> SUMMONED_ENDERMAN;
 	public static EntityType<SummonedSkeletonEntity> SUMMONED_SKELETON;
+	public static EntityType<SummonedSpiderEntity> SUMMONED_SPIDER;
 	public static EntityType<SummonedZombieEntity> SUMMONED_ZOMBIE;
 	
 	public static SoulMirror SOUL_MIRROR;
@@ -60,6 +62,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOULSTONE_CREEPER = new SoulstoneCreeper(soulstone_settings);
 		SOULSTONE_ENDERMAN = new SoulstoneEnderman(soulstone_settings);
 		SOULSTONE_SKELETON = new SoulstoneSkeleton(soulstone_settings);
+		SOULSTONE_SPIDER = new SoulstoneSpider(soulstone_settings);
 		SOULSTONE_ZOMBIE = new SoulstoneZombie(soulstone_settings);
 		//Instantiate Clay Effigy
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
@@ -86,8 +89,9 @@ public class AriseMyMinionsMod implements ModInitializer {
 		//Instantiate Summoned Mobs
 		SUMMONED_CREEPER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedCreeperEntity::new).dimensions(EntityType.CREEPER.getDimensions()).build();
 		SUMMONED_ENDERMAN = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedEndermanEntity::new).dimensions(EntityType.ENDERMAN.getDimensions()).build();
-		SUMMONED_ZOMBIE = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedZombieEntity::new).dimensions(EntityType.ZOMBIE.getDimensions()).build();
 		SUMMONED_SKELETON = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedSkeletonEntity::new).dimensions(EntityType.SKELETON.getDimensions()).build();
+		SUMMONED_SPIDER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedSpiderEntity::new).dimensions(EntityType.SPIDER.getDimensions()).build();
+		SUMMONED_ZOMBIE = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedZombieEntity::new).dimensions(EntityType.ZOMBIE.getDimensions()).build();
 	}
 	
 	public static void doRegistration() {
@@ -96,6 +100,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ITEM, "amm:soulstone_creeper", SOULSTONE_CREEPER);
 		Registry.register(Registry.ITEM, "amm:soulstone_enderman", SOULSTONE_ENDERMAN);
 		Registry.register(Registry.ITEM, "amm:soulstone_skeleton", SOULSTONE_SKELETON);
+		Registry.register(Registry.ITEM, "amm:soulstone_spider", SOULSTONE_SPIDER);
 		Registry.register(Registry.ITEM, "amm:soulstone_zombie", SOULSTONE_ZOMBIE);
 		//Register Clay Effigy
 		Registry.register(Registry.ITEM, "amm:clay_effigy", CLAY_EFFIGY);
@@ -114,6 +119,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(SUMMONED_ENDERMAN, SummonedEndermanEntity.createEndermanAttributes());
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_skeleton", SUMMONED_SKELETON);
 		FabricDefaultAttributeRegistry.register(SUMMONED_SKELETON, SummonedSkeletonEntity.createAbstractSkeletonAttributes());
+		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_spider", SUMMONED_SPIDER);
+		FabricDefaultAttributeRegistry.register(SUMMONED_SPIDER, SummonedSpiderEntity.createSpiderAttributes());
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_zombie", SUMMONED_ZOMBIE);
 		FabricDefaultAttributeRegistry.register(SUMMONED_ZOMBIE, SummonedZombieEntity.createZombieAttributes());
 	}

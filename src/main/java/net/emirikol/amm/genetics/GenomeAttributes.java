@@ -19,6 +19,12 @@ public class GenomeAttributes {
 	public static final double SKELETON_ARMOR = 0.0D;
 	public static final double SKELETON_MOVEMENT_SPEED = 0.25D;
 	
+	public static final double SPIDER_POTENCY = 2.0D;
+	public static final double SPIDER_DAMAGE = 2.0D;
+	public static final double SPIDER_KNOCKBACK = 0.0D;
+	public static final double SPIDER_ARMOR = 0.0D;
+	public static final double SPIDER_MOVEMENT_SPEED = 0.3D;
+	
 	public static final double ZOMBIE_POTENCY = 4.0D;
 	public static final double ZOMBIE_DAMAGE = 3.0D;
 	public static final double ZOMBIE_KNOCKBACK = 0.0D;

@@ -30,6 +30,7 @@ public class AriseMyMinionsModClient implements ClientModInitializer {
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_CREEPER, (dispatcher, context) -> { return new CreeperEntityRenderer(dispatcher); });
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_ENDERMAN, (dispatcher, context) -> { return new EndermanEntityRenderer(dispatcher); });
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_SKELETON, (dispatcher, context) -> { return new SkeletonEntityRenderer(dispatcher); });
+		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_SPIDER, (dispatcher, context) -> { return new SpiderEntityRenderer(dispatcher); });
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_ZOMBIE, (dispatcher, context) -> { return new ZombieEntityRenderer(dispatcher); });
 	}
 }
