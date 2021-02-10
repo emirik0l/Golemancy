@@ -1,6 +1,7 @@
 package net.emirikol.amm.block.entity;
 
 import net.emirikol.amm.*;
+import net.emirikol.amm.block.*;
 import net.emirikol.amm.item.*;
 import net.emirikol.amm.genetics.*;
 import net.emirikol.amm.inventory.*;
@@ -180,6 +181,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	@Override
 	public void tick() {
 		boolean dirty = false;
+		boolean grafting = isGrafting();
 		//If the grafter is burning, decrement the fuel timer.
 		if (isBurning()) {
 			fuel_time -= 1;
@@ -220,6 +222,11 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		} else if (graft_time > 0) {
 			//If there is nothing to graft, reset the graft timer.
 			graft_time = 0;
+			dirty = true;
+		}
+		//Check if the blockstate needs to be updated for particles.
+		if (isGrafting() != grafting) {
+			this.world.setBlockState(this.pos, (BlockState)this.world.getBlockState(this.pos).with(SoulGrafterBlock.GRAFTING, isGrafting()), 3);
 			dirty = true;
 		}
 		if (dirty) {
