@@ -113,7 +113,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_enderman", SUMMONED_ENDERMAN);
 		FabricDefaultAttributeRegistry.register(SUMMONED_ENDERMAN, SummonedEndermanEntity.createEndermanAttributes());
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_skeleton", SUMMONED_SKELETON);
-		FabricDefaultAttributeRegistry.register(SUMMONED_SKELETON, SummonedSkeletonEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(SUMMONED_SKELETON, SummonedSkeletonEntity.createAbstractSkeletonAttributes());
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_zombie", SUMMONED_ZOMBIE);
 		FabricDefaultAttributeRegistry.register(SUMMONED_ZOMBIE, SummonedZombieEntity.createZombieAttributes());
 	}

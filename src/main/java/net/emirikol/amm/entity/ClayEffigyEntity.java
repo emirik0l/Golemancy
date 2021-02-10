@@ -42,6 +42,7 @@ public class ClayEffigyEntity extends PathAwareEntity {
 			Genome genome = stone.getGenome(stack);
 			//Spawn a mob from the soulstone.
 			EntityType entityType = stone.getEntityType();
+			System.out.println(entityType.toString());
 			if (stone.filled()) {
 				//Remove the clay effigy and decrement the itemstack.
 				stack.decrement(1);
