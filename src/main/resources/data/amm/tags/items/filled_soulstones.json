@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+		"amm:soulstone_creeper",
+		"amm:soulstone_enderman",
+		"amm:soulstone_skeleton",
+		"amm:soulstone_zombie"
+    ]
+}

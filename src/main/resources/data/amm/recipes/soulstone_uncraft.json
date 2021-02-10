@@ -1,0 +1,11 @@
+{
+	"type":  "minecraft:crafting_shapeless",
+	"ingredients": [
+	{"tag": "amm:filled_soulstones"},
+	{"item": "minecraft:soul_sand"}
+	],
+	"result": {
+	"item": "amm:soulstone",
+	"count": 1
+	}
+}

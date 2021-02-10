@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "amm",
+  "version": "${version}",
+
+  "name": "Arise My Minions",
+  "description": "A mod about magical genetics and breeding mobs.",
+  "authors": [
+    "Emirikol"
+  ],
+  "contact": {
+    "homepage": "TODO",
+    "sources": "TODO"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/amm/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": ["net.emirikol.amm.AriseMyMinionsMod"],
+	"client": ["net.emirikol.amm.AriseMyMinionsModClient"]
+  },
+  "mixins": [],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

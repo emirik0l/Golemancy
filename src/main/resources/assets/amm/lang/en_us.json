@@ -1,0 +1,16 @@
+{
+	"item.amm.soulstone": "Soulstone (Empty)",
+	"item.amm.soulstone_creeper": "Soulstone (Creeper)",
+	"item.amm.soulstone_enderman": "Soulstone (Enderman)",
+	"item.amm.soulstone_skeleton": "Soulstone (Skeleton)",
+	"item.amm.soulstone_zombie": "Soulstone (Zombie)",
+	"item.amm.soul_mirror": "Soul Mirror",
+	"item.amm.soul_grafter": "Soul Grafter",
+	"block.amm.soul_grafter": "Soul Grafter",
+	"item.amm.clay_effigy": "Clay Effigy",
+	"entity.amm.clay_effigy": "Clay Effigy",
+	"entity.amm.summoned_creeper": "Creeper",
+	"entity.amm.summoned_enderman": "Enderman",
+	"entity.amm.summoned_skeleton": "Skeleton",
+	"entity.amm.summoned_zombie": "Zombie"
+}
