@@ -19,8 +19,12 @@ public class SoulstoneFillHandler {
 		put(EntityType.ENDERMAN, AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put(EntityType.HUSK, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.SKELETON, AriseMyMinionsMod.SOULSTONE_SKELETON);
+		put(EntityType.SKELETON_HORSE, AriseMyMinionsMod.SOULSTONE_SKELETON);
 		put(EntityType.SPIDER, AriseMyMinionsMod.SOULSTONE_SPIDER);
+		put(EntityType.STRAY, AriseMyMinionsMod.SOULSTONE_SKELETON);
 		put(EntityType.ZOMBIE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
+		put(EntityType.ZOMBIE_HORSE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
+		put(EntityType.ZOMBIE_VILLAGER, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 	}};
 
 	public static void soulstoneFillHook() {

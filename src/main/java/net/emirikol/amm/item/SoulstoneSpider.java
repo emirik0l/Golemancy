@@ -32,7 +32,7 @@ public class SoulstoneSpider extends Soulstone implements FilledSoulstone {
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 		ItemStack stack = playerEntity.getStackInHand(hand);
-		playerEntity.playSound(SoundEvents.ENTITY_SPIDER_AMBIENT, 0.35F, 1.0F);
+		playerEntity.playSound(SoundEvents.ENTITY_SPIDER_AMBIENT, 0.5F, 1.0F);
 		return TypedActionResult.pass(stack);
 	}
 	
