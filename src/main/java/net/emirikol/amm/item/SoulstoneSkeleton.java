@@ -42,7 +42,7 @@ public class SoulstoneSkeleton extends Soulstone implements FilledSoulstone {
 		super.defaultGenes(stack);
 		Genome genome = new Genome(stack);
 		genome.loadTags();
-		genome.createGenome(GenomeAttributes.SKELETON_POTENCY, GenomeAttributes.SKELETON_DAMAGE, GenomeAttributes.SKELETON_KNOCKBACK, GenomeAttributes.SKELETON_ARMOR, GenomeAttributes.SKELETON_MOVEMENT_SPEED);
+		genome.createGenome(getSoulName(), GenomeAttributes.SKELETON_POTENCY, GenomeAttributes.SKELETON_DAMAGE, GenomeAttributes.SKELETON_KNOCKBACK, GenomeAttributes.SKELETON_ARMOR, GenomeAttributes.SKELETON_MOVEMENT_SPEED);
 		genome.saveTags();
 	}
 }

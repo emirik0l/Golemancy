@@ -42,7 +42,7 @@ public class SoulstoneZombie extends Soulstone implements FilledSoulstone {
 		super.defaultGenes(stack);
 		Genome genome = new Genome(stack);
 		genome.loadTags();
-		genome.createGenome(GenomeAttributes.ZOMBIE_POTENCY, GenomeAttributes.ZOMBIE_DAMAGE, GenomeAttributes.ZOMBIE_KNOCKBACK, GenomeAttributes.ZOMBIE_ARMOR, GenomeAttributes.ZOMBIE_MOVEMENT_SPEED);
+		genome.createGenome(getSoulName(), GenomeAttributes.ZOMBIE_POTENCY, GenomeAttributes.ZOMBIE_DAMAGE, GenomeAttributes.ZOMBIE_KNOCKBACK, GenomeAttributes.ZOMBIE_ARMOR, GenomeAttributes.ZOMBIE_MOVEMENT_SPEED);
 		genome.saveTags();
 	}
 }

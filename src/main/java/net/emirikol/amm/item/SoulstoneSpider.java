@@ -42,7 +42,7 @@ public class SoulstoneSpider extends Soulstone implements FilledSoulstone {
 		super.defaultGenes(stack);
 		Genome genome = new Genome(stack);
 		genome.loadTags();
-		genome.createGenome(GenomeAttributes.SPIDER_POTENCY, GenomeAttributes.SPIDER_DAMAGE, GenomeAttributes.SPIDER_KNOCKBACK, GenomeAttributes.SPIDER_ARMOR, GenomeAttributes.SPIDER_MOVEMENT_SPEED);
+		genome.createGenome(getSoulName(), GenomeAttributes.SPIDER_POTENCY, GenomeAttributes.SPIDER_DAMAGE, GenomeAttributes.SPIDER_KNOCKBACK, GenomeAttributes.SPIDER_ARMOR, GenomeAttributes.SPIDER_MOVEMENT_SPEED);
 		genome.saveTags();
 	}
 }

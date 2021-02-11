@@ -67,8 +67,8 @@ public class SerializedGenome {
 		return String.join("|", entries);
 	}
 	
-	public int getNameColor() {
-		switch (this.name) {
+	public int getNameColor(String key) {
+		switch (key) {
 			case "CREEPER":
 				return 4970784;
 			case "ENDERMAN":

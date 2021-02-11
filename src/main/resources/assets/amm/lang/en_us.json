@@ -15,6 +15,7 @@
 	"entity.amm.summoned_skeleton": "Skeleton",
 	"entity.amm.summoned_spider": "Spider",
 	"entity.amm.summoned_zombie": "Zombie",
+	"text.amm.species": "Species",
 	"text.amm.potency": "Potency",
 	"text.amm.damage": "Damage",
 	"text.amm.knockback": "Knockback",

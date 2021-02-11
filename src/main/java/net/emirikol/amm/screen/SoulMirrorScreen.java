@@ -20,14 +20,15 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	private static final Identifier TEXTURE = new Identifier("amm", "textures/gui/container/soul_mirror.png");
 	public static final int TITLE_Y = 10;
 	public static final int COLUMN_HEADER_Y = 25;
-	public static final int COLUMN_DOM_X = 80;
+	public static final int COLUMN_DOM_X = 70;
 	public static final int COLUMN_REC_X = 120;
 	public static final int ROW_START_X = 15;
-	public static final int POTENCY_ROW_Y = 40;
-	public static final int DAMAGE_ROW_Y = 50;
-	public static final int KNOCKBACK_ROW_Y = 60;
-	public static final int ARMOR_ROW_Y = 70;
-	public static final int SPEED_ROW_Y = 80;
+	public static final int SPECIES_ROW_Y = 40;
+	public static final int POTENCY_ROW_Y = 50;
+	public static final int DAMAGE_ROW_Y = 60;
+	public static final int KNOCKBACK_ROW_Y = 70;
+	public static final int ARMOR_ROW_Y = 80;
+	public static final int SPEED_ROW_Y = 90;
 	
 	public SoulMirrorScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
@@ -50,12 +51,17 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		//Draw text for soul species.
 		Text soulText = new LiteralText(serializedGenome.name + " SOUL");
 		int x = (backgroundWidth - textRenderer.getWidth(soulText)) / 2;
-		this.textRenderer.draw(matrices, soulText, (float) x, (float) TITLE_Y, serializedGenome.getNameColor());
+		this.textRenderer.draw(matrices, soulText, (float) x, (float) TITLE_Y, serializedGenome.getNameColor(serializedGenome.name));
 		//Draw column headers.
 		Text dominantText = new TranslatableText("text.amm.dom_column");
 		Text recessiveText = new TranslatableText("text.amm.rec_column");
 		this.textRenderer.draw(matrices, dominantText, (float) COLUMN_DOM_X, (float) COLUMN_HEADER_Y, 4210752);
 		this.textRenderer.draw(matrices, recessiveText, (float) COLUMN_REC_X, (float) COLUMN_HEADER_Y, 4210752);
+		//Draw species row.
+		Text speciesText = new TranslatableText("text.amm.species");
+		this.textRenderer.draw(matrices, speciesText, (float) ROW_START_X, (float) SPECIES_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("species"), (float) COLUMN_DOM_X, (float) SPECIES_ROW_Y, serializedGenome.getNameColor(serializedGenome.dominantAlleles.get("species")));
+		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("species"), (float) COLUMN_REC_X, (float) SPECIES_ROW_Y, serializedGenome.getNameColor(serializedGenome.recessiveAlleles.get("species")));
 		//Draw potency row.
 		Text potencyText = new TranslatableText("text.amm.potency");
 		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);

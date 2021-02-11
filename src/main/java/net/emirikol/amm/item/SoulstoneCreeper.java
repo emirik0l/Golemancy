@@ -42,7 +42,7 @@ public class SoulstoneCreeper extends Soulstone implements FilledSoulstone {
 		super.defaultGenes(stack);
 		Genome genome = new Genome(stack);
 		genome.loadTags();
-		genome.createGenome(GenomeAttributes.CREEPER_POTENCY, GenomeAttributes.CREEPER_DAMAGE, GenomeAttributes.CREEPER_KNOCKBACK, GenomeAttributes.CREEPER_ARMOR, GenomeAttributes.CREEPER_MOVEMENT_SPEED);
+		genome.createGenome(getSoulName(), GenomeAttributes.CREEPER_POTENCY, GenomeAttributes.CREEPER_DAMAGE, GenomeAttributes.CREEPER_KNOCKBACK, GenomeAttributes.CREEPER_ARMOR, GenomeAttributes.CREEPER_MOVEMENT_SPEED);
 		genome.saveTags();
 	}
 }

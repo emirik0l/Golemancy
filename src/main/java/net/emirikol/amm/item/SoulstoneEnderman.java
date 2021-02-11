@@ -43,7 +43,7 @@ public class SoulstoneEnderman extends Soulstone implements FilledSoulstone {
 		super.defaultGenes(stack);
 		Genome genome = new Genome(stack);
 		genome.loadTags();
-		genome.createGenome(GenomeAttributes.ENDERMAN_POTENCY, GenomeAttributes.ENDERMAN_DAMAGE, GenomeAttributes.ENDERMAN_KNOCKBACK, GenomeAttributes.ENDERMAN_ARMOR, GenomeAttributes.ENDERMAN_MOVEMENT_SPEED);
+		genome.createGenome(getSoulName(), GenomeAttributes.ENDERMAN_POTENCY, GenomeAttributes.ENDERMAN_DAMAGE, GenomeAttributes.ENDERMAN_KNOCKBACK, GenomeAttributes.ENDERMAN_ARMOR, GenomeAttributes.ENDERMAN_MOVEMENT_SPEED);
 		genome.saveTags();
 	}
 }

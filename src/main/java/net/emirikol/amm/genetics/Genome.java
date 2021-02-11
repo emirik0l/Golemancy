@@ -20,12 +20,16 @@ public class Genome {
 	
 	//Constructor; initialises genome and loads tags from an itemstack.
 	public Genome(ItemStack stack) {
-		this.soulstone = stack;
-		this.name = ((Soulstone) stack.getItem()).getSoulName();
-		this.tag = soulstone.getOrCreateTag();
+		setItemStack(stack);
 		this.dominant = new Genepool();
 		this.recessive = new Genepool();
 		loadTags();
+	}
+	
+	public void setItemStack(ItemStack stack) {
+		this.soulstone = stack;
+		this.name = ((Soulstone) stack.getItem()).getSoulName();
+		this.tag = soulstone.getOrCreateTag();
 	}
 	
 	public String getName() {
@@ -34,13 +38,15 @@ public class Genome {
 	
 	//Initialises the Genome with identical dominant and recessive genepools based on the supplied attributes.
 	//Called when you receive a fresh soulstone from killing a mob or via mutation.
-	public void createGenome(double potency, double damage, double knockback, double armor, double movement_speed) {
-		this.dominant = new Genepool(potency, damage, knockback, armor, movement_speed);
-		this.recessive = new Genepool(potency, damage, knockback, armor, movement_speed);
+	public void createGenome(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
+		this.dominant = new Genepool(species, potency, damage, knockback, armor, movement_speed);
+		this.recessive = new Genepool(species, potency, damage, knockback, armor, movement_speed);
 	}
 	
 	//Load NBT data from the ItemStack into the Genome.
 	public void loadTags() {
+		this.dominant.putString("species", tag.getString("species_dom"));
+		this.recessive.putString("species", tag.getString("species_rec"));
 		this.dominant.putDouble("potency", tag.getDouble("potency_dom"));
 		this.recessive.putDouble("potency", tag.getDouble("potency_rec"));
 		this.dominant.putDouble("damage", tag.getDouble("damage_dom"));
@@ -55,6 +61,8 @@ public class Genome {
 	
 	//Save NBT data from the Genome into the Itemstack.
 	public void saveTags() {
+		tag.putString("species_dom", this.dominant.getString("species"));
+		tag.putString("species_rec", this.recessive.getString("species"));
 		tag.putDouble("potency_dom", this.dominant.getDouble("potency"));
 		tag.putDouble("potency_rec", this.recessive.getDouble("potency"));
 		tag.putDouble("damage_dom", this.dominant.getDouble("damage"));
@@ -90,11 +98,9 @@ public class Genome {
 	//Create a new genome for a soulstone by breeding two parents.
 	//Uses mendelian inheritance to randomly assign genes from the parents to the child.
 	public static ItemStack breed(ItemStack parent1, ItemStack parent2) {
-		//Randomly choose which parent to use for the species.
 		Random rand = new Random();
-		int x = rand.nextInt(2);
-		ItemStack parents[] = {parent1, parent2};
-		Soulstone soulstone = (Soulstone) parents[x].getItem();
+		//Create a placeholder ItemStack to hold genes until we figure out what species the child should be.
+		Soulstone soulstone = (Soulstone) parent1.getItem();
 		ItemStack stack = new ItemStack(soulstone);
 		//Extract genomes from parents and create a new genome for this stack.
 		Genome genome1 = ((Soulstone) parent1.getItem()).getGenome(parent1);
@@ -117,13 +123,20 @@ public class Genome {
 			//Apply the selected gene.
 			newGenome.recessive.alleles.put(key, pool.alleles.get(key));
 		}
+		//Figure out what species the child should be and create a new itemstack.
+		Soulstone childSoulstone = GenomeAttributes.SPECIES_SOULSTONES.get(newGenome.dominant.getString("species"));
+		ItemStack child = new ItemStack(childSoulstone);
+		childSoulstone.getGenome(child);
+		//Update the genome to use the new itemstack, and save tags.
+		newGenome.setItemStack(child);
 		newGenome.saveTags();
-		return stack;
+		return child;
 	}
 	
 	//The Genepool keeps track of one complete set of genes, dominant or recessive.
 	public class Genepool {
-		public Map<String,Double> alleles = new HashMap<String,Double>() {{
+		public Map<String,Object> alleles = new HashMap<String,Object>() {{
+			put("species", "");
 			put("potency", 0.00D);
 			put("damage", 0.00D);
 			put("knockback", 0.00D);
@@ -133,7 +146,8 @@ public class Genome {
 		
 		public Genepool() {}
 		
-		public Genepool(double potency, double damage, double knockback, double armor, double movement_speed) {
+		public Genepool(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
+			this.putString("species", species);
 			this.putDouble("potency", potency);
 			this.putDouble("damage", damage);
 			this.putDouble("knockback", knockback);
@@ -147,6 +161,10 @@ public class Genome {
 		
 		public double getDouble(String key) {
 			return (double) this.alleles.get(key);
+		}
+		
+		public void putString(String key, String value) {
+			this.alleles.put(key, value);
 		}
 		
 		public String getString(String key) {
