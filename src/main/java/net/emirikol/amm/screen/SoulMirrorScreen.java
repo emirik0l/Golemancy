@@ -60,8 +60,8 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		//Draw species row.
 		Text speciesText = new TranslatableText("text.amm.species");
 		this.textRenderer.draw(matrices, speciesText, (float) ROW_START_X, (float) SPECIES_ROW_Y, 4210752);
-		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("species"), (float) COLUMN_DOM_X, (float) SPECIES_ROW_Y, serializedGenome.getNameColor(serializedGenome.dominantAlleles.get("species")));
-		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("species"), (float) COLUMN_REC_X, (float) SPECIES_ROW_Y, serializedGenome.getNameColor(serializedGenome.recessiveAlleles.get("species")));
+		this.textRenderer.draw(matrices, serializedGenome.dominantAlleles.get("species").substring(0,3), (float) COLUMN_DOM_X, (float) SPECIES_ROW_Y, serializedGenome.getNameColor(serializedGenome.dominantAlleles.get("species")));
+		this.textRenderer.draw(matrices, serializedGenome.recessiveAlleles.get("species").substring(0,3), (float) COLUMN_REC_X, (float) SPECIES_ROW_Y, serializedGenome.getNameColor(serializedGenome.recessiveAlleles.get("species")));
 		//Draw potency row.
 		Text potencyText = new TranslatableText("text.amm.potency");
 		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);
