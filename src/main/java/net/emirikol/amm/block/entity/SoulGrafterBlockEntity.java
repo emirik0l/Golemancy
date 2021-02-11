@@ -28,6 +28,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	public static final int[] EMPTYSTONE_SLOTS = {2};
 	public static final int[] FUEL_SLOTS = {3};
 	public static final int[] OUTPUT_SLOTS = {4,5,6,7,8,9};
+	public static final int[] ALL_SLOTS = {0,1,2,3,4,5,6,7,8,9};
 	
 	public static final int FUEL_VALUE = 600; //each piece of bonemeal burns for 600 ticks, or 30 seconds
 	public static final int GRAFT_DURATION = 2400; //grafting souls takes 2400 ticks or 2 minutes
@@ -105,11 +106,29 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	
 	@Override
 	public int[] getAvailableSlots(Direction side) {
-		return OUTPUT_SLOTS;
+		return ALL_SLOTS;
 	}
 	
 	@Override 
 	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+		//You can insert filled soulstones into parent slots.
+		for (int i: PARENT_SLOTS) {
+			if ((slot == i) && (stack.getItem() instanceof FilledSoulstone)) {
+				return true;
+			}
+		}
+		//You can insert empty soulstones into empty soulstone slots.
+		for (int i: EMPTYSTONE_SLOTS) {
+			if ((slot == i) && (stack.isItemEqual(new ItemStack(AriseMyMinionsMod.SOULSTONE)))) {
+				return true;
+			}
+		}
+		//You can insert fuel into fuel slots.
+		for (int i: FUEL_SLOTS) {
+			if ((slot == i) && (stack.isItemEqual(new ItemStack(Items.BONE_MEAL)))) {
+				return true;
+			}
+		}
 		return false;
 	}
 
