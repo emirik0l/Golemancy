@@ -30,6 +30,12 @@ public class GenomeAttributes {
 	public static final double SKELETON_ARMOR = 0.0D;
 	public static final double SKELETON_MOVEMENT_SPEED = 0.25D;
 	
+	public static final double SLIME_POTENCY = 3.0D;
+	public static final double SLIME_DAMAGE = 0.0D; //slime damage depends on size, so this is really a modifier
+	public static final double SLIME_KNOCKBACK = 0.0D;
+	public static final double SLIME_ARMOR = 0.0D;
+	public static final double SLIME_MOVEMENT_SPEED = 0.2D; //slime speed depends on size, so this is really a modifier
+	
 	public static final double SPIDER_POTENCY = 2.0D;
 	public static final double SPIDER_DAMAGE = 2.0D;
 	public static final double SPIDER_KNOCKBACK = 0.0D;
@@ -47,6 +53,7 @@ public class GenomeAttributes {
 		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put("SKELETON", AriseMyMinionsMod.SOULSTONE_SKELETON);
+		put("SLIME", AriseMyMinionsMod.SOULSTONE_SLIME);
 		put("SPIDER", AriseMyMinionsMod.SOULSTONE_SPIDER);
 		put("ZOMBIE", AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 	}};

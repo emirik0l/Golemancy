@@ -81,8 +81,14 @@ public class Genome {
 		if (entity instanceof LivingEntity) {
 			LivingEntity livingEntity = (LivingEntity) entity;
 			//Set damage.
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-			entityAttributeInstance.setBaseValue(this.dominant.getDouble("damage"));
+			if (livingEntity instanceof SlimeEntity) {
+				SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
+				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+				entityAttributeInstance.setBaseValue(this.dominant.getDouble("damage") + (double)slimeEntity.getSize());
+			} else {
+				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+				entityAttributeInstance.setBaseValue(this.dominant.getDouble("damage"));
+			}
 			//Set knockback.
 			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
 			entityAttributeInstance.setBaseValue(this.dominant.getDouble("knockback"));
@@ -90,8 +96,14 @@ public class Genome {
 			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
 			entityAttributeInstance.setBaseValue(this.dominant.getDouble("armor"));			
 			//Set movement speed.
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-			entityAttributeInstance.setBaseValue(this.dominant.getDouble("movement_speed"));
+			if (livingEntity instanceof SlimeEntity) {
+				SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
+				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+				entityAttributeInstance.setBaseValue(this.dominant.getDouble("movement_speed") + 0.1F * (float)slimeEntity.getSize());
+			} else {
+				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+				entityAttributeInstance.setBaseValue(this.dominant.getDouble("movement_speed"));
+			}
 		}
 	}
 	

@@ -77,6 +77,8 @@ public class SerializedGenome {
 				return 8524417;
 			case "SKELETON":
 				return 8289924;
+			case "SLIME":
+				return 5349438;
 			case "SPIDER":
 				return 2629909;
 			case "ZOMBIE":
