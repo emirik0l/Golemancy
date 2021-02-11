@@ -11,7 +11,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 
-public class SoulstoneZombie extends Soulstone implements FilledSoulstone {
+public class SoulstoneZombie extends Soulstone implements FilledSoulstone,NaturalSoulstone {
 	
 	public SoulstoneZombie(Settings settings) {
 		super(settings);

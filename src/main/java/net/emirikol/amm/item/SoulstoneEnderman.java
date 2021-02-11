@@ -11,7 +11,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 
-public class SoulstoneEnderman extends Soulstone implements FilledSoulstone {
+public class SoulstoneEnderman extends Soulstone implements FilledSoulstone,NaturalSoulstone {
 	
 	public SoulstoneEnderman(Settings settings) {
 		super(settings);

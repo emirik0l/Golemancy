@@ -11,7 +11,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 
-public class SoulstoneCreeper extends Soulstone implements FilledSoulstone {
+public class SoulstoneCreeper extends Soulstone implements FilledSoulstone,NaturalSoulstone {
 	
 	public SoulstoneCreeper(Settings settings) {
 		super(settings);

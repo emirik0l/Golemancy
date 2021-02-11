@@ -11,7 +11,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 
-public class SoulstoneSpider extends Soulstone implements FilledSoulstone {
+public class SoulstoneSpider extends Soulstone implements FilledSoulstone,NaturalSoulstone {
 	
 	public SoulstoneSpider(Settings settings) {
 		super(settings);
