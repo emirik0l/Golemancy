@@ -30,7 +30,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	public static final int[] OUTPUT_SLOTS = {4,5,6,7,8,9};
 	
 	public static final int FUEL_VALUE = 600; //each piece of bonemeal burns for 600 ticks, or 30 seconds
-	public static final int GRAFT_DURATION = 2400; //grafting souls takes 2400 ticks or 2 minutes
+	public static final int GRAFT_DURATION = 24; //grafting souls takes 2400 ticks or 2 minutes
 	
 	private int graft_time; 
 	private int fuel_time; 
@@ -253,12 +253,8 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		for (int i = 0; i < potency; i++) {
 			//Check if there are empty soulstones available to fill.
 			if (emptySoulstones.getCount() > 0) {
-				//Randomly choose which parent to use for the species.
-				x = rand.nextInt(2);
-				Soulstone soulstone = (Soulstone) parents[x].getItem();
-				ItemStack child = new ItemStack(soulstone);
 				//Breed the parents to create a new genome for the child.
-				soulstone.breed(child, parents[0], parents[1]);
+				ItemStack child = Soulstone.breed(parents[0], parents[1]);
 				//Output new soulstone and decrement empty soulstones.
 				graftOutput(child);
 				emptySoulstones.decrement(1);
