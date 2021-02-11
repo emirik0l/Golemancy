@@ -69,6 +69,8 @@ public class SerializedGenome {
 	
 	public int getNameColor(String key) {
 		switch (key) {
+			case "CAVE SPIDER":
+				return 11826;
 			case "CREEPER":
 				return 4970784;
 			case "ENDERMAN":

@@ -6,6 +6,12 @@ import net.emirikol.amm.item.*;
 import java.util.*;
 
 public class GenomeAttributes {
+	public static final double CAVE_SPIDER_POTENCY = 4.0D;
+	public static final double CAVE_SPIDER_DAMAGE = 2.0D;
+	public static final double CAVE_SPIDER_KNOCKBACK = 0.0D;
+	public static final double CAVE_SPIDER_ARMOR = 0.0D;
+	public static final double CAVE_SPIDER_MOVEMENT_SPEED = 0.3D;
+
 	public static final double CREEPER_POTENCY = 2.0D;
 	public static final double CREEPER_DAMAGE = 2.0D;
 	public static final double CREEPER_KNOCKBACK = 0.0D;
@@ -37,6 +43,7 @@ public class GenomeAttributes {
 	public static final double ZOMBIE_MOVEMENT_SPEED = 0.23D;
 	
 	public static final Map<String,Soulstone> SPECIES_SOULSTONES = new HashMap() {{
+		put("CAVE SPIDER", AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
 		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put("SKELETON", AriseMyMinionsMod.SOULSTONE_SKELETON);

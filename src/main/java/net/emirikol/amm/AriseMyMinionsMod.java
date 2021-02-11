@@ -24,6 +24,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 
 
 	public static Soulstone SOULSTONE;
+	public static SoulstoneCaveSpider SOULSTONE_CAVE_SPIDER;
 	public static SoulstoneCreeper SOULSTONE_CREEPER;
 	public static SoulstoneEnderman SOULSTONE_ENDERMAN;
 	public static SoulstoneSkeleton SOULSTONE_SKELETON;
@@ -33,6 +34,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static ClayEffigy CLAY_EFFIGY;
 	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 
+	public static EntityType<SummonedCaveSpiderEntity> SUMMONED_CAVE_SPIDER;
 	public static EntityType<SummonedCreeperEntity> SUMMONED_CREEPER;
 	public static EntityType<SummonedEndermanEntity> SUMMONED_ENDERMAN;
 	public static EntityType<SummonedSkeletonEntity> SUMMONED_SKELETON;
@@ -59,6 +61,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		FabricItemSettings soulstone_settings = new FabricItemSettings();
 		soulstone_settings.group(ItemGroup.MISC);
 		SOULSTONE = new Soulstone(soulstone_settings);
+		SOULSTONE_CAVE_SPIDER = new SoulstoneCaveSpider(soulstone_settings);
 		SOULSTONE_CREEPER = new SoulstoneCreeper(soulstone_settings);
 		SOULSTONE_ENDERMAN = new SoulstoneEnderman(soulstone_settings);
 		SOULSTONE_SKELETON = new SoulstoneSkeleton(soulstone_settings);
@@ -87,6 +90,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOUL_GRAFTER_ENTITY = BlockEntityType.Builder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
 		SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("amm", "soul_grafter"), SoulGrafterScreenHandler::new);
 		//Instantiate Summoned Mobs
+		SUMMONED_CAVE_SPIDER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedCaveSpiderEntity::new).dimensions(EntityType.CAVE_SPIDER.getDimensions()).build();
 		SUMMONED_CREEPER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedCreeperEntity::new).dimensions(EntityType.CREEPER.getDimensions()).build();
 		SUMMONED_ENDERMAN = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedEndermanEntity::new).dimensions(EntityType.ENDERMAN.getDimensions()).build();
 		SUMMONED_SKELETON = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedSkeletonEntity::new).dimensions(EntityType.SKELETON.getDimensions()).build();
@@ -97,6 +101,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static void doRegistration() {
 		//Register Soulstones
 		Registry.register(Registry.ITEM, "amm:soulstone", SOULSTONE);
+		Registry.register(Registry.ITEM, "amm:soulstone_cave_spider", SOULSTONE_CAVE_SPIDER);
 		Registry.register(Registry.ITEM, "amm:soulstone_creeper", SOULSTONE_CREEPER);
 		Registry.register(Registry.ITEM, "amm:soulstone_enderman", SOULSTONE_ENDERMAN);
 		Registry.register(Registry.ITEM, "amm:soulstone_skeleton", SOULSTONE_SKELETON);
@@ -113,6 +118,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ITEM, "amm:soul_grafter", SOUL_GRAFTER_ITEM);
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, "amm:soul_grafter", SOUL_GRAFTER_ENTITY);
 		//Register Summoned Mobs
+		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_cave_spider", SUMMONED_CAVE_SPIDER);
+		FabricDefaultAttributeRegistry.register(SUMMONED_CAVE_SPIDER, SummonedCaveSpiderEntity.createCaveSpiderAttributes());
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_creeper", SUMMONED_CREEPER);
 		FabricDefaultAttributeRegistry.register(SUMMONED_CREEPER, SummonedCreeperEntity.createCreeperAttributes());
 		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_enderman", SUMMONED_ENDERMAN);

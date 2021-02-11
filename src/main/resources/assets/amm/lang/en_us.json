@@ -1,5 +1,6 @@
 {
 	"item.amm.soulstone": "Soulstone (Empty)",
+	"item.amm.soulstone_cave_spider": "Soulstone (Cave Spider)",
 	"item.amm.soulstone_creeper": "Soulstone (Creeper)",
 	"item.amm.soulstone_enderman": "Soulstone (Enderman)",
 	"item.amm.soulstone_skeleton": "Soulstone (Skeleton)",
@@ -10,6 +11,7 @@
 	"block.amm.soul_grafter": "Soul Grafter",
 	"item.amm.clay_effigy": "Clay Effigy",
 	"entity.amm.clay_effigy": "Clay Effigy",
+	"entity.amm.summoned_cave_spider": "Cave Spider",
 	"entity.amm.summoned_creeper": "Creeper",
 	"entity.amm.summoned_enderman": "Enderman",
 	"entity.amm.summoned_skeleton": "Skeleton",

@@ -27,6 +27,7 @@ public class AriseMyMinionsModClient implements ClientModInitializer {
 			return new ClayEffigyEntityRenderer(dispatcher);
 		});
 		//Register Summoned Mob Entity Renderers
+		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_CAVE_SPIDER, (dispatcher, context) -> { return new CaveSpiderEntityRenderer(dispatcher); });
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_CREEPER, (dispatcher, context) -> { return new CreeperEntityRenderer(dispatcher); });
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_ENDERMAN, (dispatcher, context) -> { return new EndermanEntityRenderer(dispatcher); });
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.SUMMONED_SKELETON, (dispatcher, context) -> { return new SkeletonEntityRenderer(dispatcher); });
