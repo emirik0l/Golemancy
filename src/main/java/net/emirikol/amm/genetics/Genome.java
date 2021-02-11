@@ -28,6 +28,10 @@ public class Genome {
 		loadTags();
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+	
 	//Initialises the Genome with identical dominant and recessive genepools based on the supplied attributes.
 	//Called when you receive a fresh soulstone from killing a mob or via mutation.
 	public void createGenome(double potency, double damage, double knockback, double armor, double movement_speed) {
@@ -83,8 +87,38 @@ public class Genome {
 		}
 	}
 	
-	public String getName() {
-		return this.name;
+	//Create a new genome for a soulstone by breeding two parents.
+	//Uses mendelian inheritance to randomly assign genes from the parents to the child.
+	public static ItemStack breed(ItemStack parent1, ItemStack parent2) {
+		//Randomly choose which parent to use for the species.
+		Random rand = new Random();
+		int x = rand.nextInt(2);
+		ItemStack parents[] = {parent1, parent2};
+		Soulstone soulstone = (Soulstone) parents[x].getItem();
+		ItemStack stack = new ItemStack(soulstone);
+		//Extract genomes from parents and create a new genome for this stack.
+		Genome genome1 = ((Soulstone) parent1.getItem()).getGenome(parent1);
+		Genome genome2 = ((Soulstone) parent2.getItem()).getGenome(parent2);
+		Genome newGenome = soulstone.getGenome(stack);
+		Genome.Genepool[] options = {genome1.dominant, genome1.recessive, genome2.dominant, genome2.recessive};
+		//Generate dominant genepool.
+		for (String key : newGenome.dominant.alleles.keySet()) {
+			//Randomly select a genepool to use.
+			int choice = rand.nextInt(4);
+			Genome.Genepool pool = options[choice];
+			//Apply the selected gene.
+			newGenome.dominant.alleles.put(key, pool.alleles.get(key));
+		}
+		//Generate recessive genepool.
+		for (String key : newGenome.recessive.alleles.keySet()) {
+			//Randomly select a genepool to use.
+			int choice = rand.nextInt(4);
+			Genome.Genepool pool = options[choice];
+			//Apply the selected gene.
+			newGenome.recessive.alleles.put(key, pool.alleles.get(key));
+		}
+		newGenome.saveTags();
+		return stack;
 	}
 	
 	//The Genepool keeps track of one complete set of genes, dominant or recessive.
