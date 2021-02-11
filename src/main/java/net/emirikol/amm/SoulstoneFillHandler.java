@@ -15,7 +15,9 @@ public class SoulstoneFillHandler {
 	//Used to link entities with souls to their corresponding soulstones.
 	public static Map<EntityType,Soulstone> VALID_ENTITIES = new HashMap<EntityType,Soulstone>() {{
 		put(EntityType.CREEPER, AriseMyMinionsMod.SOULSTONE_CREEPER);
+		put(EntityType.DROWNED, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.ENDERMAN, AriseMyMinionsMod.SOULSTONE_ENDERMAN);
+		put(EntityType.HUSK, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.SKELETON, AriseMyMinionsMod.SOULSTONE_SKELETON);
 		put(EntityType.SPIDER, AriseMyMinionsMod.SOULSTONE_SPIDER);
 		put(EntityType.ZOMBIE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
