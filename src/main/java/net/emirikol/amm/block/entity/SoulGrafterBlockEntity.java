@@ -273,7 +273,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 			//Check if there are empty soulstones available to fill.
 			if (emptySoulstones.getCount() > 0) {
 				//Breed the parents to create a new soulstone with a new genome.
-				ItemStack child = Genome.breed(parents[0], parents[1]);
+				ItemStack child = Breeding.breed(parents[0], parents[1]);
 				//Output new soulstone and decrement empty soulstones.
 				graftOutput(child);
 				emptySoulstones.decrement(1);
