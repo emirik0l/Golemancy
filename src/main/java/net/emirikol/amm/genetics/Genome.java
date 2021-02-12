@@ -11,140 +11,120 @@ import net.minecraft.entity.mob.*;
 import java.util.*;
 
 public class Genome {
-	private ItemStack soulstone;
-	private String name;
-	private CompoundTag tag;
+	private Map<String,Gene> genes;
 	
-	public Genepool dominant;
-	public Genepool recessive;
-	
-	//Constructor; initialises genome and loads tags from an itemstack.
-	public Genome(ItemStack stack) {
-		setItemStack(stack);
-		this.dominant = new Genepool();
-		this.recessive = new Genepool();
-		loadTags();
+	//Create a blank Genome.
+	//Called when breeding soulstones.
+	public Genome() {
+		genes = new HashMap<String,Gene>();
 	}
 	
-	public void setItemStack(ItemStack stack) {
-		this.soulstone = stack;
-		this.name = ((Soulstone) stack.getItem()).getSoulName();
-		this.tag = soulstone.getOrCreateTag();
+	//Create a new Genome from an ItemStack.
+	//Called when loading the genome from a soulstone.
+	public Genome(ItemStack stack) {
+		genes = new HashMap<String,Gene>();
+		CompoundTag tag = stack.getOrCreateTag();
+		//Check if the soulstone is initialised; if not, call defaultGenes().
+		boolean initialised = tag.getBoolean("initialised");
+		if (!initialised) {
+			Soulstone stone = (Soulstone) stack.getItem();
+			stone.defaultGenes(stack);
+		}
+		//Load genes from NBT.
+		genes.put("species", new Gene<String>(tag.getString("species_dom"), tag.getString("species_rec")));
+		genes.put("potency", new Gene<Double>(tag.getDouble("potency_dom"), tag.getDouble("potency_rec")));
+		genes.put("damage", new Gene<Double>(tag.getDouble("damage_dom"), tag.getDouble("damage_rec")));
+		genes.put("knockback", new Gene<Double>(tag.getDouble("knockback_dom"), tag.getDouble("knockback_rec")));
+		genes.put("armor", new Gene<Double>(tag.getDouble("armor_dom"), tag.getDouble("armor_rec")));
+		genes.put("movement_speed", new Gene<Double>(tag.getDouble("movement_speed_dom"), tag.getDouble("movement_speed_rec")));
+	}
+	
+	//Create a new Genome with identical dominant and recessive genepools based on the supplied attributes.
+	//Called when you receive a fresh soulstone from killing a mob or via mutation.
+	public Genome(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
+		genes.put("species", new Gene<String>(species));
+		genes.put("potency", new Gene<Double>(potency));
+		genes.put("damage", new Gene<Double>(damage));
+		genes.put("knockback", new Gene<Double>(knockback));
+		genes.put("movement_speed", new Gene<Double>(movement_speed));
 	}
 	
 	public String getName() {
-		return this.name;
+		Gene<String> species = genes.get("species");
+		return species.getDom();
 	}
 	
-	//Initialises the Genome with identical dominant and recessive genepools based on the supplied attributes.
-	//Called when you receive a fresh soulstone from killing a mob or via mutation.
-	public void createGenome(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
-		this.dominant = new Genepool(species, potency, damage, knockback, armor, movement_speed);
-		this.recessive = new Genepool(species, potency, damage, knockback, armor, movement_speed);
+	public Gene getGene(String key) {
+		return genes.get(key);
 	}
 	
-	//Load NBT data from the ItemStack into the Genome.
-	public void loadTags() {
-		this.dominant.putString("species", tag.getString("species_dom"));
-		this.recessive.putString("species", tag.getString("species_rec"));
-		this.dominant.putDouble("potency", tag.getDouble("potency_dom"));
-		this.recessive.putDouble("potency", tag.getDouble("potency_rec"));
-		this.dominant.putDouble("damage", tag.getDouble("damage_dom"));
-		this.recessive.putDouble("damage", tag.getDouble("damage_rec"));
-		this.dominant.putDouble("knockback", tag.getDouble("knockback_dom"));
-		this.recessive.putDouble("knockback", tag.getDouble("knockback_rec"));
-		this.dominant.putDouble("armor", tag.getDouble("armor_dom"));
-		this.recessive.putDouble("armor", tag.getDouble("armor_rec"));
-		this.dominant.putDouble("movement_speed", tag.getDouble("movement_speed_dom"));
-		this.recessive.putDouble("movement_speed", tag.getDouble("movement_speed_rec"));
+	public void putGene(String key, Gene gene) {
+		genes.put(key, gene);
 	}
 	
-	//Save NBT data from the Genome into the Itemstack.
-	public void saveTags() {
-		tag.putString("species_dom", this.dominant.getString("species"));
-		tag.putString("species_rec", this.recessive.getString("species"));
-		tag.putDouble("potency_dom", this.dominant.getDouble("potency"));
-		tag.putDouble("potency_rec", this.recessive.getDouble("potency"));
-		tag.putDouble("damage_dom", this.dominant.getDouble("damage"));
-		tag.putDouble("damage_rec", this.recessive.getDouble("damage"));
-		tag.putDouble("knockback_dom", this.dominant.getDouble("knockback"));
-		tag.putDouble("knockback_rec", this.recessive.getDouble("knockback"));
-		tag.putDouble("armor_dom", this.dominant.getDouble("armor"));
-		tag.putDouble("armor_rec", this.recessive.getDouble("armor"));
-		tag.putDouble("movement_speed_dom", this.dominant.getDouble("movement_speed"));
-		tag.putDouble("movement_speed_rec", this.recessive.getDouble("movement_speed"));
+	public Set<String> getKeys() {
+		return genes.keySet();
 	}
 	
-	//Apply the dominant genepool to an entity.
-	public void applyGenes(Entity entity) {
+	//Applies this genome to an ItemStack, updating its NBT data.
+	public void applyStack(ItemStack stack) {
+		CompoundTag tag = stack.getOrCreateTag();
+		Gene<String> species = genes.get("species");
+		tag.putString("species_dom", species.getDom());
+		tag.putString("species_rec", species.getRec());
+		Gene<Double> potency = genes.get("potency");
+		tag.putDouble("potency_dom", potency.getDom());
+		tag.putDouble("potency_rec", potency.getRec());
+		Gene<Double> damage = genes.get("damage");
+		tag.putDouble("damage_dom", damage.getDom());
+		tag.putDouble("damage_rec", damage.getRec());
+		Gene<Double> knockback = genes.get("knockback");
+		tag.putDouble("knockback_dom", knockback.getDom());
+		tag.putDouble("knockback_rec", knockback.getRec());
+		Gene<Double> armor = genes.get("armor");
+		tag.putDouble("armor_dom", armor.getDom());
+		tag.putDouble("armor_rec", armor.getRec());
+		Gene<Double> movementSpeed = genes.get("movement_speed");
+		tag.putDouble("movement_speed_dom", movementSpeed.getDom());
+		tag.putDouble("movement_speed_rec", movementSpeed.getRec());
+		
+		tag.putBoolean("initialised", true);
+	}
+	
+	//Applies this genome to an Entity, updating its attributes.
+	public void applyEntity(LivingEntity entity) {
 		EntityAttributeInstance entityAttributeInstance;
-		if (entity instanceof LivingEntity) {
-			LivingEntity livingEntity = (LivingEntity) entity;
-			//Set damage.
-			if (livingEntity instanceof SlimeEntity) {
-				//Slime attack damage is based on their size.
-				SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
-				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-				entityAttributeInstance.setBaseValue(this.dominant.getDouble("damage") + (double)slimeEntity.getSize());
-			} else {
-				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-				entityAttributeInstance.setBaseValue(this.dominant.getDouble("damage"));
-			}
-			//Set knockback.
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
-			entityAttributeInstance.setBaseValue(this.dominant.getDouble("knockback"));
-			//Set armor.
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
-			entityAttributeInstance.setBaseValue(this.dominant.getDouble("armor"));			
-			//Set movement speed.
-			if (livingEntity instanceof SlimeEntity) {
-				//Slime movement speed is based on their size.
-				SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
-				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-				entityAttributeInstance.setBaseValue(this.dominant.getDouble("movement_speed") + 0.1F * (float)slimeEntity.getSize());
-			} else {
-				entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-				entityAttributeInstance.setBaseValue(this.dominant.getDouble("movement_speed"));
-			}
+		Gene<Double> gene;
+		LivingEntity livingEntity = (LivingEntity) entity;
+		//Set damage.
+		gene = genes.get("damage");
+		if (livingEntity instanceof SlimeEntity) {
+			//Slime attack damage is based on their size.
+			SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
+			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+			entityAttributeInstance.setBaseValue(gene.getDom() + (double)slimeEntity.getSize());
+		} else {
+			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+			entityAttributeInstance.setBaseValue(gene.getDom());
 		}
-	}
-	
-	//The Genepool keeps track of one complete set of genes, dominant or recessive.
-	public class Genepool {
-		public Map<String,Object> alleles = new HashMap<String,Object>() {{
-			put("species", "");
-			put("potency", 0.00D);
-			put("damage", 0.00D);
-			put("knockback", 0.00D);
-			put("armor", 0.00D);
-			put("movement_speed", 0.00D);
-		}};
-		
-		public Genepool() {}
-		
-		public Genepool(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
-			this.putString("species", species);
-			this.putDouble("potency", potency);
-			this.putDouble("damage", damage);
-			this.putDouble("knockback", knockback);
-			this.putDouble("armor", armor);
-			this.putDouble("movement_speed", movement_speed);
-		}
-		
-		public void putDouble(String key, double value) {
-			this.alleles.put(key, value);
-		}
-		
-		public double getDouble(String key) {
-			return (double) this.alleles.get(key);
-		}
-		
-		public void putString(String key, String value) {
-			this.alleles.put(key, value);
-		}
-		
-		public String getString(String key) {
-			return String.valueOf(this.alleles.get(key));
+		//Set knockback.
+		gene = genes.get("knockback");
+		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
+		entityAttributeInstance.setBaseValue(gene.getDom());
+		//Set armor.
+		gene = genes.get("armor");
+		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
+		entityAttributeInstance.setBaseValue(gene.getDom());
+		//Set movement speed.
+		gene = genes.get("movement_speed");
+		if (livingEntity instanceof SlimeEntity) {
+			//Slime movement speed is based on their size.
+			SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
+			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+			entityAttributeInstance.setBaseValue(gene.getDom() + 0.1F * (float)slimeEntity.getSize());
+		} else {
+			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+			entityAttributeInstance.setBaseValue(gene.getDom());
 		}
 	}
 }

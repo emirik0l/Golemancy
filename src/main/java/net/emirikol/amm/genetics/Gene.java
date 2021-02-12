@@ -16,11 +16,11 @@ public class Gene<T> {
 		this.recessive = value;
 	}
 	
-	public T getDominant() {
+	public T getDom() {
 		return dominant;
 	}
 	
-	public T getRecessive() {
+	public T getRec() {
 		return recessive;
 	}
 	
@@ -30,16 +30,24 @@ public class Gene<T> {
 		if (bool) { return dominant; } else { return recessive; }
 	}
 	
-	public void setDominant(T value) {
+	public void setDom(T value) {
 		dominant = value;
 	}
 	
-	public void setRecessive(T value) {
+	public void setRec(T value) {
 		recessive = value;
 	}
 	
 	public void setBoth(T value) {
 		dominant = value;
 		recessive = value;
+	}
+	
+	public Gene<T> breed(Gene<T> gene) {
+		Random rand = new Random();
+		T dom,rec;
+		if (rand.nextBoolean()) { dom = this.getRandom(); } else { dom = gene.getRandom(); }
+		if (rand.nextBoolean()) { rec = this.getRandom(); } else { rec = gene.getRandom(); }
+		return new Gene<T>(dom, rec);
 	}
 }
