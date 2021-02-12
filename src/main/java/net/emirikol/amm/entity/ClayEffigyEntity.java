@@ -39,7 +39,7 @@ public class ClayEffigyEntity extends PathAwareEntity {
 		if (stack.getItem() instanceof Soulstone) {
 			//Load genome from soulstone.
 			Soulstone stone = (Soulstone) stack.getItem();
-			Genome genome = stone.getGenome(stack);
+			Genome genome = new Genome(stack);
 			//Spawn a mob from the soulstone.
 			EntityType entityType = stone.getEntityType();
 			if (stone.filled()) {
@@ -48,9 +48,9 @@ public class ClayEffigyEntity extends PathAwareEntity {
 				this.remove();
 				//Create entity.
 				BlockPos pos = this.getBlockPos();
-				Entity entity = entityType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
+				LivingEntity entity = (LivingEntity) entityType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
 				//Load attributes from genome.
-				genome.applyGenes(entity);
+				genome.applyEntity(entity);
 				//Spawn entity.
 				world.spawnEntityAndPassengers(entity);
 				return ActionResult.SUCCESS;

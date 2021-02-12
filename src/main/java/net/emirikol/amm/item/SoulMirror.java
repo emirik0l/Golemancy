@@ -54,8 +54,7 @@ public class SoulMirror extends Item implements ExtendedScreenHandlerFactory {
 		//Check if it's a soulstone.
 		if (other.getItem() instanceof Soulstone) {
 			//Load data from soulstone.
-			Soulstone stone = (Soulstone) other.getItem();
-			Genome genome = stone.getGenome(other);
+			Genome genome = new Genome(other);
 			if (genome != null) {
 				//Damage the soul mirror.
 				stack.damage(1, (LivingEntity) player, (Consumer)((p) -> { LivingEntity q = (LivingEntity) p; q.sendToolBreakStatus(hand); }));

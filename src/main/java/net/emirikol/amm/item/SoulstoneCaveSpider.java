@@ -40,9 +40,7 @@ public class SoulstoneCaveSpider extends Soulstone implements FilledSoulstone,Na
 	//Initialises NBT data of a soulstone with defaults for that species.
 	public void defaultGenes(ItemStack stack) {
 		super.defaultGenes(stack);
-		Genome genome = new Genome(stack);
-		genome.loadTags();
-		genome.createGenome(getSoulName(), GenomeAttributes.CAVE_SPIDER_POTENCY, GenomeAttributes.CAVE_SPIDER_DAMAGE, GenomeAttributes.CAVE_SPIDER_KNOCKBACK, GenomeAttributes.CAVE_SPIDER_ARMOR, GenomeAttributes.CAVE_SPIDER_MOVEMENT_SPEED);
-		genome.saveTags();
+		Genome genome = new Genome(getSoulName(), GenomeAttributes.CAVE_SPIDER_POTENCY, GenomeAttributes.CAVE_SPIDER_DAMAGE, GenomeAttributes.CAVE_SPIDER_KNOCKBACK, GenomeAttributes.CAVE_SPIDER_ARMOR, GenomeAttributes.CAVE_SPIDER_MOVEMENT_SPEED);
+		genome.applyStack(stack);
 	}
 }

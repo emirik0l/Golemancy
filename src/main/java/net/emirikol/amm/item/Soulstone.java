@@ -29,31 +29,9 @@ public class Soulstone extends Item {
 		if (this.getEntityType() == null) { return false; }
 		return true;
 	}
-
-	//Check if this soulstone has been initialised with genes yet.
-	//If false, you should probably call defaultGenes() before using it.
-	public boolean initialised(ItemStack stack) {
-		CompoundTag tag = stack.getOrCreateTag();
-		return tag.getBoolean("initialised");
-	}
-
+	
 	//Initialises NBT data of a soulstone with defaults for that species.
 	//Override for functionality.
 	public void defaultGenes(ItemStack stack) {
-		CompoundTag tag = stack.getOrCreateTag();
-		tag.putBoolean("initialised", true);
-	}
-
-	//Loads the genome from a soulstone.
-	//If the soulstone is empty, it returns null.
-	//If the soulstone has not been initialised, it calls defaultGenes() first.
-	public Genome getGenome(ItemStack stack) {
-		if (!this.filled()) {
-			return null;
-		}
-		if (!this.initialised(stack)) {
-			this.defaultGenes(stack);
-		}
-		return new Genome(stack);
 	}
 }

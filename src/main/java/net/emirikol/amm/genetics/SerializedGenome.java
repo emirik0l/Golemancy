@@ -11,12 +11,12 @@ public class SerializedGenome {
 	public SerializedGenome(Genome genome) {
 		name = genome.getName();
 		dominantAlleles = new HashMap<String,String>();
-		for (String key: genome.dominant.alleles.keySet()) {
-			dominantAlleles.put(key, genome.dominant.getString(key));
+		for (String key: genome.getKeys()) {
+			dominantAlleles.put(key, genome.getGene(key).getDom().toString());
 		}
 		recessiveAlleles = new HashMap<String,String>();
-		for (String key: genome.recessive.alleles.keySet()) {
-			recessiveAlleles.put(key, genome.recessive.getString(key));
+		for (String key: genome.getKeys()) {
+			recessiveAlleles.put(key, genome.getGene(key).getRec().toString());
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class SerializedGenome {
 		return String.join("|", entries);
 	}
 	
-	public int getNameColor(String key) {
+	public static int getNameColor(String key) {
 		switch (key) {
 			case "CAVE SPIDER":
 				return 11826;

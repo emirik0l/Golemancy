@@ -40,9 +40,7 @@ public class SoulstoneCreeper extends Soulstone implements FilledSoulstone,Natur
 	//Initialises NBT data of a soulstone with defaults for that species.
 	public void defaultGenes(ItemStack stack) {
 		super.defaultGenes(stack);
-		Genome genome = new Genome(stack);
-		genome.loadTags();
-		genome.createGenome(getSoulName(), GenomeAttributes.CREEPER_POTENCY, GenomeAttributes.CREEPER_DAMAGE, GenomeAttributes.CREEPER_KNOCKBACK, GenomeAttributes.CREEPER_ARMOR, GenomeAttributes.CREEPER_MOVEMENT_SPEED);
-		genome.saveTags();
+		Genome genome = new Genome(getSoulName(), GenomeAttributes.CREEPER_POTENCY, GenomeAttributes.CREEPER_DAMAGE, GenomeAttributes.CREEPER_KNOCKBACK, GenomeAttributes.CREEPER_ARMOR, GenomeAttributes.CREEPER_MOVEMENT_SPEED);
+		genome.applyStack(stack);
 	}
 }

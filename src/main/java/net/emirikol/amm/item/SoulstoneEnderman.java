@@ -41,9 +41,7 @@ public class SoulstoneEnderman extends Soulstone implements FilledSoulstone,Natu
 	//Initialises NBT data of a soulstone with defaults for that species.
 	public void defaultGenes(ItemStack stack) {
 		super.defaultGenes(stack);
-		Genome genome = new Genome(stack);
-		genome.loadTags();
-		genome.createGenome(getSoulName(), GenomeAttributes.ENDERMAN_POTENCY, GenomeAttributes.ENDERMAN_DAMAGE, GenomeAttributes.ENDERMAN_KNOCKBACK, GenomeAttributes.ENDERMAN_ARMOR, GenomeAttributes.ENDERMAN_MOVEMENT_SPEED);
-		genome.saveTags();
+		Genome genome = new Genome(getSoulName(), GenomeAttributes.ENDERMAN_POTENCY, GenomeAttributes.ENDERMAN_DAMAGE, GenomeAttributes.ENDERMAN_KNOCKBACK, GenomeAttributes.ENDERMAN_ARMOR, GenomeAttributes.ENDERMAN_MOVEMENT_SPEED);
+		genome.applyStack(stack);
 	}
 }

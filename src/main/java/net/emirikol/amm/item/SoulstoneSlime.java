@@ -40,9 +40,7 @@ public class SoulstoneSlime extends Soulstone implements FilledSoulstone,Natural
 	//Initialises NBT data of a soulstone with defaults for that species.
 	public void defaultGenes(ItemStack stack) {
 		super.defaultGenes(stack);
-		Genome genome = new Genome(stack);
-		genome.loadTags();
-		genome.createGenome(getSoulName(), GenomeAttributes.SLIME_POTENCY, GenomeAttributes.SLIME_DAMAGE, GenomeAttributes.SLIME_KNOCKBACK, GenomeAttributes.SLIME_ARMOR, GenomeAttributes.SLIME_MOVEMENT_SPEED);
-		genome.saveTags();
+		Genome genome = new Genome(getSoulName(), GenomeAttributes.SLIME_POTENCY, GenomeAttributes.SLIME_DAMAGE, GenomeAttributes.SLIME_KNOCKBACK, GenomeAttributes.SLIME_ARMOR, GenomeAttributes.SLIME_MOVEMENT_SPEED);
+		genome.applyStack(stack);
 	}
 }
