@@ -38,13 +38,14 @@ public class SoulstoneFillHandler {
 				PlayerInventory inventory = playerEntity.inventory;
 				if (checkSoulstones(inventory)) {
 					//Remove a soulstone and add the correct type.
-					ItemStack soulstoneStack = getSoulstones(inventory);
-					ItemStack newSoulstone = new ItemStack(getSoulstoneFromEntity(killed));
+					Soulstone newSoulstoneItem = getSoulstoneFromEntity(killed);
+					ItemStack newSoulstone = new ItemStack(newSoulstoneItem);
 					//Set up default NBT data
-					Soulstone newSoulstoneItem = (Soulstone) newSoulstone.getItem();
 					newSoulstoneItem.defaultGenes(newSoulstone);
-					//Give to player
+					//Decrement soulstones.
+					ItemStack soulstoneStack = getSoulstones(inventory);
 					soulstoneStack.decrement(1);
+					//Give to player.
 					inventory.offerOrDrop(world, newSoulstone);
 					inventory.markDirty();
 				}
@@ -88,7 +89,7 @@ public class SoulstoneFillHandler {
 	}
 	
 	//Get the correct soulstone for the given entity.
-	private static Item getSoulstoneFromEntity(LivingEntity entity) {
+	private static Soulstone getSoulstoneFromEntity(LivingEntity entity) {
 		EntityType entityType = entity.getType();
 		for (EntityType key : VALID_ENTITIES.keySet()) {
 			if (entityType == key) {

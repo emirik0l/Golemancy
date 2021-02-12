@@ -14,7 +14,7 @@ public class Genome {
 	private Map<String,Gene> genes;
 	
 	//Create a blank Genome.
-	//Called when breeding soulstones.
+	//Called when creating new genomes from scratch, such as when breeding.
 	public Genome() {
 		genes = new HashMap<String,Gene>();
 	}
@@ -25,6 +25,7 @@ public class Genome {
 		genes = new HashMap<String,Gene>();
 		CompoundTag tag = stack.getOrCreateTag();
 		//Check if the soulstone is initialised; if not, call defaultGenes().
+		//Note that defaultGenes() calls Genome.applyStack(), which will set the initialised tag for us.
 		boolean initialised = tag.getBoolean("initialised");
 		if (!initialised) {
 			Soulstone stone = (Soulstone) stack.getItem();
@@ -42,13 +43,17 @@ public class Genome {
 	//Create a new Genome with identical dominant and recessive genepools based on the supplied attributes.
 	//Called when you receive a fresh soulstone from killing a mob or via mutation.
 	public Genome(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
+		genes = new HashMap<String,Gene>();
 		genes.put("species", new Gene<String>(species));
 		genes.put("potency", new Gene<Double>(potency));
 		genes.put("damage", new Gene<Double>(damage));
 		genes.put("knockback", new Gene<Double>(knockback));
+		genes.put("armor", new Gene<Double>(armor));
 		genes.put("movement_speed", new Gene<Double>(movement_speed));
 	}
 	
+	//Get the species name by retrieving the dominant species gene from the genome.
+	//This is related to Soulstone.getName() and should return compatible values.
 	public String getName() {
 		Gene<String> species = genes.get("species");
 		return species.getDom();

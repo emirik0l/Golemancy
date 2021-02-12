@@ -51,8 +51,8 @@ public class SoulMirror extends Item implements ExtendedScreenHandlerFactory {
 		} else {
 			other = player.getStackInHand(Hand.MAIN_HAND);
 		}
-		//Check if it's a soulstone.
-		if (other.getItem() instanceof Soulstone) {
+		//Check if it's a filled soulstone.
+		if (other.getItem() instanceof FilledSoulstone) {
 			//Load data from soulstone.
 			Genome genome = new Genome(other);
 			if (genome != null) {
