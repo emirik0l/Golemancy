@@ -18,7 +18,9 @@ public class SoulstoneFillHandler {
 		put(EntityType.CAVE_SPIDER, AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
 		put(EntityType.CREEPER, AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put(EntityType.DROWNED, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
+		put(EntityType.ELDER_GUARDIAN, AriseMyMinionsMod.SOULSTONE_GUARDIAN);
 		put(EntityType.ENDERMAN, AriseMyMinionsMod.SOULSTONE_ENDERMAN);
+		put(EntityType.GUARDIAN, AriseMyMinionsMod.SOULSTONE_GUARDIAN);
 		put(EntityType.HUSK, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.PHANTOM, AriseMyMinionsMod.SOULSTONE_PHANTOM);
 		put(EntityType.RAVAGER, AriseMyMinionsMod.SOULSTONE_RAVAGER);

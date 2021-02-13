@@ -24,6 +24,12 @@ public class GenomeAttributes {
 	public static final double ENDERMAN_ARMOR = 0.0D;
 	public static final double ENDERMAN_MOVEMENT_SPEED = 0.3D;
 	
+	public static final double GUARDIAN_POTENCY = 3.0D;
+	public static final double GUARDIAN_DAMAGE = 6.0D;
+	public static final double GUARDIAN_KNOCKBACK = 0.0D;
+	public static final double GUARDIAN_ARMOR = 0.0D;
+	public static final double GUARDIAN_MOVEMENT_SPEED = 0.5D;
+	
 	public static final double PHANTOM_POTENCY = 2.0D;
 	public static final double PHANTOM_DAMAGE = 2.0D;
 	public static final double PHANTOM_KNOCKBACK = 0.0D;
@@ -64,6 +70,7 @@ public class GenomeAttributes {
 		put("CAVE SPIDER", AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
 		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
+		put("GUARDIAN", AriseMyMinionsMod.SOULSTONE_GUARDIAN);
 		put("PHANTOM", AriseMyMinionsMod.SOULSTONE_PHANTOM);
 		put("SKELETON", AriseMyMinionsMod.SOULSTONE_SKELETON);
 		put("RAVAGER", AriseMyMinionsMod.SOULSTONE_RAVAGER);
@@ -80,6 +87,8 @@ public class GenomeAttributes {
 				return 4970784;
 			case "ENDERMAN":
 				return 8524417;
+			case "GUARDIAN":
+				return 6985091;
 			case "PHANTOM":
 				return 5267876;
 			case "RAVAGER":
