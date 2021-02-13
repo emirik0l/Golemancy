@@ -29,7 +29,7 @@ public class Breeding {
 		}
 		//Figure out what species the child should be and create a new itemstack.
 		Gene<String> speciesGene = newGenome.getGene("species");
-		Soulstone childSoulstone = Soulstones.get(speciesGene.getDom());
+		Soulstone childSoulstone = Soulstones.get(speciesGene.getActive());
 		ItemStack child = new ItemStack(childSoulstone);
 		//Apply the genome to the new itemstack, and save tags.
 		newGenome.applyStack(child);

@@ -4,19 +4,19 @@ import java.util.*;
 
 public class SerializedGenome {
 	public String name;
-	public HashMap<String,String> dominantAlleles;
-	public HashMap<String,String> recessiveAlleles;
+	public HashMap<String,String> activeAlleles;
+	public HashMap<String,String> dormantAlleles;
 	
 	//Create a SerializedGenome from a Genome (serialization).
 	public SerializedGenome(Genome genome) {
 		name = genome.getName();
-		dominantAlleles = new HashMap<String,String>();
+		activeAlleles = new HashMap<String,String>();
 		for (String key: genome.getKeys()) {
-			dominantAlleles.put(key, genome.getGene(key).getDom().toString());
+			activeAlleles.put(key, genome.getGene(key).getActive().toString());
 		}
-		recessiveAlleles = new HashMap<String,String>();
+		dormantAlleles = new HashMap<String,String>();
 		for (String key: genome.getKeys()) {
-			recessiveAlleles.put(key, genome.getGene(key).getRec().toString());
+			dormantAlleles.put(key, genome.getGene(key).getDormant().toString());
 		}
 	}
 	
@@ -27,18 +27,18 @@ public class SerializedGenome {
 			return;
 		}
 		name = entries[0];
-		dominantAlleles = new HashMap<String,String>();
+		activeAlleles = new HashMap<String,String>();
 		for (String part: entries[1].split(";")) {
 			String keyval[] = part.split(",");
 			if (keyval.length == 2) {
-				dominantAlleles.put(keyval[0], keyval[1]);
+				activeAlleles.put(keyval[0], keyval[1]);
 			}
 		}
-		recessiveAlleles = new HashMap<String,String>();
+		dormantAlleles = new HashMap<String,String>();
 		for (String part: entries[2].split(";")) {
 			String keyval[] = part.split(",");
 			if (keyval.length == 2) {
-				recessiveAlleles.put(keyval[0], keyval[1]);
+				dormantAlleles.put(keyval[0], keyval[1]);
 			}
 		}
 	}
@@ -49,20 +49,20 @@ public class SerializedGenome {
 		entries[0] = this.name;
 		
 		int i = 0;
-		String dom[] = new String[this.dominantAlleles.size()];
-		for (String key: this.dominantAlleles.keySet()) {
-			dom[i] = key + "," + this.dominantAlleles.get(key);
+		String active[] = new String[this.activeAlleles.size()];
+		for (String key: this.activeAlleles.keySet()) {
+			active[i] = key + "," + this.activeAlleles.get(key);
 			i++;
 		}
-		entries[1] = String.join(";", dom);
+		entries[1] = String.join(";", active);
 		
 		i = 0;
-		String rec[] =  new String[this.recessiveAlleles.size()];
-		for (String key: this.recessiveAlleles.keySet()) {
-			rec[i] = key + "," + this.recessiveAlleles.get(key);
+		String dormant[] =  new String[this.dormantAlleles.size()];
+		for (String key: this.dormantAlleles.keySet()) {
+			dormant[i] = key + "," + this.dormantAlleles.get(key);
 			i++;
 		}
-		entries[2] = String.join(";", rec);
+		entries[2] = String.join(";", dormant);
 		
 		return String.join("|", entries);
 	}

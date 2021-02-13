@@ -3,51 +3,51 @@ package net.emirikol.amm.genetics;
 import java.util.*;
 
 public class Gene<T> {
-	private T dominant;
-	private T recessive;
+	private T active;
+	private T dormant;
 	
-	public Gene(T dominant, T recessive) {
-		this.dominant = dominant;
-		this.recessive = recessive;
+	public Gene(T active, T dormant) {
+		this.active = active;
+		this.dormant = dormant;
 	}
 	
 	public Gene(T value) {
-		this.dominant = value;
-		this.recessive = value;
+		this.active = value;
+		this.dormant = value;
 	}
 	
-	public T getDom() {
-		return dominant;
+	public T getActive() {
+		return active;
 	}
 	
-	public T getRec() {
-		return recessive;
+	public T getDormant() {
+		return dormant;
 	}
 	
 	public T getRandom() {
 		Random rand = new Random();
 		Boolean bool = rand.nextBoolean();
-		if (bool) { return dominant; } else { return recessive; }
+		if (bool) { return active; } else { return dormant; }
 	}
 	
 	public void setDom(T value) {
-		dominant = value;
+		active = value;
 	}
 	
 	public void setRec(T value) {
-		recessive = value;
+		dormant = value;
 	}
 	
 	public void setBoth(T value) {
-		dominant = value;
-		recessive = value;
+		active = value;
+		dormant = value;
 	}
 	
 	public Gene<T> breed(Gene<T> gene) {
 		Random rand = new Random();
-		T dom,rec;
-		if (rand.nextBoolean()) { dom = this.getRandom(); } else { dom = gene.getRandom(); }
-		if (rand.nextBoolean()) { rec = this.getRandom(); } else { rec = gene.getRandom(); }
-		return new Gene<T>(dom, rec);
+		T a,d;
+		if (rand.nextBoolean()) { a = this.getRandom(); } else { a = gene.getRandom(); }
+		if (rand.nextBoolean()) { d = this.getRandom(); } else { d = gene.getRandom(); }
+		return new Gene<T>(a, d);
 	}
 }

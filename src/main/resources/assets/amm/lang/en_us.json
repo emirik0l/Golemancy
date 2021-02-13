@@ -22,6 +22,6 @@
 	"text.amm.knockback": "Knockback",
 	"text.amm.armor": "Armor",
 	"text.amm.speed": "Speed",
-	"text.amm.dom_column": "DOM",
-	"text.amm.rec_column": "REC"
+	"text.amm.active_column": "Active",
+	"text.amm.dormant_column": "Dormant"
 }

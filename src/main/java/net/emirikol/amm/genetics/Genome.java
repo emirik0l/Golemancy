@@ -32,15 +32,15 @@ public class Genome {
 			stone.defaultGenes(stack);
 		}
 		//Load genes from NBT.
-		genes.put("species", new Gene<String>(tag.getString("species_dom"), tag.getString("species_rec")));
-		genes.put("potency", new Gene<Double>(tag.getDouble("potency_dom"), tag.getDouble("potency_rec")));
-		genes.put("damage", new Gene<Double>(tag.getDouble("damage_dom"), tag.getDouble("damage_rec")));
-		genes.put("knockback", new Gene<Double>(tag.getDouble("knockback_dom"), tag.getDouble("knockback_rec")));
-		genes.put("armor", new Gene<Double>(tag.getDouble("armor_dom"), tag.getDouble("armor_rec")));
-		genes.put("movement_speed", new Gene<Double>(tag.getDouble("movement_speed_dom"), tag.getDouble("movement_speed_rec")));
+		genes.put("species", new Gene<String>(tag.getString("species_active"), tag.getString("species_dormant")));
+		genes.put("potency", new Gene<Double>(tag.getDouble("potency_active"), tag.getDouble("potency_dormant")));
+		genes.put("damage", new Gene<Double>(tag.getDouble("damage_active"), tag.getDouble("damage_dormant")));
+		genes.put("knockback", new Gene<Double>(tag.getDouble("knockback_active"), tag.getDouble("knockback_dormant")));
+		genes.put("armor", new Gene<Double>(tag.getDouble("armor_active"), tag.getDouble("armor_dormant")));
+		genes.put("movement_speed", new Gene<Double>(tag.getDouble("movement_speed_active"), tag.getDouble("movement_speed_dormant")));
 	}
 	
-	//Create a new Genome with identical dominant and recessive genepools based on the supplied attributes.
+	//Create a new Genome with identical active and dormant genepools based on the supplied attributes.
 	//Called when you receive a fresh soulstone from killing a mob or via mutation.
 	public Genome(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
 		genes = new HashMap<String,Gene>();
@@ -52,11 +52,11 @@ public class Genome {
 		genes.put("movement_speed", new Gene<Double>(movement_speed));
 	}
 	
-	//Get the species name by retrieving the dominant species gene from the genome.
+	//Get the species name by retrieving the active species gene from the genome.
 	//This is related to Soulstone.getName() and should return compatible values.
 	public String getName() {
 		Gene<String> species = genes.get("species");
-		return species.getDom();
+		return species.getActive();
 	}
 	
 	public Gene getGene(String key) {
@@ -75,23 +75,23 @@ public class Genome {
 	public void applyStack(ItemStack stack) {
 		CompoundTag tag = stack.getOrCreateTag();
 		Gene<String> species = genes.get("species");
-		tag.putString("species_dom", species.getDom());
-		tag.putString("species_rec", species.getRec());
+		tag.putString("species_active", species.getActive());
+		tag.putString("species_dormant", species.getDormant());
 		Gene<Double> potency = genes.get("potency");
-		tag.putDouble("potency_dom", potency.getDom());
-		tag.putDouble("potency_rec", potency.getRec());
+		tag.putDouble("potency_active", potency.getActive());
+		tag.putDouble("potency_dormant", potency.getDormant());
 		Gene<Double> damage = genes.get("damage");
-		tag.putDouble("damage_dom", damage.getDom());
-		tag.putDouble("damage_rec", damage.getRec());
+		tag.putDouble("damage_active", damage.getActive());
+		tag.putDouble("damage_dormant", damage.getDormant());
 		Gene<Double> knockback = genes.get("knockback");
-		tag.putDouble("knockback_dom", knockback.getDom());
-		tag.putDouble("knockback_rec", knockback.getRec());
+		tag.putDouble("knockback_active", knockback.getActive());
+		tag.putDouble("knockback_dormant", knockback.getDormant());
 		Gene<Double> armor = genes.get("armor");
-		tag.putDouble("armor_dom", armor.getDom());
-		tag.putDouble("armor_rec", armor.getRec());
+		tag.putDouble("armor_active", armor.getActive());
+		tag.putDouble("armor_dormant", armor.getDormant());
 		Gene<Double> movementSpeed = genes.get("movement_speed");
-		tag.putDouble("movement_speed_dom", movementSpeed.getDom());
-		tag.putDouble("movement_speed_rec", movementSpeed.getRec());
+		tag.putDouble("movement_speed_active", movementSpeed.getActive());
+		tag.putDouble("movement_speed_dormant", movementSpeed.getDormant());
 		
 		tag.putBoolean("initialised", true);
 	}
@@ -107,29 +107,29 @@ public class Genome {
 			//Slime attack damage is based on their size.
 			SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
 			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-			entityAttributeInstance.setBaseValue(gene.getDom() + (double)slimeEntity.getSize());
+			entityAttributeInstance.setBaseValue(gene.getActive() + (double)slimeEntity.getSize());
 		} else {
 			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-			entityAttributeInstance.setBaseValue(gene.getDom());
+			entityAttributeInstance.setBaseValue(gene.getActive());
 		}
 		//Set knockback.
 		gene = genes.get("knockback");
 		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
-		entityAttributeInstance.setBaseValue(gene.getDom());
+		entityAttributeInstance.setBaseValue(gene.getActive());
 		//Set armor.
 		gene = genes.get("armor");
 		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
-		entityAttributeInstance.setBaseValue(gene.getDom());
+		entityAttributeInstance.setBaseValue(gene.getActive());
 		//Set movement speed.
 		gene = genes.get("movement_speed");
 		if (livingEntity instanceof SlimeEntity) {
 			//Slime movement speed is based on their size.
 			SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
 			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-			entityAttributeInstance.setBaseValue(gene.getDom() + 0.1F * (float)slimeEntity.getSize());
+			entityAttributeInstance.setBaseValue(gene.getActive() + 0.1F * (float)slimeEntity.getSize());
 		} else {
 			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-			entityAttributeInstance.setBaseValue(gene.getDom());
+			entityAttributeInstance.setBaseValue(gene.getActive());
 		}
 	}
 }
