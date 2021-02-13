@@ -11,7 +11,7 @@ Arise My Minions is a mod about capturing and breeding the souls of mobs. It's c
 
 This mod depends on the following libraries:
 
-* [Cardinal Components API](https://github.com/OnyxStudios/Cardinal-Components-API)
+* [Cardinal Components API](https://github.com/OnyxStudios/Cardinal-Components-API): 2.7.11
 
 # Credits
 
