@@ -29,6 +29,7 @@ public class Soulstones {
 		put(EntityType.ZOMBIE_VILLAGER, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 	}};
 	
+	//Used to link species genes to their corresponding soulstones.
 	private static final Map<String,Soulstone> SPECIES_SOULSTONES = new HashMap<String,Soulstone>() {{
 		put("BLAZE", AriseMyMinionsMod.SOULSTONE_BLAZE);
 		put("CAVE SPIDER", AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
