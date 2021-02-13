@@ -13,7 +13,7 @@
 	  "tag": "minecraft:wool"
 	},
 	"S": {
-	  "tag": "amm:soulstones"
+	  "tag": "amm:filled_soulstones"
 	},
 	"E": {
 	  "item": "minecraft:emerald"
