@@ -13,27 +13,6 @@ import java.util.*;
 
 public class SoulstoneFillHandler {
 
-	//Used to link entities with souls to their corresponding soulstones.
-	public static Map<EntityType,Soulstone> VALID_ENTITIES = new HashMap<EntityType,Soulstone>() {{
-		put(EntityType.CAVE_SPIDER, AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
-		put(EntityType.CREEPER, AriseMyMinionsMod.SOULSTONE_CREEPER);
-		put(EntityType.DROWNED, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
-		put(EntityType.ELDER_GUARDIAN, AriseMyMinionsMod.SOULSTONE_GUARDIAN);
-		put(EntityType.ENDERMAN, AriseMyMinionsMod.SOULSTONE_ENDERMAN);
-		put(EntityType.GUARDIAN, AriseMyMinionsMod.SOULSTONE_GUARDIAN);
-		put(EntityType.HUSK, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
-		put(EntityType.PHANTOM, AriseMyMinionsMod.SOULSTONE_PHANTOM);
-		put(EntityType.RAVAGER, AriseMyMinionsMod.SOULSTONE_RAVAGER);
-		put(EntityType.SKELETON, AriseMyMinionsMod.SOULSTONE_SKELETON);
-		put(EntityType.SKELETON_HORSE, AriseMyMinionsMod.SOULSTONE_SKELETON);
-		put(EntityType.SLIME, AriseMyMinionsMod.SOULSTONE_SLIME);
-		put(EntityType.SPIDER, AriseMyMinionsMod.SOULSTONE_SPIDER);
-		put(EntityType.STRAY, AriseMyMinionsMod.SOULSTONE_SKELETON);
-		put(EntityType.ZOMBIE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
-		put(EntityType.ZOMBIE_HORSE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
-		put(EntityType.ZOMBIE_VILLAGER, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
-	}};
-
 	public static void soulstoneFillHook() {
 		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killed) -> {
 			//Check if a player killed them and if the target's soul can be captured.
@@ -72,7 +51,7 @@ public class SoulstoneFillHandler {
 		}
 		//Check if the entity type is valid.
 		EntityType entityType = entity.getType();
-		for (EntityType key : VALID_ENTITIES.keySet()) {
+		for (EntityType key : Soulstones.getEntityTypes()) {
 			if (entityType == key) {
 				return true;
 			}
@@ -101,9 +80,9 @@ public class SoulstoneFillHandler {
 	//Get the correct soulstone for the given entity.
 	private static Soulstone getSoulstoneFromEntity(LivingEntity entity) {
 		EntityType entityType = entity.getType();
-		for (EntityType key : VALID_ENTITIES.keySet()) {
+		for (EntityType key : Soulstones.getEntityTypes()) {
 			if (entityType == key) {
-				return VALID_ENTITIES.get(key);
+				return Soulstones.get(key);
 			}
 		}
 		return null;

@@ -66,19 +66,6 @@ public class GenomeAttributes {
 	public static final double ZOMBIE_ARMOR = 2.0D;
 	public static final double ZOMBIE_MOVEMENT_SPEED = 0.23D;
 	
-	public static final Map<String,Soulstone> SPECIES_SOULSTONES = new HashMap() {{
-		put("CAVE SPIDER", AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
-		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
-		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
-		put("GUARDIAN", AriseMyMinionsMod.SOULSTONE_GUARDIAN);
-		put("PHANTOM", AriseMyMinionsMod.SOULSTONE_PHANTOM);
-		put("SKELETON", AriseMyMinionsMod.SOULSTONE_SKELETON);
-		put("RAVAGER", AriseMyMinionsMod.SOULSTONE_RAVAGER);
-		put("SLIME", AriseMyMinionsMod.SOULSTONE_SLIME);
-		put("SPIDER", AriseMyMinionsMod.SOULSTONE_SPIDER);
-		put("ZOMBIE", AriseMyMinionsMod.SOULSTONE_ZOMBIE);
-	}};
-	
 	public static int getNameColor(String key) {
 		switch (key) {
 			case "CAVE SPIDER":
