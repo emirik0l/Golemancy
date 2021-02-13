@@ -22,7 +22,6 @@ import net.minecraft.util.registry.*;
 
 public class AriseMyMinionsMod implements ModInitializer {
 
-
 	public static Soulstone SOULSTONE;
 	public static SoulstoneCaveSpider SOULSTONE_CAVE_SPIDER;
 	public static SoulstoneCreeper SOULSTONE_CREEPER;
@@ -34,14 +33,6 @@ public class AriseMyMinionsMod implements ModInitializer {
 	
 	public static ClayEffigy CLAY_EFFIGY;
 	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
-
-	public static EntityType<SummonedCaveSpiderEntity> SUMMONED_CAVE_SPIDER;
-	public static EntityType<SummonedCreeperEntity> SUMMONED_CREEPER;
-	public static EntityType<SummonedEndermanEntity> SUMMONED_ENDERMAN;
-	public static EntityType<SummonedSkeletonEntity> SUMMONED_SKELETON;
-	public static EntityType<SummonedSlimeEntity> SUMMONED_SLIME;
-	public static EntityType<SummonedSpiderEntity> SUMMONED_SPIDER;
-	public static EntityType<SummonedZombieEntity> SUMMONED_ZOMBIE;
 	
 	public static SoulMirror SOUL_MIRROR;
 	public static ScreenHandlerType<SoulMirrorScreenHandler> SOUL_MIRROR_SCREEN_HANDLER;
@@ -92,14 +83,6 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOUL_GRAFTER_ITEM = new BlockItem(SOUL_GRAFTER, soul_grafter_item_settings);
 		SOUL_GRAFTER_ENTITY = BlockEntityType.Builder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
 		SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("amm", "soul_grafter"), SoulGrafterScreenHandler::new);
-		//Instantiate Summoned Mobs
-		SUMMONED_CAVE_SPIDER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedCaveSpiderEntity::new).dimensions(EntityType.CAVE_SPIDER.getDimensions()).build();
-		SUMMONED_CREEPER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedCreeperEntity::new).dimensions(EntityType.CREEPER.getDimensions()).build();
-		SUMMONED_ENDERMAN = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedEndermanEntity::new).dimensions(EntityType.ENDERMAN.getDimensions()).build();
-		SUMMONED_SKELETON = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedSkeletonEntity::new).dimensions(EntityType.SKELETON.getDimensions()).build();
-		SUMMONED_SLIME = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedSlimeEntity::new).dimensions(EntityType.SLIME.getDimensions()).build();
-		SUMMONED_SPIDER = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedSpiderEntity::new).dimensions(EntityType.SPIDER.getDimensions()).build();
-		SUMMONED_ZOMBIE = FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, SummonedZombieEntity::new).dimensions(EntityType.ZOMBIE.getDimensions()).build();
 	}
 	
 	public static void doRegistration() {
@@ -122,20 +105,5 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.BLOCK, "amm:soul_grafter", SOUL_GRAFTER);
 		Registry.register(Registry.ITEM, "amm:soul_grafter", SOUL_GRAFTER_ITEM);
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, "amm:soul_grafter", SOUL_GRAFTER_ENTITY);
-		//Register Summoned Mobs
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_cave_spider", SUMMONED_CAVE_SPIDER);
-		FabricDefaultAttributeRegistry.register(SUMMONED_CAVE_SPIDER, SummonedCaveSpiderEntity.createCaveSpiderAttributes());
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_creeper", SUMMONED_CREEPER);
-		FabricDefaultAttributeRegistry.register(SUMMONED_CREEPER, SummonedCreeperEntity.createCreeperAttributes());
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_enderman", SUMMONED_ENDERMAN);
-		FabricDefaultAttributeRegistry.register(SUMMONED_ENDERMAN, SummonedEndermanEntity.createEndermanAttributes());
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_skeleton", SUMMONED_SKELETON);
-		FabricDefaultAttributeRegistry.register(SUMMONED_SKELETON, SummonedSkeletonEntity.createAbstractSkeletonAttributes());
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_slime", SUMMONED_SLIME);
-		FabricDefaultAttributeRegistry.register(SUMMONED_SLIME, HostileEntity.createHostileAttributes());
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_spider", SUMMONED_SPIDER);
-		FabricDefaultAttributeRegistry.register(SUMMONED_SPIDER, SummonedSpiderEntity.createSpiderAttributes());
-		Registry.register(Registry.ENTITY_TYPE, "amm:summoned_zombie", SUMMONED_ZOMBIE);
-		FabricDefaultAttributeRegistry.register(SUMMONED_ZOMBIE, SummonedZombieEntity.createZombieAttributes());
 	}
 }
