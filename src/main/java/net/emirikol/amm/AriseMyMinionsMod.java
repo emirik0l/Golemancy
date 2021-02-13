@@ -26,6 +26,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static SoulstoneCaveSpider SOULSTONE_CAVE_SPIDER;
 	public static SoulstoneCreeper SOULSTONE_CREEPER;
 	public static SoulstoneEnderman SOULSTONE_ENDERMAN;
+	public static SoulstonePhantom SOULSTONE_PHANTOM;
+	public static SoulstoneRavager SOULSTONE_RAVAGER;
 	public static SoulstoneSkeleton SOULSTONE_SKELETON;
 	public static SoulstoneSlime SOULSTONE_SLIME;
 	public static SoulstoneSpider SOULSTONE_SPIDER;
@@ -57,6 +59,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOULSTONE_CAVE_SPIDER = new SoulstoneCaveSpider(soulstone_settings);
 		SOULSTONE_CREEPER = new SoulstoneCreeper(soulstone_settings);
 		SOULSTONE_ENDERMAN = new SoulstoneEnderman(soulstone_settings);
+		SOULSTONE_PHANTOM = new SoulstonePhantom(soulstone_settings);
+		SOULSTONE_RAVAGER = new SoulstoneRavager(soulstone_settings);
 		SOULSTONE_SKELETON = new SoulstoneSkeleton(soulstone_settings);
 		SOULSTONE_SLIME = new SoulstoneSlime(soulstone_settings);
 		SOULSTONE_SPIDER = new SoulstoneSpider(soulstone_settings);
@@ -91,6 +95,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ITEM, "amm:soulstone_cave_spider", SOULSTONE_CAVE_SPIDER);
 		Registry.register(Registry.ITEM, "amm:soulstone_creeper", SOULSTONE_CREEPER);
 		Registry.register(Registry.ITEM, "amm:soulstone_enderman", SOULSTONE_ENDERMAN);
+		Registry.register(Registry.ITEM, "amm:soulstone_phantom", SOULSTONE_PHANTOM);
+		Registry.register(Registry.ITEM, "amm:soulstone_ravager", SOULSTONE_RAVAGER);
 		Registry.register(Registry.ITEM, "amm:soulstone_skeleton", SOULSTONE_SKELETON);
 		Registry.register(Registry.ITEM, "amm:soulstone_slime", SOULSTONE_SLIME);
 		Registry.register(Registry.ITEM, "amm:soulstone_spider", SOULSTONE_SPIDER);

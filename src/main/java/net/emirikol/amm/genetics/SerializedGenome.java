@@ -66,25 +66,4 @@ public class SerializedGenome {
 		
 		return String.join("|", entries);
 	}
-	
-	public static int getNameColor(String key) {
-		switch (key) {
-			case "CAVE SPIDER":
-				return 11826;
-			case "CREEPER":
-				return 4970784;
-			case "ENDERMAN":
-				return 8524417;
-			case "SKELETON":
-				return 8289924;
-			case "SLIME":
-				return 5349438;
-			case "SPIDER":
-				return 2629909;
-			case "ZOMBIE":
-				return 1729561;
-			default:
-				return 4210752;
-		}
-	}
 }
