@@ -103,15 +103,8 @@ public class Genome {
 		LivingEntity livingEntity = (LivingEntity) entity;
 		//Set damage.
 		gene = genes.get("damage");
-		if (livingEntity instanceof SlimeEntity) {
-			//Slime attack damage is based on their size.
-			SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-			entityAttributeInstance.setBaseValue(gene.getActive() + (double)slimeEntity.getSize());
-		} else {
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-			entityAttributeInstance.setBaseValue(gene.getActive());
-		}
+		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+		entityAttributeInstance.setBaseValue(gene.getActive());
 		//Set knockback.
 		gene = genes.get("knockback");
 		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
@@ -122,14 +115,17 @@ public class Genome {
 		entityAttributeInstance.setBaseValue(gene.getActive());
 		//Set movement speed.
 		gene = genes.get("movement_speed");
-		if (livingEntity instanceof SlimeEntity) {
-			//Slime movement speed is based on their size.
-			SlimeEntity slimeEntity = (SlimeEntity) livingEntity;
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-			entityAttributeInstance.setBaseValue(gene.getActive() + 0.1F * (float)slimeEntity.getSize());
-		} else {
-			entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-			entityAttributeInstance.setBaseValue(gene.getActive());
-		}
+		entityAttributeInstance = livingEntity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+		entityAttributeInstance.setBaseValue(gene.getActive());
+		//Special logic for slimes.
+		if (entity.getType() == EntityType.SLIME) { applySlimeAttributes((SlimeEntity) entity); }
+		//Special logic for magma cubes.
+		if (entity.getType() == EntityType.MAGMA_CUBE) { applyMagmaCubeAttributes((MagmaCubeEntity) entity); }
+	}
+	
+	public void applySlimeAttributes(SlimeEntity entity) {
+	}
+	
+	public void applyMagmaCubeAttributes(MagmaCubeEntity entity) {
 	}
 }

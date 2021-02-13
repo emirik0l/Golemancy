@@ -17,6 +17,7 @@ public class Soulstones {
 		put(EntityType.ENDERMAN, AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put(EntityType.GUARDIAN, AriseMyMinionsMod.SOULSTONE_GUARDIAN);
 		put(EntityType.HUSK, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
+		put(EntityType.MAGMA_CUBE, AriseMyMinionsMod.SOULSTONE_MAGMA_CUBE);
 		put(EntityType.PHANTOM, AriseMyMinionsMod.SOULSTONE_PHANTOM);
 		put(EntityType.RAVAGER, AriseMyMinionsMod.SOULSTONE_RAVAGER);
 		put(EntityType.SKELETON, AriseMyMinionsMod.SOULSTONE_SKELETON);
@@ -37,6 +38,7 @@ public class Soulstones {
 		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put("GUARDIAN", AriseMyMinionsMod.SOULSTONE_GUARDIAN);
+		put("MAGMA CUBE", AriseMyMinionsMod.SOULSTONE_MAGMA_CUBE);
 		put("PHANTOM", AriseMyMinionsMod.SOULSTONE_PHANTOM);
 		put("SKELETON", AriseMyMinionsMod.SOULSTONE_SKELETON);
 		put("RAVAGER", AriseMyMinionsMod.SOULSTONE_RAVAGER);

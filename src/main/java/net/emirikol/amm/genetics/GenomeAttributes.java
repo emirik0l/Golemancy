@@ -36,6 +36,12 @@ public class GenomeAttributes {
 	public static final double GUARDIAN_ARMOR = 0.0D;
 	public static final double GUARDIAN_MOVEMENT_SPEED = 0.5D;
 	
+	public static final double MAGMA_CUBE_POTENCY = 3.0D;
+	public static final double MAGMA_CUBE_DAMAGE = 0.0D; //MAGMA_CUBE damage depends on size, so this is really a modifier
+	public static final double MAGMA_CUBE_KNOCKBACK = 0.0D;
+	public static final double MAGMA_CUBE_ARMOR = 0.0D;
+	public static final double MAGMA_CUBE_MOVEMENT_SPEED = 0.2D; //MAGMA_CUBE speed depends on size, so this is really a modifier
+	
 	public static final double PHANTOM_POTENCY = 2.0D;
 	public static final double PHANTOM_DAMAGE = 2.0D;
 	public static final double PHANTOM_KNOCKBACK = 0.0D;
@@ -91,6 +97,8 @@ public class GenomeAttributes {
 				return 0x821281;
 			case "GUARDIAN":
 				return 0x6A9583;
+			case "MAGMA CUBE":
+				return 0x330000;
 			case "PHANTOM":
 				return 0x5061A4;
 			case "RAVAGER":
