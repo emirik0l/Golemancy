@@ -1,6 +1,7 @@
 {
     "replace": false,
     "values": [
+		"amm:soulstone_blaze",
 		"amm:soulstone_cave_spider",
 		"amm:soulstone_creeper",
 		"amm:soulstone_enderman",

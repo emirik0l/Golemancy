@@ -6,6 +6,12 @@ import net.emirikol.amm.item.*;
 import java.util.*;
 
 public class GenomeAttributes {
+	public static final double BLAZE_POTENCY = 2.0D;
+	public static final double BLAZE_DAMAGE = 6.0D;
+	public static final double BLAZE_KNOCKBACK = 0.0D;
+	public static final double BLAZE_ARMOR = 0.0D;
+	public static final double BLAZE_MOVEMENT_SPEED = 0.23D;
+	
 	public static final double CAVE_SPIDER_POTENCY = 4.0D;
 	public static final double CAVE_SPIDER_DAMAGE = 2.0D;
 	public static final double CAVE_SPIDER_KNOCKBACK = 0.0D;
@@ -54,7 +60,7 @@ public class GenomeAttributes {
 	public static final double SLIME_ARMOR = 0.0D;
 	public static final double SLIME_MOVEMENT_SPEED = 0.2D; //slime speed depends on size, so this is really a modifier
 	
-	public static final double SPIDER_POTENCY = 2.0D;
+	public static final double SPIDER_POTENCY = 3.0D;
 	public static final double SPIDER_DAMAGE = 2.0D;
 	public static final double SPIDER_KNOCKBACK = 0.0D;
 	public static final double SPIDER_ARMOR = 0.0D;
@@ -68,28 +74,30 @@ public class GenomeAttributes {
 	
 	public static int getNameColor(String key) {
 		switch (key) {
+			case "BLAZE":
+				return 0xfc9600;
 			case "CAVE SPIDER":
-				return 11826;
+				return 0x2E32;
 			case "CREEPER":
-				return 4970784;
+				return 0x4BD920;
 			case "ENDERMAN":
-				return 8524417;
+				return 0x821281;
 			case "GUARDIAN":
-				return 6985091;
+				return 0x6A9583;
 			case "PHANTOM":
-				return 5267876;
+				return 0x5061A4;
 			case "RAVAGER":
-				return 4342079;
+				return 0x42413F;
 			case "SKELETON":
-				return 8289924;
+				return 0x7E7E84;
 			case "SLIME":
-				return 5349438;
+				return 0x51A03E;
 			case "SPIDER":
-				return 2629909;
+				return 0x282115;
 			case "ZOMBIE":
-				return 1729561;
+				return 0x1A6419;
 			default:
-				return 4210752;
+				return 0x404040;
 		}
 	}
 }

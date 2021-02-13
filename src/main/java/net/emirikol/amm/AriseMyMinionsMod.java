@@ -23,6 +23,7 @@ import net.minecraft.util.registry.*;
 public class AriseMyMinionsMod implements ModInitializer {
 
 	public static Soulstone SOULSTONE;
+	public static SoulstoneBlaze SOULSTONE_BLAZE;
 	public static SoulstoneCaveSpider SOULSTONE_CAVE_SPIDER;
 	public static SoulstoneCreeper SOULSTONE_CREEPER;
 	public static SoulstoneEnderman SOULSTONE_ENDERMAN;
@@ -57,6 +58,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		FabricItemSettings soulstone_settings = new FabricItemSettings();
 		soulstone_settings.group(ItemGroup.MISC);
 		SOULSTONE = new Soulstone(soulstone_settings);
+		SOULSTONE_BLAZE = new SoulstoneBlaze(soulstone_settings);
 		SOULSTONE_CAVE_SPIDER = new SoulstoneCaveSpider(soulstone_settings);
 		SOULSTONE_CREEPER = new SoulstoneCreeper(soulstone_settings);
 		SOULSTONE_ENDERMAN = new SoulstoneEnderman(soulstone_settings);
@@ -94,6 +96,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static void doRegistration() {
 		//Register Soulstones
 		Registry.register(Registry.ITEM, "amm:soulstone", SOULSTONE);
+		Registry.register(Registry.ITEM, "amm:soulstone_blaze", SOULSTONE_BLAZE);
 		Registry.register(Registry.ITEM, "amm:soulstone_cave_spider", SOULSTONE_CAVE_SPIDER);
 		Registry.register(Registry.ITEM, "amm:soulstone_creeper", SOULSTONE_CREEPER);
 		Registry.register(Registry.ITEM, "amm:soulstone_enderman", SOULSTONE_ENDERMAN);

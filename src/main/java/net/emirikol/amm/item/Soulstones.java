@@ -9,6 +9,7 @@ import java.util.*;
 public class Soulstones {
 	//Used to link entities with souls to their corresponding soulstones.
 	private static final Map<EntityType,Soulstone> ENTITY_SOULSTONES = new HashMap<EntityType,Soulstone>() {{
+		put(EntityType.BLAZE, AriseMyMinionsMod.SOULSTONE_BLAZE);
 		put(EntityType.CAVE_SPIDER, AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
 		put(EntityType.CREEPER, AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put(EntityType.DROWNED, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
@@ -29,6 +30,7 @@ public class Soulstones {
 	}};
 	
 	private static final Map<String,Soulstone> SPECIES_SOULSTONES = new HashMap<String,Soulstone>() {{
+		put("BLAZE", AriseMyMinionsMod.SOULSTONE_BLAZE);
 		put("CAVE SPIDER", AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
 		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
