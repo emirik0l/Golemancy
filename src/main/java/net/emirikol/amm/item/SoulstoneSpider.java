@@ -26,7 +26,7 @@ public class SoulstoneSpider extends Soulstone implements FilledSoulstone,Natura
 	@Override
 	//Return the EntityType that should be spawned from this soulstone.
 	public EntityType getEntityType() {
-		return AriseMyMinionsMod.SUMMONED_SPIDER;
+		return EntityType.SPIDER;
 	}
 	
 	@Override

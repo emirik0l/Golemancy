@@ -26,7 +26,7 @@ public class SoulstoneEnderman extends Soulstone implements FilledSoulstone,Natu
 	@Override
 	//Return the EntityType that should be spawned from this soulstone.
 	public EntityType getEntityType() {
-		return AriseMyMinionsMod.SUMMONED_ENDERMAN;
+		return EntityType.ENDERMAN;
 	}
 	
 	@Override

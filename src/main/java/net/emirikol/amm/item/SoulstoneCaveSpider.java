@@ -26,7 +26,7 @@ public class SoulstoneCaveSpider extends Soulstone implements FilledSoulstone,Na
 	@Override
 	//Return the EntityType that should be spawned from this soulstone.
 	public EntityType getEntityType() {
-		return AriseMyMinionsMod.SUMMONED_CAVE_SPIDER;
+		return EntityType.CAVE_SPIDER;
 	}
 	
 	@Override

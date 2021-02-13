@@ -26,7 +26,7 @@ public class SoulstoneCreeper extends Soulstone implements FilledSoulstone,Natur
 	@Override
 	//Return the EntityType that should be spawned from this soulstone.
 	public EntityType getEntityType() {
-		return AriseMyMinionsMod.SUMMONED_CREEPER;
+		return EntityType.CREEPER;
 	}
 	
 	@Override
