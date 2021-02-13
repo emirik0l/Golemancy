@@ -66,11 +66,18 @@ public class GenomeAttributes {
 	public static final double SPIDER_ARMOR = 0.0D;
 	public static final double SPIDER_MOVEMENT_SPEED = 0.3D;
 	
+	public static final double WITHER_SKELETON_POTENCY = 2.0D;
+	public static final double WITHER_SKELETON_DAMAGE = 4.0D;
+	public static final double WITHER_SKELETON_KNOCKBACK = 0.0D;
+	public static final double WITHER_SKELETON_ARMOR = 0.0D;
+	public static final double WITHER_SKELETON_MOVEMENT_SPEED = 0.25D;
+	
 	public static final double ZOMBIE_POTENCY = 4.0D;
 	public static final double ZOMBIE_DAMAGE = 3.0D;
 	public static final double ZOMBIE_KNOCKBACK = 0.0D;
 	public static final double ZOMBIE_ARMOR = 2.0D;
 	public static final double ZOMBIE_MOVEMENT_SPEED = 0.23D;
+	
 	
 	public static int getNameColor(String key) {
 		switch (key) {
@@ -94,6 +101,8 @@ public class GenomeAttributes {
 				return 0x51A03E;
 			case "SPIDER":
 				return 0x282115;
+			case "WITHER SKELETON":
+				return 0x0;
 			case "ZOMBIE":
 				return 0x1A6419;
 			default:

@@ -33,6 +33,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static SoulstoneSkeleton SOULSTONE_SKELETON;
 	public static SoulstoneSlime SOULSTONE_SLIME;
 	public static SoulstoneSpider SOULSTONE_SPIDER;
+	public static SoulstoneWitherSkeleton SOULSTONE_WITHER_SKELETON;
 	public static SoulstoneZombie SOULSTONE_ZOMBIE;
 	
 	public static ClayEffigy CLAY_EFFIGY;
@@ -68,6 +69,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOULSTONE_SKELETON = new SoulstoneSkeleton(soulstone_settings);
 		SOULSTONE_SLIME = new SoulstoneSlime(soulstone_settings);
 		SOULSTONE_SPIDER = new SoulstoneSpider(soulstone_settings);
+		SOULSTONE_WITHER_SKELETON = new SoulstoneWitherSkeleton(soulstone_settings);
 		SOULSTONE_ZOMBIE = new SoulstoneZombie(soulstone_settings);
 		//Instantiate Clay Effigy
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
@@ -106,6 +108,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ITEM, "amm:soulstone_skeleton", SOULSTONE_SKELETON);
 		Registry.register(Registry.ITEM, "amm:soulstone_slime", SOULSTONE_SLIME);
 		Registry.register(Registry.ITEM, "amm:soulstone_spider", SOULSTONE_SPIDER);
+		Registry.register(Registry.ITEM, "amm:soulstone_wither_skeleton", SOULSTONE_WITHER_SKELETON);
 		Registry.register(Registry.ITEM, "amm:soulstone_zombie", SOULSTONE_ZOMBIE);
 		//Register Clay Effigy
 		Registry.register(Registry.ITEM, "amm:clay_effigy", CLAY_EFFIGY);
