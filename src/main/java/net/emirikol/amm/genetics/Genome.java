@@ -124,8 +124,32 @@ public class Genome {
 	}
 	
 	public void applySlimeAttributes(SlimeEntity entity) {
+		EntityAttributeInstance entityAttributeInstance;
+		Gene<Double> gene;
+		//Slime attack damage is normally equal to their size value.
+		//The damage gene is added to their size (0 for slimes, 2 for magma cubes).
+		gene = genes.get("damage");
+		Double slimeDamage = gene.getActive() + (float) entity.getSize();
+		entityAttributeInstance = entity.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+		entityAttributeInstance.setBaseValue(slimeDamage);
+		//Slime movement speed is normally equal to {0.2F + 0.1F * (float)size}.
+		//The movement speed gene replaces the 0.2F constant.
+		gene = genes.get("movement_speed");
+		Double slimeMovementSpeed = gene.getActive() + 0.1F * (float) entity.getSize();
+		entityAttributeInstance = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+		entityAttributeInstance.setBaseValue(slimeMovementSpeed);
 	}
 	
 	public void applyMagmaCubeAttributes(MagmaCubeEntity entity) {
+		EntityAttributeInstance entityAttributeInstance;
+		Gene<Double> gene;
+		//Magma cubes use the same logic for attack damage and movement speed, though their base attack is 2 higher.
+		applySlimeAttributes((SlimeEntity) entity);
+		//Magma cube armor value is normally equal to 3 times their size value.
+		//The armor gene replaces the multiplier.
+		gene = genes.get("armor");
+		Double magmaCubeArmor = gene.getActive() * (float) entity.getSize();
+		entityAttributeInstance = entity.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
+		entityAttributeInstance.setBaseValue(magmaCubeArmor);
 	}
 }

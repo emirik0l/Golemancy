@@ -37,10 +37,10 @@ public class GenomeAttributes {
 	public static final double GUARDIAN_MOVEMENT_SPEED = 0.5D;
 	
 	public static final double MAGMA_CUBE_POTENCY = 3.0D;
-	public static final double MAGMA_CUBE_DAMAGE = 0.0D; //MAGMA_CUBE damage depends on size, so this is really a modifier
+	public static final double MAGMA_CUBE_DAMAGE = 2.0D; 
 	public static final double MAGMA_CUBE_KNOCKBACK = 0.0D;
-	public static final double MAGMA_CUBE_ARMOR = 0.0D;
-	public static final double MAGMA_CUBE_MOVEMENT_SPEED = 0.2D; //MAGMA_CUBE speed depends on size, so this is really a modifier
+	public static final double MAGMA_CUBE_ARMOR = 3.0D;
+	public static final double MAGMA_CUBE_MOVEMENT_SPEED = 0.2D; 
 	
 	public static final double PHANTOM_POTENCY = 2.0D;
 	public static final double PHANTOM_DAMAGE = 2.0D;
@@ -61,10 +61,10 @@ public class GenomeAttributes {
 	public static final double SKELETON_MOVEMENT_SPEED = 0.25D;
 	
 	public static final double SLIME_POTENCY = 3.0D;
-	public static final double SLIME_DAMAGE = 0.0D; //slime damage depends on size, so this is really a modifier
+	public static final double SLIME_DAMAGE = 0.0D;
 	public static final double SLIME_KNOCKBACK = 0.0D;
 	public static final double SLIME_ARMOR = 0.0D;
-	public static final double SLIME_MOVEMENT_SPEED = 0.2D; //slime speed depends on size, so this is really a modifier
+	public static final double SLIME_MOVEMENT_SPEED = 0.2D; 
 	
 	public static final double SPIDER_POTENCY = 3.0D;
 	public static final double SPIDER_DAMAGE = 2.0D;
@@ -98,7 +98,7 @@ public class GenomeAttributes {
 			case "GUARDIAN":
 				return 0x6A9583;
 			case "MAGMA CUBE":
-				return 0x330000;
+				return 0x520000;
 			case "PHANTOM":
 				return 0x5061A4;
 			case "RAVAGER":
