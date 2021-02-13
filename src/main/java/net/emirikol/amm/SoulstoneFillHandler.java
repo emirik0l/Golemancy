@@ -1,5 +1,6 @@
 package net.emirikol.amm;
 
+import net.emirikol.amm.*;
 import net.emirikol.amm.item.*;
 
 import net.fabricmc.fabric.api.entity.event.v1.*;
@@ -61,6 +62,11 @@ public class SoulstoneFillHandler {
 	
 	//Check if an entity has a capturable soul.
 	private static boolean checkSoul(LivingEntity entity) {
+		//Check if the entity has the "summoned" tag.
+		if (AriseMyMinionsComponents.SUMMONED.get(entity).getValue()) {
+			return false;
+		}
+		//Check if the entity type is valid.
 		EntityType entityType = entity.getType();
 		for (EntityType key : VALID_ENTITIES.keySet()) {
 			if (entityType == key) {

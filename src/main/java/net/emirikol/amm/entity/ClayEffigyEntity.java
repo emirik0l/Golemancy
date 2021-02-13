@@ -1,7 +1,9 @@
 package net.emirikol.amm.entity;
 
+import net.emirikol.amm.*;
 import net.emirikol.amm.item.*;
 import net.emirikol.amm.genetics.*;
+import net.emirikol.amm.component.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -51,6 +53,8 @@ public class ClayEffigyEntity extends PathAwareEntity {
 				LivingEntity entity = (LivingEntity) entityType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
 				//Load attributes from genome.
 				genome.applyEntity(entity);
+				//Mark entity as summoned.
+				AriseMyMinionsComponents.SUMMONED.get(entity).setValue(true);
 				//Spawn entity.
 				world.spawnEntityAndPassengers(entity);
 				return ActionResult.SUCCESS;
