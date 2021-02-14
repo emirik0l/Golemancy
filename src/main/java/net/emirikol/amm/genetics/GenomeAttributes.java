@@ -36,6 +36,12 @@ public class GenomeAttributes {
 	public static final double GUARDIAN_ARMOR = 0.0D;
 	public static final double GUARDIAN_MOVEMENT_SPEED = 0.5D;
 	
+	public static final double HOGLIN_POTENCY = 3.0D;
+	public static final double HOGLIN_DAMAGE = 6.0D;
+	public static final double HOGLIN_KNOCKBACK = 1.0D;
+	public static final double HOGLIN_ARMOR = 0.0D;
+	public static final double HOGLIN_MOVEMENT_SPEED = 0.3D;
+	
 	public static final double MAGMA_CUBE_POTENCY = 3.0D;
 	public static final double MAGMA_CUBE_DAMAGE = 2.0D; 
 	public static final double MAGMA_CUBE_KNOCKBACK = 0.0D;
@@ -97,6 +103,8 @@ public class GenomeAttributes {
 				return 0x821281;
 			case "GUARDIAN":
 				return 0x6A9583;
+			case "HOGLIN":
+				return 0x955b4a;
 			case "MAGMA CUBE":
 				return 0x520000;
 			case "PHANTOM":
