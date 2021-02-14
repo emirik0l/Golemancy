@@ -1,7 +1,6 @@
 package net.emirikol.amm.genetics;
 
 import net.emirikol.amm.item.*;
-import net.emirikol.amm.util.*;
 
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -46,23 +45,11 @@ public class Breeding {
 	//Attempt to generate a mutation based on parent genomes.
 	//Returns null if no mutation was generated; otherwise, returns a Soulstone for the new species that should be used.
 	public static Soulstone mutate(Genome genome1, Genome genome2) {
-		//Get soulstone permutations.
-		Soulstone soulstones[] = {
-			Soulstones.get(((Gene<String>) genome1.getGene("species")).getActive()),
-			Soulstones.get(((Gene<String>) genome1.getGene("species")).getDormant()),
-			Soulstones.get(((Gene<String>) genome2.getGene("species")).getActive()),
-			Soulstones.get(((Gene<String>) genome2.getGene("species")).getDormant()),
-		};
-		ListPermutation<Soulstone> soulstonePermutations = new ListPermutation<Soulstone>(Arrays.asList(soulstones));
-		//Iterate over permutations.
-		//If any return a valid mutation, return that.
-		while (soulstonePermutations.hasNext()) {
-			List<Soulstone> current = soulstonePermutations.next();
-			Soulstone left = current.get(0);
-			Soulstone right = current.get(1);
-			Soulstone result = left.attemptMutation(right);
-			if (result != null) { return result; }
-		}
-		return null;
+		//Get random species to mutate from each soulstone.
+		Soulstone soulstone1 = Soulstones.get(((Gene<String>) genome1.getGene("species")).getRandom());
+		Soulstone soulstone2 = Soulstones.get(((Gene<String>) genome2.getGene("species")).getRandom());
+		//Attempt mutation and return result.
+		//If mutation failed, result will be null.
+		return null; //todo
 	}
 }
