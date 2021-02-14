@@ -27,6 +27,7 @@ public class Soulstones {
 		put(EntityType.SPIDER, AriseMyMinionsMod.SOULSTONE_SPIDER);
 		put(EntityType.STRAY, AriseMyMinionsMod.SOULSTONE_SKELETON);
 		put(EntityType.WITHER_SKELETON, AriseMyMinionsMod.SOULSTONE_WITHER_SKELETON);
+		put(EntityType.ZOGLIN, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.ZOMBIE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.ZOMBIE_HORSE, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
 		put(EntityType.ZOMBIE_VILLAGER, AriseMyMinionsMod.SOULSTONE_ZOMBIE);
