@@ -31,6 +31,8 @@ dependencies {
 	
 	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:2.7.11"
 	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:2.7.11"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:2.7.11"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:2.7.11"
 }
 
 processResources {

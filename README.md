@@ -10,13 +10,6 @@ No tutorial exists yet, so REI or a similar plugin is recommended.
 
 AMM is currently in **beta**; the core functionality is in place, so you can capture mobs, breed them, and summon them. The more advanced functionality, like creating new types of mob and processing soulstones for drops, is still in development. Don't include this mod in anything you expect to be stable, as it's likely to contain bugs. This mod is for Fabric only; no Forge port is planned.
 
-# Dependencies
-
-This mod depends on the following libraries:
-
-* The Fabric API.
-* [Cardinal Components API](https://github.com/OnyxStudios/Cardinal-Components-API): 2.7.11
-
 # Credits
 
 Some textures are adapted from the excellent Malcolm Riley's [unused-textures](https://github.com/malcolmriley/unused-textures) repository, namely:
