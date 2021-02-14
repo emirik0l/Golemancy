@@ -34,4 +34,10 @@ public class Soulstone extends Item {
 	//Override for functionality.
 	public void defaultGenes(ItemStack stack) {
 	}
+	
+	//Attempts to mutate this soulstone with another soulstone.
+	//Override for functionality; returns null on failure.
+	public Soulstone attemptMutation(Soulstone soulstone) {
+		return null;
+	}
 }

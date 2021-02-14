@@ -1,6 +1,7 @@
 package net.emirikol.amm.genetics;
 
 import net.emirikol.amm.item.*;
+import net.emirikol.amm.util.*;
 
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -30,9 +31,38 @@ public class Breeding {
 		//Figure out what species the child should be and create a new itemstack.
 		Gene<String> speciesGene = newGenome.getGene("species");
 		Soulstone childSoulstone = Soulstones.get(speciesGene.getActive());
-		ItemStack child = new ItemStack(childSoulstone);
-		//Apply the genome to the new itemstack, and save tags.
-		newGenome.applyStack(child);
+		Soulstone mutatedSoulstone = mutate(genomes[0], genomes[1]);
+		ItemStack child;
+		if (mutatedSoulstone == null) {
+			child = new ItemStack(childSoulstone);
+			newGenome.applyStack(child);
+		} else {
+			child = new ItemStack(mutatedSoulstone);
+			mutatedSoulstone.defaultGenes(child);
+		}
 		return child;
+	}
+	
+	//Attempt to generate a mutation based on parent genomes.
+	//Returns null if no mutation was generated; otherwise, returns a Soulstone for the new species that should be used.
+	public static Soulstone mutate(Genome genome1, Genome genome2) {
+		//Get soulstone permutations.
+		Soulstone soulstones[] = {
+			Soulstones.get(((Gene<String>) genome1.getGene("species")).getActive()),
+			Soulstones.get(((Gene<String>) genome1.getGene("species")).getDormant()),
+			Soulstones.get(((Gene<String>) genome2.getGene("species")).getActive()),
+			Soulstones.get(((Gene<String>) genome2.getGene("species")).getDormant()),
+		};
+		ListPermutation<Soulstone> soulstonePermutations = new ListPermutation<Soulstone>(Arrays.asList(soulstones));
+		//Iterate over permutations.
+		//If any return a valid mutation, return that.
+		while (soulstonePermutations.hasNext()) {
+			List<Soulstone> current = soulstonePermutations.next();
+			Soulstone left = current.get(0);
+			Soulstone right = current.get(1);
+			Soulstone result = left.attemptMutation(right);
+			if (result != null) { return result; }
+		}
+		return null;
 	}
 }
