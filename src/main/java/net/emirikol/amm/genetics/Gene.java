@@ -30,11 +30,11 @@ public class Gene<T> {
 		if (bool) { return active; } else { return dormant; }
 	}
 	
-	public void setDom(T value) {
+	public void setActive(T value) {
 		active = value;
 	}
 	
-	public void setRec(T value) {
+	public void setDormant(T value) {
 		dormant = value;
 	}
 	

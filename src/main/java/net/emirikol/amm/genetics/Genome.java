@@ -41,7 +41,7 @@ public class Genome {
 	}
 	
 	//Create a new Genome with identical active and dormant genepools based on the supplied attributes.
-	//Called when you receive a fresh soulstone from killing a mob or via mutation.
+	//Called when you receive a fresh soulstone from killing a mob.
 	public Genome(String species, double potency, double damage, double knockback, double armor, double movement_speed) {
 		genes = new HashMap<String,Gene>();
 		genes.put("species", new Gene<String>(species));
