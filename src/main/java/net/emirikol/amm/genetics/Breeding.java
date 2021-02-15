@@ -1,6 +1,7 @@
 package net.emirikol.amm.genetics;
 
 import net.emirikol.amm.item.*;
+import net.emirikol.amm.genetics.mutation.*;
 
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -50,6 +51,10 @@ public class Breeding {
 		Soulstone soulstone2 = Soulstones.get(((Gene<String>) genome2.getGene("species")).getRandom());
 		//Attempt mutation and return result.
 		//If mutation failed, result will be null.
-		return null; //todo
+		for (Mutation mutation : Mutations.MUTATIONS) {
+			Soulstone result = mutation.attemptMutation(soulstone1, soulstone2);
+			if (result != null) { return result; }
+		}
+		return null;
 	}
 }
