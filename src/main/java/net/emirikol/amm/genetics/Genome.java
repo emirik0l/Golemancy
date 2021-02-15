@@ -71,6 +71,23 @@ public class Genome {
 		return genes.keySet();
 	}
 	
+	//Splice this genome with another, randomly replacing one set of genes (active or dormant);
+	public void splice(Genome otherGenome) {
+		Random rand = new Random();
+		//Decide which of our genepools to replace.
+		int thisIndex = rand.nextInt(2);
+		//Decide which of the other genome's genepools to use.
+		int thatIndex = rand.nextInt(2);
+		//Commence the splice.
+		for (String key : getKeys()) {
+			List thisGene = getGene(key).toList();
+			List thatGene = otherGenome.getGene(key).toList();
+			thisGene.set(thisIndex, thatGene.get(thatIndex));
+			Gene newGene = new Gene(thisGene.get(0), thisGene.get(1));
+			putGene(key, newGene);
+		}
+	}
+	
 	//Applies this genome to an ItemStack, updating its NBT data.
 	public void applyStack(ItemStack stack) {
 		CompoundTag tag = stack.getOrCreateTag();

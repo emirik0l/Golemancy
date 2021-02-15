@@ -16,6 +16,13 @@ public class Gene<T> {
 		this.dormant = value;
 	}
 	
+	public List<T> toList() {
+		return new ArrayList<T>() {{
+			add(active);
+			add(dormant);
+		}};
+	};
+	
 	public T getActive() {
 		return active;
 	}

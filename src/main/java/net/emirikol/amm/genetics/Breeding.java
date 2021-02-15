@@ -40,7 +40,6 @@ public class Breeding {
 	
 	public static void mutate(Genome child, Genome parent1, Genome parent2) {
 		Random rand = new Random();
-		boolean  alreadyMutated = false;
 		//Convert species genes into soulstones and construct possible combinations.
 		Soulstone combinations[][] = {
 			{Soulstones.get(((Gene<String>) parent1.getGene("species")).getActive()), Soulstones.get(((Gene<String>) parent2.getGene("species")).getActive())},
@@ -58,19 +57,8 @@ public class Breeding {
 					ItemStack tempStack = new ItemStack(result);
 					result.defaultGenes(tempStack);
 					Genome newGenome = new Genome(tempStack);
-					//Choose whether to replace the child's active or dormant genepool.
-					//Mutations replace dormant genes first.
-					for (String key : child.getKeys()) {
-						Gene childGene = child.getGene(key);
-						Gene newGene = newGenome.getGene(key);
-						if (alreadyMutated) {
-							childGene.setActive(newGene.getActive());
-						} else {
-							childGene.setDormant(newGene.getDormant());
-						}
-						child.putGene(key, childGene);
-					}
-					alreadyMutated = true;
+					//Splice the new genome with the child's genome.
+					child.splice(newGenome);
 				}
 			}
 		}
