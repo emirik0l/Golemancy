@@ -28,33 +28,51 @@ public class Breeding {
 			Gene newGene = left.breed(right);
 			newGenome.putGene(key, newGene);
 		}
+		//Attempt mutation.
+		mutate(newGenome, genomes[0], genomes[1]);
 		//Figure out what species the child should be and create a new itemstack.
 		Gene<String> speciesGene = newGenome.getGene("species");
 		Soulstone childSoulstone = Soulstones.get(speciesGene.getActive());
-		Soulstone mutatedSoulstone = mutate(genomes[0], genomes[1]);
-		ItemStack child;
-		if (mutatedSoulstone == null) {
-			child = new ItemStack(childSoulstone);
-			newGenome.applyStack(child);
-		} else {
-			child = new ItemStack(mutatedSoulstone);
-			mutatedSoulstone.defaultGenes(child);
-		}
+		ItemStack child  = new ItemStack(childSoulstone);
+		newGenome.applyStack(child);
 		return child;
 	}
 	
-	//Attempt to generate a mutation based on parent genomes.
-	//Returns null if no mutation was generated; otherwise, returns a Soulstone for the new species that should be used.
-	public static Soulstone mutate(Genome genome1, Genome genome2) {
-		//Get random species to mutate from each soulstone.
-		Soulstone soulstone1 = Soulstones.get(((Gene<String>) genome1.getGene("species")).getRandom());
-		Soulstone soulstone2 = Soulstones.get(((Gene<String>) genome2.getGene("species")).getRandom());
-		//Attempt mutation and return result.
-		//If mutation failed, result will be null.
+	public static void mutate(Genome child, Genome parent1, Genome parent2) {
+		Random rand = new Random();
+		boolean  alreadyMutated = false;
+		//Convert species genes into soulstones and construct possible combinations.
+		Soulstone combinations[][] = {
+			{Soulstones.get(((Gene<String>) parent1.getGene("species")).getActive()), Soulstones.get(((Gene<String>) parent2.getGene("species")).getActive())},
+			{Soulstones.get(((Gene<String>) parent1.getGene("species")).getActive()), Soulstones.get(((Gene<String>) parent2.getGene("species")).getDormant())},
+			{Soulstones.get(((Gene<String>) parent1.getGene("species")).getDormant()), Soulstones.get(((Gene<String>) parent2.getGene("species")).getActive())},
+			{Soulstones.get(((Gene<String>) parent1.getGene("species")).getDormant()), Soulstones.get(((Gene<String>) parent2.getGene("species")).getDormant())}
+		};
+		//Iterate over all mutations and combinations.
 		for (Mutation mutation : Mutations.MUTATIONS) {
-			Soulstone result = mutation.attemptMutation(soulstone1, soulstone2);
-			if (result != null) { return result; }
+			for (Soulstone combination[] : combinations) {
+				//Attempt to generate a mutation.
+				Soulstone result = mutation.attemptMutation(combination[0], combination[1]);
+				if (result != null) {
+					//If successful, generate a default genome for the mutation.
+					ItemStack tempStack = new ItemStack(result);
+					result.defaultGenes(tempStack);
+					Genome newGenome = new Genome(tempStack);
+					//Choose whether to replace the child's active or dormant genepool.
+					//Mutations replace dormant genes first.
+					for (String key : child.getKeys()) {
+						Gene childGene = child.getGene(key);
+						Gene newGene = newGenome.getGene(key);
+						if (alreadyMutated) {
+							childGene.setActive(newGene.getActive());
+						} else {
+							childGene.setDormant(newGene.getDormant());
+						}
+						child.putGene(key, childGene);
+					}
+					alreadyMutated = true;
+				}
+			}
 		}
-		return null;
 	}
 }
