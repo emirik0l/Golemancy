@@ -5,11 +5,15 @@ import net.emirikol.amm.*;
 import java.util.*;
 
 public class Mutations {
+	/*
 	public static final Mutation TEST = new Mutation(AriseMyMinionsMod.SOULSTONE_ENDERMAN, 0.5) {{
-		//addParents(AriseMyMinionsMod.SOULSTONE_ZOMBIE, AriseMyMinionsMod.SOULSTONE_SKELETON);
+		addParents(AriseMyMinionsMod.SOULSTONE_ZOMBIE, AriseMyMinionsMod.SOULSTONE_SKELETON);
 	}};
+	*/
+	
+	public static final MutationNatural CLOUDY = new MutationNatural(AriseMyMinionsMod.SOULSTONE_ENDERMAN, 0.05);
 	
 	public static final List<Mutation> MUTATIONS = new ArrayList<Mutation>() {{
-		//add(TEST);
+		add(CLOUDY);
 	}};
 }
