@@ -7,7 +7,7 @@ import net.minecraft.entity.*;
 import java.util.*;
 
 public class Soulstones {
-	//Used to link entities with souls to their corresponding soulstones.
+	//Used to link entities with capturable souls to their corresponding soulstones.
 	private static final Map<EntityType,Soulstone> ENTITY_SOULSTONES = new HashMap<EntityType,Soulstone>() {{
 		put(EntityType.BLAZE, AriseMyMinionsMod.SOULSTONE_BLAZE);
 		put(EntityType.CAVE_SPIDER, AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
@@ -37,6 +37,7 @@ public class Soulstones {
 	private static final Map<String,Soulstone> SPECIES_SOULSTONES = new HashMap<String,Soulstone>() {{
 		put("BLAZE", AriseMyMinionsMod.SOULSTONE_BLAZE);
 		put("CAVE SPIDER", AriseMyMinionsMod.SOULSTONE_CAVE_SPIDER);
+		put("CLOUDY", AriseMyMinionsMod.SOULSTONE_CLOUDY);
 		put("CREEPER", AriseMyMinionsMod.SOULSTONE_CREEPER);
 		put("ENDERMAN", AriseMyMinionsMod.SOULSTONE_ENDERMAN);
 		put("GUARDIAN", AriseMyMinionsMod.SOULSTONE_GUARDIAN);

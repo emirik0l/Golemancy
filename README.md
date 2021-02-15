@@ -5,6 +5,7 @@ Arise My Minions is a mod about capturing and breeding the souls of mobs. With i
 * Craft soulstones and use them to capture the souls of vanilla mobs.
 * Craft clay effigies and use them to spawn mobs from soulstones.
 * Use a soul mirror and a soul grafter to view the genes of soulstones and breed them together.
+* Breed soulstones together to mutate them into completely new species with unique drops and abilities.
 
 No tutorial exists yet, so REI or a similar plugin is recommended.
 

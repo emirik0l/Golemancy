@@ -38,6 +38,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static SoulstoneWitherSkeleton SOULSTONE_WITHER_SKELETON;
 	public static SoulstoneZombie SOULSTONE_ZOMBIE;
 	
+	public static SoulstoneCloudy SOULSTONE_CLOUDY;
+	
 	public static ClayEffigy CLAY_EFFIGY;
 	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 	
@@ -57,7 +59,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	}
 	
 	public static void doInstantiation() {
-		//Instantiate Soulstones
+		//Instantiate Vanilla Soulstones
 		FabricItemSettings soulstone_settings = new FabricItemSettings();
 		soulstone_settings.group(ItemGroup.MISC);
 		SOULSTONE = new Soulstone(soulstone_settings);
@@ -75,6 +77,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOULSTONE_SPIDER = new SoulstoneSpider(soulstone_settings);
 		SOULSTONE_WITHER_SKELETON = new SoulstoneWitherSkeleton(soulstone_settings);
 		SOULSTONE_ZOMBIE = new SoulstoneZombie(soulstone_settings);
+		//Instantiate Advanced Soulstones
+		SOULSTONE_CLOUDY = new SoulstoneCloudy(soulstone_settings);
 		//Instantiate Clay Effigy
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
 		clay_effigy_settings.group(ItemGroup.MISC);
@@ -100,7 +104,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	}
 	
 	public static void doRegistration() {
-		//Register Soulstones
+		//Register Vanilla Soulstones
 		Registry.register(Registry.ITEM, "amm:soulstone", SOULSTONE);
 		Registry.register(Registry.ITEM, "amm:soulstone_blaze", SOULSTONE_BLAZE);
 		Registry.register(Registry.ITEM, "amm:soulstone_cave_spider", SOULSTONE_CAVE_SPIDER);
@@ -116,6 +120,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ITEM, "amm:soulstone_spider", SOULSTONE_SPIDER);
 		Registry.register(Registry.ITEM, "amm:soulstone_wither_skeleton", SOULSTONE_WITHER_SKELETON);
 		Registry.register(Registry.ITEM, "amm:soulstone_zombie", SOULSTONE_ZOMBIE);
+		//Register Advanced Soulstones
+		Registry.register(Registry.ITEM, "amm:soulstone_cloudy", SOULSTONE_CLOUDY);
 		//Register Clay Effigy
 		Registry.register(Registry.ITEM, "amm:clay_effigy", CLAY_EFFIGY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:clay_effigy", CLAY_EFFIGY_ENTITY);

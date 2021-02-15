@@ -97,6 +97,8 @@ public class GenomeAttributes {
 				return 0xfc9600;
 			case "CAVE SPIDER":
 				return 0x2E32;
+			case "CLOUDY":
+				return 0xa4a4a8;
 			case "CREEPER":
 				return 0x4BD920;
 			case "ENDERMAN":
