@@ -11,7 +11,7 @@ public class Mutations {
 	}};
 	*/
 	
-	public static final MutationNatural CLOUDY = new MutationNatural(AriseMyMinionsMod.SOULSTONE_CLOUDY, 0.05);
+	public static final MutationNatural CLOUDY = new MutationNatural(AriseMyMinionsMod.SOULSTONE_CLOUDY, 0.1);
 	
 	public static final List<Mutation> MUTATIONS = new ArrayList<Mutation>() {{
 		add(CLOUDY);
