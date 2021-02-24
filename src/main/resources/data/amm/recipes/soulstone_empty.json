@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:quartz"
+    },
+    "result": "amm:soulstone_empty",
+    "count": 1
+}

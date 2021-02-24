@@ -1,5 +1,7 @@
 package net.emirikol.amm;
 
+import net.emirikol.amm.item.*;
+
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.fabricmc.fabric.api.item.v1.*;
@@ -16,6 +18,9 @@ import net.minecraft.util.registry.*;
 
 public class AriseMyMinionsMod implements ModInitializer {
 	
+	public static SoulstoneEmpty SOULSTONE_EMPTY;
+	public static SoulstoneFilled SOULSTONE_FILLED;
+	
 	@Override
 	public void onInitialize() {
 		doInstantiation();
@@ -23,8 +28,16 @@ public class AriseMyMinionsMod implements ModInitializer {
 	}
 	
 	public static void doInstantiation() {
+		//Instantiate soulstones.
+		FabricItemSettings soulstone_settings = new FabricItemSettings();
+		soulstone_settings.group(ItemGroup.MISC);
+		SOULSTONE_EMPTY = new SoulstoneEmpty(soulstone_settings);
+		SOULSTONE_FILLED = new SoulstoneFilled(soulstone_settings);
 	}
 	
 	public static void doRegistration() {
+		//Register soulstones.
+		Registry.register(Registry.ITEM, "amm:soulstone_empty", SOULSTONE_EMPTY);
+		Registry.register(Registry.ITEM, "amm:soulstone_filled", SOULSTONE_FILLED);
 	}
 }
