@@ -1,5 +1,7 @@
 {
 	"item.amm.soulstone_empty": "Empty Soulstone",
 	"item.amm.soulstone_filled": "Soulstone",
-	"item.amm.soul_mirror": "Soul Mirror"
+	"item.amm.soul_mirror": "Soul Mirror",
+	"text.amm.active_column": "ACTIVE",
+	"text.amm.dormant_column": "DORMANT"
 }

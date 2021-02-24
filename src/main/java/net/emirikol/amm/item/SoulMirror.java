@@ -68,8 +68,7 @@ public class SoulMirror extends Item implements ExtendedScreenHandlerFactory {
 	
 	//Helper method to handle soul mirror display logic.
 	public void displayGenome(World world, PlayerEntity player, Genome genome) {
-		//Display soul mirror screen.
-		soulData = "placeholder";
+		soulData = new SerializedGenome(genome).toString();
 		player.openHandledScreen(this);
 	}
 }

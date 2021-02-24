@@ -18,16 +18,15 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	//A path to the GUI texture to use.
 	private static final Identifier TEXTURE = new Identifier("amm", "textures/gui/container/soul_mirror.png");
 	public static final int TITLE_Y = 10;
-	public static final int COLUMN_HEADER_Y = 25;
+	public static final int COLUMN_HEADER_Y = 35;
 	public static final int COLUMN_DOM_X = 80;
 	public static final int COLUMN_REC_X = 125;
 	public static final int ROW_START_X = 15;
-	public static final int SPECIES_ROW_Y = 40;
-	public static final int POTENCY_ROW_Y = 50;
-	public static final int DAMAGE_ROW_Y = 60;
-	public static final int KNOCKBACK_ROW_Y = 70;
-	public static final int ARMOR_ROW_Y = 80;
-	public static final int SPEED_ROW_Y = 90;
+	public static final int TYPE_ROW_Y = 50;
+	public static final int STRENGTH_ROW_Y = 60;
+	public static final int AGILITY_ROW_Y = 70;
+	public static final int VIGOR_ROW_Y = 80;
+	public static final int SMARTS_ROW_Y = 90;
 	
 	public SoulMirrorScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
@@ -46,10 +45,16 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		//Get genome data from server and deserialize.
 		String soulData = ((SoulMirrorScreenHandler) this.handler).getSoulData();
+		SerializedGenome serializedGenome = new SerializedGenome(soulData);
 		//Draw title.
 		Text titleText = new TranslatableText("item.amm.soul_mirror");
 		int x = (backgroundWidth - textRenderer.getWidth(titleText)) / 2;
 		this.textRenderer.draw(matrices, titleText, (float) x, (float) TITLE_Y, 4210752);
+		//Draw column headers.
+		Text activeText = new TranslatableText("text.amm.active_column");
+		Text dormantText = new TranslatableText("text.amm.dormant_column");
+		this.textRenderer.draw(matrices, activeText, (float) COLUMN_DOM_X, (float) COLUMN_HEADER_Y, 0xff0000);
+		this.textRenderer.draw(matrices, dormantText, (float) COLUMN_REC_X, (float) COLUMN_HEADER_Y, 0x00acff);
 	}
 	
 	@Override

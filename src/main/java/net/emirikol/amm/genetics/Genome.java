@@ -38,6 +38,10 @@ public class Genome {
 		genes.put(key, gene);
 	}
 	
+	public Set<String> getKeys() {
+		return genes.keySet();
+	}
+	
 	//Apply this genome to an ItemStack's NBT data.
 	public void toItemStack(ItemStack stack) {
 		CompoundTag tag = stack.getOrCreateTag();
