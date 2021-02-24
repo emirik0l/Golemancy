@@ -11,6 +11,10 @@ public class Genomes {
 		put(EntityType.ZOMBIE, ZOMBIE);
 	}};
 	
+	public static Set<EntityType> getEntityTypes() {
+		return GENOMES.keySet();
+	}
+	
 	public static final Genome GENERIC = new Genome() {{
 		put("type", new Gene<String>("NONE"));
 		put("strength", new Gene<Integer>(0));
