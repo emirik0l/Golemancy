@@ -18,7 +18,8 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": ["net.emirikol.amm.AriseMyMinionsMod"]
+    "main": ["net.emirikol.amm.AriseMyMinionsMod"],
+	"client": ["net.emirikol.amm.AriseMyMinionsModClient"]
   },
   "mixins": [],
 

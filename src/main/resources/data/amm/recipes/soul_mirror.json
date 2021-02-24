@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+	"NQN",
+	"QQQ",
+	"NQN"
+  ],
+  "key": {
+	"Q": {
+	  "item": "minecraft:quartz"
+	},
+	"N": {
+	  "item": "minecraft:gold_nugget"
+	}
+  },
+  "result": {
+	"item": "amm:soul_mirror",
+	"count": 1
+  }
+}
