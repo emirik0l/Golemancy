@@ -44,6 +44,12 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+		//Get genome data from server and deserialize.
+		String soulData = ((SoulMirrorScreenHandler) this.handler).getSoulData();
+		//Draw title.
+		Text titleText = new TranslatableText("item.amm.soul_mirror");
+		int x = (backgroundWidth - textRenderer.getWidth(titleText)) / 2;
+		this.textRenderer.draw(matrices, titleText, (float) x, (float) TITLE_Y, 4210752);
 	}
 	
 	@Override
