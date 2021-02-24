@@ -17,7 +17,17 @@ public class SoulstoneFillHandler {
 				PlayerEntity playerEntity = (PlayerEntity) entity;
 				PlayerInventory inventory = playerEntity.inventory;
 				if (checkSoulstones(inventory)) {
-					System.out.println("Entity killed");
+					//Remove an empty soulstone from the player's inventory.
+					ItemStack soulstoneStack = getSoulstones(inventory);
+					soulstoneStack.decrement(1);
+					//Create a new filled soulstone.
+					ItemStack newSoulstoneStack = new ItemStack(AriseMyMinionsMod.SOULSTONE_FILLED);
+					//Get the corresponding genome and apply it to the new soulstone.
+					Genome genome = Genomes.get(killed.getType());
+					genome.toItemStack(newSoulstoneStack);
+					//Add the new soulstone to the player's inventory.
+					inventory.offerOrDrop(world, newSoulstoneStack);
+					inventory.markDirty();
 				}
 			}
 		});
@@ -46,5 +56,15 @@ public class SoulstoneFillHandler {
 			return true;
 		}
 		return false;
+	}
+	
+	//Get the ItemStack in a PlayerInventory that contains soulstones.
+	private static ItemStack getSoulstones(PlayerInventory inventory) {
+		for(ItemStack stack: inventory.main) {
+			if (stack.getItem() == AriseMyMinionsMod.SOULSTONE_EMPTY) {
+				return stack;
+			}
+		}
+		return null;
 	}
 }

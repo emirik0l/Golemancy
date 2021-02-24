@@ -5,15 +5,6 @@ import net.minecraft.entity.*;
 import java.util.*;
 
 public class Genomes {
-	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
-		put(EntityType.DROWNED, ZOMBIE);
-		put(EntityType.HUSK, ZOMBIE);
-		put(EntityType.ZOMBIE, ZOMBIE);
-	}};
-	
-	public static Set<EntityType> getEntityTypes() {
-		return GENOMES.keySet();
-	}
 	
 	public static final Genome GENERIC = new Genome() {{
 		put("type", new Gene<String>("NONE"));
@@ -30,4 +21,19 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(0));
 	}};
+	
+	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
+		put(EntityType.DROWNED, ZOMBIE);
+		put(EntityType.HUSK, ZOMBIE);
+		put(EntityType.ZOMBIE, ZOMBIE);
+	}};
+	
+	public static Set<EntityType> getEntityTypes() {
+		return GENOMES.keySet();
+	}
+	
+	public static Genome get(EntityType entityType) {
+		return GENOMES.get(entityType);
+	}
+
 }
