@@ -11,6 +11,14 @@ public class Genomes {
 		put(EntityType.ZOMBIE, ZOMBIE);
 	}};
 	
+	public static final Genome GENERIC = new Genome() {{
+		put("type", new Gene<String>("NONE"));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
 	public static final Genome ZOMBIE = new Genome() {{
 		put("type", new Gene<String>("NONE"));
 		put("strength", new Gene<Integer>(1));

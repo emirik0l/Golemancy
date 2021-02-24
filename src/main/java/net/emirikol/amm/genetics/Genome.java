@@ -22,6 +22,14 @@ public class Genome {
 		this.fromItemStack(stack);
 	};
 	
+	public boolean initialised() {
+		if (this.get("type") != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public Gene get(String key) {
 		return genes.get(key);
 	}

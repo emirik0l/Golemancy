@@ -25,6 +25,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public void onInitialize() {
 		doInstantiation();
 		doRegistration();
+		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
 	}
 	
 	public static void doInstantiation() {
