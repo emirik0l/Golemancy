@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Arise My Minions",
-  "description": "A mod about magical genetics and breeding mobs.",
+  "description": "A mod about magical genetics.",
   "authors": [
     "Emirikol"
   ],
@@ -19,8 +19,6 @@
   "environment": "*",
   "entrypoints": {
     "main": ["net.emirikol.amm.AriseMyMinionsMod"],
-	"client": ["net.emirikol.amm.AriseMyMinionsModClient"],
-	"cardinal-components-entity": ["net.emirikol.amm.AriseMyMinionsComponents"]
   },
   "mixins": [],
 
@@ -32,6 +30,5 @@
   "suggests": {
   },
   "custom": {
-      "cardinal-components": ["amm:summoned"]
   }
 }
