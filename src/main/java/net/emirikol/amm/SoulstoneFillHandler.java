@@ -13,7 +13,12 @@ public class SoulstoneFillHandler {
 		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((world, entity, killed) -> {
 			//Check if a player killed them and if the target's soul can be captured.
 			if (checkPlayer(entity) && checkSoul(killed)) {
-				System.out.println("Entity killed");
+				//Check if the player has empty soulstones.
+				PlayerEntity playerEntity = (PlayerEntity) entity;
+				PlayerInventory inventory = playerEntity.inventory;
+				if (checkSoulstones(inventory)) {
+					System.out.println("Entity killed");
+				}
 			}
 		});
 	}
@@ -31,6 +36,14 @@ public class SoulstoneFillHandler {
 			if (entityType == key) {
 				return true;
 			}
+		}
+		return false;
+	}
+	
+	//Check if a PlayerInventory contains soulstones.
+	private static boolean checkSoulstones(PlayerInventory inventory) {
+		if (inventory.contains(new ItemStack(AriseMyMinionsMod.SOULSTONE_EMPTY))){ 
+			return true;
 		}
 		return false;
 	}
