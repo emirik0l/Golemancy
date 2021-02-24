@@ -25,7 +25,10 @@ public class Genomes {
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
 		put(EntityType.DROWNED, ZOMBIE);
 		put(EntityType.HUSK, ZOMBIE);
+		put(EntityType.ZOGLIN, ZOMBIE);
 		put(EntityType.ZOMBIE, ZOMBIE);
+		put(EntityType.ZOMBIE_HORSE, ZOMBIE);
+		put(EntityType.ZOMBIE_VILLAGER, ZOMBIE);
 	}};
 	
 	public static Set<EntityType> getEntityTypes() {
