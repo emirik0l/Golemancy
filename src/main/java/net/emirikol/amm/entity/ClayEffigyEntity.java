@@ -18,7 +18,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
-		return MobEntity.createMobAttributes();
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 	
 	public ClayEffigyEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
