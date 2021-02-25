@@ -25,7 +25,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Curious"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -61,7 +61,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome HOGLIN = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Hungry"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
