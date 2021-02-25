@@ -19,8 +19,8 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	private static final Identifier TEXTURE = new Identifier("amm", "textures/gui/container/soul_mirror.png");
 	public static final int TITLE_Y = 10;
 	public static final int COLUMN_HEADER_Y = 35;
-	public static final int COLUMN_DOM_X = 77;
-	public static final int COLUMN_REC_X = 125;
+	public static final int COLUMN_DOM_X = 70;
+	public static final int COLUMN_REC_X = 120;
 	public static final int ROW_START_X = 15;
 	public static final int TYPE_ROW_Y = 50;
 	public static final int STRENGTH_ROW_Y = 60;
