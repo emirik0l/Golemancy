@@ -1,15 +1,8 @@
 # Arise My Minions
 
-Arise My Minions is a mod about capturing and breeding the souls of mobs. With it, you can do the following:
+Arise My Minions is a mod about capturing the souls of mobs, breeding them, and using them to create faithful golem servants to do your bidding. No tutorial exists yet, so REI or a similar plugin is recommended.
 
-* Craft soulstones and use them to capture the souls of vanilla mobs.
-* Craft clay effigies and use them to spawn mobs from soulstones.
-* Use a soul mirror and a soul grafter to view the genes of soulstones and breed them together.
-* Breed soulstones together to mutate them into completely new species with unique drops and abilities.
-
-No tutorial exists yet, so REI or a similar plugin is recommended.
-
-AMM is currently in **beta**; the core functionality is in place, so you can capture mobs, breed them, and summon them. The more advanced functionality, like creating new types of mob and processing soulstones for drops, is still in development. Don't include this mod in anything you expect to be stable, as it's likely to contain bugs. This mod is for Fabric only; no Forge port is planned.
+AMM is currently in **beta**. Don't include this mod in anything you expect to be stable, as it's likely to contain bugs. This mod is for Fabric only; no Forge port is planned.
 
 # Credits
 
