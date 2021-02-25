@@ -24,6 +24,15 @@ public class Genomes {
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
+	public static final Genome SPIDER = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(2));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
 	public static final Genome ZOMBIE = new Genome() {{
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(4));
@@ -37,6 +46,8 @@ public class Genomes {
 		put(EntityType.SKELETON, SKELETON);
 		put(EntityType.SKELETON_HORSE, SKELETON);
 		put(EntityType.STRAY, SKELETON);
+		put(EntityType.CAVE_SPIDER, SPIDER);
+		put(EntityType.SPIDER, SPIDER);
 		put(EntityType.DROWNED, ZOMBIE);
 		put(EntityType.HUSK, ZOMBIE);
 		put(EntityType.ZOGLIN, ZOMBIE);
