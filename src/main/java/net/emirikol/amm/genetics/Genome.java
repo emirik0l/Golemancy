@@ -67,6 +67,9 @@ public class Genome {
 		Gene<Integer> smarts = genes.get("smarts");
 		tag.putInt("smarts_active", smarts.getActive());
 		tag.putInt("smarts_dormant", smarts.getDormant());
+		
+		int variant = Genomes.VARIANTS.get(type.getActive());
+		tag.putInt("CustomModelData", variant);
 	}
 	
 	//Apply an ItemStack's NBT data to this genome.
