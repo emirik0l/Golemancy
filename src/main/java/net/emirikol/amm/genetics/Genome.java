@@ -11,6 +11,7 @@ public class Genome {
 	public Genome() {
 		genes = new HashMap<String,Gene>();
 		genes.put("type", null);
+		genes.put("potency", null);
 		genes.put("strength", null);
 		genes.put("agility", null);
 		genes.put("vigor", null);
@@ -21,14 +22,6 @@ public class Genome {
 		this();
 		this.fromItemStack(stack);
 	};
-	
-	public boolean initialised() {
-		if (this.get("type") != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
 	public Gene get(String key) {
 		return genes.get(key);
@@ -48,6 +41,9 @@ public class Genome {
 		Gene<String> type = genes.get("type");
 		tag.putString("type_active", type.getActive());
 		tag.putString("type_dormant", type.getDormant());
+		Gene<Integer> potency = genes.get("potency");
+		tag.putInt("potency_active", potency.getActive());
+		tag.putInt("potency_dormant", potency.getDormant());
 		Gene<Integer> strength = genes.get("strength");
 		tag.putInt("strength_active", strength.getActive());
 		tag.putInt("strength_dormant", strength.getDormant());
@@ -66,9 +62,26 @@ public class Genome {
 	public void fromItemStack(ItemStack stack) {
 		CompoundTag tag = stack.getOrCreateTag();
 		genes.put("type", new Gene<String>(tag.getString("type_active"), tag.getString("type_dormant")));
+		genes.put("potency", new Gene<Integer>(tag.getInt("potency_active"), tag.getInt("potency_dormant")));
 		genes.put("strength", new Gene<Integer>(tag.getInt("strength_active"), tag.getInt("strength_dormant")));
 		genes.put("agility", new Gene<Integer>(tag.getInt("agility_active"), tag.getInt("agility_dormant")));
 		genes.put("vigor", new Gene<Integer>(tag.getInt("vigor_active"), tag.getInt("vigor_dormant")));
 		genes.put("smarts", new Gene<Integer>(tag.getInt("smarts_active"), tag.getInt("smarts_dormant")));
+	}
+	
+	//Breed two genomes together.
+	//Uses mendelian inheritance to randomly assign genes from the parents to the child.
+	public static Genome breed(Genome left, Genome right) {
+		Random rand = new Random();
+		Genome newGenome = new Genome();
+		Genome genomes[] = {left, right};
+		//Generate new genes.
+		for (String key : newGenome.getKeys()) {
+			Gene leftGene = genomes[0].get(key);
+			Gene rightGene = genomes[1].get(key);
+			Gene newGene = leftGene.breed(rightGene);
+			newGenome.put(key, newGene);
+		}
+		return newGenome;
 	}
 }

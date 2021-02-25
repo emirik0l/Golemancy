@@ -23,10 +23,11 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	public static final int COLUMN_REC_X = 120;
 	public static final int ROW_START_X = 15;
 	public static final int TYPE_ROW_Y = 50;
-	public static final int STRENGTH_ROW_Y = 60;
-	public static final int AGILITY_ROW_Y = 70;
-	public static final int VIGOR_ROW_Y = 80;
-	public static final int SMARTS_ROW_Y = 90;
+	public static final int POTENCY_ROW_Y = 60;
+	public static final int STRENGTH_ROW_Y = 70;
+	public static final int AGILITY_ROW_Y = 80;
+	public static final int VIGOR_ROW_Y = 90;
+	public static final int SMARTS_ROW_Y = 100;
 	
 	public SoulMirrorScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
@@ -60,6 +61,11 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		this.textRenderer.draw(matrices, typeText, (float) ROW_START_X, (float) TYPE_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.activeAlleles.get("type"), (float) COLUMN_DOM_X, (float) TYPE_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, serializedGenome.dormantAlleles.get("type"), (float) COLUMN_REC_X, (float) TYPE_ROW_Y, 4210752);
+		//Draw potency row.
+		Text potencyText = new TranslatableText("text.amm.potency");
+		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, serializedGenome.activeAlleles.get("potency"), (float) COLUMN_DOM_X, (float) POTENCY_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, serializedGenome.dormantAlleles.get("potency"), (float) COLUMN_REC_X, (float) POTENCY_ROW_Y, 4210752);
 		//Draw strength row.
 		Text strengthText = new TranslatableText("text.amm.strength");
 		this.textRenderer.draw(matrices, strengthText, (float) ROW_START_X, (float) STRENGTH_ROW_Y, 4210752);

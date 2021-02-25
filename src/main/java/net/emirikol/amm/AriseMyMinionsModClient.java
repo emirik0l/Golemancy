@@ -19,5 +19,7 @@ public class AriseMyMinionsModClient implements ClientModInitializer {
 	public void doRegistration() {
 		//Register Soul Mirror Screen
 		ScreenRegistry.register(AriseMyMinionsMod.SOUL_MIRROR_SCREEN_HANDLER, SoulMirrorScreen::new);
+		//Register Soul Grafter Screen
+		ScreenRegistry.register(AriseMyMinionsMod.SOUL_GRAFTER_SCREEN_HANDLER, SoulGrafterScreen::new);
 	}
 }
