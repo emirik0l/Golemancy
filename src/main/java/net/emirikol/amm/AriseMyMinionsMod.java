@@ -32,6 +32,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static BlockEntityType<SoulGrafterBlockEntity> SOUL_GRAFTER_ENTITY;
 	public static ScreenHandlerType<SoulGrafterScreenHandler> SOUL_GRAFTER_SCREEN_HANDLER;
 	
+	public static ClayEffigy CLAY_EFFIGY;
+	
 	@Override
 	public void onInitialize() {
 		doInstantiation();
@@ -62,6 +64,10 @@ public class AriseMyMinionsMod implements ModInitializer {
 		SOUL_GRAFTER_ITEM = new BlockItem(SOUL_GRAFTER, soul_grafter_item_settings);
 		SOUL_GRAFTER_ENTITY = BlockEntityType.Builder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
 		SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("amm", "soul_grafter"), SoulGrafterScreenHandler::new);
+		//Instantiate clay effigy.
+		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
+		clay_effigy_settings.group(ItemGroup.MISC);
+		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
 	}
 	
 	public static void doRegistration() {
@@ -74,5 +80,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.BLOCK, "amm:soul_grafter", SOUL_GRAFTER);
 		Registry.register(Registry.ITEM, "amm:soul_grafter", SOUL_GRAFTER_ITEM);
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, "amm:soul_grafter", SOUL_GRAFTER_ENTITY);
+		//Register clay effigy.
+		Registry.register(Registry.ITEM, "amm:clay_effigy", CLAY_EFFIGY);
 	}
 }

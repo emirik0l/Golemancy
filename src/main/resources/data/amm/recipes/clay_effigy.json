@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+	" C ",
+	"CSC",
+	" C "
+  ],
+  "key": {
+	"S": {
+	  "item": "minecraft:soul_sand"
+	},
+	"C": {
+	  "item": "minecraft:clay_ball"
+	}
+  },
+  "result": {
+	"item": "amm:clay_effigy",
+	"count": 1
+  }
+}
