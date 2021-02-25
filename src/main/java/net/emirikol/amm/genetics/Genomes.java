@@ -15,6 +15,15 @@ public class Genomes {
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
+	public static final Genome CREEPER = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
 	public static final Genome SKELETON = new Genome() {{
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(3));
@@ -43,6 +52,7 @@ public class Genomes {
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
+		put(EntityType.CREEPER, CREEPER);
 		put(EntityType.SKELETON, SKELETON);
 		put(EntityType.SKELETON_HORSE, SKELETON);
 		put(EntityType.STRAY, SKELETON);

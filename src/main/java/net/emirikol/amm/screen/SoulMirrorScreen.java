@@ -125,6 +125,8 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 				return new TranslatableText("text.amm.gene_average");
 			case "4":
 				return new TranslatableText("text.amm.gene_high");
+			case "5":
+				return new TranslatableText("text.amm.gene_perfect");
 			default:
 				return new LiteralText("???");
 		}
