@@ -35,6 +35,17 @@ public class Genome {
 		return genes.keySet();
 	}
 	
+	//Check an NBT tag to ensure it contains a full and valid set of genes.
+	public boolean validTag(CompoundTag tag) {
+		String keys[] = {"type_active", "type_dormant", "potency_active", "potency_dormant", "strength_active", "strength_dormant", "agility_active", "agility_dormant", "vigor_active", "vigor_dormant", "smarts_active", "smarts_dormant"};
+		for (String key : keys) {
+			if (!tag.contains(key)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	//Apply this genome to an ItemStack's NBT data.
 	public void toItemStack(ItemStack stack) {
 		CompoundTag tag = stack.getOrCreateTag();
@@ -61,12 +72,21 @@ public class Genome {
 	//Apply an ItemStack's NBT data to this genome.
 	public void fromItemStack(ItemStack stack) {
 		CompoundTag tag = stack.getOrCreateTag();
-		genes.put("type", new Gene<String>(tag.getString("type_active"), tag.getString("type_dormant")));
-		genes.put("potency", new Gene<Integer>(tag.getInt("potency_active"), tag.getInt("potency_dormant")));
-		genes.put("strength", new Gene<Integer>(tag.getInt("strength_active"), tag.getInt("strength_dormant")));
-		genes.put("agility", new Gene<Integer>(tag.getInt("agility_active"), tag.getInt("agility_dormant")));
-		genes.put("vigor", new Gene<Integer>(tag.getInt("vigor_active"), tag.getInt("vigor_dormant")));
-		genes.put("smarts", new Gene<Integer>(tag.getInt("smarts_active"), tag.getInt("smarts_dormant")));
+		if (validTag(tag)) {
+			genes.put("type", new Gene<String>(tag.getString("type_active"), tag.getString("type_dormant")));
+			genes.put("potency", new Gene<Integer>(tag.getInt("potency_active"), tag.getInt("potency_dormant")));
+			genes.put("strength", new Gene<Integer>(tag.getInt("strength_active"), tag.getInt("strength_dormant")));
+			genes.put("agility", new Gene<Integer>(tag.getInt("agility_active"), tag.getInt("agility_dormant")));
+			genes.put("vigor", new Gene<Integer>(tag.getInt("vigor_active"), tag.getInt("vigor_dormant")));
+			genes.put("smarts", new Gene<Integer>(tag.getInt("smarts_active"), tag.getInt("smarts_dormant")));
+		} else {
+			genes.put("type", Genomes.GENERIC.get("type"));
+			genes.put("potency", Genomes.GENERIC.get("potency"));
+			genes.put("strength", Genomes.GENERIC.get("strength"));
+			genes.put("agility", Genomes.GENERIC.get("agility"));
+			genes.put("vigor", Genomes.GENERIC.get("vigor"));
+			genes.put("smarts", Genomes.GENERIC.get("smarts"));
+		}
 	}
 	
 	//Breed two genomes together.
