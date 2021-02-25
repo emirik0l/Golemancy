@@ -36,7 +36,7 @@ public class ClayEffigy extends Item {
 			} else {
 				blockPos2 = blockPos.offset(direction);
 			}
-			if (EntityType.CHICKEN.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos2, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockPos, blockPos2) && direction == Direction.UP) != null) {
+			if (AriseMyMinionsMod.CLAY_EFFIGY_ENTITY.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos2, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockPos, blockPos2) && direction == Direction.UP) != null) {
 				itemStack.decrement(1);
 			}
 			return ActionResult.CONSUME;

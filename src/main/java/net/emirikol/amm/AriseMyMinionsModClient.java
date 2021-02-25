@@ -2,6 +2,7 @@ package net.emirikol.amm;
 
 import net.emirikol.amm.*;
 import net.emirikol.amm.screen.*;
+import net.emirikol.amm.client.render.*;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.*;
@@ -21,5 +22,9 @@ public class AriseMyMinionsModClient implements ClientModInitializer {
 		ScreenRegistry.register(AriseMyMinionsMod.SOUL_MIRROR_SCREEN_HANDLER, SoulMirrorScreen::new);
 		//Register Soul Grafter Screen
 		ScreenRegistry.register(AriseMyMinionsMod.SOUL_GRAFTER_SCREEN_HANDLER, SoulGrafterScreen::new);
+		//Register Clay Effigy Renderer
+		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.CLAY_EFFIGY_ENTITY, (dispatcher, context) -> {
+			return new ClayEffigyEntityRenderer(dispatcher);
+		});
 	}
 }

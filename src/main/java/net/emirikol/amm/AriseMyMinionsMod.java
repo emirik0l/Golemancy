@@ -3,6 +3,7 @@ package net.emirikol.amm;
 import net.emirikol.amm.block.*;
 import net.emirikol.amm.block.entity.*;
 import net.emirikol.amm.item.*;
+import net.emirikol.amm.entity.*;
 import net.emirikol.amm.screen.*;
 
 import net.fabricmc.api.ModInitializer;
@@ -33,6 +34,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static ScreenHandlerType<SoulGrafterScreenHandler> SOUL_GRAFTER_SCREEN_HANDLER;
 	
 	public static ClayEffigy CLAY_EFFIGY;
+	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 	
 	@Override
 	public void onInitialize() {
@@ -68,6 +70,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
 		clay_effigy_settings.group(ItemGroup.MISC);
 		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
+		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.0f)).build();
 	}
 	
 	public static void doRegistration() {
@@ -82,5 +85,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, "amm:soul_grafter", SOUL_GRAFTER_ENTITY);
 		//Register clay effigy.
 		Registry.register(Registry.ITEM, "amm:clay_effigy", CLAY_EFFIGY);
+		Registry.register(Registry.ENTITY_TYPE, "amm:clay_effigy", CLAY_EFFIGY_ENTITY);
+		FabricDefaultAttributeRegistry.register(CLAY_EFFIGY_ENTITY, ClayEffigyEntity.createClayEffigyAttributes());
 	}
 }
