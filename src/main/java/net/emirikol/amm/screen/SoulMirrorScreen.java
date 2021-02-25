@@ -64,8 +64,8 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		//Draw potency row.
 		Text potencyText = new TranslatableText("text.amm.potency");
 		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);
-		this.textRenderer.draw(matrices, serializedGenome.activeAlleles.get("potency"), (float) COLUMN_DOM_X, (float) POTENCY_ROW_Y, 4210752);
-		this.textRenderer.draw(matrices, serializedGenome.dormantAlleles.get("potency"), (float) COLUMN_REC_X, (float) POTENCY_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, potencyToText(serializedGenome.activeAlleles.get("potency")), (float) COLUMN_DOM_X, (float) POTENCY_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, potencyToText(serializedGenome.dormantAlleles.get("potency")), (float) COLUMN_REC_X, (float) POTENCY_ROW_Y, 4210752);
 		//Draw strength row.
 		Text strengthText = new TranslatableText("text.amm.strength");
 		this.textRenderer.draw(matrices, strengthText, (float) ROW_START_X, (float) STRENGTH_ROW_Y, 4210752);
@@ -110,6 +110,21 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 				return new TranslatableText("text.amm.gene_high");
 			case "3":
 				return new TranslatableText("text.amm.gene_perfect");
+			default:
+				return new LiteralText("???");
+		}
+	}
+	
+	public Text potencyToText(String geneValue) {
+		switch (geneValue) {
+			case "1":
+				return new TranslatableText("text.amm.gene_feeble");
+			case "2":
+				return new TranslatableText("text.amm.gene_low");
+			case "3":
+				return new TranslatableText("text.amm.gene_average");
+			case "4":
+				return new TranslatableText("text.amm.gene_high");
 			default:
 				return new LiteralText("???");
 		}
