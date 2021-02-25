@@ -3,5 +3,14 @@
 	"item.amm.soulstone_filled": "Soulstone",
 	"item.amm.soul_mirror": "Soul Mirror",
 	"text.amm.active_column": "ACTIVE",
-	"text.amm.dormant_column": "DORMANT"
+	"text.amm.dormant_column": "DORMANT",
+	"text.amm.type": "Type",
+	"text.amm.strength": "Strength",
+	"text.amm.agility": "Agility",
+	"text.amm.vigor": "Vigor",
+	"text.amm.smarts": "Smarts",
+	"text.amm.gene_low": "LOW",
+	"text.amm.gene_average": "AVERAGE",
+	"text.amm.gene_high": "HIGH",
+	"text.amm.gene_perfect": "PERFECT"
 }

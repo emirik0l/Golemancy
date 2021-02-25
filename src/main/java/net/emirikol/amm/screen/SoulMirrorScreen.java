@@ -19,7 +19,7 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	private static final Identifier TEXTURE = new Identifier("amm", "textures/gui/container/soul_mirror.png");
 	public static final int TITLE_Y = 10;
 	public static final int COLUMN_HEADER_Y = 35;
-	public static final int COLUMN_DOM_X = 80;
+	public static final int COLUMN_DOM_X = 77;
 	public static final int COLUMN_REC_X = 125;
 	public static final int ROW_START_X = 15;
 	public static final int TYPE_ROW_Y = 50;
@@ -55,6 +55,31 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		Text dormantText = new TranslatableText("text.amm.dormant_column");
 		this.textRenderer.draw(matrices, activeText, (float) COLUMN_DOM_X, (float) COLUMN_HEADER_Y, 0xff0000);
 		this.textRenderer.draw(matrices, dormantText, (float) COLUMN_REC_X, (float) COLUMN_HEADER_Y, 0x00acff);
+		//Draw type row.
+		Text typeText = new TranslatableText("text.amm.type");
+		this.textRenderer.draw(matrices, typeText, (float) ROW_START_X, (float) TYPE_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, serializedGenome.activeAlleles.get("type"), (float) COLUMN_DOM_X, (float) TYPE_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, serializedGenome.dormantAlleles.get("type"), (float) COLUMN_REC_X, (float) TYPE_ROW_Y, 4210752);
+		//Draw strength row.
+		Text strengthText = new TranslatableText("text.amm.strength");
+		this.textRenderer.draw(matrices, strengthText, (float) ROW_START_X, (float) STRENGTH_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("strength")), (float) COLUMN_DOM_X, (float) STRENGTH_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("strength")), (float) COLUMN_REC_X, (float) STRENGTH_ROW_Y, 4210752);
+		//Draw agility row.
+		Text agilityText = new TranslatableText("text.amm.agility");
+		this.textRenderer.draw(matrices, agilityText, (float) ROW_START_X, (float) AGILITY_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("agility")), (float) COLUMN_DOM_X, (float) AGILITY_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("agility")), (float) COLUMN_REC_X, (float) AGILITY_ROW_Y, 4210752);
+		//Draw vigor row.
+		Text vigorText = new TranslatableText("text.amm.vigor");
+		this.textRenderer.draw(matrices, vigorText, (float) ROW_START_X, (float) VIGOR_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("vigor")), (float) COLUMN_DOM_X, (float) VIGOR_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("vigor")), (float) COLUMN_REC_X, (float) VIGOR_ROW_Y, 4210752);
+		//Draw smarts row.
+		Text smartsText = new TranslatableText("text.amm.smarts");
+		this.textRenderer.draw(matrices, smartsText, (float) ROW_START_X, (float) SMARTS_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("smarts")), (float) COLUMN_DOM_X, (float) SMARTS_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("smarts")), (float) COLUMN_REC_X, (float) SMARTS_ROW_Y, 4210752);
 	}
 	
 	@Override
@@ -67,5 +92,20 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	@Override
 	protected void init() {
 		super.init();
+	}
+	
+	public Text geneToText(String geneValue) {
+		switch (geneValue) {
+			case "0":
+				return new TranslatableText("text.amm.gene_low");
+			case "1":
+				return new TranslatableText("text.amm.gene_average");
+			case "2":
+				return new TranslatableText("text.amm.gene_high");
+			case "3":
+				return new TranslatableText("text.amm.gene_perfect");
+			default:
+				return new LiteralText("???");
+		}
 	}
 }
