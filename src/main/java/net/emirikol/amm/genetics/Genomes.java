@@ -7,8 +7,8 @@ import java.util.*;
 public class Genomes {
 	
 	public static final Genome GENERIC = new Genome() {{
-		put("type", new Gene<String>("RESTLESS"));
-		put("potency", new Gene<Integer>(0));
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(0));
@@ -16,7 +16,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SKELETON = new Genome() {{
-		put("type", new Gene<String>("RESTLESS"));
+		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
@@ -25,7 +25,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome ZOMBIE = new Genome() {{
-		put("type", new Gene<String>("RESTLESS"));
+		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(4));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(0));
