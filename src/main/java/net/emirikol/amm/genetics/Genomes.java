@@ -29,8 +29,26 @@ public class Genomes {
 		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
-		put("vigor", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(1));
+	}};
+	
+	public static final Genome GUARDIAN = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(2));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(2));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
+	public static final Genome HOGLIN = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(2));
+		put("smarts", new Gene<Integer>(0));
 	}};
 	
 	public static final Genome PHANTOM = new Genome() {{
@@ -40,6 +58,15 @@ public class Genomes {
 		put("agility", new Gene<Integer>(2));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(1));
+	}};
+	
+	public static final Genome RAVAGER = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(2));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(3));
+		put("smarts", new Gene<Integer>(0));
 	}};
 	
 	public static final Genome SKELETON = new Genome() {{
@@ -90,7 +117,11 @@ public class Genomes {
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
 		put(EntityType.CREEPER, CREEPER);
 		put(EntityType.ENDERMAN, ENDERMAN);
+		put(EntityType.GUARDIAN, GUARDIAN);
+		put(EntityType.ELDER_GUARDIAN, GUARDIAN);
+		put(EntityType.HOGLIN, HOGLIN);
 		put(EntityType.PHANTOM, PHANTOM);
+		put(EntityType.RAVAGER, RAVAGER);
 		put(EntityType.SKELETON, SKELETON);
 		put(EntityType.SKELETON_HORSE, SKELETON);
 		put(EntityType.STRAY, SKELETON);
