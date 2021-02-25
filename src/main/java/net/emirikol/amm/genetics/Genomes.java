@@ -15,6 +15,15 @@ public class Genomes {
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
+	public static final Genome BLAZE = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
 	public static final Genome CREEPER = new Genome() {{
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(2));
@@ -31,6 +40,15 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(1));
+	}};
+	
+	public static final Genome GHAST = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(2));
 	}};
 	
 	public static final Genome GUARDIAN = new Genome() {{
@@ -66,6 +84,24 @@ public class Genomes {
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(3));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
+	public static final Genome SHULKER = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(1));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(2));
+		put("smarts", new Gene<Integer>(1));
+	}};
+	
+	public static final Genome SILVERFISH = new Genome() {{
+		put("type", new Gene<String>("Restless"));
+		put("potency", new Gene<Integer>(5));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
@@ -115,13 +151,18 @@ public class Genomes {
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
+		put(EntityType.BLAZE, BLAZE);
 		put(EntityType.CREEPER, CREEPER);
 		put(EntityType.ENDERMAN, ENDERMAN);
+		put(EntityType.GHAST, GHAST);
 		put(EntityType.GUARDIAN, GUARDIAN);
 		put(EntityType.ELDER_GUARDIAN, GUARDIAN);
 		put(EntityType.HOGLIN, HOGLIN);
 		put(EntityType.PHANTOM, PHANTOM);
 		put(EntityType.RAVAGER, RAVAGER);
+		put(EntityType.SHULKER, SHULKER);
+		put(EntityType.SILVERFISH, SILVERFISH);
+		put(EntityType.ENDERMITE, SILVERFISH);
 		put(EntityType.SKELETON, SKELETON);
 		put(EntityType.SKELETON_HORSE, SKELETON);
 		put(EntityType.STRAY, SKELETON);
