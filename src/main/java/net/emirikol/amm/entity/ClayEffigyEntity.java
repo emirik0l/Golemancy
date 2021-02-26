@@ -143,6 +143,24 @@ public class ClayEffigyEntity extends TameableEntity {
 		}
 	}
 	
+	//Update goals after loading from NBT, to ensure that Cardinal Components has loaded.
+	@Override
+	public void fromTag(CompoundTag tag) {
+		super.fromTag(tag);
+		this.updateGoals();
+	}
+	
+	@Override
+	public Text getName() {
+		this.fromComponent();
+		if (this.type == "") {
+			return super.getName();
+		}
+		MutableText name = new LiteralText(this.type + " ");
+		name.append(new TranslatableText("text.amm.golem"));
+		return name;
+	}
+	
 	public double getAttackDamageFromStrength(int strength) {
 		switch(strength) {
 			case 0:
@@ -186,23 +204,5 @@ public class ClayEffigyEntity extends TameableEntity {
 			default:
 				return 0.0D;
 		}
-	}
-	
-	@Override
-	public Text getName() {
-		this.fromComponent();
-		if (this.type == "") {
-			return super.getName();
-		}
-		MutableText name = new LiteralText(this.type + " ");
-		name.append(new TranslatableText("text.amm.golem"));
-		return name;
-	}
-	
-	//Update goals after loading from NBT, to ensure that Cardinal Components has loaded.
-	@Override
-	public void fromTag(CompoundTag tag) {
-		super.fromTag(tag);
-		this.updateGoals();
 	}
 }
