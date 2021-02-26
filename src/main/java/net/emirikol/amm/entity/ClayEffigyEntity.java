@@ -5,6 +5,7 @@ import net.emirikol.amm.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
@@ -26,6 +27,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	protected void initGoals() {
 		//Temporary to test effigy model.
 		this.goalSelector.add(8, new WanderAroundFarGoal(this, 0.75D));
+		this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 	}
 	
 	public ClayEffigyEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {

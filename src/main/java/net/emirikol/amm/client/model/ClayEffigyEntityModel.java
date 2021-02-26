@@ -45,6 +45,8 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
 	
 	@Override
 	public void setAngles(ClayEffigyEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		//Rotate the head.
+		setRotationAngle(Head, headPitch * 0.017453292F, netHeadYaw * 0.017453292F, 0);
 	}
 	
 	@Override
