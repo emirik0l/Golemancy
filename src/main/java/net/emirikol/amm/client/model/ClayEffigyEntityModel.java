@@ -2,6 +2,7 @@ package net.emirikol.amm.client.model;
 
 import net.emirikol.amm.entity.*;
 
+import net.minecraft.util.math.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.model.*;
@@ -47,6 +48,17 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
 	public void setAngles(ClayEffigyEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		//Rotate the head.
 		setRotationAngle(Head, headPitch * 0.017453292F, netHeadYaw * 0.017453292F, 0);
+		
+		//Rotate arms.
+		float k = (float) entity.getVelocity().lengthSquared();
+		k /= 0.2F;
+		k *= k * k;
+		if (k < 1.0F ) { k = 1.0F; }
+		
+		float rightArmPitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / k;
+		float leftArmPitch = -(MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / k);
+		setRotationAngle(RightArm, rightArmPitch, 0, 0);
+		setRotationAngle(LeftArm, leftArmPitch, 0, 0);
 	}
 	
 	@Override
