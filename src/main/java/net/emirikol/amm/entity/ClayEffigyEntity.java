@@ -33,4 +33,9 @@ public class ClayEffigyEntity extends TameableEntity {
 		}
 		return clayEffigyEntity;
 	}
+	
+	@Override
+	protected int getCurrentExperience(PlayerEntity player) {
+		return 0;
+	}
 }

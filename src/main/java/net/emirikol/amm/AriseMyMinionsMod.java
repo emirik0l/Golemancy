@@ -70,7 +70,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
 		clay_effigy_settings.group(ItemGroup.MISC);
 		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
-		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(0.6f, 1.1f)).build();
+		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(0.9f, 1.45f)).build();
 	}
 	
 	public static void doRegistration() {
