@@ -13,6 +13,7 @@ import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
+import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.server.world.*;
@@ -26,7 +27,6 @@ public class ClayEffigyEntity extends TameableEntity {
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
 		this.setTamed(false);
-		this.fromComponent();
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
@@ -103,6 +103,8 @@ public class ClayEffigyEntity extends TameableEntity {
 			stack.decrement(1);
 			//Update golem attributes based on stats.
 			this.updateAttributes();
+			//Update golem AI based on type.
+			this.updateGoals();
 			//Set the golem as tamed.
 			this.setOwner(player);
 			return ActionResult.SUCCESS;
@@ -128,16 +130,25 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.heal(20.0F);
 	}
 	
+	public void updateGoals() {
+		this.fromComponent();
+		switch(this.type) {
+			case "Restless":
+				this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
+				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+		}
+	}
+	
 	public double getMultiplierFromGene(int gene) {
 		switch(gene) {
 			case 0:
-				return 0.5D;
+				return 0.5D; //LOW, x0.5
 			case 1:
-				return 1.0D;
+				return 1.0D; //AVERAGE, x1
 			case 2:
-				return 1.5D;
+				return 1.5D; //HIGH, x1.5
 			case 3:
-				return 2.0D;
+				return 2.0D; //PERFECT x2
 			default:
 				return 0.0D;
 		}
@@ -152,5 +163,12 @@ public class ClayEffigyEntity extends TameableEntity {
 		MutableText name = new LiteralText(this.type + " ");
 		name.append(new TranslatableText("text.amm.golem"));
 		return name;
+	}
+	
+	//Update goals after loading from NBT, to ensure that Cardinal Components has loaded.
+	@Override
+	public void fromTag(CompoundTag tag) {
+		super.fromTag(tag);
+		this.updateGoals();
 	}
 }
