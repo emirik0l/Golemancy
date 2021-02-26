@@ -44,24 +44,22 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
 	}
 	
 	@Override
-	public void setAngles(ClayEffigyEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-			//previously the render function, render code was moved to a method below
+	public void setAngles(ClayEffigyEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	}
 	
 	@Override
-	public void render(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-			
-			Body.render(matrixStack, buffer, packedLight, packedOverlay);
-			Head.render(matrixStack, buffer, packedLight, packedOverlay);
-			LeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-			RightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-			LeftArm.render(matrixStack, buffer, packedLight, packedOverlay);
-			RightArm.render(matrixStack, buffer, packedLight, packedOverlay);
+	public void render(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		Body.render(matrixStack, buffer, packedLight, packedOverlay);
+		Head.render(matrixStack, buffer, packedLight, packedOverlay);
+		LeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
+		RightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
+		LeftArm.render(matrixStack, buffer, packedLight, packedOverlay);
+		RightArm.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 	
 	public void setRotationAngle(ModelPart bone, float x, float y, float z) {
-			bone.pitch = x;
-			bone.yaw = y;
-			bone.roll = z;
+		bone.pitch = x;
+		bone.yaw = y;
+		bone.roll = z;
 	}
 }
