@@ -50,6 +50,11 @@ public class ClayEffigyEntity extends TameableEntity {
 	}
 	
 	@Override
+	public boolean canBreatheInWater() {
+		return true;
+	}
+	
+	@Override
 	protected Text getDefaultName() {
 		if (this.type == "") {
 			Text name = super.getDefaultName();
