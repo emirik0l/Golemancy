@@ -19,7 +19,8 @@
   "environment": "*",
   "entrypoints": {
     "main": ["net.emirikol.amm.AriseMyMinionsMod"],
-	"client": ["net.emirikol.amm.AriseMyMinionsModClient"]
+	"client": ["net.emirikol.amm.AriseMyMinionsModClient"],
+	"cardinal-components-entity": ["net.emirikol.amm.AriseMyMinionsComponents"]
   },
   "mixins": [],
 
@@ -31,5 +32,6 @@
   "suggests": {
   },
   "custom": {
+      "cardinal-components": ["amm:golem"]
   }
 }
