@@ -1,6 +1,8 @@
 package net.emirikol.amm.entity;
 
 import net.emirikol.amm.*;
+import net.emirikol.amm.item.*;
+import net.emirikol.amm.genetics.*;
 import net.emirikol.amm.component.*;
 
 import net.minecraft.entity.*;
@@ -9,6 +11,7 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.item.*;
 import net.minecraft.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -41,6 +44,17 @@ public class ClayEffigyEntity extends TameableEntity {
 		return clayEffigyEntity;
 	}
 	
+	@Override
+	protected int getCurrentExperience(PlayerEntity player) {
+		return 0;
+	}
+	
+	@Override
+	public boolean canBreatheInWater() {
+		return true;
+	}
+	
+	
 	public void toComponent() {
 		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
 		component.setType(this.type);
@@ -59,13 +73,34 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.smarts = component.getAttribute("smarts");
 	}
 	
+
 	@Override
-	protected int getCurrentExperience(PlayerEntity player) {
-		return 0;
-	}
-	
-	@Override
-	public boolean canBreatheInWater() {
-		return true;
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		if (this.world.isClient()) {
+			return ActionResult.PASS;
+		}
+		ItemStack stack = player.getStackInHand(hand);
+		ServerWorld world = (ServerWorld) this.world;
+		if (stack.getItem() instanceof SoulstoneFilled) {
+			//Load genome from soulstone.
+			Genome genome = new Genome(stack);
+			Gene<String> typeGene = genome.get("type");
+			Gene<Integer> strengthGene = genome.get("strength");
+			Gene<Integer> agilityGene = genome.get("agility");
+			Gene<Integer> vigorGene = genome.get("vigor");
+			Gene<Integer> smartsGene = genome.get("smarts");
+			//Update tracked values from genome.
+			this.type = typeGene.getActive();
+			this.strength = strengthGene.getActive();
+			this.agility = agilityGene.getActive();
+			this.vigor = vigorGene.getActive();
+			this.smarts = smartsGene.getActive();
+			//Save tracked values using Cardinal Components.
+			this.toComponent();
+			//Remove the soulstone.
+			stack.decrement(1);
+			return ActionResult.SUCCESS;
+		} 
+		return ActionResult.PASS;
 	}
 }
