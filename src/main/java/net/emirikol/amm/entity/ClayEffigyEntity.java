@@ -23,13 +23,6 @@ public class ClayEffigyEntity extends TameableEntity {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 	
-	@Override
-	protected void initGoals() {
-		//Temporary to test effigy model.
-		this.goalSelector.add(8, new WanderAroundFarGoal(this, 0.75D));
-		this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-	}
-	
 	public ClayEffigyEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) AriseMyMinionsMod.CLAY_EFFIGY_ENTITY.create(serverWorld);
 		UUID uUID = this.getOwnerUuid();
