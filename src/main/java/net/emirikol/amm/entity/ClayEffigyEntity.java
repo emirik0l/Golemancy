@@ -116,17 +116,14 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.fromComponent();
 		EntityAttributeInstance entityAttributeInstance;
 		//Update attack damage based on strength.
-		double strMult = getMultiplierFromGene(this.strength);
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-		entityAttributeInstance.setBaseValue(entityAttributeInstance.getBaseValue() * strMult);
+		entityAttributeInstance.setBaseValue(getAttackDamageFromStrength(this.strength));
 		//Update movement speed based on agility.
-		double agiMult = getMultiplierFromGene(this.agility);
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-		entityAttributeInstance.setBaseValue(entityAttributeInstance.getBaseValue() * agiMult);
+		entityAttributeInstance.setBaseValue(getMovementSpeedFromAgility(this.agility));
 		//Update health based on vigor.
-		double vigMult = getMultiplierFromGene(this.vigor);
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-		entityAttributeInstance.setBaseValue(entityAttributeInstance.getBaseValue() * vigMult);
+		entityAttributeInstance.setBaseValue(getHealthFromVigor(this.vigor));
 		this.heal(20.0F);
 	}
 	
@@ -146,16 +143,46 @@ public class ClayEffigyEntity extends TameableEntity {
 		}
 	}
 	
-	public double getMultiplierFromGene(int gene) {
-		switch(gene) {
+	public double getAttackDamageFromStrength(int strength) {
+		switch(strength) {
 			case 0:
-				return 0.75D; //LOW, x0.75
+				return 1.0D;
 			case 1:
-				return 1.0D; //AVERAGE, x1
+				return 2.0D;
 			case 2:
-				return 1.5D; //HIGH, x1.5
+				return 3.0D;
 			case 3:
-				return 2.0D; //PERFECT, x2
+				return 4.0D;
+			default:
+				return 0.0D;
+		}
+	}
+	
+	public double getMovementSpeedFromAgility(int agility) {
+		switch(agility) {
+			case 0:
+				return 0.2D;
+			case 1:
+				return 0.25D;
+			case 2:
+				return 0.3D;
+			case 3:
+				return 0.5D;
+			default:
+				return 0.0D;
+		}
+	}
+	
+	public double getHealthFromVigor(int vigor) {
+		switch(vigor) {
+			case 0:
+				return 8.0D;
+			case 1:
+				return 10.0D;
+			case 2:
+				return 12.0D;
+			case 3:
+				return 16.0D;
 			default:
 				return 0.0D;
 		}
