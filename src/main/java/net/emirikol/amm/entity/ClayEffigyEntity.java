@@ -68,16 +68,4 @@ public class ClayEffigyEntity extends TameableEntity {
 	public boolean canBreatheInWater() {
 		return true;
 	}
-	
-	@Override
-	protected Text getDefaultName() {
-		if (this.type == "") {
-			Text name = super.getDefaultName();
-			return name;
-		} else {
-			MutableText name = new LiteralText(type + " ");
-			name.append(new TranslatableText("text.amm.golem"));
-			return name;
-		}
-	}
 }
