@@ -99,6 +99,8 @@ public class ClayEffigyEntity extends TameableEntity {
 			this.toComponent();
 			//Remove the soulstone.
 			stack.decrement(1);
+			//Set the golem as tamed.
+			this.setOwner(player);
 			return ActionResult.SUCCESS;
 		} 
 		return ActionResult.PASS;
