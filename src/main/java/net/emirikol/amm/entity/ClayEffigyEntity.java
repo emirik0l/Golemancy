@@ -9,14 +9,24 @@ import net.minecraft.entity.player.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.server.world.*;
 
 import java.util.*;
 
 public class ClayEffigyEntity extends TameableEntity {
+	private String type;
+	private int strength,agility,vigor,smarts;
+	
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
 		this.setTamed(false);
+		this.type = "";
+		this.strength = 0;
+		this.agility = 0;
+		this.vigor = 0;
+		this.smarts = 0;
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
@@ -37,5 +47,23 @@ public class ClayEffigyEntity extends TameableEntity {
 	@Override
 	protected int getCurrentExperience(PlayerEntity player) {
 		return 0;
+	}
+	
+	@Override
+	protected Text getDefaultName() {
+		if (this.type == "") {
+			Text name = super.getDefaultName();
+			return name;
+		} else {
+			MutableText name = new LiteralText(type + " ");
+			name.append(new TranslatableText("text.amm.golem"));
+			return name;
+		}
+	}
+	
+	@Override
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		this.type = "Test";
+		return ActionResult.PASS;
 	}
 }

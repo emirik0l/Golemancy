@@ -18,5 +18,6 @@
 	"text.amm.gene_low": "LOW",
 	"text.amm.gene_average": "AVERAGE",
 	"text.amm.gene_high": "HIGH",
-	"text.amm.gene_perfect": "PERFECT"
+	"text.amm.gene_perfect": "PERFECT",
+	"text.amm.golem": "Golem"
 }
