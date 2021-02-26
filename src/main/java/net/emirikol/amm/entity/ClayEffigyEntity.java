@@ -1,6 +1,7 @@
 package net.emirikol.amm.entity;
 
 import net.emirikol.amm.*;
+import net.emirikol.amm.component.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
@@ -22,11 +23,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
 		this.setTamed(false);
-		this.type = "";
-		this.strength = 0;
-		this.agility = 0;
-		this.vigor = 0;
-		this.smarts = 0;
+		this.fromComponent();
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
@@ -42,6 +39,24 @@ public class ClayEffigyEntity extends TameableEntity {
 			clayEffigyEntity.setTamed(true);
 		}
 		return clayEffigyEntity;
+	}
+	
+	public void toComponent() {
+		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
+		component.setType(this.type);
+		component.setAttribute("strength", this.strength);
+		component.setAttribute("agility", this.agility);
+		component.setAttribute("vigor", this.vigor);
+		component.setAttribute("smarts", this.smarts);
+	}
+	
+	public void fromComponent() {
+		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
+		this.type = component.getType();
+		this.strength = component.getAttribute("strength");
+		this.agility = component.getAttribute("agility");
+		this.vigor = component.getAttribute("vigor");
+		this.smarts = component.getAttribute("smarts");
 	}
 	
 	@Override
@@ -64,11 +79,5 @@ public class ClayEffigyEntity extends TameableEntity {
 			name.append(new TranslatableText("text.amm.golem"));
 			return name;
 		}
-	}
-	
-	@Override
-	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		this.type = "Test";
-		return ActionResult.PASS;
 	}
 }
