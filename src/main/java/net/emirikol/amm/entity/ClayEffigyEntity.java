@@ -30,7 +30,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 	
 	public ClayEffigyEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
@@ -136,19 +136,26 @@ public class ClayEffigyEntity extends TameableEntity {
 			case "Restless":
 				this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
 				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+				return;
+			case "Curious":
+				this.goalSelector.add(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+				return;
+			default:
+				return;
 		}
 	}
 	
 	public double getMultiplierFromGene(int gene) {
 		switch(gene) {
 			case 0:
-				return 0.5D; //LOW, x0.5
+				return 0.75D; //LOW, x0.75
 			case 1:
 				return 1.0D; //AVERAGE, x1
 			case 2:
 				return 1.5D; //HIGH, x1.5
 			case 3:
-				return 2.0D; //PERFECT x2
+				return 2.0D; //PERFECT, x2
 			default:
 				return 0.0D;
 		}
