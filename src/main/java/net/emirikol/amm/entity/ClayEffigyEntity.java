@@ -72,7 +72,6 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.vigor = component.getAttribute("vigor");
 		this.smarts = component.getAttribute("smarts");
 	}
-	
 
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -104,5 +103,16 @@ public class ClayEffigyEntity extends TameableEntity {
 			return ActionResult.SUCCESS;
 		} 
 		return ActionResult.PASS;
+	}
+	
+	@Override
+	public Text getName() {
+		this.fromComponent();
+		if (this.type == "") {
+			return super.getName();
+		}
+		MutableText name = new LiteralText(this.type + " ");
+		name.append(new TranslatableText("text.amm.golem"));
+		return name;
 	}
 }
