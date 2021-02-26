@@ -101,11 +101,46 @@ public class ClayEffigyEntity extends TameableEntity {
 			this.toComponent();
 			//Remove the soulstone.
 			stack.decrement(1);
+			//Update golem attributes based on stats.
+			this.updateAttributes();
 			//Set the golem as tamed.
 			this.setOwner(player);
 			return ActionResult.SUCCESS;
 		} 
 		return ActionResult.PASS;
+	}
+	
+	public void updateAttributes() {
+		this.fromComponent();
+		EntityAttributeInstance entityAttributeInstance;
+		//Update attack damage based on strength.
+		double strMult = getMultiplierFromGene(this.strength);
+		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+		entityAttributeInstance.setBaseValue(entityAttributeInstance.getBaseValue() * strMult);
+		//Update movement speed based on agility.
+		double agiMult = getMultiplierFromGene(this.agility);
+		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+		entityAttributeInstance.setBaseValue(entityAttributeInstance.getBaseValue() * agiMult);
+		//Update health based on vigor.
+		double vigMult = getMultiplierFromGene(this.vigor);
+		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+		entityAttributeInstance.setBaseValue(entityAttributeInstance.getBaseValue() * vigMult);
+		this.heal(20.0F);
+	}
+	
+	public double getMultiplierFromGene(int gene) {
+		switch(gene) {
+			case 0:
+				return 0.5D;
+			case 1:
+				return 1.0D;
+			case 2:
+				return 1.5D;
+			case 3:
+				return 2.0D;
+			default:
+				return 0.0D;
+		}
 	}
 	
 	@Override
