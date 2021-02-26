@@ -78,6 +78,9 @@ public class ClayEffigyEntity extends TameableEntity {
 		if (this.world.isClient()) {
 			return ActionResult.PASS;
 		}
+		if (this.isTamed()) {
+			return ActionResult.PASS;
+		}
 		ItemStack stack = player.getStackInHand(hand);
 		ServerWorld world = (ServerWorld) this.world;
 		if (stack.getItem() instanceof SoulstoneFilled) {
