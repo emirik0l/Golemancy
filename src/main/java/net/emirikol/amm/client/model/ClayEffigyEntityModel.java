@@ -29,11 +29,11 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
 
 		LeftLeg = new ModelPart(this);
 		LeftLeg.setPivot(2.0F, 15.5F, 0.0F);
-		LeftLeg.setTextureOffset(0, 0).addCuboid(-2.0F, -0.5F, -3.0F, 4.0F, 9.0F, 6.0F, 0.0F, false);
+		LeftLeg.setTextureOffset(0, 0).addCuboid(-2.0F, -1.5F, -3.0F, 4.0F, 10.0F, 6.0F, 0.0F, false);
 
 		RightLeg = new ModelPart(this);
 		RightLeg.setPivot(-2.0F, 15.5F, 0.0F);
-		RightLeg.setTextureOffset(0, 0).addCuboid(-2.0F, -0.5F, -3.0F, 4.0F, 9.0F, 6.0F, 0.0F, false);
+		RightLeg.setTextureOffset(0, 0).addCuboid(-2.0F, -1.5F, -3.0F, 4.0F, 10.0F, 6.0F, 0.0F, false);
 
 		LeftArm = new ModelPart(this);
 		LeftArm.setPivot(4.5F, 6.0F, 0.0F);
@@ -59,6 +59,12 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
 		float leftArmPitch = -(MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / k);
 		setRotationAngle(RightArm, rightArmPitch, 0, 0);
 		setRotationAngle(LeftArm, leftArmPitch, 0, 0);
+		
+		//Rotate legs.
+		float rightLegPitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / k;
+		float leftLegPitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount / k;
+		setRotationAngle(RightLeg, rightArmPitch, 0, 0);
+		setRotationAngle(LeftLeg, leftLegPitch, 0, 0);
 	}
 	
 	@Override
