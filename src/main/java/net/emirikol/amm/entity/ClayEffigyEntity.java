@@ -34,6 +34,15 @@ public class ClayEffigyEntity extends TameableEntity {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25).add(EntityAttributes.GENERIC_MAX_HEALTH, 6.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
 	}
 	
+	@Override 
+	protected void initGoals() {
+		this.goalSelector.add(5, new GolemEatHeldItemGoal(this));
+		this.goalSelector.add(6, new GolemMoveToItemGoal(this, 10.0F));
+		this.goalSelector.add(6, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false));
+		this.goalSelector.add(8, new GolemWanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(10, new GolemLookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+	}
+	
 	public ClayEffigyEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) AriseMyMinionsMod.CLAY_EFFIGY_ENTITY.create(serverWorld);
 		UUID uUID = this.getOwnerUuid();
@@ -125,12 +134,15 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.heal(20.0F);
 	}
 	
-	@Override protected void initGoals() {
-		this.goalSelector.add(5, new GolemEatHeldItemGoal(this));
-		this.goalSelector.add(6, new GolemTakeItemGoal(this, 10.0F));
-		this.goalSelector.add(6, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false));
-		this.goalSelector.add(8, new GolemWanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(10, new GolemLookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+	@Override
+	public boolean canPickUpLoot() {
+		this.fromComponent();
+		switch(this.type) {
+			case "Hungry":
+				return true;
+			default:
+				return false;
+		}
 	}
 	
 	@Override
