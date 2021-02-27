@@ -36,10 +36,10 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public void start() {
-		Random rand = new Random();
 		float r = this.searchRadius;
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		if ((entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!list.isEmpty())) {
+			Random rand = new Random();
 			targetItem = (Entity) list.get(rand.nextInt(list.size()));
 		}
 	}
