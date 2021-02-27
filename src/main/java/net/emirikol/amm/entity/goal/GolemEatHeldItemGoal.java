@@ -27,7 +27,7 @@ public class GolemEatHeldItemGoal extends Goal {
 		return !entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
-	public void start() {
+	public void tick() {
 		//TODO - add some kind of animation
 		entity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 	}
