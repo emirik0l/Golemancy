@@ -21,9 +21,11 @@ import net.minecraft.server.world.*;
 
 import java.util.*;
 
-public class ClayEffigyEntity extends TameableEntity {
+public class ClayEffigyEntity extends TameableEntity{
 	private String type;
 	private int strength,agility,vigor,smarts;
+	
+	private int eatingTimer;
 	
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
@@ -63,6 +65,9 @@ public class ClayEffigyEntity extends TameableEntity {
 	public boolean canBreatheInWater() {
 		return true;
 	}
+	
+	public void setEating() { this.eatingTimer = 20; }
+	public boolean isEating() { return (this.eatingTimer > 0); }
 	
 	public void toComponent() {
 		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
@@ -203,6 +208,14 @@ public class ClayEffigyEntity extends TameableEntity {
 				return 16.0D;
 			default:
 				return 0.0D;
+		}
+	}
+	
+	@Override
+	public void tick() {
+		super.tick();
+		if (this.eatingTimer > 0) {
+			this.eatingTimer--;
 		}
 	}
 }
