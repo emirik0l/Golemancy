@@ -14,6 +14,8 @@ public class GolemMoveToItemGoal extends Goal {
 	private final float searchRadius;
 	private final List<String> validTypes;
 	
+	private Entity targetItem;
+	
 	public GolemMoveToItemGoal(ClayEffigyEntity entity, float searchRadius, String[] validTypes) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
@@ -33,12 +35,22 @@ public class GolemMoveToItemGoal extends Goal {
 		return !list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
-	public void tick() {
-		//Check for any ItemEntity within search radius, and move towards it.
+	public void start() {
+		Random rand = new Random();
 		float r = this.searchRadius;
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		if ((entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!list.isEmpty())) {
-			entity.getNavigation().startMovingTo((Entity) list.get(0), 1);
+			targetItem = (Entity) list.get(rand.nextInt(list.size()));
 		}
+	}
+	
+	public void tick() {
+		if (targetItem != null) {
+			entity.getNavigation().startMovingTo(targetItem, 1);
+		}
+	}
+	
+	public boolean shouldContinue() {
+		return !entity.getNavigation().isIdle() && (targetItem != null);
 	}
 }
