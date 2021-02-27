@@ -30,6 +30,7 @@ public class ClayEffigyEntity extends TameableEntity{
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
 		this.setTamed(false);
+		this.stepHeight = 2.0F;
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
