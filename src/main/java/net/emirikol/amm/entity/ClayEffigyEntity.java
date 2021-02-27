@@ -131,12 +131,12 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.fromComponent();
 		switch(this.type) {
 			case "Restless":
-				this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
 				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+				this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
 				return;
 			case "Curious":
-				this.goalSelector.add(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+				this.goalSelector.add(6, new FollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, false));
 				return;
 			default:
 				return;
