@@ -8,10 +8,11 @@ import net.minecraft.entity.ai.goal.*;
 import java.util.*;
 
 public class GolemWanderAroundFarGoal extends WanderAroundFarGoal {
-	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Restless"});
+	private final List<String> validTypes;
 	
-	public GolemWanderAroundFarGoal(PathAwareEntity pathAwareEntity, double d) {
+	public GolemWanderAroundFarGoal(PathAwareEntity pathAwareEntity, double d, String[] validTypes) {
 		super(pathAwareEntity, d);
+		this.validTypes = Arrays.asList(validTypes);
 	}
 	
 	@Override
@@ -19,7 +20,7 @@ public class GolemWanderAroundFarGoal extends WanderAroundFarGoal {
 		//Check if the golem is the correct type for this behaviour.
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.mob;
 		String golemType = clayEffigyEntity.getGolemType();
-		if (!VALID_TYPES.contains(golemType)) {
+		if (!this.validTypes.contains(golemType)) {
 			return false;
 		}
 		return super.canStart();

@@ -13,7 +13,6 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class GolemFollowOwnerGoal extends Goal {
-	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Curious"});
 	
 	private final TameableEntity tameable;
 	private LivingEntity owner;
@@ -26,8 +25,9 @@ public class GolemFollowOwnerGoal extends Goal {
 	private final float teleportDistance;
 	private float oldWaterPathfindingPenalty;
 	private final boolean leavesAllowed;
+	private final List<String> validTypes;
 
-	public GolemFollowOwnerGoal(TameableEntity tameable, double speed, float minDistance, float maxDistance, float teleportDistance, boolean leavesAllowed) {
+	public GolemFollowOwnerGoal(TameableEntity tameable, double speed, float minDistance, float maxDistance, float teleportDistance, boolean leavesAllowed, String[] validTypes) {
 		this.tameable = tameable;
 		this.world = tameable.world;
 		this.speed = speed;
@@ -36,6 +36,7 @@ public class GolemFollowOwnerGoal extends Goal {
 		this.maxDistance = maxDistance;
 		this.teleportDistance = teleportDistance;
 		this.leavesAllowed = leavesAllowed;
+		this.validTypes = Arrays.asList(validTypes);
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 		if (!(tameable.getNavigation() instanceof MobNavigation) && !(tameable.getNavigation() instanceof BirdNavigation)) {
 			throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
@@ -46,7 +47,7 @@ public class GolemFollowOwnerGoal extends Goal {
 		//Check if the golem is the correct type for this behaviour.
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.tameable;
 		String golemType = clayEffigyEntity.getGolemType();
-		if (!VALID_TYPES.contains(golemType)) {
+		if (!this.validTypes.contains(golemType)) {
 			return false;
 		}
 		//Continue with checks copied from FollowOwnerGoal

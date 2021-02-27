@@ -10,21 +10,21 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemMoveToItemGoal extends Goal {
-	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Hungry"});
-	
 	private final ClayEffigyEntity entity;
 	private final float searchRadius;
+	private final List<String> validTypes;
 	
-	public GolemMoveToItemGoal(ClayEffigyEntity entity, float searchRadius) {
+	public GolemMoveToItemGoal(ClayEffigyEntity entity, float searchRadius, String[] validTypes) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
+		this.validTypes = Arrays.asList(validTypes);
 		this.setControls(EnumSet.of(Goal.Control.MOVE));
 	}
 	
 	public boolean canStart() {
 		//Check if the golem is the correct type for this behaviour.
 		String golemType = entity.getGolemType();
-		if (!VALID_TYPES.contains(golemType)) {
+		if (!this.validTypes.contains(golemType)) {
 			return false;
 		}
 		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.

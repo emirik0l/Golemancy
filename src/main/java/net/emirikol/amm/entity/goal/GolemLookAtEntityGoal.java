@@ -9,10 +9,11 @@ import net.minecraft.entity.ai.goal.*;
 import java.util.*;
 
 public class GolemLookAtEntityGoal extends LookAtEntityGoal {
-	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Restless", "Curious", "Hungry"});
+	private final List<String> validTypes;
 	
-	public GolemLookAtEntityGoal(MobEntity mob, Class<? extends LivingEntity> targetType, float range) {
+	public GolemLookAtEntityGoal(MobEntity mob, Class<? extends LivingEntity> targetType, float range, String[] validTypes) {
 		super(mob, targetType, range);
+		this.validTypes = Arrays.asList(validTypes);
 	}
 	
 	@Override
@@ -20,7 +21,7 @@ public class GolemLookAtEntityGoal extends LookAtEntityGoal {
 		//Check if the golem is the correct type for this behaviour.
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.mob;
 		String golemType = clayEffigyEntity.getGolemType();
-		if (!VALID_TYPES.contains(golemType)) {
+		if (!this.validTypes.contains(golemType)) {
 			return false;
 		}
 		return super.canStart();
