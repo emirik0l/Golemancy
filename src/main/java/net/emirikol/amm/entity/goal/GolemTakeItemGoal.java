@@ -22,10 +22,12 @@ public class GolemTakeItemGoal extends Goal {
 	}
 	
 	public boolean canStart() {
+		//Check if the golem is the correct type for this behaviour.
 		String golemType = entity.getGolemType();
 		if (!VALID_TYPES.contains(golemType)) {
 			return false;
 		}
+		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
 		float r = this.searchRadius;
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		return !list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();

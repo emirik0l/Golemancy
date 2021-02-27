@@ -43,11 +43,13 @@ public class GolemFollowOwnerGoal extends Goal {
 	}
 
 	public boolean canStart() {
+		//Check if the golem is the correct type for this behaviour.
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.tameable;
 		String golemType = clayEffigyEntity.getGolemType();
 		if (!VALID_TYPES.contains(golemType)) {
 			return false;
 		}
+		//Continue with checks copied from FollowOwnerGoal
 		LivingEntity livingEntity = this.tameable.getOwner();
 		if (livingEntity == null) {
 			return false;

@@ -17,6 +17,7 @@ public class GolemLookAtEntityGoal extends LookAtEntityGoal {
 	
 	@Override
 	public boolean canStart() {
+		//Check if the golem is the correct type for this behaviour.
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.mob;
 		String golemType = clayEffigyEntity.getGolemType();
 		if (!VALID_TYPES.contains(golemType)) {
