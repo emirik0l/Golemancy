@@ -31,13 +31,13 @@ public class GolemMoveToItemGoal extends Goal {
 			return false;
 		}
 		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
-		float r = this.searchRadius;
+		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		return !list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
 	public void start() {
-		float r = this.searchRadius;
+		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		if ((entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!list.isEmpty())) {
 			for (ItemEntity itemEntity: list) {
@@ -50,7 +50,7 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public void tick() {
-		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.0F,1.0F,1.0F), null);
+		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), null);
 		if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
 			ItemStack stack = list.get(0).getStack();
 			entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));

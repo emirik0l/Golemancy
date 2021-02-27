@@ -156,6 +156,11 @@ public class ClayEffigyEntity extends TameableEntity{
 		return this.type;
 	}
 	
+	public Integer getGolemSmarts() {
+		this.fromComponent();
+		return this.smarts;
+	}
+	
 	public double getAttackDamageFromStrength(int strength) {
 		switch(strength) {
 			case 0:
