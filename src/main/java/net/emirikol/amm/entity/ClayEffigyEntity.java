@@ -141,17 +141,6 @@ public class ClayEffigyEntity extends TameableEntity{
 	}
 	
 	@Override
-	public boolean canPickUpLoot() {
-		this.fromComponent();
-		switch(this.type) {
-			case "Hungry":
-				return true;
-			default:
-				return false;
-		}
-	}
-	
-	@Override
 	public Text getName() {
 		this.fromComponent();
 		if (this.type == "") {

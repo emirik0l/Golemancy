@@ -50,13 +50,18 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public void tick() {
+		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.0F,1.0F,1.0F), null);
+		if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
+			ItemStack stack = list.get(0).getStack();
+			entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
+		}
 		if (targetItem != null) {
 			entity.getNavigation().startMovingTo(targetItem, 1);
 		}
 	}
 	
 	public boolean shouldContinue() {
-		return !entity.getNavigation().isIdle() && (targetItem != null);
+		return !entity.getNavigation().isIdle() && (targetItem != null) && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
    private boolean canNavigateToEntity(Entity entity) {
