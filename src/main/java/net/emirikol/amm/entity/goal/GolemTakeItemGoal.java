@@ -10,6 +10,8 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemTakeItemGoal extends Goal {
+	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Hungry"});
+	
 	private final ClayEffigyEntity entity;
 	private final float searchRadius;
 	
@@ -20,7 +22,8 @@ public class GolemTakeItemGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		if (!entity.canTakeItems()) {
+		String golemType = entity.getGolemType();
+		if (!VALID_TYPES.contains(golemType)) {
 			return false;
 		}
 		float r = this.searchRadius;

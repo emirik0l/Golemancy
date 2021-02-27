@@ -13,6 +13,7 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class GolemFollowOwnerGoal extends Goal {
+	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Curious"});
 	
 	private final TameableEntity tameable;
 	private LivingEntity owner;
@@ -43,7 +44,8 @@ public class GolemFollowOwnerGoal extends Goal {
 
 	public boolean canStart() {
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.tameable;
-		if (!clayEffigyEntity.canFollowOwner()) {
+		String golemType = clayEffigyEntity.getGolemType();
+		if (!VALID_TYPES.contains(golemType)) {
 			return false;
 		}
 		LivingEntity livingEntity = this.tameable.getOwner();

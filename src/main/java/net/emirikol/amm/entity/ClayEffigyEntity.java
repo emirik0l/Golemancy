@@ -132,50 +132,6 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.goalSelector.add(10, new GolemLookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 	}
 	
-	public boolean canLookAround() {
-		this.fromComponent();
-		String validTypes[] = {"Restless", "Curious", "Hungry"};
-		for (String type : validTypes) {
-			if (this.type.equals(type)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean canWanderAroundFar() {
-		this.fromComponent();
-		String validTypes[] = {"Restless"};
-		for (String type : validTypes) {
-			if (this.type.equals(type)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean canFollowOwner() {
-		this.fromComponent();
-		String validTypes[] = {"Curious"};
-		for (String type : validTypes) {
-			if (this.type.equals(type)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean canTakeItems() {
-		this.fromComponent();
-		String validTypes[] = {"Hungry"};
-		for (String type : validTypes) {
-			if (this.type.equals(type)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	@Override
 	public Text getName() {
 		this.fromComponent();
@@ -185,6 +141,11 @@ public class ClayEffigyEntity extends TameableEntity {
 		MutableText name = new LiteralText(this.type + " ");
 		name.append(new TranslatableText("text.amm.golem"));
 		return name;
+	}
+	
+	public String getGolemType() {
+		this.fromComponent();
+		return this.type;
 	}
 	
 	public double getAttackDamageFromStrength(int strength) {

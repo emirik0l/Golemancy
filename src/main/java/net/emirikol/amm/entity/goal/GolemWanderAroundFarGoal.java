@@ -5,7 +5,11 @@ import net.emirikol.amm.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.ai.goal.*;
 
+import java.util.*;
+
 public class GolemWanderAroundFarGoal extends WanderAroundFarGoal {
+	private static final List<String> VALID_TYPES = Arrays.asList(new String[]{"Restless"});
+	
 	public GolemWanderAroundFarGoal(PathAwareEntity pathAwareEntity, double d) {
 		super(pathAwareEntity, d);
 	}
@@ -13,7 +17,8 @@ public class GolemWanderAroundFarGoal extends WanderAroundFarGoal {
 	@Override
 	public boolean canStart() {
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.mob;
-		if (!clayEffigyEntity.canWanderAroundFar()) {
+		String golemType = clayEffigyEntity.getGolemType();
+		if (!VALID_TYPES.contains(golemType)) {
 			return false;
 		}
 		return super.canStart();
