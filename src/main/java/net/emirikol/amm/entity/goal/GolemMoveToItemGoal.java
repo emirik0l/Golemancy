@@ -4,6 +4,7 @@ import net.emirikol.amm.entity.*;
 
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.util.math.*;
 
@@ -39,8 +40,12 @@ public class GolemMoveToItemGoal extends Goal {
 		float r = this.searchRadius;
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		if ((entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!list.isEmpty())) {
-			Random rand = new Random();
-			targetItem = (Entity) list.get(rand.nextInt(list.size()));
+			for (ItemEntity itemEntity: list) {
+				if (canNavigateToEntity(itemEntity)) {
+					targetItem = (Entity) itemEntity;
+					return;
+				}
+			}
 		}
 	}
 	
@@ -53,4 +58,20 @@ public class GolemMoveToItemGoal extends Goal {
 	public boolean shouldContinue() {
 		return !entity.getNavigation().isIdle() && (targetItem != null);
 	}
+	
+   private boolean canNavigateToEntity(Entity entity) {
+      Path path = this.entity.getNavigation().findPathTo((Entity)entity, 0);
+      if (path == null) {
+         return false;
+      } else {
+         PathNode pathNode = path.getEnd();
+         if (pathNode == null) {
+            return false;
+         } else {
+            int i = pathNode.x - MathHelper.floor(entity.getX());
+            int j = pathNode.z - MathHelper.floor(entity.getZ());
+            return (double)(i * i + j * j) <= 2.25D;
+         }
+      }
+   }
 }
