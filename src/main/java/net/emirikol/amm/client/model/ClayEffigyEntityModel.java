@@ -7,8 +7,9 @@ import net.minecraft.client.model.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.*;
+import net.minecraft.util.*;
 
-public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
+public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> implements ModelWithArms {
 	private final ModelPart Body;
 	private final ModelPart Head;
 	private final ModelPart LeftLeg;
@@ -65,6 +66,15 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> {
 		float leftLegPitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount / k;
 		setRotationAngle(RightLeg, rightArmPitch, 0, 0);
 		setRotationAngle(LeftLeg, leftLegPitch, 0, 0);
+	}
+	
+	@Override
+	public void setArmAngle(Arm arm, MatrixStack matrices) {
+		this.getArm(arm).rotate(matrices);
+	}
+	
+	protected ModelPart getArm(Arm arm) {
+		return arm == Arm.LEFT ? this.LeftArm : this.RightArm;
 	}
 	
 	@Override

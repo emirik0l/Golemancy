@@ -37,6 +37,7 @@ public class GolemTakeItemGoal extends Goal {
 		//Check for any ItemEntity within 1 block.
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.0D, 1.0D, 1.0D), null);
 		if (!list.isEmpty()) {
+			//Give the ItemStack to the golem and remove the ItemEntity from the world.
 			ItemEntity itemEntity = list.get(0);
 			ItemStack stack = itemEntity.getStack();
 			entity.equipStack(EquipmentSlot.MAINHAND, stack);
