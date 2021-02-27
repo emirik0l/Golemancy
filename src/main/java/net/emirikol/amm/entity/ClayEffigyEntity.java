@@ -126,6 +126,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	}
 	
 	@Override protected void initGoals() {
+		this.goalSelector.add(6, new GolemTakeItemGoal(this, 10.0F));
 		this.goalSelector.add(6, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false));
 		this.goalSelector.add(8, new GolemWanderAroundFarGoal(this, 1.0D));
 		this.goalSelector.add(10, new GolemLookAtEntityGoal(this, PlayerEntity.class, 8.0F));
@@ -133,7 +134,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	
 	public boolean canLookAround() {
 		this.fromComponent();
-		String validTypes[] = {"Restless", "Curious"};
+		String validTypes[] = {"Restless", "Curious", "Hungry"};
 		for (String type : validTypes) {
 			if (this.type.equals(type)) {
 				return true;
@@ -156,6 +157,17 @@ public class ClayEffigyEntity extends TameableEntity {
 	public boolean canFollowOwner() {
 		this.fromComponent();
 		String validTypes[] = {"Curious"};
+		for (String type : validTypes) {
+			if (this.type.equals(type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean canTakeItems() {
+		this.fromComponent();
+		String validTypes[] = {"Hungry"};
 		for (String type : validTypes) {
 			if (this.type.equals(type)) {
 				return true;
