@@ -2,6 +2,7 @@ package net.emirikol.amm.entity;
 
 import net.emirikol.amm.*;
 import net.emirikol.amm.item.*;
+import net.emirikol.amm.entity.goal.*;
 import net.emirikol.amm.genetics.*;
 import net.emirikol.amm.component.*;
 
@@ -136,7 +137,7 @@ public class ClayEffigyEntity extends TameableEntity {
 				return;
 			case "Curious":
 				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-				this.goalSelector.add(6, new FollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, false));
+				this.goalSelector.add(6, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false));
 				return;
 			default:
 				return;
