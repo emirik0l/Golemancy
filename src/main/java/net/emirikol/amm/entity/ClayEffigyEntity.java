@@ -55,7 +55,6 @@ public class ClayEffigyEntity extends TameableEntity {
 		return true;
 	}
 	
-	
 	public void toComponent() {
 		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
 		component.setType(this.type);
@@ -104,8 +103,6 @@ public class ClayEffigyEntity extends TameableEntity {
 			stack.decrement(1);
 			//Update golem attributes based on stats.
 			this.updateAttributes();
-			//Update golem AI based on type.
-			this.updateGoals();
 			//Set the golem as tamed.
 			this.setOwner(player);
 			return ActionResult.SUCCESS;
@@ -128,27 +125,43 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.heal(20.0F);
 	}
 	
-	public void updateGoals() {
-		this.fromComponent();
-		switch(this.type) {
-			case "Restless":
-				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-				this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
-				return;
-			case "Curious":
-				this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-				this.goalSelector.add(6, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false));
-				return;
-			default:
-				return;
-		}
+	@Override protected void initGoals() {
+		this.goalSelector.add(6, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false));
+		this.goalSelector.add(8, new GolemWanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(10, new GolemLookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 	}
 	
-	//Update goals after loading from NBT, to ensure that Cardinal Components has loaded.
-	@Override
-	public void fromTag(CompoundTag tag) {
-		super.fromTag(tag);
-		this.updateGoals();
+	public boolean canLookAround() {
+		this.fromComponent();
+		String validTypes[] = {"Restless", "Curious"};
+		for (String type : validTypes) {
+			if (this.type.equals(type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean canWanderAroundFar() {
+		this.fromComponent();
+		String validTypes[] = {"Restless"};
+		for (String type : validTypes) {
+			if (this.type.equals(type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean canFollowOwner() {
+		this.fromComponent();
+		String validTypes[] = {"Curious"};
+		for (String type : validTypes) {
+			if (this.type.equals(type)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override

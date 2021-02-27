@@ -1,5 +1,7 @@
 package net.emirikol.amm.entity.goal;
 
+import net.emirikol.amm.entity.*;
+
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
@@ -40,6 +42,10 @@ public class GolemFollowOwnerGoal extends Goal {
 	}
 
 	public boolean canStart() {
+		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.tameable;
+		if (!clayEffigyEntity.canFollowOwner()) {
+			return false;
+		}
 		LivingEntity livingEntity = this.tameable.getOwner();
 		if (livingEntity == null) {
 			return false;
