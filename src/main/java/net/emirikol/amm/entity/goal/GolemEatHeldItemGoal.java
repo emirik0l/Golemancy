@@ -15,6 +15,8 @@ public class GolemEatHeldItemGoal extends Goal {
 	private final ClayEffigyEntity entity;
 	private final List<String> validTypes;
 	
+	private int eatingTimer;
+	
 	public GolemEatHeldItemGoal(ClayEffigyEntity entity, String[] validTypes) {
 		this.entity = entity;
 		this.validTypes = Arrays.asList(validTypes);
@@ -31,14 +33,24 @@ public class GolemEatHeldItemGoal extends Goal {
 	
 	@Override
 	public void start() {
-		entity.setEating();
-		entity.world.playSound((PlayerEntity)null, entity.getX(), entity.getY(), entity.getZ(), entity.getEatSound(entity.getEquippedStack(EquipmentSlot.MAINHAND)), SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
+		this.setEating();
 	}
 	
 	@Override
 	public void tick() {
-		if (!entity.isEating()) {
+		if (!this.isEating()) {
 			entity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+			entity.world.playSound((PlayerEntity)null, entity.getX(), entity.getY(), entity.getZ(), entity.getEatSound(entity.getEquippedStack(EquipmentSlot.MAINHAND)), SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
+		} else {
+			this.eatingTimer--;
 		}
+	}
+	
+	private boolean isEating() {
+		return (this.eatingTimer > 0);
+	}
+	
+	private void setEating() { 
+		this.eatingTimer = 20; 
 	}
 }
