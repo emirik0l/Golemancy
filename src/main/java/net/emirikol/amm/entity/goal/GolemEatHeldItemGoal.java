@@ -51,6 +51,6 @@ public class GolemEatHeldItemGoal extends Goal {
 	}
 	
 	private void setEating() { 
-		this.eatingTimer = 20; 
+		this.eatingTimer = 10; 
 	}
 }
