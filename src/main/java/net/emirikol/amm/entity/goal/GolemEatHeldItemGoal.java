@@ -4,7 +4,9 @@ import net.emirikol.amm.entity.*;
 
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 
 import java.util.*;
@@ -30,6 +32,7 @@ public class GolemEatHeldItemGoal extends Goal {
 	@Override
 	public void start() {
 		entity.setEating();
+		entity.world.playSound((PlayerEntity)null, entity.getX(), entity.getY(), entity.getZ(), entity.getEatSound(entity.getEquippedStack(EquipmentSlot.MAINHAND)), SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
 	}
 	
 	@Override
