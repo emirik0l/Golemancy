@@ -92,6 +92,10 @@ public class ClayEffigyEntity extends TameableEntity{
 		if (!this.isTamed()) {
 			return tryInsertSoulstone(player, hand);
 		}
+		//Try to take items from the golem.
+		if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
+			return tryTakeFromEntity(player);
+		}
 		return ActionResult.PASS;
 	}
 	
@@ -120,6 +124,17 @@ public class ClayEffigyEntity extends TameableEntity{
 			this.updateAttributes();
 			//Set the golem as tamed.
 			this.setOwner(player);
+			return ActionResult.SUCCESS;
+		} else {
+			return ActionResult.PASS;
+		}
+	}
+	
+	private ActionResult tryTakeFromEntity(PlayerEntity player) {
+		if (this.isOwner(player)) {
+			ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
+			player.inventory.offerOrDrop(this.world, stack);
+			this.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 			return ActionResult.SUCCESS;
 		} else {
 			return ActionResult.PASS;
