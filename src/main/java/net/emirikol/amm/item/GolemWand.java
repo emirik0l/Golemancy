@@ -30,7 +30,7 @@ public class GolemWand extends Item {
 			ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) entity;
 			if (clayEffigyEntity.isOwner(user)) {
 				if (user.isSneaking()) {
-					return startLinking();
+					return startLinking(clayEffigyEntity, stack, user);
 				} else {
 					return toggleFollow(clayEffigyEntity, user);
 				}
@@ -39,10 +39,16 @@ public class GolemWand extends Item {
 		return ActionResult.PASS;
 	}
 	
-	public ActionResult startLinking() {
+	public ActionResult startLinking(ClayEffigyEntity entity, ItemStack stack, PlayerEntity user) {
 		//Linking functionality.
-		System.out.println("Linking not implemented");
-		return ActionResult.PASS;
+		UUID identifier = entity.getUuid();
+		CompoundTag tag = stack.getOrCreateTag();
+		tag.putString("golem_uuid", identifier.toString());
+		MutableText text = new LiteralText("");
+		text.append(entity.getName());
+		text.append(new TranslatableText("text.amm.linking_wand"));
+		user.sendMessage(text, false);
+		return ActionResult.SUCCESS;
 	}
 	
 	public ActionResult toggleFollow(ClayEffigyEntity entity, PlayerEntity user) {
@@ -59,21 +65,4 @@ public class GolemWand extends Item {
 		user.sendMessage(text, false);
 		return ActionResult.SUCCESS;
 	}
-	
-	/*
-	@Override
-	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-
-		if (entity instanceof ClayEffigyEntity) {
-			ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) entity;
-			if (clayEffigyEntity.isOwner(user)) {
-				UUID identifier = clayEffigyEntity.getUuid();
-				CompoundTag tag = stack.getOrCreateTag();
-				tag.putString("golem_uuid", identifier.toString());
-				return ActionResult.SUCCESS;
-			}
-		}
-		return ActionResult.PASS;
-	}
-	*/
 }
