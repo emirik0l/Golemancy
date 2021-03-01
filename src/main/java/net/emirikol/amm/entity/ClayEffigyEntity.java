@@ -88,9 +88,14 @@ public class ClayEffigyEntity extends TameableEntity{
 		if (this.world.isClient()) {
 			return ActionResult.PASS;
 		}
-		if (this.isTamed()) {
-			return ActionResult.PASS;
+		//Try to insert a soulstone if the effigy is not tamed.
+		if (!this.isTamed()) {
+			return tryInsertSoulstone(player, hand);
 		}
+		return ActionResult.PASS;
+	}
+	
+	private ActionResult tryInsertSoulstone(PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getStackInHand(hand);
 		ServerWorld world = (ServerWorld) this.world;
 		if (stack.getItem() instanceof SoulstoneFilled) {
@@ -116,8 +121,9 @@ public class ClayEffigyEntity extends TameableEntity{
 			//Set the golem as tamed.
 			this.setOwner(player);
 			return ActionResult.SUCCESS;
-		} 
-		return ActionResult.PASS;
+		} else {
+			return ActionResult.PASS;
+		}
 	}
 	
 	public void updateAttributes() {
