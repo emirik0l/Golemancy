@@ -21,7 +21,7 @@ import net.minecraft.server.world.*;
 
 import java.util.*;
 
-public class ClayEffigyEntity extends TameableEntity{
+public class ClayEffigyEntity extends TameableEntity {
 	private String type;
 	private int strength,agility,vigor,smarts;
 	
@@ -86,7 +86,11 @@ public class ClayEffigyEntity extends TameableEntity{
 	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		if (this.world.isClient()) {
-			return ActionResult.PASS;
+			return super.interactMob(player, hand);
+		}
+		//Ignore the off-hand.
+		if (hand == Hand.OFF_HAND) {
+			return super.interactMob(player, hand);
 		}
 		//Try to insert a soulstone if the effigy is not tamed.
 		if (!this.isTamed()) {
@@ -94,14 +98,17 @@ public class ClayEffigyEntity extends TameableEntity{
 		}
 		//Try to take items from the golem.
 		if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
-			return tryTakeFromEntity(player);
+			return tryTakeFromGolem(player);
 		}
-		return ActionResult.PASS;
+		//Try to give items to the golem.
+		if ((this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!player.getStackInHand(hand).isEmpty())) {
+			return tryGiveToGolem(player, hand);
+		}
+		return super.interactMob(player, hand);
 	}
 	
 	private ActionResult tryInsertSoulstone(PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getStackInHand(hand);
-		ServerWorld world = (ServerWorld) this.world;
 		if (stack.getItem() instanceof SoulstoneFilled) {
 			//Load genome from soulstone.
 			Genome genome = new Genome(stack);
@@ -130,11 +137,22 @@ public class ClayEffigyEntity extends TameableEntity{
 		}
 	}
 	
-	private ActionResult tryTakeFromEntity(PlayerEntity player) {
+	private ActionResult tryTakeFromGolem(PlayerEntity player) {
 		if (this.isOwner(player)) {
 			ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
-			player.inventory.offerOrDrop(this.world, stack);
+			ServerWorld world = (ServerWorld) this.world;
+			player.inventory.offerOrDrop(world, stack);
 			this.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+			return ActionResult.SUCCESS;
+		} else {
+			return ActionResult.PASS;
+		}
+	}
+	
+	private ActionResult tryGiveToGolem(PlayerEntity player, Hand hand) {
+		if (this.isOwner(player)) {
+			ItemStack stack = player.getStackInHand(hand);
+			this.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
 			return ActionResult.SUCCESS;
 		} else {
 			return ActionResult.PASS;
