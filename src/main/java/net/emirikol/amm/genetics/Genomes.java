@@ -34,7 +34,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome ENDERMAN = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Covetous"));
 		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
@@ -154,6 +154,7 @@ public class Genomes {
 		put("Restless", 0);
 		put("Curious", 1);
 		put("Hungry", 2);
+		put("Covetous", 3);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
