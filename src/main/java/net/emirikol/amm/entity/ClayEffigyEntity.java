@@ -25,13 +25,13 @@ public class ClayEffigyEntity extends TameableEntity {
 	private String type;
 	private int strength,agility,vigor,smarts;
 	
-	private boolean summoned;
+	private boolean golemWandFollow;
 	
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
 		this.setTamed(false);
 		this.stepHeight = 1.0F;
-		this.summoned = false;
+		this.golemWandFollow = false;
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
@@ -95,21 +95,24 @@ public class ClayEffigyEntity extends TameableEntity {
 		if (hand == Hand.OFF_HAND) {
 			return super.interactMob(player, hand);
 		}
-		//Ignore if the hand is holding a golem wand.
-		if (player.getStackInHand(hand).getItem() == AriseMyMinionsMod.GOLEM_WAND) {
-			return super.interactMob(player, hand);
-		}
 		//Try to insert a soulstone if the effigy is not tamed.
 		if (!this.isTamed()) {
 			return tryInsertSoulstone(player, hand);
 		}
-		//Try to take items from the golem.
-		if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
-			return tryTakeFromGolem(player);
-		}
-		//Try to give items to the golem.
-		if ((this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!player.getStackInHand(hand).isEmpty())) {
-			return tryGiveToGolem(player, hand);
+		//The following functionality is only available to the golem's owner.
+		if (this.isOwner(player)) {
+			//Try to use the golem wand.
+			if (player.getStackInHand(hand).getItem() == AriseMyMinionsMod.GOLEM_WAND) {
+				return useGolemWand(player, hand);
+			}
+			//Try to take items from the golem.
+			if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
+				return tryTakeFromGolem(player);
+			}
+			//Try to give items to the golem.
+			if ((this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) && (!player.getStackInHand(hand).isEmpty())) {
+				return tryGiveToGolem(player, hand);
+			}
 		}
 		return super.interactMob(player, hand);
 	}
@@ -144,26 +147,30 @@ public class ClayEffigyEntity extends TameableEntity {
 		}
 	}
 	
-	private ActionResult tryTakeFromGolem(PlayerEntity player) {
-		if (this.isOwner(player)) {
-			ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
-			ServerWorld world = (ServerWorld) this.world;
-			player.inventory.offerOrDrop(world, stack);
-			this.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-			return ActionResult.SUCCESS;
-		} else {
+	public ActionResult useGolemWand(PlayerEntity player, Hand hand) {
+		if (player.isSneaking()) {
+			//Linking functionality.
+			System.out.println("Linking not implemented");
 			return ActionResult.PASS;
+		} else {
+			//Follow/unfollow functionality.
+			this.golemWandFollow = !this.golemWandFollow;
+			return ActionResult.SUCCESS;
 		}
 	}
 	
+	private ActionResult tryTakeFromGolem(PlayerEntity player) {
+		ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
+		ServerWorld world = (ServerWorld) this.world;
+		player.inventory.offerOrDrop(world, stack);
+		this.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+		return ActionResult.SUCCESS;
+	}
+	
 	private ActionResult tryGiveToGolem(PlayerEntity player, Hand hand) {
-		if (this.isOwner(player)) {
-			ItemStack stack = player.getStackInHand(hand);
-			this.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
-			return ActionResult.SUCCESS;
-		} else {
-			return ActionResult.PASS;
-		}
+		ItemStack stack = player.getStackInHand(hand);
+		this.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
+		return ActionResult.SUCCESS;
 	}
 	
 	public void updateAttributes() {
@@ -247,15 +254,7 @@ public class ClayEffigyEntity extends TameableEntity {
 		}
 	}
 	
-	public void setSummoned() {
-		this.summoned = true;
-	}
-	
-	public void setUnsummoned() {
-		this.summoned = false;
-	}
-	
-	public boolean isSummoned() {
-		return this.summoned;
+	public boolean isFollowingWand() {
+		return this.golemWandFollow;
 	}
 }

@@ -7,6 +7,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.world.*;
 import net.minecraft.server.world.*;
+import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 
 import java.util.*;
@@ -18,28 +19,23 @@ public class GolemWand extends Item {
 		super(settings);
 	}
 	
-	@Override
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (world.isClient()) {
-			return super.use(world, user, hand);
-		}
-		float r = this.searchRadius;
-		List<ClayEffigyEntity> list = world.getEntitiesByClass(ClayEffigyEntity.class, user.getBoundingBox().expand(r,r,r), null);
-		for (ClayEffigyEntity e: list) {
-			if (e.isOwner(user)) {
-				if (user.isSneaking()) {
-					e.setUnsummoned();
-				} else {
-					e.setSummoned();
-				}
-			}
-		}
-		return super.use(world, user, hand);
-	}
-	
+	/*
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		System.out.println("used wand on golem");
-		return ActionResult.SUCCESS;
+		if (user.world.isClient()) {
+			return ActionResult.PASS;
+		}
+		ServerWorld world = (ServerWorld) user.world;
+		if (entity instanceof ClayEffigyEntity) {
+			ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) entity;
+			if (clayEffigyEntity.isOwner(user)) {
+				UUID identifier = clayEffigyEntity.getUuid();
+				CompoundTag tag = stack.getOrCreateTag();
+				tag.putString("golem_uuid", identifier.toString());
+				return ActionResult.SUCCESS;
+			}
+		}
+		return ActionResult.PASS;
 	}
+	*/
 }
