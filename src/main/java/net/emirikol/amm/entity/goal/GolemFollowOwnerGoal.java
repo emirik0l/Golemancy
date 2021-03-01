@@ -92,60 +92,7 @@ public class GolemFollowOwnerGoal extends Goal {
 		this.tameable.getLookControl().lookAt(this.owner, 10.0F, (float)this.tameable.getLookPitchSpeed());
 		if (--this.updateCountdownTicks <= 0) {
 			this.updateCountdownTicks = 10;
-			if (!this.tameable.isLeashed() && !this.tameable.hasVehicle()) {
-				if (this.tameable.squaredDistanceTo(this.owner) >= this.teleportDistance) {
-					this.tryTeleport();
-				} else {
-					this.navigation.startMovingTo(this.owner, this.speed);
-				}
-
-			}
+			this.navigation.startMovingTo(this.owner, this.speed);
 		}
-	}
-
-	private void tryTeleport() {
-		BlockPos blockPos = this.owner.getBlockPos();
-
-		for(int i = 0; i < 10; ++i) {
-			int j = this.getRandomInt(-3, 3);
-			int k = this.getRandomInt(-1, 1);
-			int l = this.getRandomInt(-3, 3);
-			boolean bl = this.tryTeleportTo(blockPos.getX() + j, blockPos.getY() + k, blockPos.getZ() + l);
-			if (bl) {
-				return;
-			}
-		}
-
-	}
-
-	private boolean tryTeleportTo(int x, int y, int z) {
-		if (Math.abs((double)x - this.owner.getX()) < 2.0D && Math.abs((double)z - this.owner.getZ()) < 2.0D) {
-			return false;
-		} else if (!this.canTeleportTo(new BlockPos(x, y, z))) {
-			return false;
-		} else {
-			this.tameable.refreshPositionAndAngles((double)x + 0.5D, (double)y, (double)z + 0.5D, this.tameable.yaw, this.tameable.pitch);
-			this.navigation.stop();
-			return true;
-		}
-	}
-
-	private boolean canTeleportTo(BlockPos pos) {
-		PathNodeType pathNodeType = LandPathNodeMaker.getLandNodeType(this.world, pos.mutableCopy());
-		if (pathNodeType != PathNodeType.WALKABLE) {
-			return false;
-		} else {
-			BlockState blockState = this.world.getBlockState(pos.down());
-			if (!this.leavesAllowed && blockState.getBlock() instanceof LeavesBlock) {
-				return false;
-			} else {
-				BlockPos blockPos = pos.subtract(this.tameable.getBlockPos());
-				return this.world.isSpaceEmpty(this.tameable, this.tameable.getBoundingBox().offset(blockPos));
-			}
-		}
-	}
-
-	private int getRandomInt(int min, int max) {
-		return this.tameable.getRandom().nextInt(max - min + 1) + min;
 	}
 }
