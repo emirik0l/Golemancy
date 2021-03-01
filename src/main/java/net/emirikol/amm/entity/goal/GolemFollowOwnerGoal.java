@@ -44,10 +44,10 @@ public class GolemFollowOwnerGoal extends Goal {
 	}
 
 	public boolean canStart() {
-		//Check if the golem is the correct type for this behaviour.
+		//Check if the golem is the correct type for this behaviour, or if the golem has been "summoned" with a golem wand.
 		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.tameable;
 		String golemType = clayEffigyEntity.getGolemType();
-		if (!this.validTypes.contains(golemType)) {
+		if (!this.validTypes.contains(golemType) && !clayEffigyEntity.isSummoned()) {
 			return false;
 		}
 		//Continue with checks copied from FollowOwnerGoal
@@ -72,7 +72,7 @@ public class GolemFollowOwnerGoal extends Goal {
 		} else if (this.tameable.isSitting()) {
 			return false;
 		} else {
-			return this.tameable.squaredDistanceTo(this.owner) > (double)(this.maxDistance * this.maxDistance);
+			return this.canStart();
 		}
 	}
 

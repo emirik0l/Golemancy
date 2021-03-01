@@ -25,10 +25,13 @@ public class ClayEffigyEntity extends TameableEntity {
 	private String type;
 	private int strength,agility,vigor,smarts;
 	
+	private boolean summoned;
+	
 	public ClayEffigyEntity(EntityType<? extends ClayEffigyEntity> entityType, World world) {
 		super(entityType, world);
 		this.setTamed(false);
 		this.stepHeight = 1.0F;
+		this.summoned = false;
 	}
    
 	public static DefaultAttributeContainer.Builder createClayEffigyAttributes() {
@@ -238,5 +241,17 @@ public class ClayEffigyEntity extends TameableEntity {
 			default:
 				return 0.0D;
 		}
+	}
+	
+	public void setSummoned() {
+		this.summoned = true;
+	}
+	
+	public void setUnsummoned() {
+		this.summoned = false;
+	}
+	
+	public boolean isSummoned() {
+		return this.summoned;
 	}
 }
