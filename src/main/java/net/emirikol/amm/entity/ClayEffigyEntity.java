@@ -95,6 +95,10 @@ public class ClayEffigyEntity extends TameableEntity {
 		if (hand == Hand.OFF_HAND) {
 			return super.interactMob(player, hand);
 		}
+		//Ignore if the hand is holding a golem wand.
+		if (player.getStackInHand(hand).getItem() == AriseMyMinionsMod.GOLEM_WAND) {
+			return super.interactMob(player, hand);
+		}
 		//Try to insert a soulstone if the effigy is not tamed.
 		if (!this.isTamed()) {
 			return tryInsertSoulstone(player, hand);

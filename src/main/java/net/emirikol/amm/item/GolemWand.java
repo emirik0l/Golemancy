@@ -36,4 +36,10 @@ public class GolemWand extends Item {
 		}
 		return super.use(world, user, hand);
 	}
+	
+	@Override
+	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+		System.out.println("used wand on golem");
+		return ActionResult.SUCCESS;
+	}
 }
