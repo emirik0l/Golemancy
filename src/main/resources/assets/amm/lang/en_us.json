@@ -20,5 +20,7 @@
 	"text.amm.gene_average": "AVERAGE",
 	"text.amm.gene_high": "HIGH",
 	"text.amm.gene_perfect": "PERFECT",
-	"text.amm.golem": "Golem"
+	"text.amm.golem": "Golem",
+	"text.amm.following_wand": " is now following you!",
+	"text.amm.stop_following_wand": " is no longer following you."
 }

@@ -95,16 +95,16 @@ public class ClayEffigyEntity extends TameableEntity {
 		if (hand == Hand.OFF_HAND) {
 			return super.interactMob(player, hand);
 		}
+		//Ignore the golem wand.
+		if (player.getStackInHand(hand).getItem() == AriseMyMinionsMod.GOLEM_WAND) {
+			return super.interactMob(player, hand);
+		}
 		//Try to insert a soulstone if the effigy is not tamed.
 		if (!this.isTamed()) {
 			return tryInsertSoulstone(player, hand);
 		}
 		//The following functionality is only available to the golem's owner.
 		if (this.isOwner(player)) {
-			//Try to use the golem wand.
-			if (player.getStackInHand(hand).getItem() == AriseMyMinionsMod.GOLEM_WAND) {
-				return useGolemWand(player, hand);
-			}
 			//Try to take items from the golem.
 			if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
 				return tryTakeFromGolem(player);
@@ -144,18 +144,6 @@ public class ClayEffigyEntity extends TameableEntity {
 			return ActionResult.SUCCESS;
 		} else {
 			return ActionResult.PASS;
-		}
-	}
-	
-	public ActionResult useGolemWand(PlayerEntity player, Hand hand) {
-		if (player.isSneaking()) {
-			//Linking functionality.
-			System.out.println("Linking not implemented");
-			return ActionResult.PASS;
-		} else {
-			//Follow/unfollow functionality.
-			this.golemWandFollow = !this.golemWandFollow;
-			return ActionResult.SUCCESS;
 		}
 	}
 	
@@ -256,5 +244,9 @@ public class ClayEffigyEntity extends TameableEntity {
 	
 	public boolean isFollowingWand() {
 		return this.golemWandFollow;
+	}
+	
+	public void toggleFollowingWand() {
+		this.golemWandFollow = !this.golemWandFollow;
 	}
 }
