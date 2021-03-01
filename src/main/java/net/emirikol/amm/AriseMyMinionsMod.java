@@ -28,6 +28,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static SoulMirror SOUL_MIRROR;
 	public static ScreenHandlerType<SoulMirrorScreenHandler> SOUL_MIRROR_SCREEN_HANDLER;
 	
+	public static GolemWand GOLEM_WAND;
+	
 	public static SoulGrafterBlock SOUL_GRAFTER;
 	public static BlockItem SOUL_GRAFTER_ITEM;
 	public static BlockEntityType<SoulGrafterBlockEntity> SOUL_GRAFTER_ENTITY;
@@ -56,6 +58,11 @@ public class AriseMyMinionsMod implements ModInitializer {
 		soul_mirror_settings.maxDamage(256);
 		SOUL_MIRROR = new SoulMirror(soul_mirror_settings);
 		SOUL_MIRROR_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier("amm", "soul_mirror"), SoulMirrorScreenHandler::new);
+		//Instantiate golem wand.
+		FabricItemSettings golem_wand_settings = new FabricItemSettings();
+		golem_wand_settings.group(ItemGroup.MISC);
+		golem_wand_settings.maxCount(1);
+		GOLEM_WAND = new GolemWand(golem_wand_settings);
 		//Instantiate soul grafter.
 		FabricBlockSettings soul_grafter_settings = FabricBlockSettings.of(Material.STONE);
 		soul_grafter_settings.hardness(4.0F).strength(5.0F, 1200.0F);
@@ -79,6 +86,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ITEM, "amm:soulstone_filled", SOULSTONE_FILLED);
 		//Register soul mirror.
 		Registry.register(Registry.ITEM, "amm:soul_mirror", SOUL_MIRROR);
+		//Register golem wand.
+		Registry.register(Registry.ITEM, "amm:golem_wand", GOLEM_WAND);
 		//Register soul grafter.
 		Registry.register(Registry.BLOCK, "amm:soul_grafter", SOUL_GRAFTER);
 		Registry.register(Registry.ITEM, "amm:soul_grafter", SOUL_GRAFTER_ITEM);
