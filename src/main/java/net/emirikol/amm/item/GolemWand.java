@@ -31,7 +31,7 @@ public class GolemWand extends Item {
 			ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) entity;
 			if (clayEffigyEntity.isOwner(user)) {
 				if (user.isSneaking()) {
-					return startLinking(clayEffigyEntity, stack, user);
+					return startLinking(clayEffigyEntity, user, hand);
 				} else {
 					return toggleFollow(clayEffigyEntity, user);
 				}
@@ -63,9 +63,10 @@ public class GolemWand extends Item {
 		return ActionResult.PASS;
 	}
 	
-	public ActionResult startLinking(ClayEffigyEntity entity, ItemStack stack, PlayerEntity user) {
+	public ActionResult startLinking(ClayEffigyEntity entity, PlayerEntity user, Hand hand) {
 		//Linking functionality.
 		int identifier = entity.getEntityId();
+		ItemStack stack = user.getStackInHand(hand);
 		CompoundTag tag = stack.getOrCreateTag();
 		int oldIdentifier = tag.getInt("golem_id");
 		if (oldIdentifier == identifier) {
