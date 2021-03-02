@@ -40,6 +40,7 @@ public class GolemMoveToItemGoal extends Goal {
 				return true;
 			}
 		}
+		//Otherwise, return false.
 		return false;
 	}
 	
@@ -65,19 +66,20 @@ public class GolemMoveToItemGoal extends Goal {
 		}
 	}
 	
-   private boolean canNavigateToEntity(Entity entity) {
-      Path path = this.entity.getNavigation().findPathTo((Entity)entity, 0);
-      if (path == null) {
-         return false;
-      } else {
-         PathNode pathNode = path.getEnd();
-         if (pathNode == null) {
-            return false;
-         } else {
-            int i = pathNode.x - MathHelper.floor(entity.getX());
-            int j = pathNode.z - MathHelper.floor(entity.getZ());
-            return (double)(i * i + j * j) <= 2.25D;
-         }
-      }
-   }
+
+	private boolean canNavigateToEntity(Entity entity) {
+		Path path = this.entity.getNavigation().findPathTo((Entity)entity, 0);
+		if (path == null) {
+			return false;
+		} else {
+			PathNode pathNode = path.getEnd();
+			if (pathNode == null) {
+				return false;
+			} else {
+				int i = pathNode.x - MathHelper.floor(entity.getX());
+				int j = pathNode.z - MathHelper.floor(entity.getZ());
+				return (double)(i * i + j * j) <= 2.25D;
+			}
+		}
+	}
 }
