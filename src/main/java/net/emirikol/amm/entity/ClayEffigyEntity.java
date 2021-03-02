@@ -201,6 +201,24 @@ public class ClayEffigyEntity extends TameableEntity {
 		return this.smarts;
 	}
 	
+	public BlockPos getBlockPos() {
+		this.fromComponent();
+		return this.linkedBlockPos;
+	}
+	
+	public void linkToBlockPos(BlockPos pos) {
+		this.linkedBlockPos = pos;
+		this.toComponent();
+	}
+	
+	public boolean isFollowingWand() {
+		return this.golemWandFollow;
+	}
+	
+	public void toggleFollowingWand() {
+		this.golemWandFollow = !this.golemWandFollow;
+	}
+	
 	public double getAttackDamageFromStrength(int strength) {
 		switch(strength) {
 			case 0:
@@ -244,18 +262,5 @@ public class ClayEffigyEntity extends TameableEntity {
 			default:
 				return 0.0D;
 		}
-	}
-	
-	public boolean isFollowingWand() {
-		return this.golemWandFollow;
-	}
-	
-	public void toggleFollowingWand() {
-		this.golemWandFollow = !this.golemWandFollow;
-	}
-	
-	public void linkToBlockPos(BlockPos pos) {
-		this.linkedBlockPos = pos;
-		this.toComponent();
 	}
 }
