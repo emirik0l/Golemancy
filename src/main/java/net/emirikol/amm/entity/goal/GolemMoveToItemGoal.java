@@ -78,7 +78,8 @@ public class GolemMoveToItemGoal extends Goal {
 			} else {
 				int i = pathNode.x - MathHelper.floor(entity.getX());
 				int j = pathNode.z - MathHelper.floor(entity.getZ());
-				return (double)(i * i + j * j) <= 2.25D;
+				int k = pathNode.y - MathHelper.floor(entity.getY());
+				return (double)(i * i + j * j + k * k) <= 3.375;
 			}
 		}
 	}
