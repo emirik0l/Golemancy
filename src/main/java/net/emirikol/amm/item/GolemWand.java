@@ -67,12 +67,25 @@ public class GolemWand extends Item {
 		//Linking functionality.
 		int identifier = entity.getEntityId();
 		CompoundTag tag = stack.getOrCreateTag();
-		tag.putInt("golem_id", identifier);
-		MutableText text = new LiteralText("");
-		text.append(entity.getName());
-		text.append(new TranslatableText("text.amm.linking_wand"));
-		user.sendMessage(text, false);
-		return ActionResult.SUCCESS;
+		int oldIdentifier = tag.getInt("golem_id");
+		if (oldIdentifier == identifier) {
+			//Linking a golem to itself causes it to become unlinked.
+			tag.putInt("golem_id", 0);
+			entity.linkToBlockPos(null);
+			MutableText text = new LiteralText("");
+			text.append(entity.getName());
+			text.append(new TranslatableText("text.amm.unlink_linking_wand"));
+			user.sendMessage(text, false);
+			return ActionResult.SUCCESS;
+		} else {
+			//Otherwise, save the golem's entity ID to the wand's NBT.
+			tag.putInt("golem_id", identifier);
+			MutableText text = new LiteralText("");
+			text.append(entity.getName());
+			text.append(new TranslatableText("text.amm.linking_wand"));
+			user.sendMessage(text, false);
+			return ActionResult.SUCCESS;
+		}
 	}
 	
 	public ActionResult finishLinking(ClayEffigyEntity entity, ItemStack stack, BlockPos pos, PlayerEntity user, ServerWorld world) {

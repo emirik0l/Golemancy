@@ -24,5 +24,6 @@
 	"text.amm.following_wand": " is now following you!",
 	"text.amm.stop_following_wand": " is no longer following you.",
 	"text.amm.linking_wand": " is now being linked!",
-	"text.amm.finished_linking_wand": " has been linked to "
+	"text.amm.finished_linking_wand": " has been linked to ",
+	"text.amm.unlink_linking_wand": " has been unlinked!"
 }
