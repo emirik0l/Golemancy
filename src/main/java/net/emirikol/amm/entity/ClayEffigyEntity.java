@@ -17,6 +17,7 @@ import net.minecraft.world.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
 import java.util.*;
@@ -24,6 +25,7 @@ import java.util.*;
 public class ClayEffigyEntity extends TameableEntity {
 	private String type;
 	private int strength,agility,vigor,smarts;
+	private BlockPos linkedBlockPos;
 	
 	private boolean golemWandFollow;
 	
@@ -75,6 +77,7 @@ public class ClayEffigyEntity extends TameableEntity {
 		component.setAttribute("agility", this.agility);
 		component.setAttribute("vigor", this.vigor);
 		component.setAttribute("smarts", this.smarts);
+		component.setLinkedBlockPos(this.linkedBlockPos);
 	}
 	
 	public void fromComponent() {
@@ -84,6 +87,7 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.agility = component.getAttribute("agility");
 		this.vigor = component.getAttribute("vigor");
 		this.smarts = component.getAttribute("smarts");
+		this.linkedBlockPos = component.getLinkedBlockPos();
 	}
 
 	@Override
@@ -248,5 +252,10 @@ public class ClayEffigyEntity extends TameableEntity {
 	
 	public void toggleFollowingWand() {
 		this.golemWandFollow = !this.golemWandFollow;
+	}
+	
+	public void linkToBlockPos(BlockPos pos) {
+		this.linkedBlockPos = pos;
+		this.toComponent();
 	}
 }

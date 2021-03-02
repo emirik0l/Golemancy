@@ -19,7 +19,6 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		put("smarts", 0);
 	}};
 	private BlockPos linkedBlockPos;
-	
 	private Object provider;
 	
 	public GolemComponent(Object provider) {
@@ -43,6 +42,15 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		attributes.put(key, value);
 		AriseMyMinionsComponents.GOLEM.sync(this.provider);
 		
+	}
+	
+	public BlockPos getLinkedBlockPos() {
+		return this.linkedBlockPos;
+	}
+	
+	public void setLinkedBlockPos(BlockPos pos) {
+		this.linkedBlockPos = pos;
+		AriseMyMinionsComponents.GOLEM.sync(this.provider);
 	}
 	
 	@Override
