@@ -5,6 +5,7 @@ import net.emirikol.amm.*;
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.AutoSyncedComponent;
 import net.minecraft.nbt.*;
+import net.minecraft.util.math.*;
 
 import java.util.*;
 
@@ -17,6 +18,8 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		put("vigor", 0);
 		put("smarts", 0);
 	}};
+	private BlockPos linkedBlockPos;
+	
 	private Object provider;
 	
 	public GolemComponent(Object provider) {
@@ -49,6 +52,11 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		this.attributes.put("agility", tag.getInt("amm_agility"));
 		this.attributes.put("vigor", tag.getInt("amm_vigor"));
 		this.attributes.put("smarts", tag.getInt("amm_smarts"));
+		
+		int[] linkCoords = tag.getIntArray("amm_linked");
+		if (linkCoords.length == 3) {
+			this.linkedBlockPos = new BlockPos(linkCoords[0], linkCoords[1], linkCoords[2]);
+		}
 	}
 	
 	@Override
@@ -58,5 +66,10 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		tag.putInt("amm_agility", this.attributes.get("agility"));
 		tag.putInt("amm_vigor", this.attributes.get("vigor"));
 		tag.putInt("amm_smarts", this.attributes.get("smarts"));
+		
+		if (this.linkedBlockPos != null) {
+			int[] linkCoords = {this.linkedBlockPos.getX(), this.linkedBlockPos.getY(), this.linkedBlockPos.getZ()};
+			tag.putIntArray("amm_linked", linkCoords);
+		}
 	}
 } 
