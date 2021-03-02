@@ -31,7 +31,16 @@ public class GolemMoveToItemGoal extends Goal {
 		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
 		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
-		return !list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
+		if ((list.isEmpty()) || !entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
+			return false;
+		}
+		//Return true if any of the nearby items can be reached.
+		for (ItemEntity itemEntity: list) {
+			if (canNavigateToEntity(itemEntity)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void tick() {
