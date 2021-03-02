@@ -15,8 +15,6 @@ public class GolemMoveToItemGoal extends Goal {
 	private final float searchRadius;
 	private final List<String> validTypes;
 	
-	private Entity targetItem;
-	
 	public GolemMoveToItemGoal(ClayEffigyEntity entity, float searchRadius, String[] validTypes) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
@@ -36,21 +34,6 @@ public class GolemMoveToItemGoal extends Goal {
 		return !list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
-	public void start() {
-		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
-		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
-		if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
-			//Iterate through nearby items until one is found that is reachable, and set it as the target.
-			for (ItemEntity itemEntity: list) {
-				if (canNavigateToEntity(itemEntity)) {
-					targetItem = (Entity) itemEntity;
-					return;
-				}
-			}
-		}
-	}
-	
 	public void tick() {
 		//Check if there is an item within 1.5 blocks and the golem's hand is empty.
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), null);
@@ -59,15 +42,18 @@ public class GolemMoveToItemGoal extends Goal {
 			ItemStack stack = list.get(0).getStack();
 			entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
 		}
-		//Move towards the target item.
-		if (targetItem != null) {
-			entity.getNavigation().startMovingTo(targetItem, 1);
+		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
+		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
+		list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
+		if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
+			//Iterate through nearby items until one is found that is reachable, and set it as the target.
+			for (ItemEntity itemEntity: list) {
+				if (canNavigateToEntity(itemEntity)) {
+					entity.getNavigation().startMovingTo(itemEntity, 1);
+					return;
+				}
+			}
 		}
-	}
-	
-	public boolean shouldContinue() {
-		//Give up if navigation has failed, there is no target, or the golem is holding an item.
-		return !entity.getNavigation().isIdle() && targetItem != null && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
    private boolean canNavigateToEntity(Entity entity) {
