@@ -16,7 +16,6 @@ public class GolemReturnHomeGoal extends Goal {
 	private final double speed;
 	
 	protected BlockPos targetPos;
-	protected int cooldown;
 	protected int tryingTime;
 	protected int safeWaitingTime;
 	
@@ -28,13 +27,7 @@ public class GolemReturnHomeGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		if (this.cooldown > 0) {
-			--this.cooldown;
-			return false;
-		} else {
-			this.cooldown = this.getInterval();
-			return this.findTargetPos();
-		}
+		return this.findTargetPos();
 	}
 	
 	public boolean shouldContinue() {
@@ -56,10 +49,6 @@ public class GolemReturnHomeGoal extends Goal {
 		} else {
 			--this.tryingTime;
 		}
-	}
-	
-	public int getInterval() {
-		return 20;
 	}
 	
 	public double getDesiredSquaredDistanceToTarget() {
