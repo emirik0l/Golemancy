@@ -11,31 +11,68 @@ import net.minecraft.util.math.*;
 
 import java.util.*;
 
-public class GolemReturnHomeGoal extends MoveToTargetPosGoal {
+public class GolemReturnHomeGoal extends Goal {
+	private final ClayEffigyEntity entity;
+	private final double speed;
 	
-	public GolemReturnHomeGoal(ClayEffigyEntity entity, double speed, int range, int maxYDifference) {
-		super((PathAwareEntity) entity, speed, range, maxYDifference);
+	protected BlockPos targetPos;
+	protected int cooldown;
+	protected int tryingTime;
+	protected int safeWaitingTime;
+	
+	public GolemReturnHomeGoal(ClayEffigyEntity entity, double speed) {
+		this.entity = entity;
+		this.speed = speed;
+		this.targetPos = BlockPos.ORIGIN;
+		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.JUMP));
 	}
 	
-	@Override
-	protected boolean isTargetPos(WorldView world, BlockPos pos) {
-		ClayEffigyEntity entity = (ClayEffigyEntity) this.mob;
-		BlockPos linkedPos = entity.getLinkedBlockPos();
-		if (linkedPos == null) { return false; }
-		return (pos.getX() == linkedPos.getX()) && (pos.getY() == linkedPos.getY()) && (pos.getZ() == linkedPos.getZ());
+	public boolean canStart() {
+		if (this.cooldown > 0) {
+			--this.cooldown;
+			return false;
+		} else {
+			this.cooldown = this.getInterval();
+			return this.findTargetPos();
+		}
 	}
 	
-	@Override
-	protected boolean findTargetPos() {
-		ClayEffigyEntity entity = (ClayEffigyEntity) this.mob;
-		BlockPos linkedPos = entity.getLinkedBlockPos();
-		if (linkedPos == null) { return false; }
-		this.targetPos = linkedPos;
-		return entity.world.getBlockState(linkedPos) != null;
+	public boolean shouldContinue() {
+		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200;
 	}
 	
-	@Override
-	protected int getInterval(PathAwareEntity mob) {
+	public void start() {
+		this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)(this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, this.speed);
+		this.tryingTime = 0;
+		this.safeWaitingTime = this.entity.getRandom().nextInt(this.entity.getRandom().nextInt(1200) + 1200) + 1200;
+	}
+	
+	public void tick() {
+		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget())) {
+			++this.tryingTime;
+			if (this.shouldResetPath()) {
+				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)this.targetPos.getY(), (double)((float)this.targetPos.getZ()) + 0.5D, this.speed);
+			}
+		} else {
+			--this.tryingTime;
+		}
+	}
+	
+	public int getInterval() {
 		return 20;
+	}
+	
+	public double getDesiredSquaredDistanceToTarget() {
+		return 1.0D;
+	}
+	
+	public boolean shouldResetPath() {
+		return this.tryingTime % 40 == 0;
+	}
+	
+	public boolean findTargetPos() {
+		this.targetPos = this.entity.getLinkedBlockPos();
+		if (this.targetPos == null) { return false; }
+		return this.entity.isInWalkTargetRange(this.targetPos);
 	}
 }
