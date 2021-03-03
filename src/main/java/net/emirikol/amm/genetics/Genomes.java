@@ -7,7 +7,7 @@ import java.util.*;
 public class Genomes {
 	
 	public static final Genome GENERIC = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Generic"));
 		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
