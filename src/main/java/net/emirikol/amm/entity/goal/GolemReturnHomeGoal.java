@@ -38,7 +38,7 @@ public class GolemReturnHomeGoal extends Goal {
 	}
 	
 	public boolean shouldContinue() {
-		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200;
+		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos();
 	}
 	
 	public void start() {
