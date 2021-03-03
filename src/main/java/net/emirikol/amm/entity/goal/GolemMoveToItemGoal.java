@@ -19,7 +19,7 @@ public class GolemMoveToItemGoal extends Goal {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
 		this.validTypes = Arrays.asList(validTypes);
-		this.setControls(EnumSet.of(Goal.Control.MOVE));
+		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.JUMP));
 	}
 	
 	public boolean canStart() {
