@@ -47,6 +47,7 @@ public class ClayEffigyEntity extends TameableEntity {
 		this.goalSelector.add(7, new GolemFollowOwnerGoal(this, 1.0D, 6.0F, 2.0F, 750.0F, false, new String[]{"Curious"}));
 		this.goalSelector.add(8, new GolemWanderAroundFarGoal(this, 1.0D, new String[]{"Restless"}));
 		this.goalSelector.add(10, new GolemLookAtEntityGoal(this, PlayerEntity.class, 8.0F, new String[]{"Restless", "Curious", "Hungry", "Covetous"}));
+		this.goalSelector.add(15, new GolemReturnHomeGoal(this, 1.0D, 256, 30));
 	}
 	
 	public ClayEffigyEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
@@ -201,7 +202,7 @@ public class ClayEffigyEntity extends TameableEntity {
 		return this.smarts;
 	}
 	
-	public BlockPos getBlockPos() {
+	public BlockPos getLinkedBlockPos() {
 		this.fromComponent();
 		return this.linkedBlockPos;
 	}
