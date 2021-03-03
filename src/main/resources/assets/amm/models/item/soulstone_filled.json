@@ -1,11 +1,12 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "amm:item/soulstone_restless"
+    "layer0": "amm:item/soulstone"
   },
   "overrides": [
-    {"predicate": { "custom_model_data": 1 }, "model": "amm:item/soulstone_curious"},
-	{"predicate": { "custom_model_data": 2 }, "model": "amm:item/soulstone_hungry"},
-	{"predicate": { "custom_model_data": 3 }, "model": "amm:item/soulstone_covetous"}
+	{"predicate": { "custom_model_data": 1 }, "model": "amm:item/soulstone_restless"},
+	{"predicate": { "custom_model_data": 2 }, "model": "amm:item/soulstone_curious"},
+	{"predicate": { "custom_model_data": 3 }, "model": "amm:item/soulstone_hungry"},
+	{"predicate": { "custom_model_data": 4 }, "model": "amm:item/soulstone_covetous"}
   ]
 }

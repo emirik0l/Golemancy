@@ -151,10 +151,10 @@ public class Genomes {
 	}};
 	
 	public static final Map<String,Integer> VARIANTS = new HashMap<String,Integer>() {{
-		put("Restless", 0);
-		put("Curious", 1);
-		put("Hungry", 2);
-		put("Covetous", 3);
+		put("Restless", 1);
+		put("Curious", 2);
+		put("Hungry", 3);
+		put("Covetous", 4);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
