@@ -82,6 +82,6 @@ public class GolemDepositHeldItemGoal extends Goal {
 	}
 	
 	public double getDesiredSquaredDistanceToTarget() {
-		return 1.0D;
+		return 2.0D;
 	}
 }
