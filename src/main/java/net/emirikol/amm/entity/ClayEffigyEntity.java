@@ -42,6 +42,7 @@ public class ClayEffigyEntity extends TameableEntity {
 	
 	@Override 
 	protected void initGoals() {
+		this.goalSelector.add(5, new GolemDepositHeldItemGoal(this, new String[]{"Covetous"}));
 		this.goalSelector.add(5, new GolemEatHeldItemGoal(this, new String[]{"Hungry"}));
 		this.goalSelector.add(6, new GolemMoveToItemGoal(this, 10.0F, new String[]{"Hungry", "Covetous"}));
 		this.goalSelector.add(8, new GolemWanderAroundFarGoal(this, 1.0D, new String[]{"Restless"}));
