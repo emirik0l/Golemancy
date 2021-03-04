@@ -15,6 +15,10 @@ public class GolemMoveToItemGoal extends Goal {
 	private final float searchRadius;
 	private final List<String> validTypes;
 	
+	protected BlockPos targetPos;
+	protected int tryingTime;
+	protected int safeWaitingTime;
+	
 	public GolemMoveToItemGoal(ClayEffigyEntity entity, float searchRadius, String[] validTypes) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
@@ -23,27 +27,19 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		//Check if the golem is the correct type for this behaviour.
-		String golemType = entity.getGolemType();
-		if (!this.validTypes.contains(golemType)) {
-			return false;
-		}
-		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
-		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
-		if ((list.isEmpty()) || !entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
-			return false;
-		}
-		//Return true if any of the nearby items can be reached.
-		for (ItemEntity itemEntity: list) {
-			if (canNavigateToEntity(itemEntity)) {
-				return true;
-			}
-		}
-		//Otherwise, return false.
-		return false;
+		return this.findTargetPos() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
+	public boolean shouldContinue() {
+		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
+	}
+	
+	public void start() {
+		this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)(this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
+		this.tryingTime = 0;
+		this.safeWaitingTime = this.entity.getRandom().nextInt(this.entity.getRandom().nextInt(1200) + 1200) + 1200;
+	}
+
 	public void tick() {
 		//Check if there is an item within 1.5 blocks and the golem's hand is empty.
 		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), null);
@@ -52,35 +48,36 @@ public class GolemMoveToItemGoal extends Goal {
 			ItemStack stack = list.get(0).getStack();
 			entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
 		}
-		//Check if there is an ItemEntity in the search radius and the golem's hand is empty.
-		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-		list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
-		if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
-			//Iterate through nearby items until one is found that is reachable, and set it as the target.
-			for (ItemEntity itemEntity: list) {
-				if (canNavigateToEntity(itemEntity)) {
-					entity.getNavigation().startMovingTo(itemEntity, 1);
-					return;
-				}
+		//Continue towards targetPos.
+		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget())) {
+			++this.tryingTime;
+			if (this.shouldResetPath()) {
+				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)this.targetPos.getY(), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
 			}
+		} else {
+			--this.tryingTime;
 		}
 	}
 	
-
-	private boolean canNavigateToEntity(Entity entity) {
-		Path path = this.entity.getNavigation().findPathTo((Entity)entity, 0);
-		if (path == null) {
-			return false;
-		} else {
-			PathNode pathNode = path.getEnd();
-			if (pathNode == null) {
-				return false;
-			} else {
-				int i = pathNode.x - MathHelper.floor(entity.getX());
-				int j = pathNode.z - MathHelper.floor(entity.getZ());
-				int k = pathNode.y - MathHelper.floor(entity.getY());
-				return (double)(i * i + j * j + k * k) <= 3.375;
+	public double getDesiredSquaredDistanceToTarget() {
+		return 1.0D;
+	}
+	
+	public boolean shouldResetPath() {
+		return this.tryingTime % 40 == 0;
+	}
+	
+	public boolean findTargetPos() {
+		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
+		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
+		if (list.isEmpty()) { return false; }
+		for (ItemEntity itemEntity: list) {
+			BlockPos pos = itemEntity.getBlockPos();
+			if (this.entity.isInWalkTargetRange(pos)) {
+				this.targetPos = pos;
+				return true;
 			}
 		}
+		return false;
 	}
 }
