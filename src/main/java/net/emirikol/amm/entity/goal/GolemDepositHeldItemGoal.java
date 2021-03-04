@@ -38,7 +38,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 		if (!stack.isEmpty()) {
 			for (int i = 0; i < this.container.size(); i++) {
 				ItemStack slotStack = this.container.getStack(i);
-				if (slotStack.isEmpty()) {
+				if (slotStack.isEmpty() && this.container.isValid(i, stack)) {
 					this.container.setStack(i, stack);
 					this.entity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 					break;

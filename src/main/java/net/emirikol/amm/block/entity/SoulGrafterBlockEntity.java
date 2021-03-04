@@ -110,7 +110,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	}
 	
 	@Override 
-	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+	public boolean isValid(int slot, ItemStack stack) {
 		//You can insert filled soulstones into parent slots.
 		for (int i: PARENT_SLOTS) {
 			if ((slot == i) && (stack.isItemEqual(new ItemStack(AriseMyMinionsMod.SOULSTONE_FILLED)))) {
@@ -130,6 +130,11 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+		return isValid(slot, stack);
 	}
 
 	@Override
