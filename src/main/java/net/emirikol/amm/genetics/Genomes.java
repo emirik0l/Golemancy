@@ -135,7 +135,7 @@ public class Genomes {
 	public static final Genome WITHER_SKELETON = new Genome() {{
 		put("type", new Gene<String>("Valiant"));
 		put("potency", new Gene<Integer>(3));
-		put("strength", new Gene<Integer>(1));
+		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
