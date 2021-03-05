@@ -11,6 +11,7 @@
 	"entity.amm.golem_curious": "Curious Golem",
 	"entity.amm.golem_hungry": "Hungry Golem",
 	"entity.amm.golem_restless": "Restless Golem",
+	"entity.amm.golem_valiant": "Valiant Golem",
 	"text.amm.active_column": "ACTIVE",
 	"text.amm.dormant_column": "DORMANT",
 	"text.amm.type": "Type",

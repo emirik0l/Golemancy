@@ -42,6 +42,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
 	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;	
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
+	public static EntityType<ValiantGolemEntity> VALIANT_GOLEM_ENTITY;
 	
 	@Override
 	public void onInitialize() {
@@ -88,6 +89,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		HUNGRY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HungryGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
+		VALIANT_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ValiantGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 	}
 	
 	public static void doRegistration() {
@@ -111,6 +113,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_curious", CURIOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_hungry", HUNGRY_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_restless", RESTLESS_GOLEM_ENTITY);
+		Registry.register(Registry.ENTITY_TYPE, "amm:golem_valiant", VALIANT_GOLEM_ENTITY);
 		for (EntityType type: Golems.getTypes()) {
 			FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());
 		}

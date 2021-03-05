@@ -21,5 +21,6 @@ public class Golems {
 		put("Curious", AriseMyMinionsMod.CURIOUS_GOLEM_ENTITY);
 		put("Hungry", AriseMyMinionsMod.HUNGRY_GOLEM_ENTITY);
 		put("Restless", AriseMyMinionsMod.RESTLESS_GOLEM_ENTITY);
+		put("Valiant", AriseMyMinionsMod.VALIANT_GOLEM_ENTITY);
 	}};
 }
