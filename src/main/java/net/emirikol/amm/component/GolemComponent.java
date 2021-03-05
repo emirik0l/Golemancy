@@ -11,7 +11,6 @@ import java.util.*;
 
 public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	
-	private String type = "";
 	private Map<String,Integer> attributes = new HashMap<String,Integer>() {{
 		put("strength", 0);
 		put("agility", 0);
@@ -23,15 +22,6 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	
 	public GolemComponent(Object provider) {
 		this.provider = provider;
-	}
-	
-	public String getType() { 
-		return this.type; 
-	}
-	
-	public void setType(String type) { 
-		this.type = type; 
-		AriseMyMinionsComponents.GOLEM.sync(this.provider);
 	}
 	
 	public Integer getAttribute(String key) {
@@ -55,7 +45,6 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	
 	@Override
 	public void readFromNbt(CompoundTag tag) { 
-		this.type = tag.getString("amm_type");
 		this.attributes.put("strength", tag.getInt("amm_strength"));
 		this.attributes.put("agility", tag.getInt("amm_agility"));
 		this.attributes.put("vigor", tag.getInt("amm_vigor"));
@@ -69,7 +58,6 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	
 	@Override
 	public void writeToNbt(CompoundTag tag) {
-		tag.putString("amm_type", this.type);
 		tag.putInt("amm_strength", this.attributes.get("strength"));
 		tag.putInt("amm_agility", this.attributes.get("agility"));
 		tag.putInt("amm_vigor", this.attributes.get("vigor"));

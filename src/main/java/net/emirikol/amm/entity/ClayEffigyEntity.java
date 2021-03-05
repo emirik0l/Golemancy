@@ -69,7 +69,6 @@ public class ClayEffigyEntity extends PathAwareEntity {
 			AbstractGolemEntity entity = (AbstractGolemEntity) golemType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
 			world.spawnEntityAndPassengers(entity);
 			//Update tracked values from genome.
-			entity.setGolemType(typeGene.getActive());
 			entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
 			//Remove the soulstone.
 			stack.decrement(1);

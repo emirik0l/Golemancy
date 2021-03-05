@@ -23,7 +23,6 @@ import net.minecraft.server.world.*;
 import java.util.*;
 
 public abstract class AbstractGolemEntity extends TameableEntity {
-	private String type;
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
 	
@@ -59,7 +58,6 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	
 	public void toComponent() {
 		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
-		component.setType(this.type);
 		component.setAttribute("strength", this.strength);
 		component.setAttribute("agility", this.agility);
 		component.setAttribute("vigor", this.vigor);
@@ -69,7 +67,6 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	
 	public void fromComponent() {
 		GolemComponent component = AriseMyMinionsComponents.GOLEM.get(this);
-		this.type = component.getType();
 		this.strength = component.getAttribute("strength");
 		this.agility = component.getAttribute("agility");
 		this.vigor = component.getAttribute("vigor");
@@ -132,16 +129,6 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 		entityAttributeInstance.setBaseValue(getHealthFromVigor(this.vigor));
 		this.heal(20.0F);
-	}
-	
-	public void setGolemType(String type) {
-		this.type = type;
-		this.toComponent();
-	}
-	
-	public String getGolemType() {
-		this.fromComponent();
-		return this.type;
 	}
 	
 	public void setGolemStats(int str, int agi, int vig, int sma) {
