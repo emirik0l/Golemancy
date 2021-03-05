@@ -52,7 +52,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome GUARDIAN = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Valiant"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
@@ -79,7 +79,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome RAVAGER = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Valiant"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
@@ -133,7 +133,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome WITHER_SKELETON = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Valiant"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -155,6 +155,7 @@ public class Genomes {
 		put("Curious", 2);
 		put("Hungry", 3);
 		put("Covetous", 4);
+		put("Valiant", 5);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
