@@ -27,6 +27,11 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public boolean canStart() {
+		//Check if the golem is the correct type for this behaviour.
+		String golemType = entity.getGolemType();
+		if (!this.validTypes.contains(golemType)) {
+			return false;
+		}
 		return this.findTargetPos() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
