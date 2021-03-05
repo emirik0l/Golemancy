@@ -165,13 +165,13 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	public double getAttackDamageFromStrength(int strength) {
 		switch(strength) {
 			case 0:
-				return 1.0D;
-			case 1:
 				return 2.0D;
-			case 2:
+			case 1:
 				return 3.0D;
-			case 3:
+			case 2:
 				return 4.0D;
+			case 3:
+				return 5.0D;
 			default:
 				return 0.0D;
 		}
