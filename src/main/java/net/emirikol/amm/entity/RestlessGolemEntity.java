@@ -1,6 +1,7 @@
 package net.emirikol.amm.entity;
 
 import net.emirikol.amm.*;
+import net.emirikol.amm.entity.goal.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
