@@ -38,6 +38,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static ClayEffigy CLAY_EFFIGY;
 	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 
+	public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
 	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
 	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;	
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
@@ -83,6 +84,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
 		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		//Instantiate golems.
+		COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		HUNGRY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HungryGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
@@ -105,9 +107,11 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "amm:clay_effigy", CLAY_EFFIGY_ENTITY);
 		FabricDefaultAttributeRegistry.register(CLAY_EFFIGY_ENTITY, ClayEffigyEntity.createClayEffigyAttributes());
 		//Register golems.
+		Registry.register(Registry.ENTITY_TYPE, "amm:golem_covetous", COVETOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_curious", CURIOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_hungry", HUNGRY_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_restless", RESTLESS_GOLEM_ENTITY);
+		FabricDefaultAttributeRegistry.register(COVETOUS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
 		FabricDefaultAttributeRegistry.register(CURIOUS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
 		FabricDefaultAttributeRegistry.register(HUNGRY_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
 		FabricDefaultAttributeRegistry.register(RESTLESS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());

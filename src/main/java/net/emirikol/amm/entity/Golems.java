@@ -13,6 +13,7 @@ public class Golems {
 	}
 	
 	private static final Map<String,EntityType> GOLEMS = new HashMap<String,EntityType>() {{
+		put("Covetous", AriseMyMinionsMod.COVETOUS_GOLEM_ENTITY);
 		put("Curious", AriseMyMinionsMod.CURIOUS_GOLEM_ENTITY);
 		put("Hungry", AriseMyMinionsMod.HUNGRY_GOLEM_ENTITY);
 		put("Restless", AriseMyMinionsMod.RESTLESS_GOLEM_ENTITY);
