@@ -12,14 +12,14 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemReturnHomeGoal extends Goal {
-	private final ClayEffigyEntity entity;
+	private final AbstractGolemEntity entity;
 	private final double speed;
 	
 	protected BlockPos targetPos;
 	protected int tryingTime;
 	protected int safeWaitingTime;
 	
-	public GolemReturnHomeGoal(ClayEffigyEntity entity, double speed) {
+	public GolemReturnHomeGoal(AbstractGolemEntity entity, double speed) {
 		this.entity = entity;
 		this.speed = speed;
 		this.targetPos = BlockPos.ORIGIN;

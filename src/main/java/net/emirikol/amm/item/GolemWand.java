@@ -27,13 +27,13 @@ public class GolemWand extends Item {
 			return ActionResult.PASS;
 		}
 		ServerWorld world = (ServerWorld) user.world;
-		if (entity instanceof ClayEffigyEntity) {
-			ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) entity;
-			if (clayEffigyEntity.isOwner(user)) {
+		if (entity instanceof AbstractGolemEntity) {
+			AbstractGolemEntity golemEntity = (AbstractGolemEntity) entity;
+			if (golemEntity.isOwner(user)) {
 				if (user.isSneaking()) {
-					return startLinking(clayEffigyEntity, user, hand);
+					return startLinking(golemEntity, user, hand);
 				} else {
-					return toggleFollow(clayEffigyEntity, user);
+					return toggleFollow(golemEntity, user);
 				}
 			}
 		}
@@ -53,17 +53,17 @@ public class GolemWand extends Item {
 		int identifier = tag.getInt("golem_id");
 		if (identifier != 0) {
 			Entity entity = world.getEntityById(identifier);
-			if (entity instanceof ClayEffigyEntity) {
-				ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) entity;
-				if (clayEffigyEntity.isOwner(user)) {
-					return finishLinking(clayEffigyEntity, stack, pos, user, world);
+			if (entity instanceof AbstractGolemEntity) {
+				AbstractGolemEntity golemEntity = (AbstractGolemEntity) entity;
+				if (golemEntity.isOwner(user)) {
+					return finishLinking(golemEntity, stack, pos, user, world);
 				}
 			}
 		}
 		return ActionResult.PASS;
 	}
 	
-	public ActionResult startLinking(ClayEffigyEntity entity, PlayerEntity user, Hand hand) {
+	public ActionResult startLinking(AbstractGolemEntity entity, PlayerEntity user, Hand hand) {
 		//Linking functionality.
 		int identifier = entity.getEntityId();
 		ItemStack stack = user.getStackInHand(hand);
@@ -89,7 +89,7 @@ public class GolemWand extends Item {
 		}
 	}
 	
-	public ActionResult finishLinking(ClayEffigyEntity entity, ItemStack stack, BlockPos pos, PlayerEntity user, ServerWorld world) {
+	public ActionResult finishLinking(AbstractGolemEntity entity, ItemStack stack, BlockPos pos, PlayerEntity user, ServerWorld world) {
 		//Update entity with its new linked BlockPos.
 		entity.linkToBlockPos(pos);
 		CompoundTag tag = stack.getOrCreateTag();
@@ -103,7 +103,7 @@ public class GolemWand extends Item {
 		return ActionResult.SUCCESS;
 	}
 	
-	public ActionResult toggleFollow(ClayEffigyEntity entity, PlayerEntity user) {
+	public ActionResult toggleFollow(AbstractGolemEntity entity, PlayerEntity user) {
 		//Following functionality.
 		entity.toggleFollowingWand();
 		MutableText text = new LiteralText("");

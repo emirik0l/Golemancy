@@ -45,9 +45,9 @@ public class GolemFollowOwnerGoal extends Goal {
 
 	public boolean canStart() {
 		//Check if the golem is the correct type for this behaviour, or if the golem has been commanded to follow with a golem wand.
-		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.tameable;
-		String golemType = clayEffigyEntity.getGolemType();
-		if (!this.validTypes.contains(golemType) && !clayEffigyEntity.isFollowingWand()) {
+		AbstractGolemEntity golemEntity = (AbstractGolemEntity) this.tameable;
+		String golemType = golemEntity.getGolemType();
+		if (!this.validTypes.contains(golemType) && !golemEntity.isFollowingWand()) {
 			return false;
 		}
 		//Continue with checks copied from FollowOwnerGoal

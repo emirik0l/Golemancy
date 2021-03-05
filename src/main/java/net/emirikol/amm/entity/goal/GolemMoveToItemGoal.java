@@ -11,7 +11,7 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemMoveToItemGoal extends Goal {
-	private final ClayEffigyEntity entity;
+	private final AbstractGolemEntity entity;
 	private final float searchRadius;
 	private final List<String> validTypes;
 	
@@ -19,7 +19,7 @@ public class GolemMoveToItemGoal extends Goal {
 	protected int tryingTime;
 	protected int safeWaitingTime;
 	
-	public GolemMoveToItemGoal(ClayEffigyEntity entity, float searchRadius, String[] validTypes) {
+	public GolemMoveToItemGoal(AbstractGolemEntity entity, float searchRadius, String[] validTypes) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
 		this.validTypes = Arrays.asList(validTypes);

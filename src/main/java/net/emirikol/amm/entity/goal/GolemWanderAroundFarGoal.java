@@ -18,8 +18,8 @@ public class GolemWanderAroundFarGoal extends WanderAroundFarGoal {
 	@Override
 	public boolean canStart() {
 		//Check if the golem is the correct type for this behaviour.
-		ClayEffigyEntity clayEffigyEntity = (ClayEffigyEntity) this.mob;
-		String golemType = clayEffigyEntity.getGolemType();
+		AbstractGolemEntity golemEntity = (AbstractGolemEntity) this.mob;
+		String golemType = golemEntity.getGolemType();
 		if (!this.validTypes.contains(golemType)) {
 			return false;
 		}

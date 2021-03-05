@@ -12,12 +12,12 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemEatHeldItemGoal extends Goal {
-	private final ClayEffigyEntity entity;
+	private final AbstractGolemEntity entity;
 	private final List<String> validTypes;
 	
 	private int eatingTimer;
 	
-	public GolemEatHeldItemGoal(ClayEffigyEntity entity, String[] validTypes) {
+	public GolemEatHeldItemGoal(AbstractGolemEntity entity, String[] validTypes) {
 		this.entity = entity;
 		this.validTypes = Arrays.asList(validTypes);
 	}

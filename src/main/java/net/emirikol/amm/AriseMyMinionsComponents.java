@@ -16,6 +16,6 @@ public class AriseMyMinionsComponents implements EntityComponentInitializer {
 
 	@Override
 	public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-		registry.registerFor(ClayEffigyEntity.class, GOLEM, e -> new GolemComponent(e));
+		registry.registerFor(AbstractGolemEntity.class, GOLEM, e -> new GolemComponent(e));
 	}
 } 

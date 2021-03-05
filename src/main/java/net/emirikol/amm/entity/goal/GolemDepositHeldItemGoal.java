@@ -13,12 +13,12 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemDepositHeldItemGoal extends Goal {
-	private final ClayEffigyEntity entity;
+	private final AbstractGolemEntity entity;
 	private final List<String> validTypes;
 	
 	private Inventory container;
 	
-	public GolemDepositHeldItemGoal(ClayEffigyEntity entity, String[] validTypes) {
+	public GolemDepositHeldItemGoal(AbstractGolemEntity entity, String[] validTypes) {
 		this.entity = entity;
 		this.validTypes = Arrays.asList(validTypes);
 	}
