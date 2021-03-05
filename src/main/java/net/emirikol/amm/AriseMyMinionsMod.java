@@ -111,9 +111,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_curious", CURIOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_hungry", HUNGRY_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_restless", RESTLESS_GOLEM_ENTITY);
-		FabricDefaultAttributeRegistry.register(COVETOUS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
-		FabricDefaultAttributeRegistry.register(CURIOUS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
-		FabricDefaultAttributeRegistry.register(HUNGRY_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
-		FabricDefaultAttributeRegistry.register(RESTLESS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
+		for (EntityType type: Golems.getTypes()) {
+			FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());
+		}
 	}
 }
