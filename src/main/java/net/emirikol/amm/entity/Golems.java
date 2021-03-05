@@ -12,6 +12,10 @@ public class Golems {
 		return GOLEMS.get(key);
 	}
 	
+	public static Collection<EntityType> getTypes() {
+		return GOLEMS.values();
+	}
+	
 	private static final Map<String,EntityType> GOLEMS = new HashMap<String,EntityType>() {{
 		put("Covetous", AriseMyMinionsMod.COVETOUS_GOLEM_ENTITY);
 		put("Curious", AriseMyMinionsMod.CURIOUS_GOLEM_ENTITY);

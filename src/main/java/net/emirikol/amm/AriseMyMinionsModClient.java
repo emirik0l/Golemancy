@@ -1,14 +1,17 @@
 package net.emirikol.amm;
 
 import net.emirikol.amm.*;
+import net.emirikol.amm.entity.*;
 import net.emirikol.amm.screen.*;
 import net.emirikol.amm.client.render.*;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.*;
 import net.fabricmc.fabric.api.client.screenhandler.v1.*;
-
+import net.minecraft.entity.*;
 import net.minecraft.client.render.entity.*;
+
+import java.util.*;
 
 public class AriseMyMinionsModClient implements ClientModInitializer {
 	
@@ -27,17 +30,10 @@ public class AriseMyMinionsModClient implements ClientModInitializer {
 			return new ClayEffigyEntityRenderer(dispatcher);
 		});
 		//Register Golem Renderers
-		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.COVETOUS_GOLEM_ENTITY, (dispatcher, context) -> {
-			return new ClayGolemEntityRenderer(dispatcher);
-		});
-		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.CURIOUS_GOLEM_ENTITY, (dispatcher, context) -> {
-			return new ClayGolemEntityRenderer(dispatcher);
-		});
-		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.HUNGRY_GOLEM_ENTITY, (dispatcher, context) -> {
-			return new ClayGolemEntityRenderer(dispatcher);
-		});
-		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.RESTLESS_GOLEM_ENTITY, (dispatcher, context) -> {
-			return new ClayGolemEntityRenderer(dispatcher);
-		});
+		for(EntityType type: Golems.getTypes()) {
+			EntityRendererRegistry.INSTANCE.register(type, (dispatcher, context) -> {
+				return new ClayGolemEntityRenderer(dispatcher);
+			});
+		}
 	}
 }
