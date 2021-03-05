@@ -18,7 +18,7 @@ public class GolemMoveToItemGoal extends Goal {
 	protected int tryingTime;
 	protected int safeWaitingTime;
 	
-	public GolemMoveToItemGoal(AbstractGolemEntity entity, float searchRadius, String[] validTypes) {
+	public GolemMoveToItemGoal(AbstractGolemEntity entity, float searchRadius) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.JUMP));

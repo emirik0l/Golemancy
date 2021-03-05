@@ -16,7 +16,7 @@ public class GolemEatHeldItemGoal extends Goal {
 	
 	private int eatingTimer;
 	
-	public GolemEatHeldItemGoal(AbstractGolemEntity entity, String[] validTypes) {
+	public GolemEatHeldItemGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
 	}
 	

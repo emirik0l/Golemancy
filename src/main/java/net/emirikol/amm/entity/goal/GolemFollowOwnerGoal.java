@@ -14,7 +14,7 @@ import java.util.*;
 
 public class GolemFollowOwnerGoal extends Goal {
 	
-	private final TameableEntity tameable;
+	protected final TameableEntity tameable;
 	private LivingEntity owner;
 	private final WorldView world;
 	private final double speed;
@@ -22,19 +22,15 @@ public class GolemFollowOwnerGoal extends Goal {
 	private int updateCountdownTicks;
 	private final float maxDistance;
 	private final float minDistance;
-	private final float teleportDistance;
 	private float oldWaterPathfindingPenalty;
-	private final boolean leavesAllowed;
 
-	public GolemFollowOwnerGoal(TameableEntity tameable, double speed, float minDistance, float maxDistance, float teleportDistance, boolean leavesAllowed, String[] validTypes) {
+	public GolemFollowOwnerGoal(TameableEntity tameable, double speed, float minDistance, float maxDistance) {
 		this.tameable = tameable;
 		this.world = tameable.world;
 		this.speed = speed;
 		this.navigation = tameable.getNavigation();
 		this.minDistance = minDistance;
 		this.maxDistance = maxDistance;
-		this.teleportDistance = teleportDistance;
-		this.leavesAllowed = leavesAllowed;
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 		if (!(tameable.getNavigation() instanceof MobNavigation) && !(tameable.getNavigation() instanceof BirdNavigation)) {
 			throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");

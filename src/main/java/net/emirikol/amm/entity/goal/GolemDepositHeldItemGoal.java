@@ -17,7 +17,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 	
 	private Inventory container;
 	
-	public GolemDepositHeldItemGoal(AbstractGolemEntity entity, String[] validTypes) {
+	public GolemDepositHeldItemGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
 	}
 	
