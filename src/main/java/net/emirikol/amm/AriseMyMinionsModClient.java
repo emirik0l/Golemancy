@@ -30,5 +30,8 @@ public class AriseMyMinionsModClient implements ClientModInitializer {
 		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.RESTLESS_GOLEM_ENTITY, (dispatcher, context) -> {
 			return new ClayGolemEntityRenderer(dispatcher);
 		});
+		EntityRendererRegistry.INSTANCE.register(AriseMyMinionsMod.CURIOUS_GOLEM_ENTITY, (dispatcher, context) -> {
+			return new ClayGolemEntityRenderer(dispatcher);
+		});
 	}
 }

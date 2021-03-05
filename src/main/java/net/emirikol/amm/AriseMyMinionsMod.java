@@ -39,6 +39,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 	
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
+	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
 	
 	@Override
 	public void onInitialize() {
@@ -82,6 +83,7 @@ public class AriseMyMinionsMod implements ModInitializer {
 		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 		//Instantiate golems.
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
+		CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.45f)).build();
 	}
 	
 	public static void doRegistration() {
@@ -102,6 +104,8 @@ public class AriseMyMinionsMod implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(CLAY_EFFIGY_ENTITY, ClayEffigyEntity.createClayEffigyAttributes());
 		//Register golems.
 		Registry.register(Registry.ENTITY_TYPE, "amm:golem_restless", RESTLESS_GOLEM_ENTITY);
+		Registry.register(Registry.ENTITY_TYPE, "amm:golem_curious", CURIOUS_GOLEM_ENTITY);
 		FabricDefaultAttributeRegistry.register(RESTLESS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
+		FabricDefaultAttributeRegistry.register(CURIOUS_GOLEM_ENTITY, AbstractGolemEntity.createGolemAttributes());
 	}
 }
