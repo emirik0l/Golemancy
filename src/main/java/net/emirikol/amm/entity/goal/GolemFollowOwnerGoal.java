@@ -25,7 +25,6 @@ public class GolemFollowOwnerGoal extends Goal {
 	private final float teleportDistance;
 	private float oldWaterPathfindingPenalty;
 	private final boolean leavesAllowed;
-	private final List<String> validTypes;
 
 	public GolemFollowOwnerGoal(TameableEntity tameable, double speed, float minDistance, float maxDistance, float teleportDistance, boolean leavesAllowed, String[] validTypes) {
 		this.tameable = tameable;
@@ -36,7 +35,6 @@ public class GolemFollowOwnerGoal extends Goal {
 		this.maxDistance = maxDistance;
 		this.teleportDistance = teleportDistance;
 		this.leavesAllowed = leavesAllowed;
-		this.validTypes = Arrays.asList(validTypes);
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 		if (!(tameable.getNavigation() instanceof MobNavigation) && !(tameable.getNavigation() instanceof BirdNavigation)) {
 			throw new IllegalArgumentException("Unsupported mob type for FollowOwnerGoal");
@@ -44,13 +42,6 @@ public class GolemFollowOwnerGoal extends Goal {
 	}
 
 	public boolean canStart() {
-		//Check if the golem is the correct type for this behaviour, or if the golem has been commanded to follow with a golem wand.
-		AbstractGolemEntity golemEntity = (AbstractGolemEntity) this.tameable;
-		String golemType = golemEntity.getGolemType();
-		if (!this.validTypes.contains(golemType) && !golemEntity.isFollowingWand()) {
-			return false;
-		}
-		//Continue with checks copied from FollowOwnerGoal
 		LivingEntity livingEntity = this.tameable.getOwner();
 		if (livingEntity == null) {
 			return false;

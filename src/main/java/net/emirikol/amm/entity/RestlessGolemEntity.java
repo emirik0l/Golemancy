@@ -4,6 +4,8 @@ import net.emirikol.amm.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
 import net.minecraft.server.world.*;
 
@@ -17,6 +19,8 @@ public class RestlessGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
+		this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 	}
 	
 	@Override

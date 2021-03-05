@@ -14,21 +14,14 @@ import java.util.*;
 
 public class GolemDepositHeldItemGoal extends Goal {
 	private final AbstractGolemEntity entity;
-	private final List<String> validTypes;
 	
 	private Inventory container;
 	
 	public GolemDepositHeldItemGoal(AbstractGolemEntity entity, String[] validTypes) {
 		this.entity = entity;
-		this.validTypes = Arrays.asList(validTypes);
 	}
 	
 	public boolean canStart() {
-		//Check if the golem is the correct type for this behaviour.
-		String golemType = entity.getGolemType();
-		if (!this.validTypes.contains(golemType)) {
-			return false;
-		}
 		//Check whether golem is holding something, linked block is an inventory, and linked block is close enough to deposit.
 		return !entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty() && linkedBlockIsContainer() && linkedBlockIsNearby() && linkedBlockCanInsert();
 	}

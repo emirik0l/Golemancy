@@ -13,7 +13,6 @@ import java.util.*;
 public class GolemMoveToItemGoal extends Goal {
 	private final AbstractGolemEntity entity;
 	private final float searchRadius;
-	private final List<String> validTypes;
 	
 	protected BlockPos targetPos;
 	protected int tryingTime;
@@ -22,16 +21,10 @@ public class GolemMoveToItemGoal extends Goal {
 	public GolemMoveToItemGoal(AbstractGolemEntity entity, float searchRadius, String[] validTypes) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
-		this.validTypes = Arrays.asList(validTypes);
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.JUMP));
 	}
 	
 	public boolean canStart() {
-		//Check if the golem is the correct type for this behaviour.
-		String golemType = entity.getGolemType();
-		if (!this.validTypes.contains(golemType)) {
-			return false;
-		}
 		return this.findTargetPos() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
 	}
 	
