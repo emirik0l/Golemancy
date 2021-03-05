@@ -4,6 +4,7 @@ import net.emirikol.amm.*;
 import net.emirikol.amm.entity.goal.*;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
@@ -20,6 +21,12 @@ public class ValiantGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
+		this.goalSelector.add(5, new MeleeAttackGoal(this, 1.0D, true));
+		this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
+		this.targetSelector.add(2, new AttackWithOwnerGoal(this));
+		this.targetSelector.add(3, new FollowTargetGoal(this, MobEntity.class, 5, false, false, (livingEntity) -> {
+			return livingEntity instanceof Monster && !(livingEntity instanceof CreeperEntity);
+		}));
 	}
 	
 	@Override
