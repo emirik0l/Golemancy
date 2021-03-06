@@ -93,6 +93,10 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 		//The following functionality is only available to the golem's owner.
 		if (this.isOwner(player)) {
+			//Try to heal the golem.
+			if (player.getStackInHand(hand).getItem() == Items.CLAY_BALL) {
+				return tryHealGolem(player, hand);
+			}
 			//Try to take items from the golem.
 			if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
 				return tryTakeFromGolem(player);
@@ -103,6 +107,16 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 			}
 		}
 		return super.interactMob(player, hand);
+	}
+	
+	private ActionResult tryHealGolem(PlayerEntity player, Hand hand) {
+		if (this.getHealth() >= this.getMaxHealth()) {
+			return ActionResult.PASS;
+		}
+		ItemStack stack = player.getStackInHand(hand);
+		stack.decrement(1);
+		this.heal(2.0F);
+		return ActionResult.CONSUME;
 	}
 	
 	private ActionResult tryTakeFromGolem(PlayerEntity player) {
@@ -131,7 +145,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//Update health based on vigor.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 		entityAttributeInstance.setBaseValue(getHealthFromVigor(this.vigor));
-		this.heal(20.0F);
+		this.setHealth(this.getMaxHealth());
 	}
 	
 	public void setGolemStats(int str, int agi, int vig, int sma) {
