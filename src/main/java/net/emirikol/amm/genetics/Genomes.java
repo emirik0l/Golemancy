@@ -185,6 +185,7 @@ public class Genomes {
 		put(EntityType.ZOMBIE, ZOMBIE);
 		put(EntityType.ZOMBIE_HORSE, ZOMBIE);
 		put(EntityType.ZOMBIE_VILLAGER, ZOMBIE);
+		put(EntityType.ZOMBIFIED_PIGLIN, ZOMBIE);
 	}};
 	
 	public static Set<EntityType> getEntityTypes() {
