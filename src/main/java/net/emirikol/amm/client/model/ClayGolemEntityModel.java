@@ -70,7 +70,7 @@ public class ClayGolemEntityModel extends EntityModel<AbstractGolemEntity> imple
 		//Attacking animation.
 		int i = entity.getAttackTicksLeft();
 		if (i > 0) {
-			rightArmPitch = -1.0F + 1.5F * MathHelper.method_24504((float)i - limbSwingAmount, 10.0F);
+			rightArmPitch = -1.0F + 1.5F * MathHelper.method_24504((float)i, 10.0F);
 			setRotationAngle(RightArm, rightArmPitch, 0, 0);
 		}
 	}
