@@ -6,6 +6,8 @@ import net.emirikol.amm.entity.goal.*;
 import net.emirikol.amm.genetics.*;
 import net.emirikol.amm.component.*;
 
+import net.fabricmc.api.Environment;
+import net.fabricmc.api.EnvType;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
@@ -27,6 +29,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	private BlockPos linkedBlockPos;
 	
 	private boolean golemWandFollow;
+	private int attackTicksLeft;
 	
 	public AbstractGolemEntity(EntityType<? extends AbstractGolemEntity> entityType, World world) {
 		super(entityType, world);
@@ -205,5 +208,35 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 			default:
 				return 0.0D;
 		}
+	}
+	
+	@Override
+	public boolean tryAttack(Entity target) {
+		this.attackTicksLeft = 5;
+		this.world.sendEntityStatus(this, (byte)4);
+		return super.tryAttack(target);
+	}
+
+	@Override
+	public void tickMovement() {
+		super.tickMovement();
+		if (this.attackTicksLeft > 0) {
+			--this.attackTicksLeft;
+		}
+	}
+	
+	@Override
+	@Environment(EnvType.CLIENT)
+	public void handleStatus(byte status) {
+		if (status == 4) {
+			this.attackTicksLeft = 5;
+		} else {
+			super.handleStatus(status);
+		}
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public int getAttackTicksLeft() {
+		return this.attackTicksLeft;
 	}
 }
