@@ -18,7 +18,7 @@ public class Genomes {
 	public static final Genome BLAZE = new Genome() {{
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(2));
-		put("strength", new Gene<Integer>(1));
+		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
@@ -54,7 +54,7 @@ public class Genomes {
 	public static final Genome GUARDIAN = new Genome() {{
 		put("type", new Gene<String>("Valiant"));
 		put("potency", new Gene<Integer>(2));
-		put("strength", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(0));
@@ -64,7 +64,7 @@ public class Genomes {
 		put("type", new Gene<String>("Hungry"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
-		put("agility", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(0));
 	}};
@@ -82,7 +82,7 @@ public class Genomes {
 		put("type", new Gene<String>("Valiant"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
-		put("agility", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(3));
 		put("smarts", new Gene<Integer>(0));
 	}};
@@ -100,7 +100,7 @@ public class Genomes {
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(5));
 		put("strength", new Gene<Integer>(0));
-		put("agility", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
 	}};
