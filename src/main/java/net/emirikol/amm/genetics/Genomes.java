@@ -25,7 +25,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
-		put("type", new Gene<String>("Curious"));
+		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -115,7 +115,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SLIME = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Curious"));
 		put("potency", new Gene<Integer>(4));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
