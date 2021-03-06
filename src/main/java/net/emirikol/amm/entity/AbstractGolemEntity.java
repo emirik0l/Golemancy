@@ -146,6 +146,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
 		entityAttributeInstance.setBaseValue(getHealthFromVigor(this.vigor));
 		this.setHealth(this.getMaxHealth());
+		//Update follow range based on smarts.
+		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
+		entityAttributeInstance.setBaseValue(getFollowRangeFromSmarts(this.smarts));
 	}
 	
 	public void setGolemStats(int str, int agi, int vig, int sma) {
@@ -219,6 +222,21 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 				return 12.0D;
 			case 3:
 				return 16.0D;
+			default:
+				return 0.0D;
+		}
+	}
+	
+	public double getFollowRangeFromSmarts(int smarts) {
+		switch(smarts) {
+			case 0:
+				return 16.0D;
+			case 1:
+				return 24.0D;
+			case 2:
+				return 32.0D;
+			case 3:
+				return 48.0D;
 			default:
 				return 0.0D;
 		}

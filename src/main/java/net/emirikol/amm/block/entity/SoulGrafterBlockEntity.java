@@ -31,7 +31,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	public static final int[] ALL_SLOTS = {0,1,2,3,4,5,6,7,8,9};
 	
 	public static final int FUEL_VALUE = 600; //each piece of bonemeal burns for 600 ticks, or 30 seconds
-	public static final int GRAFT_DURATION = 2400; //grafting souls takes 2400 ticks or 2 minutes
+	public static final int GRAFT_DURATION = 24; //grafting souls takes 2400 ticks or 2 minutes
 	
 	private int graft_time; 
 	private int fuel_time; 
