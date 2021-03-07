@@ -21,6 +21,7 @@ public class HungryGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(5, new GolemEatHeldItemGoal(this));
+		this.goalSelector.add(5, new GolemExtractItemGoal(this));
 		this.goalSelector.add(6, new GolemMoveToItemGoal(this, 10.0F));
 	}
 	
