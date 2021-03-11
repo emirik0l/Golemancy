@@ -133,7 +133,7 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
+		setTextureId(2);
 	}};
 	
 	public static final Genome SPIDER = new Genome() {{
