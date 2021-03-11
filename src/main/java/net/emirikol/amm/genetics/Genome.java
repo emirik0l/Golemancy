@@ -1,5 +1,7 @@
 package net.emirikol.amm.genetics;
 
+import net.emirikol.amm.util.*;
+
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 
@@ -68,7 +70,7 @@ public class Genome {
 		tag.putInt("smarts_active", smarts.getActive());
 		tag.putInt("smarts_dormant", smarts.getDormant());
 		
-		int variant = Genomes.VARIANTS.get(type.getActive());
+		int variant = GolemHelper.getSoulstoneVariant(type.getActive());
 		tag.putInt("CustomModelData", variant);
 	}
 	

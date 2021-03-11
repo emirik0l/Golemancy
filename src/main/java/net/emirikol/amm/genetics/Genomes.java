@@ -150,14 +150,6 @@ public class Genomes {
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
-	public static final Map<String,Integer> VARIANTS = new HashMap<String,Integer>() {{
-		put("Restless", 1);
-		put("Curious", 2);
-		put("Hungry", 3);
-		put("Covetous", 4);
-		put("Valiant", 5);
-	}};
-	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
 		put(EntityType.BLAZE, BLAZE);
 		put(EntityType.CREEPER, CREEPER);
