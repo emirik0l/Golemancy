@@ -16,9 +16,11 @@ public class GolemExtractItemGoal extends Goal {
 	private final AbstractGolemEntity entity;
 	
 	private Inventory container;
+	private List<Item> filter;
 	
 	public GolemExtractItemGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
+		this.filter = new ArrayList<Item>();
 	}
 	
 	public boolean canStart() {
@@ -30,10 +32,18 @@ public class GolemExtractItemGoal extends Goal {
 		if (this.entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
 			for (int i = 0; i < this.container.size(); i++) {
 				ItemStack stack = this.container.getStack(i);
-				if (!stack.isEmpty()) {
+				if (!stack.isEmpty() && canTake(stack)) {
 					this.entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
+					return;
 				}
 			}
+		}
+	}
+	
+	public void add(Item... items) {
+		//Adds items to the filter, marking them as "allowed" to extract.
+		for (Item item: items) {
+			this.filter.add(item);
 		}
 	}
 	
@@ -66,6 +76,14 @@ public class GolemExtractItemGoal extends Goal {
 			}
 		}
 		return false;
+	}
+	
+	private boolean canTake(ItemStack stack) {
+		if (this.filter.isEmpty()) {
+			return true;
+		} else {
+			return this.filter.contains(stack.getItem());
+		}
 	}
 	
 	public double getDesiredSquaredDistanceToTarget() {
