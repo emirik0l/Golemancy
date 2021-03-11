@@ -104,6 +104,7 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(1));
+		setTextureId(1);
 	}};
 	
 	public static final Genome SILVERFISH = new Genome() {{
