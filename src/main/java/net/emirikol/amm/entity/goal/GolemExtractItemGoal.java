@@ -78,7 +78,7 @@ public class GolemExtractItemGoal extends Goal {
 		return false;
 	}
 	
-	private boolean canTake(ItemStack stack) {
+	protected boolean canTake(ItemStack stack) {
 		if (this.filter.isEmpty()) {
 			return true;
 		} else {
