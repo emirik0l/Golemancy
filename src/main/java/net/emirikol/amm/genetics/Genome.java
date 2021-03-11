@@ -2,11 +2,13 @@ package net.emirikol.amm.genetics;
 
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.text.*;
 
 import java.util.*;
 
 public class Genome {
 	private Map<String,Gene> genes;
+	private Integer textureId; //which texture should be used by a soulstone containing this genome
 	
 	public Genome() {
 		genes = new HashMap<String,Gene>();
@@ -16,6 +18,7 @@ public class Genome {
 		genes.put("agility", null);
 		genes.put("vigor", null);
 		genes.put("smarts", null);
+		textureId = 0;
 	}
 	
 	public Genome(ItemStack stack) {
@@ -33,6 +36,10 @@ public class Genome {
 	
 	public Set<String> getKeys() {
 		return genes.keySet();
+	}
+	
+	public void setTextureId(Integer textureId) {
+		this.textureId = textureId;
 	}
 	
 	//Check an NBT tag to ensure it contains a full and valid set of genes.
@@ -68,8 +75,7 @@ public class Genome {
 		tag.putInt("smarts_active", smarts.getActive());
 		tag.putInt("smarts_dormant", smarts.getDormant());
 		
-		int variant = Genomes.getSoulstoneVariant(type.getActive());
-		tag.putInt("CustomModelData", variant);
+		tag.putInt("CustomModelData", this.textureId);
 	}
 	
 	//Apply an ItemStack's NBT data to this genome.

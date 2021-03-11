@@ -59,8 +59,8 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		//Draw type row.
 		Text typeText = new TranslatableText("text.amm.type");
 		this.textRenderer.draw(matrices, typeText, (float) ROW_START_X, (float) TYPE_ROW_Y, 4210752);
-		this.textRenderer.draw(matrices, Genomes.getGolemText(serializedGenome.activeAlleles.get("type")), (float) COLUMN_DOM_X, (float) TYPE_ROW_Y, 4210752);
-		this.textRenderer.draw(matrices, Genomes.getGolemText(serializedGenome.dormantAlleles.get("type")), (float) COLUMN_REC_X, (float) TYPE_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, typeToText(serializedGenome.activeAlleles.get("type")), (float) COLUMN_DOM_X, (float) TYPE_ROW_Y, 4210752);
+		this.textRenderer.draw(matrices, typeToText(serializedGenome.dormantAlleles.get("type")), (float) COLUMN_REC_X, (float) TYPE_ROW_Y, 4210752);
 		//Draw potency row.
 		Text potencyText = new TranslatableText("text.amm.potency");
 		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);
@@ -98,6 +98,10 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	@Override
 	protected void init() {
 		super.init();
+	}
+	
+	public TranslatableText typeToText(String type) {
+		return new TranslatableText("text.amm.type." + type.toLowerCase());
 	}
 	
 	public Text geneToText(String geneValue) {
