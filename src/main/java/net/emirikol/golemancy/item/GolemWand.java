@@ -97,7 +97,7 @@ public class GolemWand extends Item {
 		MutableText text = new LiteralText("");
 		text.append(entity.getName());
 		text.append(new TranslatableText("text.golemancy.finished_linking_wand"));
-		text.append(world.getBlockState(pos).getBlock().getName());
+		text.append(new TranslatableText(world.getBlockState(pos).getBlock().getTranslationKey()));
 		text.append(new LiteralText("!"));
 		user.sendMessage(text, false);
 		return ActionResult.SUCCESS;
