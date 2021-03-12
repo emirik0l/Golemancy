@@ -18,13 +18,13 @@ public class Genomes {
 	}};
 	
 	public static final Genome BLAZE = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Parched"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
+		setTextureId(6);
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
