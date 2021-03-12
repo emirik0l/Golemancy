@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "amm",
+  "id": "golemancy",
   "version": "${version}",
 
-  "name": "Arise My Minions",
-  "description": "A mod about magical genetics.",
+  "name": "Golemancy",
+  "description": "A mod about golems and magical genetics.",
   "authors": [
     "Emirikol"
   ],
@@ -14,13 +14,13 @@
   },
 
   "license": "LGPL2.1",
-  "icon": "assets/amm/icon.png",
+  "icon": "assets/golemancy/icon.png",
 
   "environment": "*",
   "entrypoints": {
-    "main": ["net.emirikol.amm.AriseMyMinionsMod"],
-	"client": ["net.emirikol.amm.AriseMyMinionsModClient"],
-	"cardinal-components-entity": ["net.emirikol.amm.AriseMyMinionsComponents"]
+    "main": ["net.emirikol.golemancy.Golemancy"],
+	"client": ["net.emirikol.golemancy.GolemancyClient"],
+	"cardinal-components-entity": ["net.emirikol.golemancy.GolemancyComponents"]
   },
   "mixins": [],
 
@@ -32,6 +32,6 @@
   "suggests": {
   },
   "custom": {
-      "cardinal-components": ["amm:golem"]
+      "cardinal-components": ["golemancy:golem"]
   }
 }

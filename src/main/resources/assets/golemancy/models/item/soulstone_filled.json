@@ -1,0 +1,13 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "golemancy:item/soulstone"
+  },
+  "overrides": [
+	{"predicate": { "custom_model_data": 1 }, "model": "golemancy:item/soulstone_restless"},
+	{"predicate": { "custom_model_data": 2 }, "model": "golemancy:item/soulstone_curious"},
+	{"predicate": { "custom_model_data": 3 }, "model": "golemancy:item/soulstone_hungry"},
+	{"predicate": { "custom_model_data": 4 }, "model": "golemancy:item/soulstone_covetous"},
+	{"predicate": { "custom_model_data": 5 }, "model": "golemancy:item/soulstone_valiant"}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+	"type":  "minecraft:crafting_shapeless",
+	"ingredients": [
+	{"item": "golemancy:soulstone_filled"},
+	{"item": "minecraft:soul_sand"}
+	],
+	"result": {
+	"item": "golemancy:soulstone_empty",
+	"count": 1
+	}
+}

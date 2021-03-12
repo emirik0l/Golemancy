@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+	"  Q",
+	" S ",
+	"S  "
+  ],
+  "key": {
+	"Q": {
+	  "item": "minecraft:quartz"
+	},
+	"S": {
+	  "item": "minecraft:stick"
+	}
+  },
+  "result": {
+	"item": "golemancy:golem_wand",
+	"count": 1
+  }
+}

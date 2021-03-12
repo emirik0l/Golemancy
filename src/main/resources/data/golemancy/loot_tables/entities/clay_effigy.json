@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:entity",
+	"pools": [{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "golemancy:clay_effigy"
+				}
+			],
+			"conditions": []
+		}]
+}
