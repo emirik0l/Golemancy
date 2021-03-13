@@ -42,6 +42,7 @@ public class GolemExtractItemGoal extends Goal {
 	
 	public void add(Item... items) {
 		//Adds items to the filter, marking them as "allowed" to extract.
+		//If the filter is empty, anything can be extracted.
 		for (Item item: items) {
 			this.filter.add(item);
 		}

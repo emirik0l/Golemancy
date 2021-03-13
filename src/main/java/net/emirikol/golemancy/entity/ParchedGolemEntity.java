@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.goal.*;
 
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
@@ -20,6 +21,9 @@ public class ParchedGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
+		this.goalSelector.add(5, new GolemDrinkFluidGoal(this) {{ 
+			add(Blocks.WATER);
+		}});
 	}
 	
 	@Override
