@@ -25,7 +25,7 @@ public class ParchedGolemEntity extends AbstractGolemEntity {
 		this.goalSelector.add(5, new GolemDrinkFluidGoal(this) {{ 
 			add(Blocks.WATER);
 		}});
-		this.goalSelector.add(6, new GolemMoveToBlockGoal(this, 10.0F) {{
+		this.goalSelector.add(6, new GolemMoveToFluidGoal(this, 10.0F) {{
 			add(Blocks.WATER);
 		}});
 	}

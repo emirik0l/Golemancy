@@ -10,7 +10,7 @@ import net.minecraft.server.world.*;
 import java.util.*;
 
 public class GolemMoveToBlockGoal extends Goal {
-	private final AbstractGolemEntity entity;
+	protected final AbstractGolemEntity entity;
 	private final float searchRadius;
 	
 	private List<Block> filter;
@@ -52,8 +52,8 @@ public class GolemMoveToBlockGoal extends Goal {
 	}
 	
 	public void add(Block... blocks) {
-		//Adds blocks to the filter, marking them as "allowed" to drink.
-		//If the filter is empty, anything can be drunk.
+		//Adds blocks to the filter, marking them as "allowed" to move to.
+		//If the filter is empty, any block will be moved to.
 		for (Block block: blocks) {
 			this.filter.add(block);
 		}
