@@ -59,6 +59,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return true;
 	}
 	
+	@Override
+	protected float getSoundVolume() {
+		return 0.4F;
+	}
+	
 	public void toComponent() {
 		GolemComponent component = GolemancyComponents.GOLEM.get(this);
 		component.setAttribute("strength", this.strength);

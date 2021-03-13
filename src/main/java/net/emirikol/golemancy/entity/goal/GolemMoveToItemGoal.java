@@ -21,7 +21,7 @@ public class GolemMoveToItemGoal extends Goal {
 	public GolemMoveToItemGoal(AbstractGolemEntity entity, float searchRadius) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
-		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.JUMP));
+		this.setControls(EnumSet.of(Goal.Control.MOVE));
 	}
 	
 	public boolean canStart() {
@@ -50,7 +50,7 @@ public class GolemMoveToItemGoal extends Goal {
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget())) {
 			++this.tryingTime;
 			if (this.shouldResetPath()) {
-				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)this.targetPos.getY(), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
+				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)(this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
 			}
 		} else {
 			--this.tryingTime;

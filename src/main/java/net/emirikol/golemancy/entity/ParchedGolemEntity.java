@@ -21,6 +21,7 @@ public class ParchedGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
+		this.goalSelector.add(1, new SwimGoal(this));
 		this.goalSelector.add(5, new GolemDrinkFluidGoal(this) {{ 
 			add(Blocks.WATER);
 		}});

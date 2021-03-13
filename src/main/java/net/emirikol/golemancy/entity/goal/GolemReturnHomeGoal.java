@@ -23,7 +23,7 @@ public class GolemReturnHomeGoal extends Goal {
 		this.entity = entity;
 		this.speed = speed;
 		this.targetPos = BlockPos.ORIGIN;
-		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.JUMP));
+		this.setControls(EnumSet.of(Goal.Control.MOVE));
 	}
 	
 	public boolean canStart() {
