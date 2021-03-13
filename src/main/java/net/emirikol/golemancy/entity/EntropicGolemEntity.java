@@ -21,6 +21,7 @@ public class EntropicGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
+		this.goalSelector.add(5, new GolemBreakBlockGoal(this));
 	}
 	
 	@Override
