@@ -14,7 +14,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(0);
 	}};
 	
 	public static final Genome BLAZE = new Genome() {{
@@ -24,7 +23,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(6);
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
@@ -34,7 +32,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
 	}};
 	
 	public static final Genome ENDERMAN = new Genome() {{
@@ -44,7 +41,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(1));
-		setTextureId(4);
 	}};
 	
 	public static final Genome GHAST = new Genome() {{
@@ -54,7 +50,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(2));
-		setTextureId(1);
 	}};
 	
 	public static final Genome GUARDIAN = new Genome() {{
@@ -64,7 +59,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(5);
 	}};
 	
 	public static final Genome HOGLIN = new Genome() {{
@@ -74,7 +68,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(3);
 	}};
 	
 	public static final Genome PHANTOM = new Genome() {{
@@ -84,7 +77,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(2));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(1));
-		setTextureId(1);
 	}};
 	
 	public static final Genome RAVAGER = new Genome() {{
@@ -94,7 +86,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(3));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(5);
 	}};
 	
 	public static final Genome SHULKER = new Genome() {{
@@ -104,7 +95,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(1));
-		setTextureId(1);
 	}};
 	
 	public static final Genome SILVERFISH = new Genome() {{
@@ -114,7 +104,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
 	}};
 	
 	public static final Genome SKELETON = new Genome() {{
@@ -124,7 +113,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
 	}};
 	
 	public static final Genome SLIME = new Genome() {{
@@ -134,7 +122,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(2);
 	}};
 	
 	public static final Genome SPIDER = new Genome() {{
@@ -144,7 +131,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(2));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
 	}};
 	
 	public static final Genome WITHER_SKELETON = new Genome() {{
@@ -154,7 +140,6 @@ public class Genomes {
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(5);
 	}};
 	
 	public static final Genome ZOMBIE = new Genome() {{
@@ -164,7 +149,15 @@ public class Genomes {
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(0));
-		setTextureId(1);
+	}};
+	
+	public static final Map<String,Integer> TEXTURE_VARIANTS = new HashMap<String,Integer>() {{
+		put("Restless", 1);
+		put("Curious", 2);
+		put("Hungry", 3);
+		put("Covetous", 4);
+		put("Valiant", 5);
+		put("Parched", 6);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{

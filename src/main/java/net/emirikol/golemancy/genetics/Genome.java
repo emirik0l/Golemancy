@@ -8,7 +8,6 @@ import java.util.*;
 
 public class Genome {
 	private Map<String,Gene> genes;
-	private Integer textureId; //which texture should be used by a soulstone containing this genome
 	
 	public Genome() {
 		genes = new HashMap<String,Gene>();
@@ -18,7 +17,6 @@ public class Genome {
 		genes.put("agility", null);
 		genes.put("vigor", null);
 		genes.put("smarts", null);
-		textureId = 0;
 	}
 	
 	public Genome(ItemStack stack) {
@@ -36,10 +34,6 @@ public class Genome {
 	
 	public Set<String> getKeys() {
 		return genes.keySet();
-	}
-	
-	public void setTextureId(Integer textureId) {
-		this.textureId = textureId;
 	}
 	
 	//Check an NBT tag to ensure it contains a full and valid set of genes.
@@ -75,7 +69,8 @@ public class Genome {
 		tag.putInt("smarts_active", smarts.getActive());
 		tag.putInt("smarts_dormant", smarts.getDormant());
 		
-		tag.putInt("CustomModelData", this.textureId);
+		int textureId = Genomes.TEXTURE_VARIANTS.get(type.getActive());
+		tag.putInt("CustomModelData", textureId);
 	}
 	
 	//Apply an ItemStack's NBT data to this genome.
