@@ -26,7 +26,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Entropic"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -98,7 +98,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SILVERFISH = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Entropic"));
 		put("potency", new Gene<Integer>(5));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
@@ -158,6 +158,7 @@ public class Genomes {
 		put("Covetous", 4);
 		put("Valiant", 5);
 		put("Parched", 6);
+		put("Entropic", 7);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
