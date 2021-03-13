@@ -8,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.world.*;
 import net.minecraft.server.world.*;
 
@@ -16,6 +17,7 @@ import java.util.*;
 public class ParchedGolemEntity extends AbstractGolemEntity {
 	public ParchedGolemEntity(EntityType<? extends ParchedGolemEntity> entityType, World world) {
 		super(entityType, world);
+		this.setPathfindingPenalty(PathNodeType.WATER, 2000.0F);
 	}
 	
 	@Override 
