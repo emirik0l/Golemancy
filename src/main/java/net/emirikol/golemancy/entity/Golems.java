@@ -19,6 +19,7 @@ public class Golems {
 	private static final Map<String,EntityType> GOLEMS = new HashMap<String,EntityType>() {{
 		put("Covetous", Golemancy.COVETOUS_GOLEM_ENTITY);
 		put("Curious", Golemancy.CURIOUS_GOLEM_ENTITY);
+		put("Entropic", Golemancy.ENTROPIC_GOLEM_ENTITY);
 		put("Hungry", Golemancy.HUNGRY_GOLEM_ENTITY);
 		put("Parched", Golemancy.PARCHED_GOLEM_ENTITY);
 		put("Restless", Golemancy.RESTLESS_GOLEM_ENTITY);
