@@ -89,7 +89,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SHULKER = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Intrepid"));
 		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -160,6 +160,7 @@ public class Genomes {
 		put("Parched", 6);
 		put("Entropic", 7);
 		put("Tactile", 8);
+		put("Intrepid", 9);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
