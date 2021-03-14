@@ -32,9 +32,9 @@ public class GolemUseBlockGoal extends Goal {
 			//Create a fake player and equip them with the golem's item.
 			ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 			FakePlayerEntity fakePlayer = new FakePlayerEntity(this.entity.world, pos, 0.0F);
-			ItemUsageContext context = new ItemUsageContext(fakePlayer, fakePlayer.getActiveHand(), hit);
 			fakePlayer.setStackInHand(fakePlayer.getActiveHand(), stack);
 			//Try using the item on the block.
+			ItemUsageContext context = new ItemUsageContext(fakePlayer, fakePlayer.getActiveHand(), hit);
 			ActionResult result = stack.getItem().useOnBlock(context);
 			if (result == ActionResult.PASS) {
 				//If that doesn't do anything, try just using the block
