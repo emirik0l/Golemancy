@@ -71,7 +71,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome PHANTOM = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Tactile"));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(2));
@@ -159,6 +159,7 @@ public class Genomes {
 		put("Valiant", 5);
 		put("Parched", 6);
 		put("Entropic", 7);
+		put("Tactile", 8);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{

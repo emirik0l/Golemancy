@@ -13,6 +13,7 @@
 	"entity.golemancy.golem_hungry": "Hungry Golem",
 	"entity.golemancy.golem_parched": "Parched Golem",
 	"entity.golemancy.golem_restless": "Restless Golem",
+	"entity.golemancy.golem_tactile": "Tactile Golem",
 	"entity.golemancy.golem_valiant": "Valiant Golem",
 	"text.golemancy.active_column": "ACTIVE",
 	"text.golemancy.dormant_column": "DORMANT",
@@ -40,5 +41,6 @@
 	"text.golemancy.type.hungry": "Hungry",
 	"text.golemancy.type.parched": "Parched",
 	"text.golemancy.type.restless": "Restless",
+	"text.golemancy.type.tactile": "Tactile",
 	"text.golemancy.type.valiant": "Valiant"
 }

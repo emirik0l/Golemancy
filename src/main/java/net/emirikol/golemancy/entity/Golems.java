@@ -23,6 +23,7 @@ public class Golems {
 		put("Hungry", Golemancy.HUNGRY_GOLEM_ENTITY);
 		put("Parched", Golemancy.PARCHED_GOLEM_ENTITY);
 		put("Restless", Golemancy.RESTLESS_GOLEM_ENTITY);
+		put("Tactile", Golemancy.TACTILE_GOLEM_ENTITY);
 		put("Valiant", Golemancy.VALIANT_GOLEM_ENTITY);
 	}};
 }

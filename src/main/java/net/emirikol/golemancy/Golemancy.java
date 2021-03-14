@@ -41,9 +41,10 @@ public class Golemancy implements ModInitializer {
 	public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
 	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
 	public static EntityType<EntropicGolemEntity> ENTROPIC_GOLEM_ENTITY;
-	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;	
+	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;
+	public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;	
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
-	public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;
+	public static EntityType<TactileGolemEntity> TACTILE_GOLEM_ENTITY;
 	public static EntityType<ValiantGolemEntity> VALIANT_GOLEM_ENTITY;
 	
 	private static float GOLEM_WIDTH = 0.7f;
@@ -96,6 +97,7 @@ public class Golemancy implements ModInitializer {
 		HUNGRY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HungryGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		PARCHED_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ParchedGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
+		TACTILE_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TactileGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		VALIANT_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ValiantGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 	}
 	
@@ -122,6 +124,7 @@ public class Golemancy implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_hungry", HUNGRY_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_parched", PARCHED_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_restless", RESTLESS_GOLEM_ENTITY);
+		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_tactile", TACTILE_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_valiant", VALIANT_GOLEM_ENTITY);
 		for (EntityType type: Golems.getTypes()) {
 			FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());

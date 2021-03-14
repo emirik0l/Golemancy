@@ -10,6 +10,7 @@
 	{"predicate": { "custom_model_data": 4 }, "model": "golemancy:item/soulstone_covetous"},
 	{"predicate": { "custom_model_data": 5 }, "model": "golemancy:item/soulstone_valiant"},
 	{"predicate": { "custom_model_data": 6 }, "model": "golemancy:item/soulstone_parched"},
-	{"predicate": { "custom_model_data": 7 }, "model": "golemancy:item/soulstone_entropic"}
+	{"predicate": { "custom_model_data": 7 }, "model": "golemancy:item/soulstone_entropic"},
+	{"predicate": { "custom_model_data": 8 }, "model": "golemancy:item/soulstone_tactile"}
   ]
 }
