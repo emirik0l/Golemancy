@@ -1,0 +1,37 @@
+package net.emirikol.golemancy.entity;
+
+import net.emirikol.golemancy.*;
+import net.emirikol.golemancy.entity.goal.*;
+
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.world.*;
+import net.minecraft.server.world.*;
+
+import java.util.*;
+
+public class IntrepidGolemEntity extends AbstractGolemEntity {
+	public IntrepidGolemEntity(EntityType<? extends IntrepidGolemEntity> entityType, World world) {
+		super(entityType, world);
+	}
+	
+	@Override 
+	protected void initGoals() {
+		super.initGoals();
+	}
+	
+	@Override
+	public IntrepidGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+		IntrepidGolemEntity golemEntity = (IntrepidGolemEntity) Golemancy.INTREPID_GOLEM_ENTITY.create(serverWorld);
+		UUID uUID = this.getOwnerUuid();
+		
+		if (uUID != null) {
+			golemEntity.setOwnerUuid(uUID);
+			golemEntity.setTamed(true);
+		}
+		return golemEntity;
+	}
+}

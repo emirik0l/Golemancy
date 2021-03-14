@@ -21,6 +21,7 @@ public class Golems {
 		put("Curious", Golemancy.CURIOUS_GOLEM_ENTITY);
 		put("Entropic", Golemancy.ENTROPIC_GOLEM_ENTITY);
 		put("Hungry", Golemancy.HUNGRY_GOLEM_ENTITY);
+		put("Intrepid", Golemancy.INTREPID_GOLEM_ENTITY);
 		put("Parched", Golemancy.PARCHED_GOLEM_ENTITY);
 		put("Restless", Golemancy.RESTLESS_GOLEM_ENTITY);
 		put("Tactile", Golemancy.TACTILE_GOLEM_ENTITY);
