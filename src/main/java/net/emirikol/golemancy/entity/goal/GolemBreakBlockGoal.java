@@ -6,11 +6,19 @@ import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.util.math.*;
 
+import java.util.*;
+
 public class GolemBreakBlockGoal extends Goal {
 	private final AbstractGolemEntity entity;
 	protected int breakProgress;
 	protected int prevBreakProgress;
 	protected int maxProgress;
+	
+	protected static final List<Block> FORBIDDEN_BLOCKS = new ArrayList<Block>() {{
+		add(Blocks.AIR);
+		add(Blocks.BEDROCK);
+		add(Blocks.BARRIER);
+	}};
 	
 	public GolemBreakBlockGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
@@ -63,7 +71,7 @@ public class GolemBreakBlockGoal extends Goal {
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { return false; }
 		Block block = this.entity.world.getBlockState(pos).getBlock();
-		return (!block.equals(Blocks.BEDROCK)) && (!block.equals(Blocks.BARRIER)) && (!block.equals(Blocks.AIR));
+		return !FORBIDDEN_BLOCKS.contains(block);
 	}
 	
 	protected int getMaxProgress() {
