@@ -36,10 +36,9 @@ public class GolemUseBlockGoal extends Goal {
 			fakePlayer.setStackInHand(fakePlayer.getActiveHand(), stack);
 			//Try using the item on the block.
 			ActionResult result = stack.getItem().useOnBlock(context);
-			state.getBlock().onUse(state, this.entity.world, pos, fakePlayer, fakePlayer.getActiveHand(), hit);
 			if (result == ActionResult.PASS) {
 				//If that doesn't do anything, try just using the block
-				
+				state.getBlock().onUse(state, this.entity.world, pos, fakePlayer, fakePlayer.getActiveHand(), hit);
 			}
 			//Remove the fake player and set the cooldown.
 			this.entity.equipStack(EquipmentSlot.MAINHAND, fakePlayer.getStackInHand(fakePlayer.getActiveHand()));
