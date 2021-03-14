@@ -17,6 +17,6 @@ public class FakePlayerEntity extends PlayerEntity {
 	}
 	
 	public boolean isSpectator() {
-		return true;
+		return false;
 	}
 }
