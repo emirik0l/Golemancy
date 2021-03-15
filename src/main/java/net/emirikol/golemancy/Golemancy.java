@@ -48,6 +48,7 @@ public class Golemancy implements ModInitializer {
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
 	public static EntityType<TactileGolemEntity> TACTILE_GOLEM_ENTITY;
 	public static EntityType<ValiantGolemEntity> VALIANT_GOLEM_ENTITY;
+	public static EntityType<WeepingGolemEntity> WEEPING_GOLEM_ENTITY;
 	
 	public static EntityType<ClayballEntity> CLAYBALL;
 	
@@ -104,6 +105,7 @@ public class Golemancy implements ModInitializer {
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		TACTILE_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TactileGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		VALIANT_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ValiantGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
+		WEEPING_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, WeepingGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		//Instantiate clayball projectile.
 		CLAYBALL = FabricEntityTypeBuilder.<ClayballEntity>create(SpawnGroup.MISC, ClayballEntity::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build();
 	}
@@ -134,6 +136,7 @@ public class Golemancy implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_restless", RESTLESS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_tactile", TACTILE_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_valiant", VALIANT_GOLEM_ENTITY);
+		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_weeping", WEEPING_GOLEM_ENTITY);
 		for (EntityType type: Golems.getTypes()) {
 			FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());
 		}
