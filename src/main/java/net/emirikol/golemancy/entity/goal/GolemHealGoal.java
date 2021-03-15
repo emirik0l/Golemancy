@@ -6,6 +6,7 @@ import net.emirikol.golemancy.network.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.sound.*;
 import net.minecraft.server.network.*;
 
 import java.util.*;
@@ -37,6 +38,7 @@ public class GolemHealGoal extends Goal {
 		} else {
 			this.friend.heal(2.0F);
 			Particles.healParticle(this.friend);
+			friend.world.playSound(null, friend.getBlockPos(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 1F, 1F);
 			if (canStartHealing()) { this.setHealing(); }
 		}
 	}
