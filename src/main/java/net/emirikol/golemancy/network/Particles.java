@@ -34,15 +34,13 @@ public class Particles {
 	public static void spawnHealParticle(BlockPos pos) {
 		Random rand = MinecraftClient.getInstance().world.getRandom();
 		for(int i = 0; i<15; i++) {
-			double d = 0.7D;
-			double g = 1.0D;
+			double d = 0.5D;
+			double m = (double)pos.getX() + rand.nextDouble() * d;
+			double n = (double)pos.getY() + rand.nextDouble() * d + 0.5D;
+			double o = (double)pos.getZ() + rand.nextDouble() * d;
 			double h = rand.nextGaussian() * 0.02D;
 			double j = rand.nextGaussian() * 0.02D;
 			double k = rand.nextGaussian() * 0.02D;
-			double l = 0.5D - d;
-			double m = (double)pos.getX() + rand.nextDouble() * d;
-			double n = (double)pos.getY() + rand.nextDouble() * g;
-			double o = (double)pos.getZ() + rand.nextDouble() * d;
 			MinecraftClient.getInstance().world.addParticle(ParticleTypes.HAPPY_VILLAGER, m, n, o, h, j, k);
 		}
 	}
