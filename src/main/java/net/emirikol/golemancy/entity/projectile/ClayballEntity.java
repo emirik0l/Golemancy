@@ -34,8 +34,7 @@ public class ClayballEntity extends ThrownItemEntity {
 	
 	@Environment(EnvType.CLIENT)
 	private ParticleEffect getParticleParameters() {
-		ItemStack itemStack = this.getItem();
-		return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+		return new ItemStackParticleEffect(ParticleTypes.ITEM, new ItemStack(this.getDefaultItem()));
 	}
 
 	@Environment(EnvType.CLIENT)
