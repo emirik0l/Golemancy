@@ -50,12 +50,11 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 	public void attack(LivingEntity target, float pullProgress) {
 		ClayballEntity clayballEntity = new ClayballEntity(this.world, this);
 		clayballEntity.setDamage(this.getAttackDamageFromStrength(this.getGolemStrength()));
-		double d = target.getEyeY() - 1.800000023841858D;
-		double e = target.getX() - this.getX();
-		double f = d - clayballEntity.getY();
-		double g = target.getZ() - this.getZ();
-		float h = MathHelper.sqrt(e * e + g * g) * 0.2F;
-		clayballEntity.setVelocity(e, f + (double)h, g, 1.6F, 12.0F);
+		double d = target.getX() - this.getX();
+		double e = target.getBodyY(0.3333333333333333D) - clayballEntity.getY();
+		double f = target.getZ() - this.getZ();
+		double g = (double)MathHelper.sqrt(d * d + f * f);
+		clayballEntity.setVelocity(d, e + g * 0.20000000298023224D, f, 1.6F, (float)(14 - this.world.getDifficulty().getId() * 4));
 		this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntity(clayballEntity);
 	}
