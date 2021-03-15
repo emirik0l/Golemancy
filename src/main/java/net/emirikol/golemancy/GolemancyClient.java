@@ -28,6 +28,7 @@ public class GolemancyClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		registerEntities();
 		registerParticles();
+		registerSpawnPacket();
 	}
 	
 	public void registerEntities() {
@@ -49,16 +50,29 @@ public class GolemancyClient implements ClientModInitializer {
 		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAYBALL, (dispatcher, context) -> {
 			return new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer());
 		});
-
-		//Register Spawn Packet
-		ClientSidePacketRegistry.INSTANCE.register(Golemancy.SpawnPacketID, (ctx, byteBuf) -> {
-			EntityType<?> et = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());
-			UUID uuid = byteBuf.readUuid();
-			int entityId = byteBuf.readVarInt();
-			Vec3d pos = EntitySpawnPacket.PacketBufUtil.readVec3d(byteBuf);
-			float pitch = EntitySpawnPacket.PacketBufUtil.readAngle(byteBuf);
-			float yaw = EntitySpawnPacket.PacketBufUtil.readAngle(byteBuf);
-			ctx.getTaskQueue().execute(() -> {
+	}
+	
+	public void registerParticles() {
+		//Register Healing Particles
+		ClientPlayNetworking.registerGlobalReceiver(Particles.HEAL_PARTICLE_ID, (client, handler, buf, responseSender) -> {
+			BlockPos pos = buf.readBlockPos();
+			
+			client.execute(() -> {
+				Particles.spawnHealParticle(pos);
+			});
+		});
+	}
+	
+	public void registerSpawnPacket() {
+		ClientPlayNetworking.registerGlobalReceiver(SpawnPacket.SPAWN_PACKET_ID, (client, handler, buf, responseSender) -> {
+			EntityType<?> et = Registry.ENTITY_TYPE.get(buf.readVarInt());
+			UUID uuid = buf.readUuid();
+			int entityId = buf.readVarInt();
+			Vec3d pos = SpawnPacket.readVec3d(buf);
+			float pitch = SpawnPacket.readAngle(buf);
+			float yaw = SpawnPacket.readAngle(buf);
+			
+			client.execute(() -> {
 				if (MinecraftClient.getInstance().world == null)
 					throw new IllegalStateException("Tried to spawn entity in a null world!");
 				Entity e = et.create(MinecraftClient.getInstance().world);
@@ -71,17 +85,6 @@ public class GolemancyClient implements ClientModInitializer {
 				e.setEntityId(entityId);
 				e.setUuid(uuid);
 				MinecraftClient.getInstance().world.addEntity(entityId, e);
-			});
-		});
-	}
-	
-	public void registerParticles() {
-		//Register Healing Particles
-		ClientPlayNetworking.registerGlobalReceiver(Particles.HEAL_PARTICLE_ID, (client, handler, buf, responseSender) -> {
-			BlockPos pos = buf.readBlockPos();
-			
-			client.execute(() -> {
-				Particles.spawnHealParticle(pos);
 			});
 		});
 	}
