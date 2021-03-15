@@ -79,21 +79,9 @@ public class GolemancyClient implements ClientModInitializer {
 		//Register Healing Particles
 		ClientPlayNetworking.registerGlobalReceiver(Particles.HEAL_PARTICLE_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
-			Random rand = MinecraftClient.getInstance().world.getRandom();
 			
 			client.execute(() -> {
-				for(int i = 0; i<15; i++) {
-					double d = 0.7D;
-					double g = 1.0D;
-					double h = rand.nextGaussian() * 0.02D;
-					double j = rand.nextGaussian() * 0.02D;
-					double k = rand.nextGaussian() * 0.02D;
-					double l = 0.5D - d;
-					double m = (double)pos.getX() + rand.nextDouble() * d;
-					double n = (double)pos.getY() + rand.nextDouble() * g;
-					double o = (double)pos.getZ() + rand.nextDouble() * d;
-					MinecraftClient.getInstance().world.addParticle(ParticleTypes.HAPPY_VILLAGER, m, n, o, h, j, k);
-				}
+				Particles.spawnHealParticle(pos);
 			});
 		});
 	}
