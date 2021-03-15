@@ -10,7 +10,9 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.*;
 import net.fabricmc.fabric.api.client.screenhandler.v1.*;
 import net.fabricmc.fabric.api.network.*;
+import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.entity.*;
+import net.minecraft.particle.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -24,10 +26,11 @@ public class GolemancyClient implements ClientModInitializer {
 	
 	@Override
 	public void onInitializeClient() {
-		doRegistration();
+		registerEntities();
+		registerParticles();
 	}
 	
-	public void doRegistration() {
+	public void registerEntities() {
 		//Register Soul Mirror Screen
 		ScreenRegistry.register(Golemancy.SOUL_MIRROR_SCREEN_HANDLER, SoulMirrorScreen::new);
 		//Register Soul Grafter Screen
@@ -46,6 +49,7 @@ public class GolemancyClient implements ClientModInitializer {
 		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAYBALL, (dispatcher, context) -> {
 			return new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer());
 		});
+
 		//Register Spawn Packet
 		ClientSidePacketRegistry.INSTANCE.register(Golemancy.SpawnPacketID, (ctx, byteBuf) -> {
 			EntityType<?> et = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());
@@ -67,6 +71,29 @@ public class GolemancyClient implements ClientModInitializer {
 				e.setEntityId(entityId);
 				e.setUuid(uuid);
 				MinecraftClient.getInstance().world.addEntity(entityId, e);
+			});
+		});
+	}
+	
+	public void registerParticles() {
+		//Register Healing Particles
+		ClientPlayNetworking.registerGlobalReceiver(Particles.HEAL_PARTICLE_ID, (client, handler, buf, responseSender) -> {
+			BlockPos pos = buf.readBlockPos();
+			Random rand = MinecraftClient.getInstance().world.getRandom();
+			
+			client.execute(() -> {
+				for(int i = 0; i<15; i++) {
+					double d = 0.7D;
+					double g = 1.0D;
+					double h = rand.nextGaussian() * 0.02D;
+					double j = rand.nextGaussian() * 0.02D;
+					double k = rand.nextGaussian() * 0.02D;
+					double l = 0.5D - d;
+					double m = (double)pos.getX() + l + rand.nextDouble() * d * 2.0D;
+					double n = (double)pos.getY() + rand.nextDouble() * g;
+					double o = (double)pos.getZ() + l + rand.nextDouble() * d * 2.0D;
+					MinecraftClient.getInstance().world.addParticle(ParticleTypes.HAPPY_VILLAGER, m, n, o, h, j, k);
+				}
 			});
 		});
 	}

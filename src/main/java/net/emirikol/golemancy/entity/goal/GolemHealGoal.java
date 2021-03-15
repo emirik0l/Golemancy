@@ -1,10 +1,12 @@
 package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
+import net.emirikol.golemancy.network.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.server.network.*;
 
 import java.util.*;
 
@@ -29,6 +31,9 @@ public class GolemHealGoal extends Goal {
 	public void tick() {
 		if (this.isHealing()) {
 			this.healingTimer--;
+			if (this.healingTimer % 20 == 0) {
+				Particles.healParticle((ServerPlayerEntity) this.entity.getOwner(), this.entity);
+			}
 		} else {
 			this.friend.heal(2.0F);
 			if (canStartHealing()) { this.setHealing(); }
