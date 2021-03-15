@@ -163,7 +163,12 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.smarts	= sma;
 		this.toComponent();
 	}
-	
+
+	public Integer getGolemStrength() {
+		this.fromComponent();
+		return this.strength;
+	}
+
 	public Integer getGolemSmarts() {
 		this.fromComponent();
 		return this.smarts;

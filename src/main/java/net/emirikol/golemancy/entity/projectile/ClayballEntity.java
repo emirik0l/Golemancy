@@ -16,6 +16,8 @@ import net.minecraft.world.*;
 import net.minecraft.util.hit.*;
 
 public class ClayballEntity extends ThrownItemEntity {
+	private double damage;
+	
 	public ClayballEntity(EntityType<? extends ClayballEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -30,6 +32,10 @@ public class ClayballEntity extends ThrownItemEntity {
 
 	protected Item getDefaultItem() {
 		return Items.CLAY_BALL;
+	}
+	
+	public void setDamage(double damage) {
+		this.damage = damage;
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -57,7 +63,7 @@ public class ClayballEntity extends ThrownItemEntity {
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
 		Entity entity = entityHitResult.getEntity();
-		int i = entity instanceof AbstractGolemEntity ? 0 : 3;
+		double i = entity instanceof AbstractGolemEntity ? 0 : this.damage;
 		entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i);
 	}
 
