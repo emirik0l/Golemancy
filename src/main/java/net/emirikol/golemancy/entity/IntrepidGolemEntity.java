@@ -26,7 +26,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
-		this.goalSelector.add(1, new ProjectileAttackGoal(this, 1.25D, 20, 10.0F));
+		this.goalSelector.add(1, new ProjectileAttackGoal(this, 1.25D, 40, 10.0F));
 		this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
 		this.targetSelector.add(2, new AttackWithOwnerGoal(this));
 		this.targetSelector.add(3, new FollowTargetGoal(this, MobEntity.class, 5, false, false, (livingEntity) -> {
@@ -49,7 +49,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
 		ClayballEntity clayballEntity = new ClayballEntity(this.world, this);
-		double d = target.getEyeY() - 1.100000023841858D;
+		double d = target.getEyeY() - 1.800000023841858D;
 		double e = target.getX() - this.getX();
 		double f = d - clayballEntity.getY();
 		double g = target.getZ() - this.getZ();

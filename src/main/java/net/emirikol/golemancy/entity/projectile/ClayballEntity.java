@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity.projectile;
 
 import net.emirikol.golemancy.*;
+import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.network.*;
 
 import net.fabricmc.api.EnvType;
@@ -57,7 +58,7 @@ public class ClayballEntity extends ThrownItemEntity {
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
 		Entity entity = entityHitResult.getEntity();
-		int i = 3;
+		int i = entity instanceof AbstractGolemEntity ? 0 : 3;
 		entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i);
 	}
 
