@@ -31,8 +31,8 @@ public class GolemHealGoal extends Goal {
 	public void tick() {
 		if (this.isHealing()) {
 			this.healingTimer--;
-			if (this.healingTimer % 20 == 0) {
-				Particles.healParticle((ServerPlayerEntity) this.entity.getOwner(), this.entity);
+			if (this.healingTimer % 40 == 0) {
+				Particles.healParticle(this.entity);
 			}
 		} else {
 			this.friend.heal(2.0F);
