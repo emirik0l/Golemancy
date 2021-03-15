@@ -36,6 +36,7 @@ public class GolemHealGoal extends Goal {
 			}
 		} else {
 			this.friend.heal(2.0F);
+			Particles.healParticle(this.friend);
 			if (canStartHealing()) { this.setHealing(); }
 		}
 	}

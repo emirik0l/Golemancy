@@ -89,9 +89,9 @@ public class GolemancyClient implements ClientModInitializer {
 					double j = rand.nextGaussian() * 0.02D;
 					double k = rand.nextGaussian() * 0.02D;
 					double l = 0.5D - d;
-					double m = (double)pos.getX() + l + rand.nextDouble() * d * 2.0D;
+					double m = (double)pos.getX() + rand.nextDouble() * d;
 					double n = (double)pos.getY() + rand.nextDouble() * g;
-					double o = (double)pos.getZ() + l + rand.nextDouble() * d * 2.0D;
+					double o = (double)pos.getZ() + rand.nextDouble() * d;
 					MinecraftClient.getInstance().world.addParticle(ParticleTypes.HAPPY_VILLAGER, m, n, o, h, j, k);
 				}
 			});
