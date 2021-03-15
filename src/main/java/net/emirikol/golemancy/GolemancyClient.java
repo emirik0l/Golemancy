@@ -21,7 +21,6 @@ import net.minecraft.client.render.entity.*;
 import java.util.*;
 
 public class GolemancyClient implements ClientModInitializer {
-	public static final Identifier PacketID = new Identifier("golemancy", "spawn_packet");
 	
 	@Override
 	public void onInitializeClient() {
@@ -48,7 +47,7 @@ public class GolemancyClient implements ClientModInitializer {
 			return new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer());
 		});
 		//Register Spawn Packet
-		ClientSidePacketRegistry.INSTANCE.register(PacketID, (ctx, byteBuf) -> {
+		ClientSidePacketRegistry.INSTANCE.register(Golemancy.SpawnPacketID, (ctx, byteBuf) -> {
 			EntityType<?> et = Registry.ENTITY_TYPE.get(byteBuf.readVarInt());
 			UUID uuid = byteBuf.readUuid();
 			int entityId = byteBuf.readVarInt();

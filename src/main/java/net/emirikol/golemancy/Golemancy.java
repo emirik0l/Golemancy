@@ -55,6 +55,8 @@ public class Golemancy implements ModInitializer {
 	private static float GOLEM_WIDTH = 0.7f;
 	private static float GOLEM_HEIGHT = 1.45f;
 	
+	public static final Identifier SpawnPacketID = new Identifier("golemancy", "spawn_packet");
+	
 	@Override
 	public void onInitialize() {
 		doInstantiation();

@@ -56,7 +56,7 @@ public class ClayballEntity extends ThrownItemEntity {
 	
 	@Override
 	public Packet createSpawnPacket() {
-		return EntitySpawnPacket.create(this, GolemancyClient.PacketID);
+		return EntitySpawnPacket.create(this, Golemancy.SpawnPacketID);
 	}
 	
 	@Override
