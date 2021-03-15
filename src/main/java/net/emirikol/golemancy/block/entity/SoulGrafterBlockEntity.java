@@ -162,6 +162,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 			//Check if the given output slot matches and has room.
 			if ((ItemStack.areTagsEqual(outputStack, stack)) && (ItemStack.areItemsEqual(outputStack, stack)) && (outputStack.getCount() < outputStack.getMaxCount())) {
 				outputStack.increment(1);
+				this.setStack(i, outputStack);
 				this.markDirty();
 				return true;
 			}
