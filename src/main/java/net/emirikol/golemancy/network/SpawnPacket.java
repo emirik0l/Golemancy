@@ -18,18 +18,20 @@ import java.util.*;
 public class SpawnPacket {
 	public static final Identifier SPAWN_PACKET_ID = new Identifier("golemancy", "spawn_packet");
 	
-	public static Packet<?> create(Entity e, Identifier packetID) {
+	public static void sendSpawnPacket(Entity target) {
 		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeVarInt(Registry.ENTITY_TYPE.getRawId(e.getType()));
-		buf.writeUuid(e.getUuid());
-		buf.writeVarInt(e.getEntityId());
+		buf.writeVarInt(Registry.ENTITY_TYPE.getRawId(target.getType()));
+		buf.writeUuid(target.getUuid());
+		buf.writeVarInt(target.getEntityId());
 		
-		writeVec3d(buf, e.getPos());
-		writeAngle(buf, e.pitch);
-		writeAngle(buf, e.yaw);
+		writeVec3d(buf, target.getPos());
+		writeAngle(buf, target.pitch);
+		writeAngle(buf, target.yaw);
 		
-		return ServerPlayNetworking.createS2CPacket(packetID, buf);
-	}
+		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
+			ServerPlayNetworking.send((ServerPlayerEntity) user, SPAWN_PACKET_ID, buf);
+		}
+	};
 	
 	public static void writeVec3d(PacketByteBuf byteBuf, Vec3d vec3d) {
 		byteBuf.writeDouble(vec3d.x);

@@ -56,7 +56,8 @@ public class ClayballEntity extends ThrownItemEntity {
 	
 	@Override
 	public Packet createSpawnPacket() {
-		return SpawnPacket.create(this, SpawnPacket.SPAWN_PACKET_ID);
+		SpawnPacket.sendSpawnPacket(this);
+		return super.createSpawnPacket();
 	}
 	
 	@Override
