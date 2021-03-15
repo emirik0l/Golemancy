@@ -69,8 +69,10 @@ public class Genome {
 		tag.putInt("smarts_active", smarts.getActive());
 		tag.putInt("smarts_dormant", smarts.getDormant());
 		
-		int textureId = Genomes.TEXTURE_VARIANTS.get(type.getActive());
-		tag.putInt("CustomModelData", textureId);
+		Integer textureId = Genomes.TEXTURE_VARIANTS.get(type.getActive());
+		if (textureId != null) {
+			tag.putInt("CustomModelData", textureId);
+		}
 	}
 	
 	//Apply an ItemStack's NBT data to this genome.
