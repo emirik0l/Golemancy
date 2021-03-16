@@ -30,7 +30,7 @@ Right-click to put the effigy in the world. Then right-click on it with a soulst
 
 The golem wand can be used to interact with your golems:
 
-<!-- todo - image -->
+![golem wand recipe](/readme/golem-wand.png)
 
 Hold the golem wand in your hand and right-click on one of your golems to make them follow you. Right click again to tell them to stop. If you right-click a golem while sneaking, you'll enter "linking mode". You can then right-click on a block to link the golem to that block.
 
@@ -40,9 +40,11 @@ Golems consider their linked block as "home" and will return to it when they're 
 
 Each soul has a set of attributes and genetics that determine its type and abilities. You can check the genes of your soulstones with a soul mirror:
 
-<!-- todo - image -->
+![soul mirror recipe](/readme/soul-mirror.png)
 
 To use the soul mirror, just hold it in your off-hand and right-click with a soulstone in the other hand.
+
+<!-- todo - image -->
 
 You can breed (or "graft") soulstones together to produce new results. To do so, you'll need to craft a soul grafter using any filled soulstone:
 
