@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
+import net.emirikol.golemancy.network.*;
 
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
@@ -36,6 +37,9 @@ public class GolemEatHeldItemGoal extends Goal {
 			entity.world.playSound((PlayerEntity)null, entity.getX(), entity.getY(), entity.getZ(), entity.getEatSound(entity.getEquippedStack(EquipmentSlot.MAINHAND)), SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
 		} else {
 			this.eatingTimer--;
+			if (this.eatingTimer % 5 == 0) {
+				Particles.foodParticle(this.entity);
+			}
 		}
 	}
 	

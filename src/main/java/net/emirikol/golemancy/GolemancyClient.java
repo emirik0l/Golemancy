@@ -61,6 +61,16 @@ public class GolemancyClient implements ClientModInitializer {
 				Particles.spawnHealParticle(pos);
 			});
 		});
+		//Register Food Particles
+		ClientPlayNetworking.registerGlobalReceiver(Particles.FOOD_PARTICLE_ID, (client, handler, buf, responseSender) -> {
+			BlockPos pos = buf.readBlockPos();
+			int entityId = buf.readVarInt();
+			
+			client.execute(() -> {
+				Entity e = MinecraftClient.getInstance().world.getEntityById(entityId);
+				Particles.spawnFoodParticle(pos, e);
+			});
+		});
 	}
 	
 	public void registerSpawnPacket() {
