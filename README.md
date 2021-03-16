@@ -44,15 +44,15 @@ Each soul has a set of attributes and genetics that determine its type and abili
 
 To use the soul mirror, just hold it in your off-hand and right-click with a soulstone in the other hand.
 
-<!-- todo - image -->
+![soul mirror screen](/readme/soul-mirror-screen.png)
 
 You can breed (or "graft") soulstones together to produce new results. To do so, you'll need to craft a soul grafter using any filled soulstone:
 
-<!-- todo - image -->
+![soul grafter recipe](/readme/soul-grafter.png)
 
 The soul grafter is what you use to breed soulstones. You'll need a good supply of empty soulstones and bone meal to keep it running, though:
 
-<!-- todo - image -->
+![soul grafter screen](/readme/soul-grafter-screen.png)
 
 # Credits
 
