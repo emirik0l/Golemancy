@@ -20,11 +20,11 @@ Next you'll need to kill some mobs. If you kill a mob whose soul can be captured
 
 Soulstones aren't useful without a body to inhabit, so the next step is to make a clay effigy:
 
-<!-- todo - image -->
+![clay effigy recipe](/readme/clay-effigy.png)
 
 Right-click to put the effigy in the world. Then right-click on it with a soulstone to turn it into a golem!
 
-<!-- todo - image -->
+![a golem in the world](/readme/golem.png)
 
 ## The Golem Wand
 
