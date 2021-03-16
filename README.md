@@ -16,6 +16,19 @@ Next you'll need to kill some mobs. If you kill a mob whose soul can be captured
 
 ![a filled soulstone](/readme/filled-soulstone.png)
 
+The following soul types are currently implemented:
+
+* Covetous Soul - comes from Endermen. They can pick up items and put them in their linked inventory.
+* Curious Soul - comes from Slimes. They follow their owner around, but don't do much else.
+* Entropic Soul - comes from Creepers and Silverfish. They will break their linked block whenever it fills.
+* Hungry Soul - comes from Hoglins. They'll pick up items and eat them, destroying them. They can eat any item.
+* Intrepid Soul - comes from Shulkers. They are ranged golems that throw clay balls at enemies.
+* Parched Soul - comes from Blazes. They'll seek out water blocks and "drink" them.
+* Restless Soul - comes from Skeletons and Zombies. They wander around randomly, but don't do much else.
+* Tactile Soul - comes from Phantoms. They'll right-click their linked block every few seconds, like a player.
+* Valiant Soul - comes from Ravagers and Guardians. You can equip them with tools by right-clicking, and they'll fight off enemies.
+* Weeping Soul - comes from Ghasts. They can heal other golems and even other types of pets, like wolves.
+
 ## Making Golems
 
 Soulstones aren't useful without a body to inhabit, so the next step is to make a clay effigy:
