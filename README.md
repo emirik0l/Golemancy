@@ -14,7 +14,7 @@ You can make an empty soulstone by putting nether quartz into a stonecutter:
 
 Next you'll need to kill some mobs. If you kill a mob whose soul can be captured and you have an empty soulstone in your inventory, it will be filled up.
 
-<!-- todo - image -->
+![a filled soulstone](/readme/filled-soulstone.png)
 
 ## Making Golems
 
