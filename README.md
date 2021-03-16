@@ -69,6 +69,13 @@ The soul grafter is what you use to breed soulstones. You'll need a good supply 
 
 ![soul grafter screen](/readme/soul-grafter-screen.png)
 
+# Planned Features
+
+* Random mutations - breed "natural" souls together for a chance to create otherwise unattainable golem types.
+* More advanced golem types, such as harvesters, butchers, ore-finding golems, etc.
+* In-game documentation via Patchouli.
+* Configuration files.
+
 # Credits
 
 Some textures are adapted from the excellent Malcolm Riley's [unused-textures](https://github.com/malcolmriley/unused-textures) repository, namely:
