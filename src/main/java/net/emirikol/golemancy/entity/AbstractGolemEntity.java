@@ -134,7 +134,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return ActionResult.SUCCESS;
 	}
 	
-	private ActionResult tryGiveToGolem(PlayerEntity player, Hand hand) {
+	protected ActionResult tryGiveToGolem(PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getStackInHand(hand);
 		this.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
 		return ActionResult.SUCCESS;

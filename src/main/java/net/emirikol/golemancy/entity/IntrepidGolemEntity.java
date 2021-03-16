@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
@@ -44,6 +45,11 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 			golemEntity.setTamed(true);
 		}
 		return golemEntity;
+	}
+	
+	@Override
+	protected ActionResult tryGiveToGolem(PlayerEntity player, Hand hand) {
+		return ActionResult.PASS;
 	}
 	
 	@Override
