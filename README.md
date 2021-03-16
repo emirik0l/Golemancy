@@ -2,7 +2,7 @@
 
 Golemancy is a mod about capturing the souls of mobs, breeding them, and using them to create faithful golem servants to do your bidding. You can create golems that will fight for you, gather items, and otherwise automate your Minecraft world!
 
-This mod is currently in **beta**: only a basic set of golems has been implemented so far, and there are some mechanics (like config files, ingame tutorials, and many more golem variants) which are planned for the future. Things like textures and entity models are in an early state and subject to change, and bugs/crashes are likely.
+This mod is currently in **beta**: only a basic set of golems has been implemented so far, and there are some mechanics (like config files, ingame tutorials, and many more golem variants) which are planned for the future. Things like textures and entity models are in an early state and subject to change, and **bugs/crashes are likely**! If that's a problem for you, I recommend waiting until the mod is more stable.
 
 This mod is for Fabric, and no Forge port is planned - sorry about that!
 
@@ -10,7 +10,7 @@ This mod is for Fabric, and no Forge port is planned - sorry about that!
 
 You can make an empty soulstone by putting nether quartz into a stonecutter:
 
-<!-- todo - image -->
+![empty soulstone recipe](/readme/empty-soulstone.png)
 
 Next you'll need to kill some mobs. If you kill a mob whose soul can be captured and you have an empty soulstone in your inventory, it will be filled up.
 
