@@ -13,12 +13,14 @@ import java.util.*;
 
 public class GolemHealGoal extends Goal {
 	private final AbstractGolemEntity entity;
+	private final float searchRadius;
 	
 	private TameableEntity friend;
 	private int healingTimer;
 	
-	public GolemHealGoal(AbstractGolemEntity entity) {
+	public GolemHealGoal(AbstractGolemEntity entity, float searchRadius) {
 		this.entity = entity;
+		this.searchRadius = searchRadius;
 	}
 	
 	public boolean canStart() {
@@ -44,7 +46,8 @@ public class GolemHealGoal extends Goal {
 	}
 	
 	public boolean canStartHealing() {
-		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), null);
+		float r = this.searchRadius + (3.0F * this.entity.getGolemSmarts());
+		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,r,r), null);
 		for (TameableEntity tameable: list) {
 			if (wounded(tameable) && (this.entity.getOwner() == tameable.getOwner())) {
 				this.friend = tameable;
