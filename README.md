@@ -36,7 +36,7 @@ Hold the golem wand in your hand and right-click on one of your golems to make t
 
 Golems consider their linked block as "home" and will return to it when they're not busy doing something else. Some golems can, if linked to a chest or other inventory, extract or insert items into their linked block.
 
-## Grafting Souls
+## The Soul Mirror
 
 Each soul has a set of attributes and genetics that determine its type and abilities. You can check the genes of your soulstones with a soul mirror:
 
@@ -45,6 +45,8 @@ Each soul has a set of attributes and genetics that determine its type and abili
 To use the soul mirror, just hold it in your off-hand and right-click with a soulstone in the other hand.
 
 ![soul mirror screen](/readme/soul-mirror-screen.png)
+
+## The Soul Grafter
 
 You can breed (or "graft") soulstones together to produce new results. To do so, you'll need to craft a soul grafter using any filled soulstone:
 
