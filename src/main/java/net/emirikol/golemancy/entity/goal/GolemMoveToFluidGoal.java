@@ -16,7 +16,7 @@ public class GolemMoveToFluidGoal extends GolemMoveToBlockGoal {
 	
 	@Override
 	public boolean canStart() {
-		return hasEmptyBucket() && super.canStart();
+		return GolemHelper.hasEmptyBucket(this.entity) && super.canStart();
 	}
 	
 	@Override
@@ -24,10 +24,5 @@ public class GolemMoveToFluidGoal extends GolemMoveToBlockGoal {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
 		return fluidState.isStill() && !fluidState.isEmpty() && super.isValidPos(pos);
-	}
-	
-	public boolean hasEmptyBucket() {
-		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-		return stack.getItem() == Items.BUCKET;
 	}
 }

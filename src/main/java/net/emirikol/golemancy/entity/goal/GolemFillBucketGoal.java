@@ -26,7 +26,7 @@ public class GolemFillBucketGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		return isFluidNearby() && hasEmptyBucket();
+		return isFluidNearby() && GolemHelper.hasEmptyBucket(this.entity);
 	}
 
 	@Override
@@ -62,10 +62,5 @@ public class GolemFillBucketGoal extends Goal {
 		Block block = world.getBlockState(pos).getBlock();
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
 		return fluidState.isStill() && !fluidState.isEmpty() && block instanceof FluidDrainable;
-	}
-	
-	public boolean hasEmptyBucket() {
-		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-		return stack.getItem() == Items.BUCKET;
 	}
 }

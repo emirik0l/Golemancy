@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.ai.goal.*;
@@ -13,5 +14,10 @@ public class GolemHelper {
 		PathNode pathNode = path.getEnd();
 		if (pathNode == null) { return false; }
 		return entity.isInWalkTargetRange(pos) && path.reachesTarget();
+	}
+	
+	public static boolean hasEmptyBucket(LivingEntity entity) {
+		ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
+		return stack.getItem() == Items.BUCKET;
 	}
 }
