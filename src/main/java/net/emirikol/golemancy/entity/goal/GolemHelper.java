@@ -12,6 +12,6 @@ public class GolemHelper {
 		if (path == null) { return false; }
 		PathNode pathNode = path.getEnd();
 		if (pathNode == null) { return false; }
-		return entity.isInWalkTargetRange(pos);
+		return entity.isInWalkTargetRange(pos) && path.reachesTarget();
 	}
 }
