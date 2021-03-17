@@ -73,6 +73,7 @@ The soul grafter is what you use to breed soulstones. You'll need a good supply 
 
 * Random mutations - breed "natural" souls together for a chance to create otherwise unattainable golem types.
 * More advanced golem types, such as harvesters, butchers, ore-finding golems, etc.
+* New golem model, possibly new item and block models.
 * In-game documentation via Patchouli.
 * Configuration files.
 

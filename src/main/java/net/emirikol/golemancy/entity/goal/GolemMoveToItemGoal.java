@@ -29,7 +29,7 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public boolean shouldContinue() {
-		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
+		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && canStart();
 	}
 	
 	public void start() {
@@ -71,7 +71,7 @@ public class GolemMoveToItemGoal extends Goal {
 		if (list.isEmpty()) { return false; }
 		for (ItemEntity itemEntity: list) {
 			BlockPos pos = itemEntity.getBlockPos();
-			if (this.entity.isInWalkTargetRange(pos)) {
+			if (GolemHelper.canReach(entity, pos)) {
 				this.targetPos = pos;
 				return true;
 			}
