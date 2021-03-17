@@ -44,9 +44,9 @@ public class GolemFillBucketGoal extends Goal {
 	public boolean isFluidNearby() {
 		BlockPos.Mutable mutable = this.entity.getBlockPos().mutableCopy();
 		ServerWorld world = (ServerWorld) this.entity.world;
-		for(int i = -1; i <= 1; ++i) {
-			for(int j = -1; j <= 1; ++j) {
-				for(int k = -1; k <= 1; ++k) {
+		for(int i = -2; i <= 2; ++i) {
+			for(int j = -2; j <= 2; ++j) {
+				for(int k = -2; k <= 2; ++k) {
 					mutable.set(this.entity.getX() + (double)i, this.entity.getY() + (double)j, this.entity.getZ() + (double)k);
 					if (isFluidDrainable(mutable, world)) {
 						this.fluidPos = mutable;
