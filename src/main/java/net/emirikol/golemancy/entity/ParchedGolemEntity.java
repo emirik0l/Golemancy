@@ -4,6 +4,7 @@ import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.goal.*;
 
 import net.minecraft.block.*;
+import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
@@ -17,19 +18,16 @@ import java.util.*;
 public class ParchedGolemEntity extends AbstractGolemEntity {
 	public ParchedGolemEntity(EntityType<? extends ParchedGolemEntity> entityType, World world) {
 		super(entityType, world);
-		this.setPathfindingPenalty(PathNodeType.WATER, 2000.0F);
 	}
 	
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(1, new SwimGoal(this));
-		this.goalSelector.add(5, new GolemDrinkFluidGoal(this) {{ 
-			add(Blocks.WATER);
+		this.goalSelector.add(5, new GolemExtractItemGoal(this) {{
+			add(Items.BUCKET);
 		}});
-		this.goalSelector.add(6, new GolemMoveToFluidGoal(this, 10.0F) {{
-			add(Blocks.WATER);
-		}});
+		this.goalSelector.add(5, new GolemDepositBucketGoal(this));
 	}
 	
 	@Override

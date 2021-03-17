@@ -13,7 +13,7 @@ import net.minecraft.util.math.*;
 import java.util.*;
 
 public class GolemDepositHeldItemGoal extends Goal {
-	private final AbstractGolemEntity entity;
+	protected final AbstractGolemEntity entity;
 	
 	private Inventory container;
 	
@@ -35,7 +35,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 					this.container.setStack(i, stack);
 					this.entity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 					break;
-				} else if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areTagsEqual(stack, slotStack)) && (slotStack.getCount() < this.container.getMaxCountPerStack())) {
+				} else if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areTagsEqual(stack, slotStack)) && (slotStack.getCount() < this.container.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount())) {
 					stack.decrement(1);
 					slotStack.increment(1);
 				}
@@ -64,7 +64,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 		return pos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget());
 	}
 	
-	private boolean linkedBlockCanInsert() {
+	protected boolean linkedBlockCanInsert() {
 		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 		for (int i = 0; i < this.container.size(); i++) {
 			if (this.container.isValid(i, stack)) {
