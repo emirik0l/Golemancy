@@ -23,7 +23,7 @@ The following soul types are currently implemented:
 * Entropic Soul - comes from Creepers and Silverfish. They will break their linked block whenever it fills.
 * Hungry Soul - comes from Hoglins. They'll pick up items and eat them, destroying them. They can eat any item.
 * Intrepid Soul - comes from Shulkers. They are ranged golems that throw clay balls at enemies.
-* Parched Soul - comes from Blazes. They'll seek out water blocks and "drink" them.
+* Parched Soul - comes from Blazes. They can fill buckets from fluid blocks and store them in their linked inventory. They can also get empty buckets from their linked inventory.
 * Restless Soul - comes from Skeletons and Zombies. They wander around randomly, but don't do much else.
 * Tactile Soul - comes from Phantoms. They'll right-click their linked block every few seconds, like a player.
 * Valiant Soul - comes from Ravagers and Guardians. You can equip them with tools by right-clicking, and they'll fight off enemies.

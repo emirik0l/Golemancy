@@ -13,8 +13,11 @@ public class GolemDepositBucketGoal extends GolemDepositHeldItemGoal {
 	
 	@Override
 	protected boolean linkedBlockCanInsert() {
+		return !hasEmptyBucket() && super.linkedBlockCanInsert();
+	}
+	
+	public boolean hasEmptyBucket() {
 		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-		ItemStack emptyBucket = new ItemStack(Items.BUCKET);
-		return !ItemStack.areEqual(stack, emptyBucket) && super.linkedBlockCanInsert();
+		return stack.getItem() == Items.BUCKET;
 	}
 }

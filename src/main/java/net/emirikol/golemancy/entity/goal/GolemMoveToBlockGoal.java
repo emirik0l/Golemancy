@@ -30,7 +30,7 @@ public class GolemMoveToBlockGoal extends Goal {
 	}
 	
 	public boolean shouldContinue() {
-		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos();
+		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && canStart();
 	}
 	
 	public void start() {
