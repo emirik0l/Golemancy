@@ -2,13 +2,16 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
+import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.inventory.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.inventory.*;
 import net.minecraft.util.math.*;
+import net.minecraft.server.world.*;
 
 import java.util.*;
 
@@ -45,11 +48,11 @@ public class GolemDepositHeldItemGoal extends Goal {
 	
 	private boolean linkedBlockIsContainer() {
 		BlockPos pos = this.entity.getLinkedBlockPos();
+		ServerWorld world = (ServerWorld) this.entity.world;
 		if (pos == null) { return false; }
-		BlockEntity blockEntity = this.entity.world.getBlockEntity(pos);
-		if (blockEntity == null) { return false; }
-		if (blockEntity instanceof Inventory) {
-			this.container = (Inventory) blockEntity;
+		Inventory container = GolemHelper.getInventory(pos, world);
+		if (container != null) {
+			this.container = container;
 			return true;
 		} else {
 			return false;
