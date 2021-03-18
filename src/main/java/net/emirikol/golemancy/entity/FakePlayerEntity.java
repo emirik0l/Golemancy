@@ -1,6 +1,8 @@
 package net.emirikol.golemancy.entity;
 
 import com.mojang.authlib.*;
+import net.minecraft.item.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.world.*;
 import net.minecraft.util.math.*;
@@ -18,5 +20,17 @@ public class FakePlayerEntity extends PlayerEntity {
 	
 	public boolean isSpectator() {
 		return false;
+	}
+	
+	public void copyFromEntity(LivingEntity entity) {
+		//Equip items.
+		ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
+		this.setStackInHand(this.getActiveHand(), stack);
+	}
+	
+	public void copyToEntity(LivingEntity entity) {
+		//Equip items.
+		ItemStack stack = this.getStackInHand(this.getActiveHand());
+		entity.equipStack(EquipmentSlot.MAINHAND, stack);
 	}
 }

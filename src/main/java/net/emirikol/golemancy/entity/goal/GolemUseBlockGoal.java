@@ -30,18 +30,18 @@ public class GolemUseBlockGoal extends Goal {
 			BlockState state = this.entity.world.getBlockState(pos);
 			BlockHitResult hit = new BlockHitResult(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), Direction.UP, pos, false);
 			//Create a fake player and equip them with the golem's item.
-			ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 			FakePlayerEntity fakePlayer = new FakePlayerEntity(this.entity.world, pos, 0.0F);
-			fakePlayer.setStackInHand(fakePlayer.getActiveHand(), stack);
+			fakePlayer.copyFromEntity(this.entity);
 			//Try using the item on the block.
 			ItemUsageContext context = new ItemUsageContext(fakePlayer, fakePlayer.getActiveHand(), hit);
+			ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 			ActionResult result = stack.getItem().useOnBlock(context);
 			if (result == ActionResult.PASS) {
 				//If that doesn't do anything, try just using the block
 				state.getBlock().onUse(state, this.entity.world, pos, fakePlayer, fakePlayer.getActiveHand(), hit);
 			}
 			//Remove the fake player and set the cooldown.
-			this.entity.equipStack(EquipmentSlot.MAINHAND, fakePlayer.getStackInHand(fakePlayer.getActiveHand()));
+			fakePlayer.copyToEntity(this.entity);
 			fakePlayer.remove();
 			this.useCooldown = 60;
 		} else {
