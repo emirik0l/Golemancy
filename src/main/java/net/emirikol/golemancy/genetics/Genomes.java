@@ -70,6 +70,15 @@ public class Genomes {
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
+	public static final Genome HUSK = new Genome() {{
+		put("type", new Gene<String>("Parched"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(0));
+	}};
+	
 	public static final Genome PHANTOM = new Genome() {{
 		put("type", new Gene<String>("Tactile"));
 		put("potency", new Gene<Integer>(2));
@@ -143,7 +152,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome ZOMBIE = new Genome() {{
-		put("type", new Gene<String>("Restless"));
+		put("type", new Gene<String>("Hungry"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(0));
@@ -172,6 +181,7 @@ public class Genomes {
 		put(EntityType.GUARDIAN, GUARDIAN);
 		put(EntityType.ELDER_GUARDIAN, GUARDIAN);
 		put(EntityType.HOGLIN, HOGLIN);
+		put(EntityType.HUSK, HUSK);
 		put(EntityType.PHANTOM, PHANTOM);
 		put(EntityType.RAVAGER, RAVAGER);
 		put(EntityType.SHULKER, SHULKER);
@@ -186,7 +196,6 @@ public class Genomes {
 		put(EntityType.SPIDER, SPIDER);
 		put(EntityType.WITHER_SKELETON, WITHER_SKELETON);
 		put(EntityType.DROWNED, ZOMBIE);
-		put(EntityType.HUSK, ZOMBIE);
 		put(EntityType.ZOGLIN, ZOMBIE);
 		put(EntityType.ZOMBIE, ZOMBIE);
 		put(EntityType.ZOMBIE_HORSE, ZOMBIE);
