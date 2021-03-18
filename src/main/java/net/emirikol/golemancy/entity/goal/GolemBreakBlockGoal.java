@@ -14,12 +14,6 @@ public class GolemBreakBlockGoal extends Goal {
 	protected int prevBreakProgress;
 	protected int maxProgress;
 	
-	protected static final List<Block> FORBIDDEN_BLOCKS = new ArrayList<Block>() {{
-		add(Blocks.AIR);
-		add(Blocks.BEDROCK);
-		add(Blocks.BARRIER);
-	}};
-	
 	public GolemBreakBlockGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
 	}
@@ -33,7 +27,7 @@ public class GolemBreakBlockGoal extends Goal {
 	}
 	
 	public boolean shouldContinue() {
-		return this.breakProgress <= this.getMaxProgress() && this.entity.getLinkedBlockPos().isWithinDistance(this.entity.getPos(), 2.0D);
+		return this.breakProgress <= this.getMaxProgress() && this.entity.getLinkedBlockPos().isWithinDistance(this.entity.getPos(), 2.0D) && canStart();
 	}
 
 	public void stop() {
@@ -70,8 +64,29 @@ public class GolemBreakBlockGoal extends Goal {
 	public boolean isBlockBreakable() {
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { return false; }
-		Block block = this.entity.world.getBlockState(pos).getBlock();
-		return !FORBIDDEN_BLOCKS.contains(block);
+		BlockState state = this.entity.world.getBlockState(pos);
+		if (state == null) { return false; }
+		float hardness = state.getHardness(this.entity.world, pos);
+		return (hardness > 0) && (hardness <= getBreakingStrength());
+	}
+	
+	public float getBreakingStrength() {
+		switch (this.entity.getGolemStrength()) {
+			case 0:
+				//low strength = can break dirt, wood, smooth stone
+				return 2.0F;
+			case 1:
+				//average strength = can break ores
+				return 4.0F;
+			case 2:
+				//high strength = can break metal blocks
+				return 5.0F;
+			case 3:
+				//perfect strength = can break obsidian
+				return 50.0F;
+			default:
+				return 0.0F;
+		}
 	}
 	
 	protected int getMaxProgress() {
