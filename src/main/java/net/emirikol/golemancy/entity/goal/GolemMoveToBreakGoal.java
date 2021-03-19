@@ -15,6 +15,15 @@ public class GolemMoveToBreakGoal extends GolemMoveToBlockGoal {
 	}
 	
 	@Override
+	public boolean shouldContinue() {
+		if (isValidPos(this.targetPos)) {
+			return true;
+		} else {
+			return super.shouldContinue();
+		}
+	}
+	
+	@Override
 	public boolean isValidPos(BlockPos pos) {
 		BlockState state = this.entity.world.getBlockState(pos);
 		if (state == null) { return false; }
