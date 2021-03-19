@@ -59,17 +59,12 @@ public class GolemBreakBlockGoal extends Goal {
 	}
 	
 	public boolean isBlockNearby() {
-		BlockPos.Mutable mutable = this.entity.getBlockPos().mutableCopy();
+		BlockPos pos = this.entity.getBlockPos();
 		ServerWorld world = (ServerWorld) this.entity.world;
-		for(int i = -2; i <= 2; ++i) {
-			for(int j = -2; j <= 2; ++j) {
-				for(int k = -2; k <= 2; ++k) {
-					mutable.set(this.entity.getX() + (double)i, this.entity.getY() + (double)j, this.entity.getZ() + (double)k);
-					if (isBlockBreakable(mutable)) {
-						this.breakPos = mutable;
-						return true;
-					}
-				}
+		for (BlockPos curPos: BlockPos.iterateOutwards(pos, 2, 2, 2)) {
+			if (isBlockBreakable(curPos)) {
+				this.breakPos = curPos;
+				return true;
 			}
 		}
 		return false;

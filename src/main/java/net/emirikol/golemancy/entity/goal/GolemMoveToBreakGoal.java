@@ -32,6 +32,6 @@ public class GolemMoveToBreakGoal extends GolemMoveToBlockGoal {
 		BlockState linkedState = this.entity.world.getBlockState(linkedPos);
 		if (linkedState == null) { return false; }
 		
-		return (state.getBlock() == linkedState.getBlock()) && !pos.equals(linkedPos) && GolemHelper.canReach(this.entity, pos) && super.isValidPos(pos);
+		return (state.getBlock() == linkedState.getBlock()) && !pos.equals(linkedPos) && super.isValidPos(pos);
 	}
 }
