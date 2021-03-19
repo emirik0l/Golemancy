@@ -71,18 +71,12 @@ public class GolemMoveToBlockGoal extends Goal {
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { pos = this.entity.getBlockPos(); }
 		
-		BlockPos.Mutable mutable = this.entity.getBlockPos().mutableCopy();
 		ServerWorld world = (ServerWorld) this.entity.world;
 		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-		for(float i = -r; i <= r; ++i) {
-			for(float j = -r; j <= r; ++j) {
-				for(float k = -r; k <= r; ++k) {
-					mutable.set(pos.getX() + (double)i, pos.getY() + (double)j, pos.getZ() + (double)k);
-					if (isValidPos(mutable)) {
-						this.targetPos = mutable;
-						return true;
-					}
-				}
+		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int)r, (int)r)) {
+			if (isValidPos(curPos)) {
+				this.targetPos = curPos;
+				return true;
 			}
 		}
 		return false;
