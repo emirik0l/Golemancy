@@ -21,12 +21,12 @@ public class GolemBreakBlockGoal extends Goal {
 		this.entity = entity;
 	}
 	
-	public void start() {
-		this.breakProgress = 0;
-	}
-	
 	public boolean canStart() {
 		return isBlockNearby();
+	}
+	
+	public void start() {
+		this.breakProgress = 0;
 	}
 	
 	public boolean shouldContinue() {

@@ -71,7 +71,6 @@ public class GolemMoveToBlockGoal extends Goal {
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { pos = this.entity.getBlockPos(); }
 		
-		ServerWorld world = (ServerWorld) this.entity.world;
 		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
 		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, 2, (int)r)) {
 			if (isValidPos(curPos)) {
