@@ -107,7 +107,7 @@ public class GolemBreakBlockGoal extends Goal {
 	}
 	
 	protected int getMaxProgress() {
-		return Math.max(240, this.maxProgress);
+		return Math.max(120, this.maxProgress);
 	}
 	
 	public double getDesiredSquaredDistanceToTarget() {
