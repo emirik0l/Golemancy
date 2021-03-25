@@ -54,6 +54,8 @@ public class GolemBreakBlockGoal extends Goal {
 
 		if (this.breakProgress == this.getMaxProgress()) {
 			this.entity.world.breakBlock(this.breakPos, true);
+			this.breakProgress = 0;
+			this.prevBreakProgress = 0;
 			this.entity.world.syncWorldEvent(2001, this.breakPos, Block.getRawIdFromState(this.entity.world.getBlockState(this.breakPos)));
 		}
 	}
