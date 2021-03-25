@@ -56,6 +56,15 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	}
 	
 	@Override
+	protected void dropInventory() {
+		super.dropInventory();
+		ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
+		if (stack != null && !stack.isEmpty()) {
+			this.dropStack(stack);
+		}
+	}
+	
+	@Override
 	public boolean canBreatheInWater() {
 		return true;
 	}
