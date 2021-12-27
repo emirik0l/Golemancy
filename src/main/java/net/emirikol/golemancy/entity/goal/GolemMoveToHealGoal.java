@@ -43,7 +43,7 @@ public class GolemMoveToHealGoal extends Goal {
 	}
 
 	public void tick() {
-		this.entity.getLookControl().lookAt(this.friend, 10.0F, (float)this.entity.getLookPitchSpeed());
+		this.entity.getLookControl().lookAt(this.friend, 10.0F, (float)this.entity.getMaxLookPitchChange());
 		BlockPos friendPos = this.friend.getBlockPos();
 		if (!friendPos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget())) {
 			++this.tryingTime;
