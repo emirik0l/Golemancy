@@ -25,8 +25,8 @@ public class SpawnPacket {
 		buf.writeVarInt(target.getId());
 		
 		writeVec3d(buf, target.getPos());
-		writeAngle(buf, target.pitch);
-		writeAngle(buf, target.yaw);
+		writeAngle(buf, target.getPitch());
+		writeAngle(buf, target.getYaw());
 		
 		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
 			ServerPlayNetworking.send((ServerPlayerEntity) user, SPAWN_PACKET_ID, buf);
