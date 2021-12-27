@@ -37,18 +37,18 @@ public class GolemancyClient implements ClientModInitializer {
 		//Register Soul Grafter Screen
 		ScreenRegistry.register(Golemancy.SOUL_GRAFTER_SCREEN_HANDLER, SoulGrafterScreen::new);
 		//Register Clay Effigy Renderer
-		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAY_EFFIGY_ENTITY, (dispatcher, context) -> {
-			return new ClayEffigyEntityRenderer(dispatcher);
+		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAY_EFFIGY_ENTITY, (context) -> {
+			return new ClayEffigyEntityRenderer(context);
 		});
 		//Register Golem Renderers
 		for(EntityType type: Golems.getTypes()) {
-			EntityRendererRegistry.INSTANCE.register(type, (dispatcher, context) -> {
-				return new ClayGolemEntityRenderer(dispatcher);
+			EntityRendererRegistry.INSTANCE.register(type, (context) -> {
+				return new ClayGolemEntityRenderer(context);
 			});
 		}
 		//Register Clayball Renderer
-		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAYBALL, (dispatcher, context) -> {
-			return new FlyingItemEntityRenderer(dispatcher, context.getItemRenderer());
+		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAYBALL, (context) -> {
+			return new FlyingItemEntityRenderer(context);
 		});
 	}
 	

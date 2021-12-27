@@ -10,10 +10,10 @@ import net.minecraft.client.render.entity.feature.*;
 
 public class ClayEffigyEntityRenderer extends MobEntityRenderer<ClayEffigyEntity, ClayEffigyEntityModel> {
 
-	public ClayEffigyEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
+	public ClayEffigyEntityRenderer(EntityRendererFactory.Context context) {
 		//First argument is provided to the constructor.
 		//The second argument is an instance of our entity model, third argument is the size of the entity's shadow.
-		super(entityRenderDispatcher, new ClayEffigyEntityModel(), 0.35f);
+		super(context, new ClayEffigyEntityModel(), 0.35f);
 		this.addFeature(new HeldItemFeatureRenderer(this));
 	}
 	

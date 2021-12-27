@@ -10,10 +10,10 @@ import net.minecraft.client.render.entity.feature.*;
 
 public class ClayGolemEntityRenderer extends MobEntityRenderer<AbstractGolemEntity, ClayGolemEntityModel> {
 
-	public ClayGolemEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
+	public ClayGolemEntityRenderer(EntityRendererFactory.Context context) {
 		//First argument is provided to the constructor.
 		//The second argument is an instance of our entity model, third argument is the size of the entity's shadow.
-		super(entityRenderDispatcher, new ClayGolemEntityModel(), 0.35f);
+		super(context, new ClayGolemEntityModel(), 0.35f);
 		this.addFeature(new HeldItemFeatureRenderer(this));
 	}
 	
