@@ -77,20 +77,20 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	}
 	
 	@Override
-	public CompoundTag toTag(CompoundTag tag) {
-		super.toTag(tag);
-		Inventories.toTag(tag, items);
-		tag.putInt("graft_time", graft_time);
-		tag.putInt("fuel_time", fuel_time);
-		return tag;
+	public NbtCompound writeNbt(NbtCompound nbt) {
+		super.writeNbt(nbt);
+		Inventories.writeNbt(nbt, items);
+		nbt.putInt("graft_time", graft_time);
+		nbt.putInt("fuel_time", fuel_time);
+		return nbt;
 	}
 	
 	@Override
-	public void fromTag(BlockState state, CompoundTag tag) {
-		super.fromTag(state, tag);
-		Inventories.fromTag(tag, items);
-		graft_time = tag.getInt("graft_time");
-		fuel_time = tag.getInt("fuel_time");
+	public void readNbt(NbtCompound nbt) {
+		super.readNbt(nbt);
+		Inventories.readNbt(tag, items);
+		graft_time = nbt.getInt("graft_time");
+		fuel_time = nbt.getInt("fuel_time");
 	}
 	
 	@Override
