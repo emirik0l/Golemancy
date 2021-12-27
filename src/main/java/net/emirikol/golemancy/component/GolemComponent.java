@@ -3,7 +3,7 @@ package net.emirikol.golemancy.component;
 import net.emirikol.golemancy.*;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
-import dev.onyxstudios.cca.api.v3.component.AutoSyncedComponent;
+import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.nbt.*;
 import net.minecraft.util.math.*;
 
@@ -44,24 +44,24 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	}
 	
 	@Override
-	public void readFromNbt(CompoundTag tag) { 
-		this.attributes.put("strength", tag.getInt("golemancy_strength"));
-		this.attributes.put("agility", tag.getInt("golemancy_agility"));
-		this.attributes.put("vigor", tag.getInt("golemancy_vigor"));
-		this.attributes.put("smarts", tag.getInt("golemancy_smarts"));
+	public void readFromNbt(NbtCompound nbt) { 
+		this.attributes.put("strength", nbt.getInt("golemancy_strength"));
+		this.attributes.put("agility", nbt.getInt("golemancy_agility"));
+		this.attributes.put("vigor", nbt.getInt("golemancy_vigor"));
+		this.attributes.put("smarts", nbt.getInt("golemancy_smarts"));
 		
-		int[] linkCoords = tag.getIntArray("golemancy_linked");
+		int[] linkCoords = nbt.getIntArray("golemancy_linked");
 		if (linkCoords.length == 3) {
 			this.linkedBlockPos = new BlockPos(linkCoords[0], linkCoords[1], linkCoords[2]);
 		}
 	}
 	
 	@Override
-	public void writeToNbt(CompoundTag tag) {
-		tag.putInt("golemancy_strength", this.attributes.get("strength"));
-		tag.putInt("golemancy_agility", this.attributes.get("agility"));
-		tag.putInt("golemancy_vigor", this.attributes.get("vigor"));
-		tag.putInt("golemancy_smarts", this.attributes.get("smarts"));
+	public void writeToNbt(NbtCompound nbt) {
+		nbt.putInt("golemancy_strength", this.attributes.get("strength"));
+		nbt.putInt("golemancy_agility", this.attributes.get("agility"));
+		nbt.putInt("golemancy_vigor", this.attributes.get("vigor"));
+		nbt.putInt("golemancy_smarts", this.attributes.get("smarts"));
 		
 		if (this.linkedBlockPos != null) {
 			int[] linkCoords = {this.linkedBlockPos.getX(), this.linkedBlockPos.getY(), this.linkedBlockPos.getZ()};

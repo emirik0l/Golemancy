@@ -77,12 +77,11 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	}
 	
 	@Override
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		Inventories.writeNbt(nbt, items);
 		nbt.putInt("graft_time", graft_time);
 		nbt.putInt("fuel_time", fuel_time);
-		return nbt;
 	}
 	
 	@Override

@@ -37,10 +37,10 @@ public class Genome {
 	}
 	
 	//Check an NBT tag to ensure it contains a full and valid set of genes.
-	public boolean validTag(CompoundTag tag) {
+	public boolean validNbt(NbtCompound nbt) {
 		String keys[] = {"type_active", "type_dormant", "potency_active", "potency_dormant", "strength_active", "strength_dormant", "agility_active", "agility_dormant", "vigor_active", "vigor_dormant", "smarts_active", "smarts_dormant"};
 		for (String key : keys) {
-			if (!tag.contains(key)) {
+			if (!nbt.contains(key)) {
 				return false;
 			}
 		}
@@ -49,42 +49,42 @@ public class Genome {
 	
 	//Apply this genome to an ItemStack's NBT data.
 	public void toItemStack(ItemStack stack) {
-		CompoundTag tag = stack.getOrCreateTag();
+		NbtCompound nbt = stack.getOrCreateNbt();
 		Gene<String> type = genes.get("type");
-		tag.putString("type_active", type.getActive());
-		tag.putString("type_dormant", type.getDormant());
+		nbt.putString("type_active", type.getActive());
+		nbt.putString("type_dormant", type.getDormant());
 		Gene<Integer> potency = genes.get("potency");
-		tag.putInt("potency_active", potency.getActive());
-		tag.putInt("potency_dormant", potency.getDormant());
+		nbt.putInt("potency_active", potency.getActive());
+		nbt.putInt("potency_dormant", potency.getDormant());
 		Gene<Integer> strength = genes.get("strength");
-		tag.putInt("strength_active", strength.getActive());
-		tag.putInt("strength_dormant", strength.getDormant());
+		nbt.putInt("strength_active", strength.getActive());
+		nbt.putInt("strength_dormant", strength.getDormant());
 		Gene<Integer> agility = genes.get("agility");
-		tag.putInt("agility_active", agility.getActive());
-		tag.putInt("agility_dormant", agility.getDormant());
+		nbt.putInt("agility_active", agility.getActive());
+		nbt.putInt("agility_dormant", agility.getDormant());
 		Gene<Integer> vigor = genes.get("vigor");
-		tag.putInt("vigor_active", vigor.getActive());
-		tag.putInt("vigor_dormant", vigor.getDormant());
+		nbt.putInt("vigor_active", vigor.getActive());
+		nbt.putInt("vigor_dormant", vigor.getDormant());
 		Gene<Integer> smarts = genes.get("smarts");
-		tag.putInt("smarts_active", smarts.getActive());
-		tag.putInt("smarts_dormant", smarts.getDormant());
+		nbt.putInt("smarts_active", smarts.getActive());
+		nbt.putInt("smarts_dormant", smarts.getDormant());
 		
 		Integer textureId = Genomes.TEXTURE_VARIANTS.get(type.getActive());
 		if (textureId != null) {
-			tag.putInt("CustomModelData", textureId);
+			nbt.putInt("CustomModelData", textureId);
 		}
 	}
 	
 	//Apply an ItemStack's NBT data to this genome.
 	public void fromItemStack(ItemStack stack) {
-		CompoundTag tag = stack.getOrCreateTag();
-		if (validTag(tag)) {
-			genes.put("type", new Gene<String>(tag.getString("type_active"), tag.getString("type_dormant")));
-			genes.put("potency", new Gene<Integer>(tag.getInt("potency_active"), tag.getInt("potency_dormant")));
-			genes.put("strength", new Gene<Integer>(tag.getInt("strength_active"), tag.getInt("strength_dormant")));
-			genes.put("agility", new Gene<Integer>(tag.getInt("agility_active"), tag.getInt("agility_dormant")));
-			genes.put("vigor", new Gene<Integer>(tag.getInt("vigor_active"), tag.getInt("vigor_dormant")));
-			genes.put("smarts", new Gene<Integer>(tag.getInt("smarts_active"), tag.getInt("smarts_dormant")));
+		NbtCompound nbt = stack.getOrCreateNbt();
+		if (validNbt(nbt)) {
+			genes.put("type", new Gene<String>(nbt.getString("type_active"), nbt.getString("type_dormant")));
+			genes.put("potency", new Gene<Integer>(nbt.getInt("potency_active"), nbt.getInt("potency_dormant")));
+			genes.put("strength", new Gene<Integer>(nbt.getInt("strength_active"), nbt.getInt("strength_dormant")));
+			genes.put("agility", new Gene<Integer>(nbt.getInt("agility_active"), nbt.getInt("agility_dormant")));
+			genes.put("vigor", new Gene<Integer>(nbt.getInt("vigor_active"), nbt.getInt("vigor_dormant")));
+			genes.put("smarts", new Gene<Integer>(nbt.getInt("smarts_active"), nbt.getInt("smarts_dormant")));
 		} else {
 			genes.put("type", Genomes.GENERIC.get("type"));
 			genes.put("potency", Genomes.GENERIC.get("potency"));
