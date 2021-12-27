@@ -72,6 +72,11 @@ public class SoulGrafterBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, Golemancy.SOUL_GRAFTER_ENTITY, () -> SoulGrafterBlockEntity.tick());
+	}
+	
    @Environment(EnvType.CLIENT)
    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 	   if ((Boolean)state.get(GRAFTING)) {

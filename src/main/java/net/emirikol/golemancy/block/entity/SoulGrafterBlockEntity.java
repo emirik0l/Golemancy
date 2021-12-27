@@ -22,7 +22,7 @@ import net.minecraft.util.collection.*;
 import java.util.*;
 import org.jetbrains.annotations.Nullable;
 
-public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSidedInventory,NamedScreenHandlerFactory,Tickable {
+public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSidedInventory,NamedScreenHandlerFactory {
 	private final DefaultedList<ItemStack> items = DefaultedList.ofSize(10, ItemStack.EMPTY);
 	public static final int[] PARENT_SLOTS = {0,1};
 	public static final int[] EMPTYSTONE_SLOTS = {2};
@@ -202,8 +202,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		if (fuel_time > 0) { return true; }
 		return false;
 	}
-	
-	@Override
+
 	public void tick() {
 		boolean dirty = false;
 		boolean grafting = isGrafting();
