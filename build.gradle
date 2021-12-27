@@ -1,10 +1,10 @@
 plugins {
-	id 'fabric-loom' version '0.6-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -12,10 +12,11 @@ group = project.maven_group
 
 repositories {
     maven {
-        name = "Ladysnake Libs"
-        url = "https://dl.bintray.com/ladysnake/libs"
+        name = 'Ladysnake Mods'
+        url = 'https://ladysnake.jfrog.io/artifactory/mods'
     }
 }
+
 
 dependencies {
 	// To change the versions see the gradle.properties file
@@ -29,10 +30,10 @@ dependencies {
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	
-	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:2.7.11"
-	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:2.7.11"
-	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:2.7.11"
-	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:2.7.11"
+	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:4.0.1"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.1"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:4.0.1"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.1"
 }
 
 processResources {
