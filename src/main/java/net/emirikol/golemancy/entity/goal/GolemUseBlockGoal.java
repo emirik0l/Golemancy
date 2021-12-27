@@ -42,7 +42,7 @@ public class GolemUseBlockGoal extends Goal {
 			}
 			//Remove the fake player and set the cooldown.
 			fakePlayer.copyToEntity(this.entity);
-			fakePlayer.remove();
+			fakePlayer.discard();
 			this.useCooldown = 60;
 		} else {
 			this.useCooldown--;

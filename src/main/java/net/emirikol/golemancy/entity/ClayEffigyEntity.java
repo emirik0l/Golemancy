@@ -60,7 +60,7 @@ public class ClayEffigyEntity extends PathAwareEntity {
 			EntityType golemType = Golems.get(typeGene.getActive());
 			if (golemType == null) { return ActionResult.PASS; }
 			BlockPos pos = this.getBlockPos();
-			this.remove();
+			this.discard();
 			AbstractGolemEntity entity = (AbstractGolemEntity) golemType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
 			world.spawnEntityAndPassengers(entity);
 			//Update tracked values from genome.

@@ -30,7 +30,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 		this.goalSelector.add(1, new ProjectileAttackGoal(this, 1.25D, 40, 10.0F));
 		this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
 		this.targetSelector.add(2, new AttackWithOwnerGoal(this));
-		this.targetSelector.add(3, new FollowTargetGoal(this, MobEntity.class, 5, false, false, (livingEntity) -> {
+		this.targetSelector.add(3, new ActiveTargetGoal(this, MobEntity.class, 5, false, false, (livingEntity) -> {
 			return livingEntity instanceof Monster && !(livingEntity instanceof CreeperEntity);
 		}));
 	}
