@@ -15,7 +15,7 @@ public class SoulstoneFillHandler {
 			if (checkPlayer(entity) && checkSoul(killed)) {
 				//Check if the player has empty soulstones.
 				PlayerEntity playerEntity = (PlayerEntity) entity;
-				PlayerInventory inventory = playerEntity.inventory;
+				PlayerInventory inventory = playerEntity.getInventory();
 				if (checkSoulstones(inventory)) {
 					//Remove an empty soulstone from the player's inventory.
 					ItemStack soulstoneStack = getSoulstones(inventory);
@@ -26,7 +26,7 @@ public class SoulstoneFillHandler {
 					Genome genome = Genomes.get(killed.getType());
 					genome.toItemStack(newSoulstoneStack);
 					//Add the new soulstone to the player's inventory.
-					inventory.offerOrDrop(world, newSoulstoneStack);
+					inventory.offerOrDrop(newSoulstoneStack);
 					inventory.markDirty();
 				}
 			}

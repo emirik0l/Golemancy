@@ -49,8 +49,8 @@ public class GolemWand extends Item {
 		ServerWorld world = (ServerWorld) context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		ItemStack stack = context.getStack();
-		CompoundTag tag = stack.getOrCreateTag();
-		int identifier = tag.getInt("golem_id");
+		NbtCompound nbt = stack.getOrCreateNbt();
+		int identifier = nbt.getInt("golem_id");
 		if (identifier != 0) {
 			Entity entity = world.getEntityById(identifier);
 			if (entity instanceof AbstractGolemEntity) {
@@ -67,11 +67,11 @@ public class GolemWand extends Item {
 		//Linking functionality.
 		int identifier = entity.getEntityId();
 		ItemStack stack = user.getStackInHand(hand);
-		CompoundTag tag = stack.getOrCreateTag();
-		int oldIdentifier = tag.getInt("golem_id");
+		NbtCompound nbt = stack.getOrCreateNbt();
+		int oldIdentifier = nbt.getInt("golem_id");
 		if (oldIdentifier == identifier) {
 			//Linking a golem to itself causes it to become unlinked.
-			tag.putInt("golem_id", 0);
+			nbt.putInt("golem_id", 0);
 			entity.linkToBlockPos(null);
 			MutableText text = new LiteralText("");
 			text.append(entity.getName());
@@ -80,7 +80,7 @@ public class GolemWand extends Item {
 			return ActionResult.SUCCESS;
 		} else {
 			//Otherwise, save the golem's entity ID to the wand's NBT.
-			tag.putInt("golem_id", identifier);
+			nbt.putInt("golem_id", identifier);
 			MutableText text = new LiteralText("");
 			text.append(entity.getName());
 			text.append(new TranslatableText("text.golemancy.linking_wand"));
@@ -92,8 +92,8 @@ public class GolemWand extends Item {
 	public ActionResult finishLinking(AbstractGolemEntity entity, ItemStack stack, BlockPos pos, PlayerEntity user, ServerWorld world) {
 		//Update entity with its new linked BlockPos.
 		entity.linkToBlockPos(pos);
-		CompoundTag tag = stack.getOrCreateTag();
-		tag.putInt("golem_id", 0);
+		NbtCompound nbt = stack.getOrCreateNbt();
+		nbt.putInt("golem_id", 0);
 		MutableText text = new LiteralText("");
 		text.append(entity.getName());
 		text.append(new TranslatableText("text.golemancy.finished_linking_wand"));
