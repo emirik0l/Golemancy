@@ -65,7 +65,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		
 		if (this.linkedBlockPos != null) {
 			int[] linkCoords = {this.linkedBlockPos.getX(), this.linkedBlockPos.getY(), this.linkedBlockPos.getZ()};
-			tag.putIntArray("golemancy_linked", linkCoords);
+			nbt.putIntArray("golemancy_linked", linkCoords);
 		}
 	}
 } 
