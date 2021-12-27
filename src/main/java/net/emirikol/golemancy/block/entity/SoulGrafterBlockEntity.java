@@ -14,6 +14,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.nbt.*;
 import net.minecraft.screen.*;
+import net.minecraft.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -159,7 +160,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 				return true;
 			}
 			//Check if the given output slot matches and has room.
-			if ((ItemStack.areTagsEqual(outputStack, stack)) && (ItemStack.areItemsEqual(outputStack, stack)) && (outputStack.getCount() < outputStack.getMaxCount())) {
+			if ((ItemStack.areNbtEqual(outputStack, stack)) && (ItemStack.areItemsEqual(outputStack, stack)) && (outputStack.getCount() < outputStack.getMaxCount())) {
 				outputStack.increment(1);
 				this.setStack(i, outputStack);
 				this.markDirty();
@@ -202,7 +203,11 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		return false;
 	}
 
-	public void tick() {
+	public static void tick(World world, BlockPos pos, BlockState state, SoulGrafterBlockEntity entity) {
+		entity.checkTick();
+	}
+
+	public void checkTick() {
 		boolean dirty = false;
 		boolean grafting = isGrafting();
 		//If the grafter is burning, decrement the fuel timer.

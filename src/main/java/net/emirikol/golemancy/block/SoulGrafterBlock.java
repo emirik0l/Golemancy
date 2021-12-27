@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.block;
 
+import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.block.entity.*;
 
 import net.fabricmc.api.Environment;
@@ -74,7 +75,7 @@ public class SoulGrafterBlock extends BlockWithEntity {
 	
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, Golemancy.SOUL_GRAFTER_ENTITY, () -> SoulGrafterBlockEntity.tick());
+		return checkType(type, Golemancy.SOUL_GRAFTER_ENTITY, (world1, pos, state1, blockEntity) -> SoulGrafterBlockEntity.tick(world1, pos, state1, blockEntity));
 	}
 	
    @Environment(EnvType.CLIENT)
