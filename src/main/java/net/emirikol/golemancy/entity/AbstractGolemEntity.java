@@ -51,11 +51,6 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	}
 	
 	@Override
-	protected int getCurrentExperience(PlayerEntity player) {
-		return 0;
-	}
-	
-	@Override
 	protected void dropInventory() {
 		super.dropInventory();
 		ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
@@ -137,8 +132,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	
 	private ActionResult tryTakeFromGolem(PlayerEntity player) {
 		ItemStack stack = this.getEquippedStack(EquipmentSlot.MAINHAND);
-		ServerWorld world = (ServerWorld) this.world;
-		player.inventory.offerOrDrop(world, stack);
+		player.getInventory().offerOrDrop(stack);
 		this.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 		return ActionResult.SUCCESS;
 	}
