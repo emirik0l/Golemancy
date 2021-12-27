@@ -35,8 +35,8 @@ public class SoulGrafterBlock extends BlockWithEntity {
 	}
 	
 	@Override
-	public BlockEntity createBlockEntity(BlockView blockView) {
-		return new SoulGrafterBlockEntity();
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new SoulGrafterBlockEntity(pos, state);
 	}
 	
 	@Override

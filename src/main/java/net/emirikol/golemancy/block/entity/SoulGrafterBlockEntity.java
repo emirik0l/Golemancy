@@ -67,8 +67,8 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		}
 	};
 	
-	public SoulGrafterBlockEntity() {
-		super(Golemancy.SOUL_GRAFTER_ENTITY);
+	public SoulGrafterBlockEntity(BlockPos pos, BlockState state) {
+		super(Golemancy.SOUL_GRAFTER_ENTITY, pos, state);
 	}
 	
 	@Override
@@ -87,7 +87,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		Inventories.readNbt(tag, items);
+		Inventories.readNbt(nbt, items);
 		graft_time = nbt.getInt("graft_time");
 		fuel_time = nbt.getInt("fuel_time");
 	}
