@@ -33,9 +33,10 @@ public class GolemFillBucketGoal extends Goal {
 	public void tick() {
 		BlockState state = this.entity.world.getBlockState(this.fluidPos);
 		ServerWorld world = (ServerWorld) this.entity.world;
-		ItemStack stack = ((FluidDrainable)state.getBlock()).tryDrainFluid(world, this.fluidPos, state);
+		FluidBlock fluidBlock = (FluidBlock) state.getBlock();
+		ItemStack stack = fluidBlock.tryDrainFluid(world, this.fluidPos, state);
 		if (stack != ItemStack.EMPTY) {
-			SoundEvent sound = fluid.isIn(FluidTags.LAVA) ? SoundEvents.ITEM_BUCKET_FILL_LAVA : SoundEvents.ITEM_BUCKET_FILL;
+			SoundEvent sound = fluidBlock.getBucketFillSound().orElse(SoundEvents.ITEM_BUCKET_FILL);
 			entity.world.playSound((PlayerEntity)null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
 			this.entity.equipStack(EquipmentSlot.MAINHAND, stack);
 		}
