@@ -38,7 +38,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 					this.container.setStack(i, stack);
 					this.entity.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
 					break;
-				} else if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areTagsEqual(stack, slotStack)) && (slotStack.getCount() < this.container.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount())) {
+				} else if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areNbtEqual(stack, slotStack)) && (slotStack.getCount() < this.container.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount())) {
 					stack.decrement(1);
 					slotStack.increment(1);
 				}

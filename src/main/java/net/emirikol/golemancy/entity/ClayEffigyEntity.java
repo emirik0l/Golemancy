@@ -33,11 +33,6 @@ public class ClayEffigyEntity extends PathAwareEntity {
 	}
 	
 	@Override
-	protected int getCurrentExperience(PlayerEntity player) {
-		return 0;
-	}
-	
-	@Override
 	public boolean canBreatheInWater() {
 		return true;
 	}
