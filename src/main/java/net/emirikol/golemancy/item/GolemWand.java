@@ -65,7 +65,7 @@ public class GolemWand extends Item {
 	
 	public ActionResult startLinking(AbstractGolemEntity entity, PlayerEntity user, Hand hand) {
 		//Linking functionality.
-		int identifier = entity.getEntityId();
+		int identifier = entity.getId();
 		ItemStack stack = user.getStackInHand(hand);
 		NbtCompound nbt = stack.getOrCreateNbt();
 		int oldIdentifier = nbt.getInt("golem_id");

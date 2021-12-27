@@ -22,7 +22,7 @@ public class SpawnPacket {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeVarInt(Registry.ENTITY_TYPE.getRawId(target.getType()));
 		buf.writeUuid(target.getUuid());
-		buf.writeVarInt(target.getEntityId());
+		buf.writeVarInt(target.getId());
 		
 		writeVec3d(buf, target.getPos());
 		writeAngle(buf, target.pitch);

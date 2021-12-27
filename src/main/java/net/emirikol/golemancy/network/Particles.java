@@ -39,7 +39,7 @@ public class Particles {
 		
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(target.getBlockPos());
-		buf.writeVarInt(target.getEntityId());
+		buf.writeVarInt(target.getId());
 		
 		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
 			ServerPlayNetworking.send((ServerPlayerEntity) user, FOOD_PARTICLE_ID, buf);

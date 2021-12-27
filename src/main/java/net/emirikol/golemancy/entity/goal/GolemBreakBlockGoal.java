@@ -35,7 +35,7 @@ public class GolemBreakBlockGoal extends Goal {
 
 	public void stop() {
 		super.stop();
-		this.entity.world.setBlockBreakingInfo(this.entity.getEntityId(), this.breakPos, -1);
+		this.entity.world.setBlockBreakingInfo(this.entity.getId(), this.breakPos, -1);
 	}
 	
 	public void tick() {
@@ -48,7 +48,7 @@ public class GolemBreakBlockGoal extends Goal {
 		this.breakProgress++;
 		int i = (int)((float)this.breakProgress / (float)this.getMaxProgress() * 10.0F);
 		if (i != this.prevBreakProgress) {
-			this.entity.world.setBlockBreakingInfo(this.entity.getEntityId(), this.breakPos, i);
+			this.entity.world.setBlockBreakingInfo(this.entity.getId(), this.breakPos, i);
 			this.prevBreakProgress = i;
 		}
 
