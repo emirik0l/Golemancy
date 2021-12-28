@@ -40,7 +40,7 @@ public class GolemMoveToItemGoal extends Goal {
 
 	public void tick() {
 		//Check if there is an item within 1.5 blocks and the golem's hand is empty.
-		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), null);
+		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), (entity) -> true);
 		if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
 			//Take 1 item from the stack.
 			ItemStack stack = list.get(0).getStack();
@@ -67,7 +67,7 @@ public class GolemMoveToItemGoal extends Goal {
 	
 	public boolean findTargetPos() {
 		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), null);
+		List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> true);
 		if (list.isEmpty()) { return false; }
 		for (ItemEntity itemEntity: list) {
 			BlockPos pos = itemEntity.getBlockPos();
