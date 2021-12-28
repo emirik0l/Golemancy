@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.client.render;
 
+import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.client.model.*;
 
@@ -13,7 +14,7 @@ public class ClayGolemEntityRenderer extends MobEntityRenderer<AbstractGolemEnti
 	public ClayGolemEntityRenderer(EntityRendererFactory.Context context) {
 		//First argument is provided to the constructor.
 		//The second argument is an instance of our entity model, third argument is the size of the entity's shadow.
-		super(context, new ClayGolemEntityModel(), 0.35f);
+		super(context, new ClayGolemEntityModel(context.getPart(GolemancyClient.MODEL_GOLEM_LAYER)), 0.35f);
 		this.addFeature(new HeldItemFeatureRenderer(this));
 	}
 	

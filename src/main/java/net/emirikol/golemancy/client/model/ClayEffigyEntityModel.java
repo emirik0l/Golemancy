@@ -17,32 +17,28 @@ public class ClayEffigyEntityModel extends EntityModel<ClayEffigyEntity> impleme
 	private final ModelPart LeftArm;
 	private final ModelPart RightArm;
 	
-	public ClayEffigyEntityModel() {
-		textureWidth = 32;
-		textureHeight = 32;
-		Body = new ModelPart(this);
-		Body.setPivot(0.0F, 10.5F, 0.0F);
-		Body.setTextureOffset(0, 0).addCuboid(-4.0F, -4.5F, -3.0F, 8.0F, 9.0F, 6.0F, 0.0F, false);
-
-		Head = new ModelPart(this);
-		Head.setPivot(0.0F, 3.5F, 0.0F);
-		Head.setTextureOffset(8, 21).addCuboid(-3.0F, -2.5F, -3.0F, 6.0F, 5.0F, 6.0F, 0.0F, false);
-
-		LeftLeg = new ModelPart(this);
-		LeftLeg.setPivot(2.0F, 15.5F, 0.0F);
-		LeftLeg.setTextureOffset(0, 0).addCuboid(-2.0F, -1.5F, -3.0F, 4.0F, 10.0F, 6.0F, 0.0F, false);
-
-		RightLeg = new ModelPart(this);
-		RightLeg.setPivot(-2.0F, 15.5F, 0.0F);
-		RightLeg.setTextureOffset(0, 0).addCuboid(-2.0F, -1.5F, -3.0F, 4.0F, 10.0F, 6.0F, 0.0F, false);
-
-		LeftArm = new ModelPart(this);
-		LeftArm.setPivot(4.5F, 6.0F, 0.0F);
-		LeftArm.setTextureOffset(0, 0).addCuboid(-0.5F, 0.0F, -3.0F, 3.0F, 10.0F, 6.0F, 0.0F, false);
-
-		RightArm = new ModelPart(this);
-		RightArm.setPivot(-4.5F, 6.0F, 0.0F);
-		RightArm.setTextureOffset(0, 0).addCuboid(-2.5F, 0.0F, -3.0F, 3.0F, 10.0F, 6.0F, 0.0F, false);
+	public ClayEffigyEntityModel(ModelPart modelPart) {
+		this.Body = modelPart.getChild(EntityModelPartNames.BODY);
+		this.Head = modelPart.getChild(EntityModelPartNames.HEAD);
+		this.LeftLeg = modelPart.getChild(EntityModelPartNames.LEFT_LEG);
+		this.RightLeg = modelPart.getChild(EntityModelPartNames.RIGHT_LEG);
+		this.LeftArm = modelPart.getChild(EntityModelPartNames.LEFT_ARM);
+		this.RightArm = modelPart.getChild(EntityModelPartNames.RIGHT_ARM);
+	}
+	
+	public static TexturedModelData getTexturedModelData() {
+		//This is where you add new ModelParts to the model. For a simple cube, there is only one ModelPart and it starts at [0,0].
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -4.5F, -3.0F, 8.0F, 9.0F, 6.0F), ModelTransform.pivot(0F, 10.5F, 0F));
+		modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(8, 21).cuboid(-3.0F, -2.5F, -3.0F, 6.0F, 5.0F, 6.0F), ModelTransform.pivot(0F, 3.5F, 0F));
+		modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -1.5F, -3.0F, 4.0F, 10.0F, 6.0F), ModelTransform.pivot(2.0F, 15.5F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -1.5F, -3.0F, 4.0F, 10.0F, 6.0F), ModelTransform.pivot(-2.0F, 15.5F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder.create().uv(0, 0).cuboid(-0.5F, 0.0F, -3.0F, 3.0F, 10.0F, 6.0F), ModelTransform.pivot(4.5F, 6.0F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder.create().uv(0, 0).cuboid(-2.5F, 0.0F, -3.0F, 3.0F, 10.0F, 6.0F), ModelTransform.pivot(-4.5F, 6.0F, 0.0F));
+		
+		//The size of the texture, in pixels. The default texture size is 64 wide and 32 tall.
+		return TexturedModelData.of(modelData, 32, 32);
 	}
 	
 	@Override

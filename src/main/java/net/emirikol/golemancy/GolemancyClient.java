@@ -19,10 +19,13 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.client.*;
 import net.minecraft.client.render.entity.*;
+import net.minecraft.client.render.entity.model.*;
 
 import java.util.*;
 
 public class GolemancyClient implements ClientModInitializer {
+
+	public static final EntityModelLayer MODEL_GOLEM_LAYER = new EntityModelLayer(new Identifier("golemancy", "golem"), "main");
 	
 	@Override
 	public void onInitializeClient() {
