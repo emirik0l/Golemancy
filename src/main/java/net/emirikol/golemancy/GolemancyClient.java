@@ -5,6 +5,7 @@ import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
 import net.emirikol.golemancy.client.render.*;
+import net.emirikol.golemancy.client.model.*;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.*;
@@ -32,6 +33,8 @@ public class GolemancyClient implements ClientModInitializer {
 		registerEntities();
 		registerParticles();
 		registerSpawnPacket();
+		
+		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, ClayGolemEntityModel::getTexturedModelData);
 	}
 	
 	public void registerEntities() {
