@@ -14,7 +14,7 @@ public class ClayEffigyEntityRenderer extends MobEntityRenderer<ClayEffigyEntity
 	public ClayEffigyEntityRenderer(EntityRendererFactory.Context context) {
 		//First argument is provided to the constructor.
 		//The second argument is an instance of our entity model, third argument is the size of the entity's shadow.
-		super(context, new ClayEffigyEntityModel(context.getPart(GolemancyClient.MODEL_GOLEM_LAYER)), 0.35f);
+		super(context, new ClayEffigyEntityModel(context.getPart(GolemancyClient.MODEL_EFFIGY_LAYER)), 0.35f);
 		this.addFeature(new HeldItemFeatureRenderer(this));
 	}
 	
