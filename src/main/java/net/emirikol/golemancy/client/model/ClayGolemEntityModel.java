@@ -30,12 +30,12 @@ public class ClayGolemEntityModel extends EntityModel<AbstractGolemEntity> imple
 		//This is where you add new ModelParts to the model. For a simple cube, there is only one ModelPart and it starts at [0,0].
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(0, 0).cuboid(-6.0F, 7.0F, -8.5F, 11.0F, 5.0F, 6.0F).uv(20, 11).cuboid(-4.0F, 12.0F, -7.5F, 7.0F, 3.0F, 4.0F), ModelTransform.pivot(0.0F, 1.0F, 5.5F)); //Body contains two cuboids with separate textures, top and bottom
-		modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(20,18).cuboid(-3.0F, -21.0F, -2.0F, 5.0F, 5.0F, 4.0F), ModelTransform.pivot(0.5F, 24.0F, 0.0F));
-		modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(0, 30).cuboid(-5.0F, -8.0F, -3.0F, 3.0F, 8.0F, 2.0F), ModelTransform.pivot(6.0F, 24.0F, 2.0F));
-		modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(20, 27).cuboid(-5.0F, -8.0F, -1.0F, 3.0F, 8.0F, 2.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-		modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder.create().uv(10,11).cuboid(5.0F, -16.0F, -1.0F, 2.0F, 16.0F, 3.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
-		modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder.create().uv(0,11).cuboid(-8.0F, -16.0F, -1.0F, 2.0F, 16.0F, 3.0F), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(0, 0).cuboid(-5.5F, -4.5F, -3.0F, 11.0F, 5.0F, 6.0F).uv(20, 11).cuboid(-3.5F, 0.5F, -2.0F, 7.0F, 3.0F, 4.0F), ModelTransform.pivot(-0.5F, 12.5F, 0.0F)); //Body contains two cuboids with separate textures, top and bottom
+		modelPartData.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create().uv(20,18).cuboid(-3.0F, -5.0F, -2.0F, 5.0F, 5.0F, 4.0F), ModelTransform.pivot(0.0F, 8.0F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.LEFT_LEG, ModelPartBuilder.create().uv(0, 30).cuboid(-1.5F, 0.0F, -1.0F, 3.0F, 8.0F, 2.0F), ModelTransform.pivot(2.5F, 16.0F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.RIGHT_LEG, ModelPartBuilder.create().uv(20, 27).cuboid(-1.5F, 0.0F, -1.0F, 3.0F, 8.0F, 2.0F), ModelTransform.pivot(-3.5F, 16.0F, 0.0F));
+		modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder.create().uv(10,11).cuboid(0.0F, 0.0F, -1.5F, 2.0F, 16.0F, 3.0F), ModelTransform.pivot(5.0F, 8.0F, 0.5F));
+		modelPartData.addChild(EntityModelPartNames.RIGHT_ARM, ModelPartBuilder.create().uv(0,11).cuboid(-2.0F, 0.0F, -1.5F, 2.0F, 16.0F, 3.0F), ModelTransform.pivot(-6.0F, 8.0F, 0.5F));
 		
 		//The size of the texture, in pixels. The default texture size is 64 wide and 32 tall.
 		return TexturedModelData.of(modelData, 64, 64);
