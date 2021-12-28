@@ -8,6 +8,7 @@ import net.minecraft.screen.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.gui.screen.ingame.*;
 
@@ -35,8 +36,9 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		client.getTextureManager().bindTexture(TEXTURE);
+		RenderSystem.setShaderTexture(0, TEXTURE);
 		int x = (width - backgroundWidth) / 2;
 		int y = (height - backgroundHeight) / 2;
 		drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
