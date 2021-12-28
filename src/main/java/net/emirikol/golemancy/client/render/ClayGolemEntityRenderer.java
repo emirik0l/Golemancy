@@ -21,6 +21,6 @@ public class ClayGolemEntityRenderer extends MobEntityRenderer<AbstractGolemEnti
 	@Override
 	public Identifier getTexture(AbstractGolemEntity entity) {
 		//Tells Minecraft where the find the entity's texture.
-		return new Identifier("golemancy", "textures/entity/clay_effigy/clay_effigy.png");
+		return new Identifier("golemancy", "textures/entity/clay_golem/clay_golem.png");
 	}
 }
