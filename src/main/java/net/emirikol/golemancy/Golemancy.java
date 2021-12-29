@@ -63,24 +63,22 @@ public class Golemancy implements ModInitializer {
 		doInstantiation();
 		doRegistration();
 		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
+		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
 	}
 	
 	public static void doInstantiation() {
 		//Instantiate soulstones.
 		FabricItemSettings soulstone_settings = new FabricItemSettings();
-		soulstone_settings.group(ItemGroup.MISC);
 		SOULSTONE_EMPTY = new SoulstoneEmpty(soulstone_settings);
 		SOULSTONE_FILLED = new SoulstoneFilled(soulstone_settings);
 		//Instantiate soul mirror.
 		FabricItemSettings soul_mirror_settings = new FabricItemSettings();
-		soul_mirror_settings.group(ItemGroup.MISC);
 		soul_mirror_settings.maxCount(1);
 		soul_mirror_settings.maxDamage(256);
 		SOUL_MIRROR = new SoulMirror(soul_mirror_settings);
 		SOUL_MIRROR_SCREEN_HANDLER = ScreenHandlerRegistry.registerExtended(new Identifier("golemancy", "soul_mirror"), SoulMirrorScreenHandler::new);
 		//Instantiate golem wand.
 		FabricItemSettings golem_wand_settings = new FabricItemSettings();
-		golem_wand_settings.group(ItemGroup.MISC);
 		golem_wand_settings.maxCount(1);
 		GOLEM_WAND = new GolemWand(golem_wand_settings);
 		//Instantiate soul grafter.
@@ -89,13 +87,11 @@ public class Golemancy implements ModInitializer {
 		soul_grafter_settings.requiresTool();
 		SOUL_GRAFTER = new SoulGrafterBlock(soul_grafter_settings);
 		FabricItemSettings soul_grafter_item_settings = new FabricItemSettings();
-		soul_grafter_item_settings.group(ItemGroup.MISC);
 		SOUL_GRAFTER_ITEM = new BlockItem(SOUL_GRAFTER, soul_grafter_item_settings);
 		SOUL_GRAFTER_ENTITY = FabricBlockEntityTypeBuilder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
 		SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("golemancy", "soul_grafter"), SoulGrafterScreenHandler::new);
 		//Instantiate clay effigy.
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
-		clay_effigy_settings.group(ItemGroup.MISC);
 		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
 		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		//Instantiate golems.
