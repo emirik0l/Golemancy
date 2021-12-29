@@ -31,6 +31,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	
 	private boolean golemWandFollow;
 	private int attackTicksLeft;
+	private int swingTicksLeft;
 	
 	public AbstractGolemEntity(EntityType<? extends AbstractGolemEntity> entityType, World world) {
 		super(entityType, world);
@@ -263,12 +264,24 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.world.sendEntityStatus(this, (byte)4);
 		return super.tryAttack(target);
 	}
+	
+	public boolean trySwing() {
+		if (this.swingTicksLeft > 0) {
+			return false;
+		}
+		this.swingTicksLeft = 10;
+		this.world.sendEntityStatus(this, (byte)66);
+		return true;
+	}
 
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
 		if (this.attackTicksLeft > 0) {
 			--this.attackTicksLeft;
+		}
+		if (this.swingTicksLeft > 0) {
+			--this.swingTicksLeft;
 		}
 	}
 	
@@ -277,6 +290,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	public void handleStatus(byte status) {
 		if (status == 4) {
 			this.attackTicksLeft = 5;
+		} else if (status == 66) {
+			this.swingTicksLeft = 10;
 		} else {
 			super.handleStatus(status);
 		}
@@ -285,5 +300,10 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	@Environment(EnvType.CLIENT)
 	public int getAttackTicksLeft() {
 		return this.attackTicksLeft;
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public int getSwingTicksLeft() {
+		return this.swingTicksLeft;
 	}
 }

@@ -39,10 +39,8 @@ public class GolemBreakBlockGoal extends Goal {
 	}
 	
 	public void tick() {
-		if (this.entity.getRandom().nextInt(20) == 0) {
-			if (!this.entity.handSwinging) {
-				this.entity.swingHand(this.entity.getActiveHand());
-			}
+		if (this.entity.getRandom().nextInt(5) == 0) {
+			this.entity.trySwing();
 		}
 		
 		this.breakProgress++;

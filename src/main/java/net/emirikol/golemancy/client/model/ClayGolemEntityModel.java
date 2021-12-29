@@ -70,6 +70,14 @@ public class ClayGolemEntityModel extends EntityModel<AbstractGolemEntity> imple
 			float attackPitch = -1.0F + 1.5F * MathHelper.wrap((float)i, 10.0F);
 			setRotationAngle(attackArm, attackPitch, 0, 0);
 		}
+		
+		//Arm swinging animation.
+		int j = entity.getSwingTicksLeft();
+		if (j > 0) {
+			float swingPitch = -0.5F + MathHelper.wrap((float)j, 1.25F);
+			setRotationAngle(LeftArm, swingPitch, 0, 0);
+			setRotationAngle(RightArm, swingPitch, 0, 0);
+		}
 	}
 	
 	@Override
