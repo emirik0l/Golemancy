@@ -11,7 +11,11 @@ import net.minecraft.server.world.*;
 
 public class GolemMoveToFluidGoal extends GolemMoveToBlockGoal {
 	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float searchRadius) {
-		super(entity, searchRadius);
+		super(entity, searchRadius, 1);
+	}
+	
+	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+		super(entity, searchRadius, maxYDifference);
 	}
 	
 	@Override
@@ -20,9 +24,9 @@ public class GolemMoveToFluidGoal extends GolemMoveToBlockGoal {
 	}
 	
 	@Override
-	public boolean isValidPos(BlockPos pos) {
+	public boolean isTargetPos(BlockPos pos) {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
-		return fluidState.isStill() && !fluidState.isEmpty() && super.isValidPos(pos);
+		return fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
 	}
 }

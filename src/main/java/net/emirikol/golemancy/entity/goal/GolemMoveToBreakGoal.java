@@ -11,12 +11,16 @@ import net.minecraft.server.world.*;
 
 public class GolemMoveToBreakGoal extends GolemMoveToBlockGoal {
 	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float searchRadius) {
-		super(entity, searchRadius);
+		super(entity, searchRadius, 1);
+	}
+	
+	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+		super(entity, searchRadius, maxYDifference);
 	}
 	
 	@Override
 	public boolean shouldContinue() {
-		if (isValidPos(this.targetPos)) {
+		if (isTargetPos(this.targetPos)) {
 			return true;
 		} else {
 			return super.shouldContinue();
@@ -24,7 +28,7 @@ public class GolemMoveToBreakGoal extends GolemMoveToBlockGoal {
 	}
 	
 	@Override
-	public boolean isValidPos(BlockPos pos) {
+	public boolean isTargetPos(BlockPos pos) {
 		BlockState state = this.entity.world.getBlockState(pos);
 		if (state == null) { return false; }
 		BlockPos linkedPos = this.entity.getLinkedBlockPos();
@@ -32,6 +36,6 @@ public class GolemMoveToBreakGoal extends GolemMoveToBlockGoal {
 		BlockState linkedState = this.entity.world.getBlockState(linkedPos);
 		if (linkedState == null) { return false; }
 		
-		return (state.getBlock() == linkedState.getBlock()) && !pos.equals(linkedPos) && super.isValidPos(pos);
+		return (state.getBlock() == linkedState.getBlock()) && !pos.equals(linkedPos) && super.isTargetPos(pos);
 	}
 }

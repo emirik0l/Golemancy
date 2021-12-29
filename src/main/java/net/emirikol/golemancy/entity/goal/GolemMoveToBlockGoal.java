@@ -12,6 +12,7 @@ import java.util.*;
 public class GolemMoveToBlockGoal extends Goal {
 	protected final AbstractGolemEntity entity;
 	private final float searchRadius;
+	private final float maxYDifference;
 	
 	private List<Block> filter;
 	protected BlockPos targetPos;
@@ -19,8 +20,13 @@ public class GolemMoveToBlockGoal extends Goal {
 	protected int safeWaitingTime;
 	
 	public GolemMoveToBlockGoal(AbstractGolemEntity entity, float searchRadius) {
+		this(entity, searchRadius, 1);
+	}
+	
+	public GolemMoveToBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
+		this.maxYDifference = maxYDifference;
 		this.filter = new ArrayList<Block>();
 		this.setControls(EnumSet.of(Goal.Control.MOVE));
 	}
@@ -41,7 +47,7 @@ public class GolemMoveToBlockGoal extends Goal {
 
 	public void tick() {
 		//Continue towards targetPos.
-		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget())) {
+		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
 			++this.tryingTime;
 			if (this.shouldResetPath()) {
 				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)(this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
@@ -59,8 +65,8 @@ public class GolemMoveToBlockGoal extends Goal {
 		}
 	}
 	
-	public double getDesiredSquaredDistanceToTarget() {
-		return 0.5D;
+	public double getDesiredDistanceToTarget() {
+		return 1.0D;
 	}
 	
 	public boolean shouldResetPath() {
@@ -73,7 +79,7 @@ public class GolemMoveToBlockGoal extends Goal {
 		
 		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
 		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, 2, (int)r)) {
-			if (isValidPos(curPos)) {
+			if (isTargetPos(curPos)) {
 				this.targetPos = curPos;
 				return true;
 			}
@@ -81,7 +87,7 @@ public class GolemMoveToBlockGoal extends Goal {
 		return false;
 	}
 	
-	public boolean isValidPos(BlockPos pos) {
+	public boolean isTargetPos(BlockPos pos) {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		BlockState state = world.getBlockState(pos);
 		return this.filter.isEmpty() || this.filter.contains(state.getBlock());
