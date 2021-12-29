@@ -22,7 +22,7 @@ public class EntropicGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(5, new GolemBreakBlockGoal(this));
-		this.goalSelector.add(6, new GolemMoveToBreakGoal(this, 10.0F));
+		this.goalSelector.add(6, new GolemMoveToBreakGoal(this, 10.0F, 2.0F));
 	}
 	
 	@Override
