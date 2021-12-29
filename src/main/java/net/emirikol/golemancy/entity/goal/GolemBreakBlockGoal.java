@@ -19,6 +19,7 @@ public class GolemBreakBlockGoal extends Goal {
 	
 	public GolemBreakBlockGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
+		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK)); //stop the golem from getting distracted while breaking blocks
 	}
 	
 	public boolean canStart() {
