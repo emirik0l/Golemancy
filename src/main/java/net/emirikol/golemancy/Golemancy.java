@@ -85,7 +85,6 @@ public class Golemancy implements ModInitializer {
 		//Instantiate soul grafter.
 		FabricBlockSettings soul_grafter_settings = FabricBlockSettings.of(Material.STONE);
 		soul_grafter_settings.hardness(4.0F).strength(5.0F, 1200.0F);
-		soul_grafter_settings.breakByTool(FabricToolTags.PICKAXES, 0);
 		soul_grafter_settings.requiresTool();
 		SOUL_GRAFTER = new SoulGrafterBlock(soul_grafter_settings);
 		FabricItemSettings soul_grafter_item_settings = new FabricItemSettings();
