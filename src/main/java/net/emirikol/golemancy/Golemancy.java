@@ -10,6 +10,7 @@ import net.emirikol.golemancy.screen.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.fabricmc.fabric.api.item.v1.*;
+import net.fabricmc.fabric.api.tool.attribute.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
@@ -84,6 +85,7 @@ public class Golemancy implements ModInitializer {
 		//Instantiate soul grafter.
 		FabricBlockSettings soul_grafter_settings = FabricBlockSettings.of(Material.STONE);
 		soul_grafter_settings.hardness(4.0F).strength(5.0F, 1200.0F);
+		soul_grafter_settings.breakByTool(FabricToolTags.PICKAXES, 0);
 		soul_grafter_settings.requiresTool();
 		SOUL_GRAFTER = new SoulGrafterBlock(soul_grafter_settings);
 		FabricItemSettings soul_grafter_item_settings = new FabricItemSettings();
