@@ -22,7 +22,8 @@ public class GolemancyConfig implements ConfigData,ModMenuApi {
 	public static int getGraftDuration() {
 		//How many ticks should a soul grafter take to graft two souls?
 		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
-		float adjustedGraftDuration = 2400.0F / config.GRAFT_SPEED_MULTIPLIER; //base graft duration is 2400 ticks, or 2 minutes
+		float baseGraftDuration = 2400.0F;  //base graft duration is 2400 ticks, or 2 minutes
+		float adjustedGraftDuration = baseGraftDuration / config.GRAFT_SPEED_MULTIPLIER;
 		int roundedGraftDuration = Math.round(adjustedGraftDuration);
 		if (roundedGraftDuration < 1) {
 			return 1;
@@ -33,7 +34,8 @@ public class GolemancyConfig implements ConfigData,ModMenuApi {
 	public static int getFuelValue() {
 		//How many ticks of fuel should a piece of bone meal provide?
 		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
-		float adjustedFuelValue = 600.0F * config.GRAFT_FUEL_MULTIPLIER; //bonemeal burns for 600 ticks, or 30 seconds
+		float baseFuelValue = 600.0F; //bonemeal burns for 600 ticks, or 30 seconds
+		float adjustedFuelValue = baseFuelValue * config.GRAFT_FUEL_MULTIPLIER; 
 		int roundedFuelValue = Math.round(adjustedFuelValue);
 		if (roundedFuelValue < 1) {
 			return 1;
