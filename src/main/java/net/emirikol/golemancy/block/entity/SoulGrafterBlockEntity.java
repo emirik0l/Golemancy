@@ -281,7 +281,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		x = rand.nextInt(2);
 		Genome potencyGenome = new Genome(parents[x]);
 		Gene<Integer> potencyGene = potencyGenome.get("potency");
-		int potency = potencyGene.getActive();
+		int potency = Math.round((float) potencyGene.getActive() * GolemancyConfig.getPotencyMultiplier());
 		for (int i = 0; i < potency; i++) {
 			//Check if there are empty soulstones available to fill.
 			if (emptySoulstones.getCount() > 0) {

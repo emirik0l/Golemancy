@@ -13,6 +13,7 @@ public class GolemancyConfig implements ModMenuApi {
 	
 	public static float GRAFT_SPEED_MULTIPLIER = 1.0F;
 	public static float GRAFT_FUEL_MULTIPLIER = 1.0F;
+	public static float GRAFT_POTENCY_MULTIPLIER = 1.0F;
 	
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -26,6 +27,9 @@ public class GolemancyConfig implements ModMenuApi {
 			
 			//Fuel Value
 			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_fuel_multiplier"), GRAFT_FUEL_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how long bone meal lasts in the soul grafter.")).setSaveConsumer(newValue -> GRAFT_FUEL_MULTIPLIER = Math.abs(newValue)).build());
+			
+			//Potency Multiplier
+			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_potency_multiplier"), GRAFT_POTENCY_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how many soulstones grafting produces.")).setSaveConsumer(newValue -> GRAFT_POTENCY_MULTIPLIER = Math.abs(newValue)).build());
 			
 			builder.setSavingRunnable(() -> {
 				// Serialise the config into the config file. This will be called last after all variables are updated.
@@ -53,5 +57,10 @@ public class GolemancyConfig implements ModMenuApi {
 			return 1;
 		}
 		return roundedFuelValue;
+	}
+	
+	public static float getPotencyMultiplier() {
+		//How many soulstones should a soul grafting produce, compared to the default potency?
+		return GRAFT_POTENCY_MULTIPLIER;
 	}
 }
