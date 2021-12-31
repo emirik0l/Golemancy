@@ -7,6 +7,8 @@ import net.minecraft.text.*;
 
 public class GolemancyConfig implements ModMenuApi {
 	
+	public static float GRAFT_SPEED_MULTIPLIER = 1.0F;
+	
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
 		return parent -> {
@@ -14,9 +16,7 @@ public class GolemancyConfig implements ModMenuApi {
 			ConfigCategory general = builder.getOrCreateCategory(new TranslatableText("category.golemancy.general"));
 			ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 	
-			/*
-			general.addEntry(entryBuilder.startStrField(new TranslatableText("option.golemancy.test_option"), testValue).setDefaultValue("beep").setTooltip(new LiteralText("this is a test")).setSaveConsumer(newValue -> testValue = newValue).build());
-			*/
+			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_speed_multiplier"), GRAFT_SPEED_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how fast soul grafting should occur.")).setSaveConsumer(newValue -> GRAFT_SPEED_MULTIPLIER = newValue).build());
 			
 			builder.setSavingRunnable(() -> {
 				// Serialise the config into the config file. This will be called last after all variables are updated.
@@ -24,5 +24,16 @@ public class GolemancyConfig implements ModMenuApi {
 			});
 			return builder.build();
 		};
+	}
+	
+	public static int getGraftDuration() {
+		//How many ticks should a soul grafter take to graft two souls?
+		float baseGraftDuration = 2400.0F; //base graft duration is 2400 ticks, or 2 minutes
+		float adjustedGraftDuration = baseGraftDuration / GRAFT_SPEED_MULTIPLIER;
+		int roundedGraftDuration = (int) adjustedGraftDuration;
+		if (roundedGraftDuration < 1) {
+			return 1;
+		}
+		return roundedGraftDuration;
 	}
 }

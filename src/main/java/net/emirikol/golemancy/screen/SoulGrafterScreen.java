@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.screen;
 
+import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.block.entity.*;
 
 import net.minecraft.entity.player.*;
@@ -43,7 +44,7 @@ public class SoulGrafterScreen extends HandledScreen<ScreenHandler> {
 		//Graft Progress Bubbles
 		int graft_time = ((SoulGrafterScreenHandler) this.handler).getGraftTime();
 		if (graft_time > 0) {
-			float graft_factor = 1.00F - ((float) graft_time / (float) SoulGrafterBlockEntity.GRAFT_DURATION);
+			float graft_factor = 1.00F - ((float) graft_time / (float) GolemancyConfig.getGraftDuration());
 			int progress_width = Math.round((float)BUBBLE_WIDTH * graft_factor);
 			drawTexture(matrices, x + 59, y + 21, BUBBLE_STARTX, BUBBLE_STARTY, progress_width, BUBBLE_HEIGHT);
 		}
