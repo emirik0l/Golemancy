@@ -207,6 +207,13 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	public void checkTick() {
 		boolean dirty = false;
 		boolean grafting = isGrafting();
+		//Sanity check to deal with config value changes.
+		if (fuel_time > GolemancyConfig.getFuelValue()) {
+			fuel_time = GolemancyConfig.getFuelValue();
+		}
+		if (graft_time > GolemancyConfig.getGraftDuration()) {
+			graft_time = GolemancyConfig.getGraftDuration();
+		}
 		//If the grafter is burning, decrement the fuel timer.
 		if (isBurning()) {
 			fuel_time -= 1;
