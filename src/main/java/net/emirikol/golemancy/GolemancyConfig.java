@@ -4,6 +4,7 @@ import com.terraformersmc.modmenu.api.*;
 import me.shedaniel.clothconfig2.api.*;
 
 import net.minecraft.text.*;
+import net.minecraft.client.util.math.*;
 
 public class GolemancyConfig implements ModMenuApi {
 	
@@ -37,7 +38,7 @@ public class GolemancyConfig implements ModMenuApi {
 	public static int getGraftDuration() {
 		//How many ticks should a soul grafter take to graft two souls?
 		float adjustedGraftDuration = (float) BASE_GRAFT_DURATION / GRAFT_SPEED_MULTIPLIER;
-		int roundedGraftDuration = (int) adjustedGraftDuration;
+		int roundedGraftDuration = Math.round(adjustedGraftDuration);
 		if (roundedGraftDuration < 1) {
 			return 1;
 		}
@@ -47,7 +48,7 @@ public class GolemancyConfig implements ModMenuApi {
 	public static int getFuelValue() {
 		//How many ticks of fuel should a piece of bone meal provide?
 		float adjustedFuelValue = (float) BASE_FUEL_VALUE * GRAFT_FUEL_MULTIPLIER;
-		int roundedFuelValue = (int) adjustedFuelValue;
+		int roundedFuelValue = Math.round(adjustedFuelValue);
 		if (roundedFuelValue < 1) {
 			return 1;
 		}
