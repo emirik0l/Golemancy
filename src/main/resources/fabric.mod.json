@@ -21,14 +21,15 @@
     "main": ["net.emirikol.golemancy.Golemancy"],
 	"client": ["net.emirikol.golemancy.GolemancyClient"],
 	"cardinal-components-entity": ["net.emirikol.golemancy.GolemancyComponents"],
-	"modmenu": ["net.emirikol.golemancy.GolemancyConfig"]
+	"modmenu": ["net.emirikol.golemancy.GolemancyModMenu"]
   },
   "mixins": [],
 
   "depends": {
     "fabricloader": ">=0.12.12",
     "fabric": "*",
-    "minecraft": "1.18.x"
+    "minecraft": "1.18.x",
+	"cloth-config2": ">=6.1.48"
   },
   "suggests": {
   },
