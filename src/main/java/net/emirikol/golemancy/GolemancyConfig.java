@@ -22,10 +22,10 @@ public class GolemancyConfig implements ModMenuApi {
 			ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 	
 			//Grafting Speed
-			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_speed_multiplier"), GRAFT_SPEED_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how fast soul grafting should occur.")).setSaveConsumer(newValue -> GRAFT_SPEED_MULTIPLIER = newValue).build());
+			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_speed_multiplier"), GRAFT_SPEED_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how fast soul grafting should occur.")).setSaveConsumer(newValue -> GRAFT_SPEED_MULTIPLIER = Math.abs(newValue)).build());
 			
 			//Fuel Value
-			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_fuel_multiplier"), GRAFT_FUEL_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how long bone meal lasts in the soul grafter.")).setSaveConsumer(newValue -> GRAFT_FUEL_MULTIPLIER = newValue).build());
+			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_fuel_multiplier"), GRAFT_FUEL_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how long bone meal lasts in the soul grafter.")).setSaveConsumer(newValue -> GRAFT_FUEL_MULTIPLIER = Math.abs(newValue)).build());
 			
 			builder.setSavingRunnable(() -> {
 				// Serialise the config into the config file. This will be called last after all variables are updated.
