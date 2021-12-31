@@ -50,5 +50,6 @@
 	"text.golemancy.type.weeping": "Weeping",
 	"title.golemancy.config": "Golemancy Configuration",
 	"category.golemancy.general": "General Settings",
-	"option.golemancy.graft_speed_multiplier": "Graft Speed Multiplier"
+	"option.golemancy.graft_speed_multiplier": "Graft Speed Multiplier",
+	"option.golemancy.graft_fuel_multiplier": "Graft Fuel Multiplier"
 }

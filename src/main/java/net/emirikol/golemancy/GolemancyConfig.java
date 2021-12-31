@@ -8,8 +8,10 @@ import net.minecraft.text.*;
 public class GolemancyConfig implements ModMenuApi {
 	
 	public static final int BASE_GRAFT_DURATION = 2400; //base graft duration is 2400 ticks, or 2 minutes
+	public static final int BASE_FUEL_VALUE = 600; //basebonemeal burns for 600 ticks, or 30 seconds
 	
 	public static float GRAFT_SPEED_MULTIPLIER = 1.0F;
+	public static float GRAFT_FUEL_MULTIPLIER = 1.0F;
 	
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -18,7 +20,11 @@ public class GolemancyConfig implements ModMenuApi {
 			ConfigCategory general = builder.getOrCreateCategory(new TranslatableText("category.golemancy.general"));
 			ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 	
+			//Grafting Speed
 			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_speed_multiplier"), GRAFT_SPEED_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how fast soul grafting should occur.")).setSaveConsumer(newValue -> GRAFT_SPEED_MULTIPLIER = newValue).build());
+			
+			//Fuel Value
+			general.addEntry(entryBuilder.startFloatField(new TranslatableText("option.golemancy.graft_fuel_multiplier"), GRAFT_FUEL_MULTIPLIER).setDefaultValue(1.0F).setTooltip(new LiteralText("Multiplier on how long bone meal lasts in the soul grafter.")).setSaveConsumer(newValue -> GRAFT_FUEL_MULTIPLIER = newValue).build());
 			
 			builder.setSavingRunnable(() -> {
 				// Serialise the config into the config file. This will be called last after all variables are updated.
@@ -36,5 +42,15 @@ public class GolemancyConfig implements ModMenuApi {
 			return 1;
 		}
 		return roundedGraftDuration;
+	}
+	
+	public static int getFuelValue() {
+		//How many ticks of fuel should a piece of bone meal provide?
+		float adjustedFuelValue = (float) BASE_FUEL_VALUE * GRAFT_FUEL_MULTIPLIER;
+		int roundedFuelValue = (int) adjustedFuelValue;
+		if (roundedFuelValue < 1) {
+			return 1;
+		}
+		return roundedFuelValue;
 	}
 }

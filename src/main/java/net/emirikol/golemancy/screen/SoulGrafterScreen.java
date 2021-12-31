@@ -51,7 +51,7 @@ public class SoulGrafterScreen extends HandledScreen<ScreenHandler> {
 		//Bonemeal Fuel Indicator
 		int fuel_time = ((SoulGrafterScreenHandler) this.handler).getFuelTime();
 		if (fuel_time > 0) {
-			float fuel_factor = (float) fuel_time / (float) SoulGrafterBlockEntity.FUEL_VALUE;
+			float fuel_factor = (float) fuel_time / (float) GolemancyConfig.getFuelValue();
 			int fuel_height = Math.round((float) FLAME_HEIGHT * fuel_factor);
 			int fuel_offset = FLAME_HEIGHT - fuel_height;
 			drawTexture(matrices, x + 63, y + 55 + fuel_offset, FLAME_STARTX, FLAME_STARTY + fuel_offset, FLAME_WIDTH, fuel_height);
