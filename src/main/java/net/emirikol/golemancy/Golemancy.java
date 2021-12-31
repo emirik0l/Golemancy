@@ -7,6 +7,9 @@ import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.entity.projectile.*;
 import net.emirikol.golemancy.screen.*;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.fabricmc.fabric.api.item.v1.*;
@@ -65,6 +68,7 @@ public class Golemancy implements ModInitializer {
 		doRegistration();
 		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
 		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
+		AutoConfig.register(GolemancyConfig.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
 	}
 	
 	public static void doInstantiation() {

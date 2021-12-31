@@ -48,9 +48,8 @@
 	"text.golemancy.type.tactile": "Tactile",
 	"text.golemancy.type.valiant": "Valiant",
 	"text.golemancy.type.weeping": "Weeping",
-	"title.golemancy.config": "Golemancy Configuration",
-	"category.golemancy.general": "General Settings",
-	"option.golemancy.graft_speed_multiplier": "Graft Speed Multiplier",
-	"option.golemancy.graft_fuel_multiplier": "Graft Fuel Multiplier",
-	"option.golemancy.graft_potency_multiplier": "Graft Potency Multiplier"
+	"text.autoconfig.golemancy.title": "Golemancy Configuration",
+	"text.autoconfig.golemancy.option.GRAFT_SPEED_MULTIPLIER": "Graft Speed Multiplier",
+	"text.autoconfig.golemancy.option.GRAFT_FUEL_MULTIPLIER": "Graft Fuel Multiplier",
+	"text.autoconfig.golemancy.option.GRAFT_POTENCY_MULTIPLIER": "Graft Potency Multiplier"
 }
