@@ -7,6 +7,8 @@ import net.minecraft.text.*;
 
 public class GolemancyConfig implements ModMenuApi {
 	
+	public static final int BASE_GRAFT_DURATION = 2400; //base graft duration is 2400 ticks, or 2 minutes
+	
 	public static float GRAFT_SPEED_MULTIPLIER = 1.0F;
 	
 	@Override
@@ -28,8 +30,7 @@ public class GolemancyConfig implements ModMenuApi {
 	
 	public static int getGraftDuration() {
 		//How many ticks should a soul grafter take to graft two souls?
-		float baseGraftDuration = 2400.0F; //base graft duration is 2400 ticks, or 2 minutes
-		float adjustedGraftDuration = baseGraftDuration / GRAFT_SPEED_MULTIPLIER;
+		float adjustedGraftDuration = (float) BASE_GRAFT_DURATION / GRAFT_SPEED_MULTIPLIER;
 		int roundedGraftDuration = (int) adjustedGraftDuration;
 		if (roundedGraftDuration < 1) {
 			return 1;
