@@ -9,8 +9,8 @@
     "Emirikol"
   ],
   "contact": {
-    "homepage": "TODO",
-    "sources": "TODO"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/golemancy",
+    "sources": "https://github.com/emirik0l/Golemancy"
   },
 
   "license": "LGPL2.1",
@@ -20,7 +20,8 @@
   "entrypoints": {
     "main": ["net.emirikol.golemancy.Golemancy"],
 	"client": ["net.emirikol.golemancy.GolemancyClient"],
-	"cardinal-components-entity": ["net.emirikol.golemancy.GolemancyComponents"]
+	"cardinal-components-entity": ["net.emirikol.golemancy.GolemancyComponents"],
+	"modmenu": ["net.emirikol.golemancy.GolemancyConfig"]
   },
   "mixins": [],
 

@@ -47,5 +47,7 @@
 	"text.golemancy.type.restless": "Restless",
 	"text.golemancy.type.tactile": "Tactile",
 	"text.golemancy.type.valiant": "Valiant",
-	"text.golemancy.type.weeping": "Weeping"
+	"text.golemancy.type.weeping": "Weeping",
+	"title.golemancy.config": "Golemancy Configuration",
+	"category.golemancy.general": "General Settings"
 }
