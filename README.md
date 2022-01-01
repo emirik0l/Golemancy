@@ -1,8 +1,11 @@
 # Golemancy
 
-Golemancy is a mod about capturing the souls of mobs, breeding them, and using them to create faithful golem servants to do your bidding. You can create golems that will fight for you, gather items, and otherwise automate your Minecraft world!
+Golemancy is a mod about capturing the souls of mobs, breeding them, and using them to create faithful golem servants to do your bidding. You can create golems that will fight for you, gather items, and otherwise automate your Minecraft world! This mod is for Fabric, and no Forge port is currently planned.
 
-This mod is for Fabric, and no Forge port is planned - sorry about that!
+## Requirements
+
+- [Cloth Config API](https://www.curseforge.com/minecraft/mc-mods/cloth-config) v6.1.48+
+- [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) is not required, but is supported.
 
 ## Capturing Souls
 
@@ -72,7 +75,6 @@ The soul grafter is what you use to breed soulstones. You'll need a good supply 
 * Random mutations - breed "natural" souls together for a chance to create otherwise unattainable golem types.
 * More advanced golem types, such as harvesters, butchers, ore-finding golems, etc.
 * In-game documentation via Patchouli.
-* Configuration files.
 
 # Credits
 
