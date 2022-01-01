@@ -28,6 +28,7 @@ import java.util.*;
 public abstract class AbstractGolemEntity extends TameableEntity {
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
+	private boolean baked;
 	
 	private boolean golemWandFollow;
 	private int attackTicksLeft;
@@ -77,6 +78,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		component.setAttribute("vigor", this.vigor);
 		component.setAttribute("smarts", this.smarts);
 		component.setLinkedBlockPos(this.linkedBlockPos);
+		component.setBaked(this.baked);
 	}
 	
 	public void fromComponent() {
@@ -86,6 +88,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.vigor = component.getAttribute("vigor");
 		this.smarts = component.getAttribute("smarts");
 		this.linkedBlockPos = component.getLinkedBlockPos();
+		this.baked = component.isBaked();
 	}
 	
 	
@@ -187,6 +190,16 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	
 	public void linkToBlockPos(BlockPos pos) {
 		this.linkedBlockPos = pos;
+		this.toComponent();
+	}
+
+	public boolean isBaked() {
+		this.fromComponent();
+		return this.baked;
+	}
+
+	public void setBaked(boolean flag) {
+		this.baked = flag;
 		this.toComponent();
 	}
 	

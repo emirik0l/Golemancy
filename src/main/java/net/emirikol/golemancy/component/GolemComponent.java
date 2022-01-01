@@ -18,6 +18,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		put("smarts", 0);
 	}};
 	private BlockPos linkedBlockPos;
+	private Boolean baked;
 	private Object provider;
 	
 	public GolemComponent(Object provider) {
@@ -42,6 +43,13 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		this.linkedBlockPos = pos;
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
+
+	public boolean isBaked() { return this.baked; }
+
+	public void setBaked(boolean flag) {
+		this.baked = flag;
+		GolemancyComponents.GOLEM.sync(this.provider);
+	}
 	
 	@Override
 	public void readFromNbt(NbtCompound nbt) { 
@@ -54,6 +62,8 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		if (linkCoords.length == 3) {
 			this.linkedBlockPos = new BlockPos(linkCoords[0], linkCoords[1], linkCoords[2]);
 		}
+
+		this.baked = nbt.getBoolean("golemancy_baked");
 	}
 	
 	@Override
@@ -67,5 +77,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			int[] linkCoords = {this.linkedBlockPos.getX(), this.linkedBlockPos.getY(), this.linkedBlockPos.getZ()};
 			nbt.putIntArray("golemancy_linked", linkCoords);
 		}
+
+		nbt.putBoolean("golemancy_baked", this.baked);
 	}
 } 
