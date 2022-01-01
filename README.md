@@ -4,6 +4,7 @@ Golemancy is a mod about capturing the souls of mobs, breeding them, and using t
 
 ## Requirements
 
+- [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 - [Cloth Config API](https://www.curseforge.com/minecraft/mc-mods/cloth-config) v6.1.48+
 - [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) is not required, but is supported.
 
