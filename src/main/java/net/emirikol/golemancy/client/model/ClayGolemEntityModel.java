@@ -4,9 +4,6 @@ import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.util.math.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.*;
-import net.minecraft.client.render.entity.model.*;
-import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 
 public class ClayGolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEntity> {

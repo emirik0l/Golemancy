@@ -4,7 +4,6 @@ import net.emirikol.golemancy.genetics.*;
 
 import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 

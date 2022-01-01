@@ -6,7 +6,6 @@ import net.emirikol.golemancy.client.model.*;
 
 import net.minecraft.util.*;
 import net.minecraft.client.render.entity.*;
-import net.minecraft.client.render.entity.*;
 import net.minecraft.client.render.entity.feature.*;
 
 public class ClayGolemEntityRenderer extends MobEntityRenderer<AbstractGolemEntity, ClayGolemEntityModel> {
