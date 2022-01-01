@@ -1,6 +1,5 @@
 package net.emirikol.golemancy;
 
-import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
@@ -10,11 +9,8 @@ import net.emirikol.golemancy.client.model.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screenhandler.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
-import net.fabricmc.fabric.api.network.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.entity.*;
-import net.minecraft.particle.*;
-import net.minecraft.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;

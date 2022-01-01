@@ -3,9 +3,6 @@ package net.emirikol.golemancy;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.annotation.*;
 
-import net.minecraft.text.*;
-import net.minecraft.client.util.math.*;
-
 @Config(name = "golemancy")
 public class GolemancyConfig implements ConfigData {	
 	public float GRAFT_SPEED_MULTIPLIER = 1.0F;
