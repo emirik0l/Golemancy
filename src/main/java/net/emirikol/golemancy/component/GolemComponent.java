@@ -17,8 +17,8 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		put("vigor", 0);
 		put("smarts", 0);
 	}};
-	private BlockPos linkedBlockPos;
-	private Boolean baked;
+	private BlockPos linkedBlockPos = null;
+	private Boolean baked = false;
 	private Object provider;
 	
 	public GolemComponent(Object provider) {
