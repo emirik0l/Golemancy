@@ -54,9 +54,11 @@ public class SoulGrafterBlock extends BlockWithEntity {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		//Sync configs between client and server to avoid screen desync.
 		if (!world.isClient) {
 			GolemancyConfig.syncConfig((ServerPlayerEntity) player);
 		}
+		//Open screen.
 		NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 		if (screenHandlerFactory != null) {
 			player.openHandledScreen(screenHandlerFactory);

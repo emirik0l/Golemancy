@@ -106,6 +106,7 @@ public class GolemancyClient implements ClientModInitializer {
 	}
 
 	public void registerConfigPacket() {
+		//Used to sync golemancy config between server and client.
 		ClientPlayNetworking.registerGlobalReceiver(Golemancy.ConfigPacketID, (client, handler, buf, responseSender) -> {
 			float graftSpeedMultiplier = buf.readFloat();
 			float graftFuelMultiplier = buf.readFloat();
