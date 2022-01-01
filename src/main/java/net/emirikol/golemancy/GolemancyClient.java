@@ -8,8 +8,8 @@ import net.emirikol.golemancy.client.render.*;
 import net.emirikol.golemancy.client.model.*;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.*;
 import net.fabricmc.fabric.api.client.screenhandler.v1.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.network.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.entity.*;
@@ -45,17 +45,17 @@ public class GolemancyClient implements ClientModInitializer {
 		//Register Soul Grafter Screen
 		ScreenRegistry.register(Golemancy.SOUL_GRAFTER_SCREEN_HANDLER, SoulGrafterScreen::new);
 		//Register Clay Effigy Renderer
-		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAY_EFFIGY_ENTITY, (context) -> {
+		EntityRendererRegistry.register(Golemancy.CLAY_EFFIGY_ENTITY, (context) -> {
 			return new ClayEffigyEntityRenderer(context);
 		});
 		//Register Golem Renderers
 		for(EntityType type: Golems.getTypes()) {
-			EntityRendererRegistry.INSTANCE.register(type, (context) -> {
+			EntityRendererRegistry.register(type, (context) -> {
 				return new ClayGolemEntityRenderer(context);
 			});
 		}
 		//Register Clayball Renderer
-		EntityRendererRegistry.INSTANCE.register(Golemancy.CLAYBALL, (context) -> {
+		EntityRendererRegistry.register(Golemancy.CLAYBALL, (context) -> {
 			return new FlyingItemEntityRenderer(context);
 		});
 	}
