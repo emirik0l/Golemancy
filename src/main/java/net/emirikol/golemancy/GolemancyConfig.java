@@ -2,12 +2,26 @@ package net.emirikol.golemancy;
 
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.annotation.*;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 @Config(name = "golemancy")
 public class GolemancyConfig implements ConfigData {	
 	public float GRAFT_SPEED_MULTIPLIER = 1.0F;
 	public float GRAFT_FUEL_MULTIPLIER = 1.0F;
 	public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
+
+	public static void syncConfig(ServerPlayerEntity user) {
+		//Helper method for syncing config from server to client.
+		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeFloat(config.GRAFT_SPEED_MULTIPLIER);
+		buf.writeFloat(config.GRAFT_FUEL_MULTIPLIER);
+		buf.writeFloat(config.GRAFT_POTENCY_MULTIPLIER);
+		ServerPlayNetworking.send(user, Golemancy.ConfigPacketID, buf);
+	}
 
 	public static int getGraftDuration() {
 		//How many ticks should a soul grafter take to graft two souls?

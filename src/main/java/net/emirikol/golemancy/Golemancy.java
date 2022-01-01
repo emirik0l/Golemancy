@@ -13,7 +13,6 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.fabricmc.fabric.api.item.v1.*;
-import net.fabricmc.fabric.api.tool.attribute.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
@@ -21,7 +20,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.mob.*;
 import net.minecraft.screen.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
@@ -59,8 +57,8 @@ public class Golemancy implements ModInitializer {
 	
 	private static final float GOLEM_WIDTH = 0.7f;
 	private static final float GOLEM_HEIGHT = 1.30f;
-	
-	public static final Identifier SpawnPacketID = new Identifier("golemancy", "spawn_packet");
+
+	public static final Identifier ConfigPacketID = new Identifier("golemancy", "config_packet");
 	
 	@Override
 	public void onInitialize() {

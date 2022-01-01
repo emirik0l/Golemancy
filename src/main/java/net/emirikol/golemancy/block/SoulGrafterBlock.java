@@ -7,6 +7,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -53,6 +54,9 @@ public class SoulGrafterBlock extends BlockWithEntity {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		if (!world.isClient) {
+			GolemancyConfig.syncConfig((ServerPlayerEntity) player);
+		}
 		NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 		if (screenHandlerFactory != null) {
 			player.openHandledScreen(screenHandlerFactory);

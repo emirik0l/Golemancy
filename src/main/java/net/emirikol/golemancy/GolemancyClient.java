@@ -1,5 +1,6 @@
 package net.emirikol.golemancy;
 
+import me.shedaniel.autoconfig.AutoConfig;
 import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
@@ -30,6 +31,7 @@ public class GolemancyClient implements ClientModInitializer {
 		registerEntities();
 		registerParticles();
 		registerSpawnPacket();
+		registerConfigPacket();
 		
 		EntityModelLayerRegistry.registerModelLayer(MODEL_EFFIGY_LAYER, ClayEffigyEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, ClayGolemEntityModel::getTexturedModelData);
@@ -99,6 +101,22 @@ public class GolemancyClient implements ClientModInitializer {
 				e.setId(entityId);
 				e.setUuid(uuid);
 				MinecraftClient.getInstance().world.addEntity(entityId, e);
+			});
+		});
+	}
+
+	public void registerConfigPacket() {
+		ClientPlayNetworking.registerGlobalReceiver(Golemancy.ConfigPacketID, (client, handler, buf, responseSender) -> {
+			float graftSpeedMultiplier = buf.readFloat();
+			float graftFuelMultiplier = buf.readFloat();
+			float graftPotencyMultiplier = buf.readFloat();
+
+			client.execute(() -> {
+				GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
+				config.GRAFT_SPEED_MULTIPLIER = graftSpeedMultiplier;
+				config.GRAFT_FUEL_MULTIPLIER = graftFuelMultiplier;
+				config.GRAFT_POTENCY_MULTIPLIER = graftPotencyMultiplier;
+				AutoConfig.getConfigHolder(GolemancyConfig.class).save();
 			});
 		});
 	}
