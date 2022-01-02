@@ -12,6 +12,7 @@ public class GolemancyConfig implements ConfigData {
 	public float GRAFT_SPEED_MULTIPLIER = 1.0F;
 	public float GRAFT_FUEL_MULTIPLIER = 1.0F;
 	public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
+	public double TERRACOTTA_ARMOR_VALUE = 8.0D;
 
 	public static void syncConfig(ServerPlayerEntity user) {
 		//Helper method for syncing config from server to client.
@@ -20,6 +21,7 @@ public class GolemancyConfig implements ConfigData {
 		buf.writeFloat(config.GRAFT_SPEED_MULTIPLIER);
 		buf.writeFloat(config.GRAFT_FUEL_MULTIPLIER);
 		buf.writeFloat(config.GRAFT_POTENCY_MULTIPLIER);
+		buf.writeDouble(config.TERRACOTTA_ARMOR_VALUE);
 		ServerPlayNetworking.send(user, Golemancy.ConfigPacketID, buf);
 	}
 
@@ -51,5 +53,14 @@ public class GolemancyConfig implements ConfigData {
 		//How many soulstones should a soul grafting produce, compared to the default potency?
 		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
 		return config.GRAFT_POTENCY_MULTIPLIER;
+	}
+
+	public static double getTerracottaArmorValue() {
+		//How much armor should a terracotta golem have?
+		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
+		if (config.TERRACOTTA_ARMOR_VALUE < 0.5D) {
+			return 0.5D;
+		}
+		return config.TERRACOTTA_ARMOR_VALUE;
 	}
 }

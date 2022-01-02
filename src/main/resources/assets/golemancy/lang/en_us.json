@@ -53,5 +53,6 @@
 	"text.autoconfig.golemancy.title": "Golemancy Configuration",
 	"text.autoconfig.golemancy.option.GRAFT_SPEED_MULTIPLIER": "Graft Speed Multiplier",
 	"text.autoconfig.golemancy.option.GRAFT_FUEL_MULTIPLIER": "Graft Fuel Multiplier",
-	"text.autoconfig.golemancy.option.GRAFT_POTENCY_MULTIPLIER": "Graft Potency Multiplier"
+	"text.autoconfig.golemancy.option.GRAFT_POTENCY_MULTIPLIER": "Graft Potency Multiplier",
+	"text.autoconfig.golemancy.option.TERRACOTTA_ARMOR_VALUE": "Terracotta Golem Armor"
 }

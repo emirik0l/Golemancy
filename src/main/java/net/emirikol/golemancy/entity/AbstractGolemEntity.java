@@ -26,8 +26,6 @@ import net.minecraft.server.world.*;
 import java.util.*;
 
 public abstract class AbstractGolemEntity extends TameableEntity {
-	private static final double BAKED_GOLEM_ARMOR = 8.0D;
-
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
 	private boolean baked;
@@ -168,7 +166,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//Update armor based on whether this golem is made of terracotta.
 		if (this.isBaked()) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
-			entityAttributeInstance.setBaseValue(BAKED_GOLEM_ARMOR);
+			double armorValue = GolemancyConfig.getTerracottaArmorValue();
+			entityAttributeInstance.setBaseValue(armorValue);
 		}
 	}
 	
