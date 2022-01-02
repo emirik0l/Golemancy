@@ -41,6 +41,10 @@ Right-click to put the effigy in the world. Then right-click on it with a soulst
 
 ![a golem in the world](/readme/golem.png)
 
+You can also bake the clay effigy in a blast furnace before placing it to create a terracotta golem with extra armor.
+
+![a terracotta golem](/readme/terracotta.png)
+
 ## The Golem Wand
 
 The golem wand can be used to interact with your golems:
