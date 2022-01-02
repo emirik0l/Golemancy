@@ -33,7 +33,7 @@ public class GolemFillBucketGoal extends Goal {
 	public void tick() {
 		BlockState state = this.entity.world.getBlockState(this.fluidPos);
 		ServerWorld world = (ServerWorld) this.entity.world;
-		FluidBlock fluidBlock = (FluidBlock) state.getBlock();
+		FluidDrainable fluidBlock = (FluidDrainable) state.getBlock();
 		ItemStack stack = fluidBlock.tryDrainFluid(world, this.fluidPos, state);
 		if (stack != ItemStack.EMPTY) {
 			SoundEvent sound = fluidBlock.getBucketFillSound().orElse(SoundEvents.ITEM_BUCKET_FILL);
