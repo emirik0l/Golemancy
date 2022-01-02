@@ -26,7 +26,7 @@ import net.minecraft.server.world.*;
 import java.util.*;
 
 public abstract class AbstractGolemEntity extends TameableEntity {
-	private static final double BAKED_GOLEM_ARMOR = 6.0D;
+	private static final double BAKED_GOLEM_ARMOR = 8.0D;
 
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
