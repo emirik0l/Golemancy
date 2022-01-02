@@ -67,6 +67,8 @@ public class ClayEffigyEntity extends PathAwareEntity {
 			entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
 			//Remove the soulstone.
 			stack.decrement(1);
+			//Update golem "baked" value based on whether effigy was terracotta.
+			entity.setBaked(this.isTerracotta());
 			//Update golem attributes based on stats.
 			entity.updateAttributes();
 			//Set the golem as tamed.
@@ -76,5 +78,9 @@ public class ClayEffigyEntity extends PathAwareEntity {
 		} else {
 			return ActionResult.PASS;
 		}
+	}
+
+	public boolean isTerracotta() {
+		return false;
 	}
 }
