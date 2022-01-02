@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "golemancy:clay_effigy"
+  },
+  "result": "golemancy:terracotta_effigy",
+  "cookingtime": 500
+}
