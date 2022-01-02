@@ -19,6 +19,7 @@ public class GolemancyItemGroup {
 			stacks.add(new ItemStack(Golemancy.SOUL_GRAFTER_ITEM));
 			stacks.add(new ItemStack(Golemancy.GOLEM_WAND));
 			stacks.add(new ItemStack(Golemancy.CLAY_EFFIGY));
+			stacks.add(new ItemStack(Golemancy.TERRACOTTA_EFFIGY));
 			stacks.add(new ItemStack(Golemancy.SOULSTONE_EMPTY));
 			List<Genome> genomes = Arrays.asList(
 				Genomes.ENDERMAN,

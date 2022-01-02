@@ -42,6 +42,9 @@ public class Golemancy implements ModInitializer {
 	public static ClayEffigy CLAY_EFFIGY;
 	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 
+	public static TerracottaEffigy TERRACOTTA_EFFIGY;
+	public static EntityType<TerracottaEffigyEntity> TERRACOTTA_EFFIGY_ENTITY;
+
 	public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
 	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
 	public static EntityType<EntropicGolemEntity> ENTROPIC_GOLEM_ENTITY;
@@ -97,6 +100,9 @@ public class Golemancy implements ModInitializer {
 		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
 		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
 		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
+		//Instantiate terracotta effigy.
+		TERRACOTTA_EFFIGY = new TerracottaEffigy(clay_effigy_settings);
+		TERRACOTTA_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TerracottaEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		//Instantiate golems.
 		COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
@@ -127,7 +133,11 @@ public class Golemancy implements ModInitializer {
 		//Register clay effigy.
 		Registry.register(Registry.ITEM, "golemancy:clay_effigy", CLAY_EFFIGY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:clay_effigy", CLAY_EFFIGY_ENTITY);
-		FabricDefaultAttributeRegistry.register(CLAY_EFFIGY_ENTITY, ClayEffigyEntity.createClayEffigyAttributes());
+		FabricDefaultAttributeRegistry.register(CLAY_EFFIGY_ENTITY, ClayEffigyEntity.createEffigyAttributes());
+		//Register terracotta effigy.
+		Registry.register(Registry.ITEM, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY);
+		Registry.register(Registry.ENTITY_TYPE, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY_ENTITY);
+		FabricDefaultAttributeRegistry.register(TERRACOTTA_EFFIGY_ENTITY, TerracottaEffigyEntity.createEffigyAttributes());
 		//Register golems.
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_covetous", COVETOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_curious", CURIOUS_GOLEM_ENTITY);

@@ -4,7 +4,6 @@ import net.emirikol.golemancy.*;
 
 import net.minecraft.block.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.*;
 import net.minecraft.world.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -36,10 +35,14 @@ public class ClayEffigy extends Item {
 			} else {
 				blockPos2 = blockPos.offset(direction);
 			}
-			if (Golemancy.CLAY_EFFIGY_ENTITY.spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos2, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockPos, blockPos2) && direction == Direction.UP) != null) {
+			if (this.getEntityType().spawnFromItemStack((ServerWorld)world, itemStack, context.getPlayer(), blockPos2, SpawnReason.SPAWN_EGG, true, !Objects.equals(blockPos, blockPos2) && direction == Direction.UP) != null) {
 				itemStack.decrement(1);
 			}
 			return ActionResult.CONSUME;
 		}
+	}
+
+	public EntityType getEntityType() {
+		return Golemancy.CLAY_EFFIGY_ENTITY;
 	}
 }

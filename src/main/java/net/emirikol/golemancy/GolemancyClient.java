@@ -46,6 +46,10 @@ public class GolemancyClient implements ClientModInitializer {
 		EntityRendererRegistry.register(Golemancy.CLAY_EFFIGY_ENTITY, (context) -> {
 			return new ClayEffigyEntityRenderer(context);
 		});
+		//Register Terracotta Effigy Renderer
+		EntityRendererRegistry.register(Golemancy.TERRACOTTA_EFFIGY_ENTITY, (context) -> {
+			return new TerracottaEffigyEntityRenderer(context);
+		});
 		//Register Golem Renderers
 		for(EntityType type: Golems.getTypes()) {
 			EntityRendererRegistry.register(type, (context) -> {
