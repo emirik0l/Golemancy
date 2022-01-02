@@ -68,6 +68,7 @@ public class Golemancy implements ModInitializer {
 		doInstantiation();
 		doRegistration();
 		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
+		GolemancyConfig.syncConfigHook(); //add event hook for syncing server and client configs
 		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
 		AutoConfig.register(GolemancyConfig.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
 	}

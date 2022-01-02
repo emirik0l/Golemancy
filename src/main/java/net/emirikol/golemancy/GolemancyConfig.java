@@ -3,6 +3,7 @@ package net.emirikol.golemancy;
 import me.shedaniel.autoconfig.*;
 import me.shedaniel.autoconfig.annotation.*;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -14,15 +15,16 @@ public class GolemancyConfig implements ConfigData {
 	public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
 	public double TERRACOTTA_ARMOR_VALUE = 8.0D;
 
-	public static void syncConfig(ServerPlayerEntity user) {
-		//Helper method for syncing config from server to client.
-		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeFloat(config.GRAFT_SPEED_MULTIPLIER);
-		buf.writeFloat(config.GRAFT_FUEL_MULTIPLIER);
-		buf.writeFloat(config.GRAFT_POTENCY_MULTIPLIER);
-		buf.writeDouble(config.TERRACOTTA_ARMOR_VALUE);
-		ServerPlayNetworking.send(user, Golemancy.ConfigPacketID, buf);
+	public static void syncConfigHook() {
+		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+			GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
+			PacketByteBuf buf = PacketByteBufs.create();
+			buf.writeFloat(config.GRAFT_SPEED_MULTIPLIER);
+			buf.writeFloat(config.GRAFT_FUEL_MULTIPLIER);
+			buf.writeFloat(config.GRAFT_POTENCY_MULTIPLIER);
+			buf.writeDouble(config.TERRACOTTA_ARMOR_VALUE);
+			ServerPlayNetworking.send(handler.player, Golemancy.ConfigPacketID, buf);
+		});
 	}
 
 	public static int getGraftDuration() {
