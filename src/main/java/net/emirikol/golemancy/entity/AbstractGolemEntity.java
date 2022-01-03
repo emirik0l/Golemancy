@@ -1,9 +1,7 @@
 package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.*;
-import net.emirikol.golemancy.item.*;
 import net.emirikol.golemancy.entity.goal.*;
-import net.emirikol.golemancy.genetics.*;
 import net.emirikol.golemancy.network.*;
 import net.emirikol.golemancy.component.*;
 
@@ -17,13 +15,8 @@ import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
-import net.minecraft.nbt.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.server.world.*;
-
-import java.util.*;
 
 public abstract class AbstractGolemEntity extends TameableEntity {
 	private int strength,agility,vigor,smarts;
