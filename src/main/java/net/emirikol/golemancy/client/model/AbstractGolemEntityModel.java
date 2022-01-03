@@ -59,7 +59,7 @@ public class AbstractGolemEntityModel<T extends Entity> extends EntityModel<T> i
 		//Rotate legs.
 		float rightLegPitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / k;
 		float leftLegPitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount / k;
-		setRotationAngle(RightLeg, rightArmPitch, 0, 0);
+		setRotationAngle(RightLeg, rightLegPitch, 0, 0);
 		setRotationAngle(LeftLeg, leftLegPitch, 0, 0);
 	}
 	
