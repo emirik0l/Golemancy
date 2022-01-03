@@ -18,15 +18,17 @@ public class SoulstoneFillHandler {
 				if (checkSoulstones(inventory)) {
 					//Remove an empty soulstone from the player's inventory.
 					ItemStack soulstoneStack = getSoulstones(inventory);
-					soulstoneStack.decrement(1);
-					//Create a new filled soulstone.
-					ItemStack newSoulstoneStack = new ItemStack(Golemancy.SOULSTONE_FILLED);
-					//Get the corresponding genome and apply it to the new soulstone.
-					Genome genome = Genomes.get(killed.getType());
-					genome.toItemStack(newSoulstoneStack);
-					//Add the new soulstone to the player's inventory.
-					inventory.offerOrDrop(newSoulstoneStack);
-					inventory.markDirty();
+					if (soulstoneStack != null) {
+						soulstoneStack.decrement(1);
+						//Create a new filled soulstone.
+						ItemStack newSoulstoneStack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+						//Get the corresponding genome and apply it to the new soulstone.
+						Genome genome = Genomes.get(killed.getType());
+						genome.toItemStack(newSoulstoneStack);
+						//Add the new soulstone to the player's inventory.
+						inventory.offerOrDrop(newSoulstoneStack);
+						inventory.markDirty();
+					}
 				}
 			}
 		});
@@ -34,8 +36,7 @@ public class SoulstoneFillHandler {
 	
 	//Check if an entity is a player.
 	private static boolean checkPlayer(Entity entity) {
-		if (entity instanceof PlayerEntity) { return true; }
-		return false;
+		return entity instanceof PlayerEntity;
 	}
 	
 	//Check if an entity has a capturable soul.
@@ -51,10 +52,7 @@ public class SoulstoneFillHandler {
 	
 	//Check if a PlayerInventory contains soulstones.
 	private static boolean checkSoulstones(PlayerInventory inventory) {
-		if (inventory.contains(new ItemStack(Golemancy.SOULSTONE_EMPTY))){ 
-			return true;
-		}
-		return false;
+		return inventory.contains(new ItemStack(Golemancy.SOULSTONE_EMPTY));
 	}
 	
 	//Get the ItemStack in a PlayerInventory that contains soulstones.

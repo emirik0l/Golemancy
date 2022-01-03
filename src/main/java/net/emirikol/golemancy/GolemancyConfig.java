@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 @Config(name = "golemancy")
 public class GolemancyConfig implements ConfigData {	
@@ -33,10 +32,7 @@ public class GolemancyConfig implements ConfigData {
 		float baseGraftDuration = 2400.0F;  //base graft duration is 2400 ticks, or 2 minutes
 		float adjustedGraftDuration = baseGraftDuration / config.GRAFT_SPEED_MULTIPLIER;
 		int roundedGraftDuration = Math.round(adjustedGraftDuration);
-		if (roundedGraftDuration < 1) {
-			return 1;
-		}
-		return roundedGraftDuration;
+		return Math.max(roundedGraftDuration, 1);
 	}
 	
 	public static int getFuelValue() {
@@ -45,10 +41,7 @@ public class GolemancyConfig implements ConfigData {
 		float baseFuelValue = 600.0F; //bonemeal burns for 600 ticks, or 30 seconds
 		float adjustedFuelValue = baseFuelValue * config.GRAFT_FUEL_MULTIPLIER; 
 		int roundedFuelValue = Math.round(adjustedFuelValue);
-		if (roundedFuelValue < 1) {
-			return 1;
-		}
-		return roundedFuelValue;
+		return Math.max(roundedFuelValue, 1);
 	}
 	
 	public static float getPotencyMultiplier() {
@@ -60,9 +53,6 @@ public class GolemancyConfig implements ConfigData {
 	public static double getTerracottaArmorValue() {
 		//How much armor should a terracotta golem have?
 		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
-		if (config.TERRACOTTA_ARMOR_VALUE < 0.5D) {
-			return 0.5D;
-		}
-		return config.TERRACOTTA_ARMOR_VALUE;
+		return Math.max(config.TERRACOTTA_ARMOR_VALUE, 0.5D);
 	}
 }

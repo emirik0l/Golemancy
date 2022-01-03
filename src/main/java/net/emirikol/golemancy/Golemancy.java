@@ -68,7 +68,7 @@ public class Golemancy implements ModInitializer {
 		doInstantiation();
 		doRegistration();
 		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
-		GolemancyConfig.syncConfigHook(); //add event hook for syncing server and client configs
+		GolemancyConfig.syncConfigHook(); //add event hook for syncing server and client configs when a player connects
 		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
 		AutoConfig.register(GolemancyConfig.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
 	}
@@ -98,11 +98,11 @@ public class Golemancy implements ModInitializer {
 		SOUL_GRAFTER_ENTITY = FabricBlockEntityTypeBuilder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
 		SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("golemancy", "soul_grafter"), SoulGrafterScreenHandler::new);
 		//Instantiate clay effigy.
-		FabricItemSettings clay_effigy_settings = new FabricItemSettings();
-		CLAY_EFFIGY = new ClayEffigy(clay_effigy_settings);
+		FabricItemSettings effigy_settings = new FabricItemSettings();
+		CLAY_EFFIGY = new ClayEffigy(effigy_settings);
 		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		//Instantiate terracotta effigy.
-		TERRACOTTA_EFFIGY = new TerracottaEffigy(clay_effigy_settings);
+		TERRACOTTA_EFFIGY = new TerracottaEffigy(effigy_settings);
 		TERRACOTTA_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TerracottaEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		//Instantiate golems.
 		COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
