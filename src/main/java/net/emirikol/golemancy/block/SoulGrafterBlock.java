@@ -7,7 +7,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -82,13 +81,12 @@ public class SoulGrafterBlock extends BlockWithEntity {
 	
    @Environment(EnvType.CLIENT)
    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-	   if ((Boolean)state.get(GRAFTING)) {
+	   if (state.get(GRAFTING)) {
 		   double d = (double)pos.getX() + 0.5D;
 		   double e = (double)pos.getY() + 0.75D;
 		   double f = (double)pos.getZ() + 0.5D;
 		   Direction direction = Direction.random(random);
 		   Direction.Axis axis = direction.getAxis();
-		   double g = 0.52D;
 		   double h = random.nextDouble() * 0.6D - 0.3D;
 		   double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52D : h;
 		   double j = random.nextDouble() * 6.0D / 16.0D;

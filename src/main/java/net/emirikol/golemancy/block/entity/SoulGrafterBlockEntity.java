@@ -256,8 +256,8 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 			dirty = true;
 		}
 		//Check if the blockstate needs to be updated for particles.
-		if (isGrafting() != grafting) {
-			this.world.setBlockState(this.pos, (BlockState)this.world.getBlockState(this.pos).with(SoulGrafterBlock.GRAFTING, isGrafting()), 3);
+		if ((isGrafting() != grafting) && (this.world != null)) {
+			this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(SoulGrafterBlock.GRAFTING, isGrafting()), 3);
 			dirty = true;
 		}
 		if (dirty) {
