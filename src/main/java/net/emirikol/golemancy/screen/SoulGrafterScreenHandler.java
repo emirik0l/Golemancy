@@ -1,7 +1,6 @@
 package net.emirikol.golemancy.screen;
 
 import net.emirikol.golemancy.*;
-import net.emirikol.golemancy.block.entity.*;
 import net.emirikol.golemancy.screen.slot.*;
 
 import net.fabricmc.api.Environment;
@@ -83,7 +82,7 @@ public class SoulGrafterScreenHandler extends ScreenHandler {
 	public ItemStack transferSlot(PlayerEntity player, int invSlot) {
 		ItemStack newStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(invSlot);
-		if (slot != null && slot.hasStack()) {
+		if (slot.hasStack()) {
 			ItemStack originalStack = slot.getStack();
 			newStack = originalStack.copy();
 			if (invSlot < this.inventory.size()) {

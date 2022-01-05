@@ -28,7 +28,7 @@ public class Particles {
 		buf.writeBlockPos(target.getBlockPos());
 		
 		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
-			ServerPlayNetworking.send((ServerPlayerEntity) user, HEAL_PARTICLE_ID, buf);
+			ServerPlayNetworking.send(user, HEAL_PARTICLE_ID, buf);
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class Particles {
 		buf.writeVarInt(target.getId());
 		
 		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
-			ServerPlayNetworking.send((ServerPlayerEntity) user, FOOD_PARTICLE_ID, buf);
+			ServerPlayNetworking.send(user, FOOD_PARTICLE_ID, buf);
 		}
 	}
 	

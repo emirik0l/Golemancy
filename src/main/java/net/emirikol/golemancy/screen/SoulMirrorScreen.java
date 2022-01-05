@@ -1,19 +1,16 @@
 package net.emirikol.golemancy.screen;
 
 import net.emirikol.golemancy.genetics.*;
-import net.emirikol.golemancy.screen.*;
 
 import net.minecraft.entity.player.*;
 import net.minecraft.screen.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.client.gui.screen.ingame.*;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import java.util.*;
 
 public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	//A path to the GUI texture to use.

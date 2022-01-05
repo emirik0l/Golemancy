@@ -2,7 +2,6 @@ package net.emirikol.golemancy.screen;
 
 import net.minecraft.entity.player.*;
 import net.minecraft.screen.*;
-import net.minecraft.screen.slot.*;
 import net.minecraft.network.*;
 
 import net.emirikol.golemancy.*;

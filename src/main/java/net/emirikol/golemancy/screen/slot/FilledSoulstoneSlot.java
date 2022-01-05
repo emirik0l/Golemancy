@@ -15,9 +15,6 @@ public class FilledSoulstoneSlot extends Slot {
 	
 	@Override
 	public boolean canInsert(ItemStack stack) {
-		if (stack.getItem() instanceof SoulstoneFilled) {
-			return true;
-		}
-		return false;
+		return stack.getItem() instanceof SoulstoneFilled;
 	}
 }
