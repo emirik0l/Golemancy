@@ -185,6 +185,35 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(0));
 	}};
+
+	// Boss Genomes
+
+	public static final Genome ELDER_GUARDIAN = new Genome() {{
+		put("type", new Gene<String>("Valiant"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(3));
+		put("smarts", new Gene<Integer>(1));
+	}};
+
+	public static final Genome WITHER = new Genome() {{
+		put("type", new Gene<String>("Valiant"));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(2));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(3));
+	}};
+
+	public static final Genome ENDER_DRAGON = new Genome() {{
+		put("type", new Gene<String>("Covetous"));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(3));
+		put("agility", new Gene<Integer>(3));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(2));
+	}};
 	
 	public static final Map<String,Integer> TEXTURE_VARIANTS = new HashMap<String,Integer>() {{
 		put("Restless", 1);
@@ -206,7 +235,6 @@ public class Genomes {
 		put(EntityType.ENDERMITE, ENDERMITE);
 		put(EntityType.GHAST, GHAST);
 		put(EntityType.GUARDIAN, GUARDIAN);
-		put(EntityType.ELDER_GUARDIAN, GUARDIAN);
 		put(EntityType.HOGLIN, HOGLIN);
 		put(EntityType.HUSK, HUSK);
 		put(EntityType.PHANTOM, PHANTOM);
@@ -228,6 +256,10 @@ public class Genomes {
 		put(EntityType.ZOMBIE_HORSE, ZOMBIE);
 		put(EntityType.ZOMBIE_VILLAGER, ZOMBIE);
 		put(EntityType.ZOMBIFIED_PIGLIN, ZOMBIE);
+
+		put(EntityType.ELDER_GUARDIAN, ELDER_GUARDIAN);
+		put(EntityType.WITHER, WITHER);
+		put(EntityType.ENDER_DRAGON, ENDER_DRAGON);
 	}};
 	
 	public static Set<EntityType> getEntityTypes() {
