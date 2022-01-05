@@ -3,11 +3,8 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.goal.*;
 
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
 import net.minecraft.server.world.*;
 
@@ -27,10 +24,10 @@ public class EntropicGolemEntity extends AbstractGolemEntity {
 	
 	@Override
 	public EntropicGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-		EntropicGolemEntity golemEntity = (EntropicGolemEntity) Golemancy.ENTROPIC_GOLEM_ENTITY.create(serverWorld);
+		EntropicGolemEntity golemEntity = Golemancy.ENTROPIC_GOLEM_ENTITY.create(serverWorld);
 		UUID uUID = this.getOwnerUuid();
 		
-		if (uUID != null) {
+		if ((uUID != null) && (golemEntity != null)) {
 			golemEntity.setOwnerUuid(uUID);
 			golemEntity.setTamed(true);
 		}

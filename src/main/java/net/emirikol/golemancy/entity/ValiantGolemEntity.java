@@ -6,7 +6,6 @@ import net.emirikol.golemancy.entity.goal.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
 import net.minecraft.server.world.*;
@@ -26,17 +25,17 @@ public class ValiantGolemEntity extends AbstractGolemEntity {
 		this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
 		this.targetSelector.add(2, new AttackWithOwnerGoal(this));
 		this.targetSelector.add(3, new RevengeGoal(this, AbstractGolemEntity.class).setGroupRevenge(new Class[0]));
-		this.targetSelector.add(3, new ActiveTargetGoal(this, MobEntity.class, 5, false, false, (livingEntity) -> {
+		this.targetSelector.add(3, new ActiveTargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity) -> {
 			return livingEntity instanceof Monster && !(livingEntity instanceof CreeperEntity);
 		}));
 	}
 	
 	@Override
 	public ValiantGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-		ValiantGolemEntity golemEntity = (ValiantGolemEntity) Golemancy.VALIANT_GOLEM_ENTITY.create(serverWorld);
+		ValiantGolemEntity golemEntity = Golemancy.VALIANT_GOLEM_ENTITY.create(serverWorld);
 		UUID uUID = this.getOwnerUuid();
-		
-		if (uUID != null) {
+
+		if ((uUID != null) && (golemEntity != null)) {
 			golemEntity.setOwnerUuid(uUID);
 			golemEntity.setTamed(true);
 		}

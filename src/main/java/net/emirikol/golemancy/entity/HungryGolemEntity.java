@@ -5,8 +5,6 @@ import net.emirikol.golemancy.entity.goal.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.world.*;
 import net.minecraft.server.world.*;
 
@@ -27,10 +25,10 @@ public class HungryGolemEntity extends AbstractGolemEntity {
 	
 	@Override
 	public HungryGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-		HungryGolemEntity golemEntity = (HungryGolemEntity) Golemancy.HUNGRY_GOLEM_ENTITY.create(serverWorld);
+		HungryGolemEntity golemEntity = Golemancy.HUNGRY_GOLEM_ENTITY.create(serverWorld);
 		UUID uUID = this.getOwnerUuid();
 		
-		if (uUID != null) {
+		if ((uUID != null) && (golemEntity != null)) {
 			golemEntity.setOwnerUuid(uUID);
 			golemEntity.setTamed(true);
 		}
