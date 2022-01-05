@@ -6,7 +6,6 @@ import net.minecraft.item.*;
 import net.minecraft.inventory.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
@@ -32,7 +31,7 @@ public class GolemHelper {
 		if (blockEntity == null || state == null) { return null; }
 		if (blockEntity instanceof ChestBlockEntity) {
 			ChestBlock block = (ChestBlock) state.getBlock();
-			return block.getInventory(block, state, world, pos, true);
+			return ChestBlock.getInventory(block, state, world, pos, true);
 		}
 		if (blockEntity instanceof Inventory) {
 			return (Inventory) blockEntity;

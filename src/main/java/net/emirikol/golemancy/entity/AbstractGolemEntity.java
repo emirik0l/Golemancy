@@ -231,6 +231,25 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 				return 0.0D;
 		}
 	}
+
+	public float getBlockBreakHardnessFromStrength(int strength) {
+		switch (strength) {
+			case 0:
+				//low strength = can break dirt, wood, smooth stone
+				return 2.0F;
+			case 1:
+				//average strength = can break ores
+				return 4.0F;
+			case 2:
+				//high strength = can break metal blocks
+				return 5.0F;
+			case 3:
+				//perfect strength = can break obsidian
+				return 50.0F;
+			default:
+				return 0.0F;
+		}
+	}
 	
 	public double getMovementSpeedFromAgility(int agility) {
 		switch(agility) {

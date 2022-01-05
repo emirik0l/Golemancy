@@ -5,7 +5,6 @@ import net.emirikol.golemancy.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.util.math.*;
-import net.minecraft.server.world.*;
 
 import java.util.*;
 
@@ -13,7 +12,6 @@ public class GolemBreakBlockGoal extends Goal {
 	private final AbstractGolemEntity entity;
 	protected int breakProgress;
 	protected int prevBreakProgress;
-	protected int maxProgress;
 	
 	private BlockPos breakPos;
 	
@@ -61,7 +59,6 @@ public class GolemBreakBlockGoal extends Goal {
 	
 	public boolean isBlockNearby() {
 		BlockPos pos = this.entity.getBlockPos();
-		ServerWorld world = (ServerWorld) this.entity.world;
 		for (BlockPos curPos: BlockPos.iterateOutwards(pos, 2, 2, 2)) {
 			if (isBlockBreakable(curPos)) {
 				this.breakPos = curPos;
@@ -84,29 +81,10 @@ public class GolemBreakBlockGoal extends Goal {
 	}
 	
 	public float getBreakingStrength() {
-		switch (this.entity.getGolemStrength()) {
-			case 0:
-				//low strength = can break dirt, wood, smooth stone
-				return 2.0F;
-			case 1:
-				//average strength = can break ores
-				return 4.0F;
-			case 2:
-				//high strength = can break metal blocks
-				return 5.0F;
-			case 3:
-				//perfect strength = can break obsidian
-				return 50.0F;
-			default:
-				return 0.0F;
-		}
+		return this.entity.getBlockBreakHardnessFromStrength(this.entity.getGolemStrength());
 	}
 	
 	protected int getMaxProgress() {
-		return Math.max(120, this.maxProgress);
-	}
-	
-	public double getDesiredSquaredDistanceToTarget() {
-		return 2.0D;
+		return 120;
 	}
 }
