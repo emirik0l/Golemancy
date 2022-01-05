@@ -6,14 +6,10 @@ import net.minecraft.block.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.sound.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
-
-import java.util.*;
 
 
 public class GolemFillBucketGoal extends Goal {
@@ -37,7 +33,7 @@ public class GolemFillBucketGoal extends Goal {
 		ItemStack stack = fluidBlock.tryDrainFluid(world, this.fluidPos, state);
 		if (stack != ItemStack.EMPTY) {
 			SoundEvent sound = fluidBlock.getBucketFillSound().orElse(SoundEvents.ITEM_BUCKET_FILL);
-			entity.world.playSound((PlayerEntity)null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
+			entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
 			this.entity.equipStack(EquipmentSlot.MAINHAND, stack);
 		}
 	}

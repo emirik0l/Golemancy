@@ -7,7 +7,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.sound.*;
-import net.minecraft.server.network.*;
 
 import java.util.*;
 

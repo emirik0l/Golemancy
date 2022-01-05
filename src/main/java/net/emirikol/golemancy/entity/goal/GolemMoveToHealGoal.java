@@ -2,13 +2,11 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 
 import java.util.*;
 

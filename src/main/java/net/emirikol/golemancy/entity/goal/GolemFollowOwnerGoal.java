@@ -2,13 +2,9 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
-import net.minecraft.block.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.passive.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
-import net.minecraft.util.math.*;
-import net.minecraft.world.*;
 
 import java.util.*;
 
@@ -16,7 +12,6 @@ public class GolemFollowOwnerGoal extends Goal {
 	
 	protected final AbstractGolemEntity entity;
 	private LivingEntity owner;
-	private final WorldView world;
 	private final double speed;
 	private final EntityNavigation navigation;
 	private int updateCountdownTicks;
@@ -26,7 +21,6 @@ public class GolemFollowOwnerGoal extends Goal {
 
 	public GolemFollowOwnerGoal(AbstractGolemEntity entity, double speed, float minDistance, float maxDistance) {
 		this.entity = entity;
-		this.world = this.entity.world;
 		this.speed = speed;
 		this.navigation = this.entity.getNavigation();
 		this.minDistance = minDistance;

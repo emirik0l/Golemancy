@@ -2,22 +2,16 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
-import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.inventory.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.inventory.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
-import java.util.*;
-
 public class GolemDepositHeldItemGoal extends Goal {
 	protected final AbstractGolemEntity entity;
-	
+
 	private Inventory container;
 	
 	public GolemDepositHeldItemGoal(AbstractGolemEntity entity) {
@@ -28,7 +22,8 @@ public class GolemDepositHeldItemGoal extends Goal {
 		//Check whether golem is holding something, linked block is an inventory, and linked block is close enough to deposit.
 		return !entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty() && linkedBlockIsContainer() && linkedBlockIsNearby() && linkedBlockCanInsert();
 	}
-	
+
+	@Override
 	public void tick() {
 		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 		if (!stack.isEmpty()) {

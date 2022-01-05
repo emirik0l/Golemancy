@@ -2,9 +2,6 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;

@@ -23,20 +23,24 @@ public class GolemBreakBlockGoal extends Goal {
 	public boolean canStart() {
 		return isBlockNearby();
 	}
-	
+
+	@Override
 	public void start() {
 		this.breakProgress = 0;
 	}
-	
+
+	@Override
 	public boolean shouldContinue() {
 		return this.breakProgress <= this.getMaxProgress() && canStart();
 	}
 
+	@Override
 	public void stop() {
 		super.stop();
 		this.entity.world.setBlockBreakingInfo(this.entity.getId(), this.breakPos, -1);
 	}
-	
+
+	@Override
 	public void tick() {
 		if (this.entity.getRandom().nextInt(5) == 0) {
 			this.entity.trySwing();

@@ -4,7 +4,6 @@ import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.util.math.*;
 
@@ -33,7 +32,7 @@ public class GolemMoveToItemGoal extends Goal {
 	}
 	
 	public void start() {
-		this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)(this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
+		this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
 		this.tryingTime = 0;
 		this.safeWaitingTime = this.entity.getRandom().nextInt(this.entity.getRandom().nextInt(1200) + 1200) + 1200;
 	}
@@ -50,7 +49,7 @@ public class GolemMoveToItemGoal extends Goal {
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget())) {
 			++this.tryingTime;
 			if (this.shouldResetPath()) {
-				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (double)(this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
+				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
 			}
 		} else {
 			--this.tryingTime;
