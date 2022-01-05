@@ -81,7 +81,7 @@ public class GolemBreakBlockGoal extends Goal {
 	}
 	
 	public float getBreakingStrength() {
-		return this.entity.getBlockBreakHardnessFromStrength(this.entity.getGolemStrength());
+		return this.entity.getBlockBreakHardnessFromStrength();
 	}
 	
 	protected int getMaxProgress() {

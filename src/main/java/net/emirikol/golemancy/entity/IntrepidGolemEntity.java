@@ -53,7 +53,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
 		ClayballEntity clayballEntity = new ClayballEntity(this.world, this);
-		clayballEntity.setDamage(this.getAttackDamageFromStrength(this.getGolemStrength()));
+		clayballEntity.setDamage(this.getAttackDamageFromStrength());
 		double d = target.getEyeY() - (double)1.1f;
 		double e = target.getX() - this.getX();
 		double f = d - clayballEntity.getY();

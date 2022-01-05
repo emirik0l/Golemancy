@@ -150,13 +150,13 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		EntityAttributeInstance entityAttributeInstance;
 		//Update attack damage based on strength.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-		entityAttributeInstance.setBaseValue(getAttackDamageFromStrength(this.strength));
+		entityAttributeInstance.setBaseValue(getAttackDamageFromStrength());
 		//Update movement speed based on agility.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-		entityAttributeInstance.setBaseValue(getMovementSpeedFromAgility(this.agility));
+		entityAttributeInstance.setBaseValue(getMovementSpeedFromAgility());
 		//Update health based on vigor.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-		entityAttributeInstance.setBaseValue(getHealthFromVigor(this.vigor));
+		entityAttributeInstance.setBaseValue(getHealthFromVigor());
 		this.setHealth(this.getMaxHealth());
 		//Update follow range based on smarts.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
@@ -194,6 +194,16 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return this.strength;
 	}
 
+	public Integer getGolemAgility() {
+		this.fromComponent();
+		return this.agility;
+	}
+
+	public Integer getGolemVigor() {
+		this.fromComponent();
+		return this.vigor;
+	}
+
 	public Integer getGolemSmarts() {
 		this.fromComponent();
 		return this.smarts;
@@ -217,7 +227,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.golemWandFollow = !this.golemWandFollow;
 	}
 	
-	public double getAttackDamageFromStrength(int strength) {
+	public double getAttackDamageFromStrength() {
+		int strength = this.getGolemStrength();
 		switch(strength) {
 			case 0:
 				return 2.0D;
@@ -232,7 +243,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 	}
 
-	public float getBlockBreakHardnessFromStrength(int strength) {
+	public float getBlockBreakHardnessFromStrength() {
+		int strength = this.getGolemStrength();
 		switch (strength) {
 			case 0:
 				//low strength = can break dirt, wood, smooth stone
@@ -251,7 +263,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 	}
 	
-	public double getMovementSpeedFromAgility(int agility) {
+	public double getMovementSpeedFromAgility() {
+		int agility = this.getGolemAgility();
 		switch(agility) {
 			case 0:
 				return 0.2D;
@@ -266,7 +279,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 	}
 	
-	public double getHealthFromVigor(int vigor) {
+	public double getHealthFromVigor() {
+		int vigor = this.getGolemVigor();
 		switch(vigor) {
 			case 0:
 				return 8.0D;
