@@ -2,12 +2,11 @@ package net.emirikol.golemancy.genetics;
 
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.text.*;
 
 import java.util.*;
 
 public class Genome {
-	private Map<String,Gene> genes;
+	private final Map<String,Gene> genes;
 	
 	public Genome() {
 		genes = new HashMap<String,Gene>();
@@ -22,7 +21,7 @@ public class Genome {
 	public Genome(ItemStack stack) {
 		this();
 		this.fromItemStack(stack);
-	};
+	}
 	
 	public Gene get(String key) {
 		return genes.get(key);
@@ -38,7 +37,7 @@ public class Genome {
 	
 	//Check an NBT tag to ensure it contains a full and valid set of genes.
 	public boolean validNbt(NbtCompound nbt) {
-		String keys[] = {"type_active", "type_dormant", "potency_active", "potency_dormant", "strength_active", "strength_dormant", "agility_active", "agility_dormant", "vigor_active", "vigor_dormant", "smarts_active", "smarts_dormant"};
+		String[] keys = {"type_active", "type_dormant", "potency_active", "potency_dormant", "strength_active", "strength_dormant", "agility_active", "agility_dormant", "vigor_active", "vigor_dormant", "smarts_active", "smarts_dormant"};
 		for (String key : keys) {
 			if (!nbt.contains(key)) {
 				return false;
@@ -98,9 +97,8 @@ public class Genome {
 	//Breed two genomes together.
 	//Uses mendelian inheritance to randomly assign genes from the parents to the child.
 	public static Genome breed(Genome left, Genome right) {
-		Random rand = new Random();
 		Genome newGenome = new Genome();
-		Genome genomes[] = {left, right};
+		Genome[] genomes = {left, right};
 		//Generate new genes.
 		for (String key : newGenome.getKeys()) {
 			Gene leftGene = genomes[0].get(key);

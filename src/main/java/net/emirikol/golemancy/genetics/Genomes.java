@@ -1,7 +1,6 @@
 package net.emirikol.golemancy.genetics;
 
 import net.minecraft.entity.*;
-import net.minecraft.text.*;
 
 import java.util.*;
 
@@ -18,54 +17,54 @@ public class Genomes {
 	
 	public static final Genome BLAZE = new Genome() {{
 		put("type", new Gene<String>("Parched"));
-		put("potency", new Gene<Integer>(2));
+		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
-		put("vigor", new Gene<Integer>(0));
-		put("smarts", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(1));
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
 		put("type", new Gene<String>("Entropic"));
-		put("potency", new Gene<Integer>(2));
+		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
-		put("agility", new Gene<Integer>(0));
-		put("vigor", new Gene<Integer>(0));
-		put("smarts", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(1));
 	}};
 	
 	public static final Genome ENDERMAN = new Genome() {{
 		put("type", new Gene<String>("Covetous"));
-		put("potency", new Gene<Integer>(1));
-		put("strength", new Gene<Integer>(2));
+		put("potency", new Gene<Integer>(2));
+		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
-		put("vigor", new Gene<Integer>(2));
-		put("smarts", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(2));
 	}};
 	
 	public static final Genome GHAST = new Genome() {{
 		put("type", new Gene<String>("Weeping"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
-		put("agility", new Gene<Integer>(1));
-		put("vigor", new Gene<Integer>(0));
-		put("smarts", new Gene<Integer>(2));
+		put("agility", new Gene<Integer>(2));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(1));
 	}};
 	
 	public static final Genome GUARDIAN = new Genome() {{
 		put("type", new Gene<String>("Valiant"));
-		put("potency", new Gene<Integer>(2));
-		put("strength", new Gene<Integer>(0));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
-		put("vigor", new Gene<Integer>(2));
-		put("smarts", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(1));
 	}};
 	
 	public static final Genome HOGLIN = new Genome() {{
 		put("type", new Gene<String>("Hungry"));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
-		put("agility", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(0));
 	}};
@@ -81,11 +80,11 @@ public class Genomes {
 	
 	public static final Genome PHANTOM = new Genome() {{
 		put("type", new Gene<String>("Tactile"));
-		put("potency", new Gene<Integer>(2));
-		put("strength", new Gene<Integer>(0));
+		put("potency", new Gene<Integer>(1));
+		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(2));
-		put("vigor", new Gene<Integer>(0));
-		put("smarts", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(2));
 	}};
 	
 	public static final Genome RAVAGER = new Genome() {{
@@ -93,22 +92,22 @@ public class Genomes {
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(0));
-		put("vigor", new Gene<Integer>(3));
+		put("vigor", new Gene<Integer>(2));
 		put("smarts", new Gene<Integer>(0));
 	}};
 	
 	public static final Genome SHULKER = new Genome() {{
 		put("type", new Gene<String>("Intrepid"));
-		put("potency", new Gene<Integer>(1));
+		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(2));
-		put("smarts", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(2));
 	}};
 	
 	public static final Genome SILVERFISH = new Genome() {{
 		put("type", new Gene<String>("Entropic"));
-		put("potency", new Gene<Integer>(5));
+		put("potency", new Gene<Integer>(4));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
@@ -118,15 +117,15 @@ public class Genomes {
 	public static final Genome SKELETON = new Genome() {{
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(3));
-		put("strength", new Gene<Integer>(0));
+		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
 		put("vigor", new Gene<Integer>(0));
-		put("smarts", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(1));
 	}};
 	
 	public static final Genome SLIME = new Genome() {{
 		put("type", new Gene<String>("Curious"));
-		put("potency", new Gene<Integer>(4));
+		put("potency", new Gene<Integer>(5));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
 		put("vigor", new Gene<Integer>(0));
@@ -136,7 +135,7 @@ public class Genomes {
 	public static final Genome SPIDER = new Genome() {{
 		put("type", new Gene<String>("Restless"));
 		put("potency", new Gene<Integer>(3));
-		put("strength", new Gene<Integer>(0));
+		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(2));
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
@@ -144,11 +143,11 @@ public class Genomes {
 	
 	public static final Genome WITHER_SKELETON = new Genome() {{
 		put("type", new Gene<String>("Valiant"));
-		put("potency", new Gene<Integer>(3));
+		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
-		put("vigor", new Gene<Integer>(0));
-		put("smarts", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(1));
 	}};
 	
 	public static final Genome ZOMBIE = new Genome() {{

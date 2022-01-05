@@ -21,7 +21,7 @@ public class Gene<T> {
 			add(active);
 			add(dormant);
 		}};
-	};
+	}
 	
 	public T getActive() {
 		return active;
@@ -33,7 +33,7 @@ public class Gene<T> {
 	
 	public T getRandom() {
 		Random rand = new Random();
-		Boolean bool = rand.nextBoolean();
+		boolean bool = rand.nextBoolean();
 		if (bool) { return active; } else { return dormant; }
 	}
 	
@@ -55,6 +55,6 @@ public class Gene<T> {
 		T a,d;
 		if (rand.nextBoolean()) { a = this.getRandom(); } else { a = gene.getRandom(); }
 		if (rand.nextBoolean()) { d = this.getRandom(); } else { d = gene.getRandom(); }
-		return new Gene<T>(a, d);
+		return new Gene<>(a, d);
 	}
 }
