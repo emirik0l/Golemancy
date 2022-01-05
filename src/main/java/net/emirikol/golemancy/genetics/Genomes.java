@@ -41,6 +41,15 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(2));
 	}};
+
+	public static final Genome ENDERMITE = new Genome() {{
+		put("type", new Gene<String>("Covetous"));
+		put("potency", new Gene<Integer>(4));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(0));
+	}};
 	
 	public static final Genome GHAST = new Genome() {{
 		put("type", new Gene<String>("Weeping"));
@@ -158,6 +167,15 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(1));
 	}};
+
+	public static final Genome ZOGLIN = new Genome() {{
+		put("type", new Gene<String>("Hungry"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(1));
+		put("vigor", new Gene<Integer>(2));
+		put("smarts", new Gene<Integer>(0));
+	}};
 	
 	public static final Genome ZOMBIE = new Genome() {{
 		put("type", new Gene<String>("Hungry"));
@@ -185,6 +203,7 @@ public class Genomes {
 		put(EntityType.BLAZE, BLAZE);
 		put(EntityType.CREEPER, CREEPER);
 		put(EntityType.ENDERMAN, ENDERMAN);
+		put(EntityType.ENDERMITE, ENDERMITE);
 		put(EntityType.GHAST, GHAST);
 		put(EntityType.GUARDIAN, GUARDIAN);
 		put(EntityType.ELDER_GUARDIAN, GUARDIAN);
@@ -194,7 +213,6 @@ public class Genomes {
 		put(EntityType.RAVAGER, RAVAGER);
 		put(EntityType.SHULKER, SHULKER);
 		put(EntityType.SILVERFISH, SILVERFISH);
-		put(EntityType.ENDERMITE, SILVERFISH);
 		put(EntityType.SKELETON, SKELETON);
 		put(EntityType.SKELETON_HORSE, SKELETON);
 		put(EntityType.STRAY, SKELETON);
@@ -204,8 +222,8 @@ public class Genomes {
 		put(EntityType.SPIDER, SPIDER);
 		put(EntityType.VEX, VEX);
 		put(EntityType.WITHER_SKELETON, WITHER_SKELETON);
+		put(EntityType.ZOGLIN, ZOGLIN);
 		put(EntityType.DROWNED, ZOMBIE);
-		put(EntityType.ZOGLIN, ZOMBIE);
 		put(EntityType.ZOMBIE, ZOMBIE);
 		put(EntityType.ZOMBIE_HORSE, ZOMBIE);
 		put(EntityType.ZOMBIE_VILLAGER, ZOMBIE);
