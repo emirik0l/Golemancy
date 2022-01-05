@@ -1,26 +1,17 @@
 package net.emirikol.golemancy.entity;
 
-import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.item.*;
-import net.emirikol.golemancy.entity.goal.*;
 import net.emirikol.golemancy.genetics.*;
-import net.emirikol.golemancy.component.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.ai.goal.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
-import net.minecraft.nbt.*;
-import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
-
-import java.util.*;
 
 public class ClayEffigyEntity extends PathAwareEntity {
 	
@@ -57,11 +48,12 @@ public class ClayEffigyEntity extends PathAwareEntity {
 			Gene<Integer> vigorGene = genome.get("vigor");
 			Gene<Integer> smartsGene = genome.get("smarts");
 			//Get entity type and replace this entity with the correct golem.
-			EntityType golemType = Golems.get(typeGene.getActive());
-			if (golemType == null) { return ActionResult.PASS; }
+			EntityType<? extends AbstractGolemEntity> golemType = Golems.get(typeGene.getActive());
+			if (golemType == null) { return ActionResult.PASS; } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
 			BlockPos pos = this.getBlockPos();
 			this.discard();
-			AbstractGolemEntity entity = (AbstractGolemEntity) golemType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
+			AbstractGolemEntity entity = golemType.create(world, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
+			if (entity == null) { throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!"); }
 			world.spawnEntityAndPassengers(entity);
 			//Update tracked values from genome.
 			entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
