@@ -4,8 +4,11 @@ import net.emirikol.golemancy.*;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.*;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
+import net.minecraft.util.registry.Registry;
 
 import java.util.*;
 
@@ -18,6 +21,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		put("smarts", 0);
 	}};
 	private BlockPos linkedBlockPos = null;
+	private Block linkedBlock = null;
 	private Boolean baked = false;
 	private Object provider;
 	
@@ -38,9 +42,15 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	public BlockPos getLinkedBlockPos() {
 		return this.linkedBlockPos;
 	}
+	public Block getLinkedBlock() { return this.linkedBlock; }
 	
 	public void setLinkedBlockPos(BlockPos pos) {
 		this.linkedBlockPos = pos;
+		GolemancyComponents.GOLEM.sync(this.provider);
+	}
+
+	public void setLinkedBlock(Block block) {
+		this.linkedBlock = block;
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
 
@@ -63,6 +73,10 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			this.linkedBlockPos = new BlockPos(linkCoords[0], linkCoords[1], linkCoords[2]);
 		}
 
+		String linkIdString = nbt.getString("golemancy_linked_block");
+		Identifier linkId = new Identifier(linkIdString);
+		this.linkedBlock = Registry.BLOCK.get(linkId);
+
 		this.baked = nbt.getBoolean("golemancy_baked");
 	}
 	
@@ -76,6 +90,12 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		if (this.linkedBlockPos != null) {
 			int[] linkCoords = {this.linkedBlockPos.getX(), this.linkedBlockPos.getY(), this.linkedBlockPos.getZ()};
 			nbt.putIntArray("golemancy_linked", linkCoords);
+		}
+
+		if (this.linkedBlock != null) {
+			Identifier linkId = Registry.BLOCK.getId(this.linkedBlock);
+			String linkIdString = linkId.toString();
+			nbt.putString("golemancy_linked_block", linkIdString);
 		}
 
 		nbt.putBoolean("golemancy_baked", this.baked);

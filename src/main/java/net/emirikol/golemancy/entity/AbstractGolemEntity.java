@@ -7,6 +7,7 @@ import net.emirikol.golemancy.component.*;
 
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
+import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
@@ -21,6 +22,7 @@ import net.minecraft.util.math.*;
 public abstract class AbstractGolemEntity extends TameableEntity {
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
+	private Block linkedBlock;
 	private boolean baked;
 	
 	private boolean golemWandFollow;
@@ -71,6 +73,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		component.setAttribute("vigor", this.vigor);
 		component.setAttribute("smarts", this.smarts);
 		component.setLinkedBlockPos(this.linkedBlockPos);
+		component.setLinkedBlock(this.linkedBlock);
 		component.setBaked(this.baked);
 	}
 	
@@ -81,6 +84,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.vigor = component.getAttribute("vigor");
 		this.smarts = component.getAttribute("smarts");
 		this.linkedBlockPos = component.getLinkedBlockPos();
+		this.linkedBlock = component.getLinkedBlock();
 		this.baked = component.isBaked();
 	}
 	
@@ -186,6 +190,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 
 	public void linkToBlockPos(BlockPos pos) {
 		this.linkedBlockPos = pos;
+		this.linkedBlock = this.world.getBlockState(pos).getBlock();
 		this.toComponent();
 	}
 
@@ -212,6 +217,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	public BlockPos getLinkedBlockPos() {
 		this.fromComponent();
 		return this.linkedBlockPos;
+	}
+
+	public Block getLinkedBlock() {
+		this.fromComponent();
+		return this.linkedBlock;
 	}
 
 	public boolean isBaked() {

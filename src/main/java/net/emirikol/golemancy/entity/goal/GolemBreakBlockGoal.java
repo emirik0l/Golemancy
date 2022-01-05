@@ -75,13 +75,11 @@ public class GolemBreakBlockGoal extends Goal {
 	public boolean isBlockBreakable(BlockPos pos) {
 		BlockState state = this.entity.world.getBlockState(pos);
 		if (state == null) { return false; }
-		BlockPos linkedPos = this.entity.getLinkedBlockPos();
-		if (linkedPos == null) { return false; }
-		BlockState linkedState = this.entity.world.getBlockState(linkedPos);
-		if (linkedState == null) { return false; }
+		Block linkedBlock = this.entity.getLinkedBlock();
+		if (linkedBlock == null) { return false; }
 		float hardness = state.getHardness(this.entity.world, pos);
-		//To break a block: must be valid for breaking; must be strong enough; must be same type as linked block; must not be linked block.
-		return (hardness >= 0) && (hardness <= getBreakingStrength()) && (state.getBlock() == linkedState.getBlock()) && !pos.equals(linkedPos) && !state.isAir();
+		//To break a block: must be valid for breaking; must be strong enough; must be same type as linked block.
+		return (hardness >= 0) && (hardness <= getBreakingStrength()) && (state.getBlock() == linkedBlock) && !state.isAir();
 	}
 	
 	public float getBreakingStrength() {
