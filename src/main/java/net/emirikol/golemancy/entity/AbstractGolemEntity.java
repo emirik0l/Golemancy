@@ -164,7 +164,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.setHealth(this.getMaxHealth());
 		//Update follow range based on smarts.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
-		entityAttributeInstance.setBaseValue(getFollowRangeFromSmarts(this.smarts));
+		entityAttributeInstance.setBaseValue(getFollowRangeFromSmarts());
 		//Update armor based on whether this golem is made of terracotta.
 		if (this.isBaked()) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
@@ -305,7 +305,8 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 	}
 	
-	public double getFollowRangeFromSmarts(int smarts) {
+	public double getFollowRangeFromSmarts() {
+		int smarts = this.getGolemSmarts();
 		switch(smarts) {
 			case 0:
 				return 16.0D;
