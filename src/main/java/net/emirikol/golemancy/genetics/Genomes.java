@@ -140,6 +140,15 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(0));
 		put("smarts", new Gene<Integer>(0));
 	}};
+
+	public static final Genome VEX = new Genome() {{
+		put("type", new Gene<String>("Covetous"));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(0));
+		put("agility", new Gene<Integer>(2));
+		put("vigor", new Gene<Integer>(0));
+		put("smarts", new Gene<Integer>(1));
+	}};
 	
 	public static final Genome WITHER_SKELETON = new Genome() {{
 		put("type", new Gene<String>("Valiant"));
@@ -193,6 +202,7 @@ public class Genomes {
 		put(EntityType.SLIME, SLIME);
 		put(EntityType.CAVE_SPIDER, SPIDER);
 		put(EntityType.SPIDER, SPIDER);
+		put(EntityType.VEX, VEX);
 		put(EntityType.WITHER_SKELETON, WITHER_SKELETON);
 		put(EntityType.DROWNED, ZOMBIE);
 		put(EntityType.ZOGLIN, ZOMBIE);
