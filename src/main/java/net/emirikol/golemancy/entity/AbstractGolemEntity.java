@@ -121,6 +121,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 			return ActionResult.PASS;
 		}
 		ItemStack stack = player.getStackInHand(hand);
+		if (stack.getItem() != Items.CLAY_BALL) {
+			return ActionResult.PASS;
+		}
 		stack.decrement(1);
 		this.heal(2.0F);
 		Particles.healParticle(this);
@@ -140,7 +143,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return ActionResult.SUCCESS;
 	}
 	
-	public void updateAttributes() {
+	protected void updateAttributes() {
+		//Updates the golem's attributes based on its golemancy stats.
+		//Call whenever the golem's stats are updated.
 		this.fromComponent();
 		EntityAttributeInstance entityAttributeInstance;
 		//Update attack damage based on strength.
@@ -170,6 +175,18 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.vigor = vig;
 		this.smarts	= sma;
 		this.toComponent();
+		this.updateAttributes();
+	}
+
+	public void setBaked(boolean flag) {
+		this.baked = flag;
+		this.toComponent();
+		this.updateAttributes();
+	}
+
+	public void linkToBlockPos(BlockPos pos) {
+		this.linkedBlockPos = pos;
+		this.toComponent();
 	}
 
 	public Integer getGolemStrength() {
@@ -186,20 +203,10 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.fromComponent();
 		return this.linkedBlockPos;
 	}
-	
-	public void linkToBlockPos(BlockPos pos) {
-		this.linkedBlockPos = pos;
-		this.toComponent();
-	}
 
 	public boolean isBaked() {
 		this.fromComponent();
 		return this.baked;
-	}
-
-	public void setBaked(boolean flag) {
-		this.baked = flag;
-		this.toComponent();
 	}
 	
 	public boolean isFollowingWand() {
@@ -300,12 +307,16 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void handleStatus(byte status) {
-		if (status == 4) {
-			this.attackTicksLeft = 5;
-		} else if (status == 66) {
-			this.swingTicksLeft = 10;
-		} else {
-			super.handleStatus(status);
+		switch(status) {
+			case 4:
+				this.attackTicksLeft = 5;
+				break;
+			case 66:
+				this.swingTicksLeft = 10;
+				break;
+			default:
+				super.handleStatus(status);
+				break;
 		}
 	}
 	
