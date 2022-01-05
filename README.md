@@ -21,7 +21,7 @@ Next you'll need to kill some mobs. If you kill a mob whose soul can be captured
 The following soul types are currently implemented:
 
 * Covetous Soul - comes from Endermen. They can pick up items and put them in their linked inventory.
-* Curious Soul - comes from Slimes. They follow their owner around, but don't do much else.
+* Curious Soul - comes from Slimes. You can give them an item to hold, and they'll lead you to nearby instances of that block nearby (even through walls).
 * Entropic Soul - comes from Creepers and Silverfish. Link them to a block, and they'll break any instances of that block they find nearby. They'll need a high strength to break very hard blocks!
 * Hungry Soul - comes from Hoglins and Zombies. They'll pick up items and eat them, destroying them. They can eat any item.
 * Intrepid Soul - comes from Shulkers. They are ranged golems that throw clay balls at enemies.
