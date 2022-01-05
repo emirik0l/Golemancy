@@ -1,11 +1,8 @@
 package net.emirikol.golemancy.inventory;
 
 import net.minecraft.inventory.*;
-import net.minecraft.block.*;
 import net.minecraft.item.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
 import net.minecraft.util.collection.*;
  
 public interface ImplementedInventory extends Inventory {
