@@ -170,18 +170,18 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	}
 	
 	public void setGolemStats(int str, int agi, int vig, int sma) {
+		//Call updateAttributes() after using this to ensure entity attributes are correct.
 		this.strength = str;
 		this.agility = agi;
 		this.vigor = vig;
 		this.smarts	= sma;
 		this.toComponent();
-		this.updateAttributes();
 	}
 
 	public void setBaked(boolean flag) {
+		//Call updateAttributes() after using this to ensure entity attributes are correct.
 		this.baked = flag;
 		this.toComponent();
-		this.updateAttributes();
 	}
 
 	public void linkToBlockPos(BlockPos pos) {
