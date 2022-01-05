@@ -5,17 +5,13 @@ import net.emirikol.golemancy.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
 import net.minecraft.server.world.*;
 import net.minecraft.nbt.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
-import java.util.*;
-
 public class GolemWand extends Item {
-	private static float searchRadius = 30.0F;
 	
 	public GolemWand(Settings settings) {
 		super(settings);
@@ -26,7 +22,6 @@ public class GolemWand extends Item {
 		if (user.world.isClient()) {
 			return ActionResult.PASS;
 		}
-		ServerWorld world = (ServerWorld) user.world;
 		if (entity instanceof AbstractGolemEntity) {
 			AbstractGolemEntity golemEntity = (AbstractGolemEntity) entity;
 			if (golemEntity.isOwner(user)) {
@@ -43,7 +38,7 @@ public class GolemWand extends Item {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		PlayerEntity user = context.getPlayer();
-		if (user.world.isClient()) {
+		if ((user == null) || (user.world.isClient())) {
 			return ActionResult.PASS;
 		}
 		ServerWorld world = (ServerWorld) context.getWorld();

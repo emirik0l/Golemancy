@@ -4,14 +4,12 @@ import net.emirikol.golemancy.genetics.*;
 import net.emirikol.golemancy.screen.*;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.screen.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.text.*;
 import net.minecraft.network.*;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -44,23 +42,21 @@ public class SoulMirror extends Item implements ExtendedScreenHandlerFactory {
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 		//Get the soul mirror's ItemStack, and whatever's in the other hand.
 		ItemStack stack = player.getStackInHand(hand);
-		ItemStack other;
+		ItemStack otherStack;
 		if (hand == Hand.MAIN_HAND) {
-			other = player.getStackInHand(Hand.OFF_HAND);
+			otherStack = player.getStackInHand(Hand.OFF_HAND);
 		} else {
-			other = player.getStackInHand(Hand.MAIN_HAND);
+			otherStack = player.getStackInHand(Hand.MAIN_HAND);
 		}
 		//Check if it's a filled soulstone.
-		if (other.getItem() instanceof SoulstoneFilled) {
+		if (otherStack.getItem() instanceof SoulstoneFilled) {
 			//Load data from soulstone.
-			Genome genome = new Genome(other);
-			if (genome != null) {
-				//Damage the soul mirror.
-				stack.damage(1, (LivingEntity) player, (Consumer)((p) -> { LivingEntity q = (LivingEntity) p; q.sendToolBreakStatus(hand); }));
-				//Display genome on screen.
-				displayGenome(world, player, genome);
-				return TypedActionResult.success(stack);
-			}
+			Genome genome = new Genome(otherStack);
+			//Damage the soul mirror.
+			stack.damage(1, (LivingEntity) player, (Consumer)((p) -> { LivingEntity q = (LivingEntity) p; q.sendToolBreakStatus(hand); }));
+			//Display genome on screen.
+			displayGenome(world, player, genome);
+			return TypedActionResult.success(stack);
 		} 
 		//Default fall-through to PASS.
 		return TypedActionResult.pass(stack);

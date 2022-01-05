@@ -18,8 +18,7 @@ public class SoulstoneFilled extends Item {
 		Gene<String> gene = genome.get("type");
 		String type = gene.getActive();
 		if (type.length() > 0) {
-			MutableText output = typeToText(type).append(new LiteralText(" ")).append(baseName);
-			return output;
+			return typeToText(type).append(new LiteralText(" ")).append(baseName);
 		} else {
 			return baseName;
 		}
