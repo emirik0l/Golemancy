@@ -2,6 +2,7 @@ package net.emirikol.golemancy;
 
 import net.emirikol.golemancy.block.*;
 import net.emirikol.golemancy.block.entity.*;
+import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.item.*;
 import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.entity.projectile.*;
@@ -150,7 +151,7 @@ public class Golemancy implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_tactile", TACTILE_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_valiant", VALIANT_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_weeping", WEEPING_GOLEM_ENTITY);
-		for (EntityType type: Golems.getTypes()) {
+		for (EntityType type: SoulTypes.getEntityTypes()) {
 			FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());
 		}
 		//Register clayball projectile.

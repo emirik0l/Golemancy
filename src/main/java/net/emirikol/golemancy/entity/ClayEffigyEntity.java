@@ -48,7 +48,7 @@ public class ClayEffigyEntity extends PathAwareEntity {
 			Gene<Integer> vigorGene = genome.get("vigor");
 			Gene<Integer> smartsGene = genome.get("smarts");
 			//Get entity type and replace this entity with the correct golem.
-			EntityType<? extends AbstractGolemEntity> golemType = Golems.get(typeGene.getActive());
+			EntityType<? extends AbstractGolemEntity> golemType = SoulTypes.get(typeGene.getActive()).getEntityType();
 			if (golemType == null) { return ActionResult.PASS; } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
 			BlockPos pos = this.getBlockPos();
 			this.discard();

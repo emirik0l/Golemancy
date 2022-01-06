@@ -2,6 +2,7 @@ package net.emirikol.golemancy;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import net.emirikol.golemancy.entity.*;
+import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
 import net.emirikol.golemancy.client.render.*;
@@ -51,7 +52,7 @@ public class GolemancyClient implements ClientModInitializer {
 			return new TerracottaEffigyEntityRenderer(context);
 		});
 		//Register Golem Renderers
-		for(EntityType type: Golems.getTypes()) {
+		for(EntityType type: SoulTypes.getEntityTypes()) {
 			EntityRendererRegistry.register(type, (context) -> {
 				return new ClayGolemEntityRenderer(context);
 			});
