@@ -106,6 +106,10 @@ public class Genome {
 			Gene newGene = leftGene.breed(rightGene);
 			newGenome.put(key, newGene);
 		}
+		//Check for mutations.
+		for (Mutation mutation: Mutations.MUTATIONS) {
+			newGenome = mutation.applyMutation(newGenome, left.get("type"), right.get("type"));
+		}
 		return newGenome;
 	}
 }
