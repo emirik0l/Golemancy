@@ -7,6 +7,7 @@ public class SerializedGenome {
 	public HashMap<String,String> dormantAlleles;
 	
 	//Create a SerializedGenome from a Genome (serialization).
+	//Gene<T>.getActive().toString() is used to generate the data that will be displayed on client screens.
 	public SerializedGenome(Genome genome) {
 		activeAlleles = new HashMap<String,String>();
 		for (String key: genome.getKeys()) {

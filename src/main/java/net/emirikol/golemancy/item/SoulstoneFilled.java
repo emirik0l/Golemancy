@@ -15,8 +15,8 @@ public class SoulstoneFilled extends Item {
 	public Text getName(ItemStack stack) {
 		Text baseName = new TranslatableText(this.getTranslationKey(stack));
 		Genome genome = new Genome(stack);
-		Gene<String> gene = genome.get("type");
-		String type = gene.getActive();
+		Gene<SoulType> gene = genome.get("type");
+		String type = gene.getActive().getTypeString();
 		if (type.length() > 0) {
 			return typeToText(type).append(new LiteralText(" ")).append(baseName);
 		} else {

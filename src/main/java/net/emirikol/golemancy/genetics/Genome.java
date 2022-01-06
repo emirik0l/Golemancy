@@ -49,9 +49,9 @@ public class Genome {
 	//Apply this genome to an ItemStack's NBT data.
 	public void toItemStack(ItemStack stack) {
 		NbtCompound nbt = stack.getOrCreateNbt();
-		Gene<String> type = genes.get("type");
-		nbt.putString("type_active", type.getActive());
-		nbt.putString("type_dormant", type.getDormant());
+		Gene<SoulType> type = genes.get("type");
+		nbt.putString("type_active", type.getActive().getTypeString());
+		nbt.putString("type_dormant", type.getDormant().getTypeString());
 		Gene<Integer> potency = genes.get("potency");
 		nbt.putInt("potency_active", potency.getActive());
 		nbt.putInt("potency_dormant", potency.getDormant());
@@ -78,7 +78,7 @@ public class Genome {
 	public void fromItemStack(ItemStack stack) {
 		NbtCompound nbt = stack.getOrCreateNbt();
 		if (validNbt(nbt)) {
-			genes.put("type", new Gene<String>(nbt.getString("type_active"), nbt.getString("type_dormant")));
+			genes.put("type", new Gene<SoulType>(SoulTypes.get(nbt.getString("type_active")), SoulTypes.get(nbt.getString("type_dormant"))));
 			genes.put("potency", new Gene<Integer>(nbt.getInt("potency_active"), nbt.getInt("potency_dormant")));
 			genes.put("strength", new Gene<Integer>(nbt.getInt("strength_active"), nbt.getInt("strength_dormant")));
 			genes.put("agility", new Gene<Integer>(nbt.getInt("agility_active"), nbt.getInt("agility_dormant")));

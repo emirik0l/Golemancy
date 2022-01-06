@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Genomes {
 	public static final Genome GENERIC = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.GENERIC.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.GENERIC));
 		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -15,7 +15,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome BLAZE = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.PARCHED.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.PARCHED));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
@@ -24,7 +24,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome CREEPER = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.ENTROPIC.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.ENTROPIC));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
@@ -33,7 +33,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome ENDERMAN = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.COVETOUS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.COVETOUS));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -42,7 +42,7 @@ public class Genomes {
 	}};
 
 	public static final Genome ENDERMITE = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.COVETOUS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.COVETOUS));
 		put("potency", new Gene<Integer>(4));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
@@ -51,7 +51,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome GHAST = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.WEEPING.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.WEEPING));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(2));
@@ -60,7 +60,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome GUARDIAN = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.VALIANT.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.VALIANT));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -69,7 +69,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome HOGLIN = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.HUNGRY.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.HUNGRY));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -78,7 +78,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome HUSK = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.PARCHED.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.PARCHED));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(0));
@@ -87,7 +87,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome PHANTOM = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.TACTILE.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.TACTILE));
 		put("potency", new Gene<Integer>(1));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(2));
@@ -96,7 +96,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome RAVAGER = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.VALIANT.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.VALIANT));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(0));
@@ -105,7 +105,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SHULKER = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.INTREPID.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.INTREPID));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -114,7 +114,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SILVERFISH = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.ENTROPIC.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.ENTROPIC));
 		put("potency", new Gene<Integer>(4));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(1));
@@ -123,7 +123,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SKELETON = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.RESTLESS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.RESTLESS));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -132,7 +132,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SLIME = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.CURIOUS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.CURIOUS));
 		put("potency", new Gene<Integer>(5));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(0));
@@ -141,7 +141,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome SPIDER = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.RESTLESS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.RESTLESS));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(2));
@@ -150,7 +150,7 @@ public class Genomes {
 	}};
 
 	public static final Genome VEX = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.COVETOUS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.COVETOUS));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(0));
 		put("agility", new Gene<Integer>(2));
@@ -159,7 +159,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome WITHER_SKELETON = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.VALIANT.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.VALIANT));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
@@ -168,7 +168,7 @@ public class Genomes {
 	}};
 
 	public static final Genome ZOGLIN = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.HUNGRY.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.HUNGRY));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -177,7 +177,7 @@ public class Genomes {
 	}};
 	
 	public static final Genome ZOMBIE = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.HUNGRY.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.HUNGRY));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(0));
@@ -188,7 +188,7 @@ public class Genomes {
 	// Boss Genomes
 
 	public static final Genome ELDER_GUARDIAN = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.VALIANT.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.VALIANT));
 		put("potency", new Gene<Integer>(3));
 		put("strength", new Gene<Integer>(1));
 		put("agility", new Gene<Integer>(1));
@@ -197,7 +197,7 @@ public class Genomes {
 	}};
 
 	public static final Genome WITHER = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.VALIANT.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.VALIANT));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(2));
 		put("agility", new Gene<Integer>(1));
@@ -206,7 +206,7 @@ public class Genomes {
 	}};
 
 	public static final Genome ENDER_DRAGON = new Genome() {{
-		put("type", new Gene<String>(SoulTypes.COVETOUS.getTypeString()));
+		put("type", new Gene<SoulType>(SoulTypes.COVETOUS));
 		put("potency", new Gene<Integer>(2));
 		put("strength", new Gene<Integer>(3));
 		put("agility", new Gene<Integer>(3));
@@ -214,17 +214,17 @@ public class Genomes {
 		put("smarts", new Gene<Integer>(2));
 	}};
 	
-	public static final Map<String,Integer> TEXTURE_VARIANTS = new HashMap<String,Integer>() {{
-		put(SoulTypes.RESTLESS.getTypeString(), 1);
-		put(SoulTypes.CURIOUS.getTypeString(), 2);
-		put(SoulTypes.HUNGRY.getTypeString(), 3);
-		put(SoulTypes.COVETOUS.getTypeString(), 4);
-		put(SoulTypes.VALIANT.getTypeString(), 5);
-		put(SoulTypes.PARCHED.getTypeString(), 6);
-		put(SoulTypes.ENTROPIC.getTypeString(), 7);
-		put(SoulTypes.TACTILE.getTypeString(), 8);
-		put(SoulTypes.INTREPID.getTypeString(), 9);
-		put(SoulTypes.WEEPING.getTypeString(), 10);
+	public static final Map<SoulType,Integer> TEXTURE_VARIANTS = new HashMap<SoulType,Integer>() {{
+		put(SoulTypes.RESTLESS, 1);
+		put(SoulTypes.CURIOUS, 2);
+		put(SoulTypes.HUNGRY, 3);
+		put(SoulTypes.COVETOUS, 4);
+		put(SoulTypes.VALIANT, 5);
+		put(SoulTypes.PARCHED, 6);
+		put(SoulTypes.ENTROPIC, 7);
+		put(SoulTypes.TACTILE, 8);
+		put(SoulTypes.INTREPID, 9);
+		put(SoulTypes.WEEPING, 10);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{

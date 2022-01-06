@@ -27,6 +27,7 @@ public class SoulTypes {
     public static final List<SoulType> SOUL_TYPES = Arrays.asList(COVETOUS, CURIOUS, ENTROPIC, HUNGRY, INTREPID, PARCHED, RESTLESS, TACTILE, VALIANT, WEEPING);
 
     public static SoulType get(String typeString) {
+        //Find a SoulType from the type string, i.e. "Curious".
         for (SoulType soulType : SOUL_TYPES) {
             if (soulType.getTypeString().equals(typeString)) { return soulType; }
         }
