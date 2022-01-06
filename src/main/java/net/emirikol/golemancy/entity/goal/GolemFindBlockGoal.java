@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class GolemFindBlockGoal extends GolemMoveToBlockGoal {
 
-    public GolemFindBlockGoal(AbstractGolemEntity entity, float searchRadius) {
-        super(entity, searchRadius);
+    public GolemFindBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+        super(entity, searchRadius, maxYDifference);
     }
 
     @Override

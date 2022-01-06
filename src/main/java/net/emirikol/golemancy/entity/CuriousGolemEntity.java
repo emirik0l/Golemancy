@@ -18,7 +18,7 @@ public class CuriousGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
-		this.goalSelector.add(16, new GolemFindBlockGoal(this, 10.0F));
+		this.goalSelector.add(16, new GolemFindBlockGoal(this, 10.0F, 5.0F));
 	}
 	
 	@Override
