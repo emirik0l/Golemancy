@@ -6,7 +6,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
-public class GolemMoveToFluidGoal extends GolemMoveToBlockGoal {
+public class GolemMoveToFluidGoal extends GolemMoveGoal {
 	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float searchRadius) {
 		super(entity, searchRadius, 1);
 	}

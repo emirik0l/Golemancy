@@ -5,7 +5,7 @@ import net.emirikol.golemancy.entity.*;
 import net.minecraft.block.*;
 import net.minecraft.util.math.*;
 
-public class GolemMoveToBreakGoal extends GolemMoveToBlockGoal {
+public class GolemMoveToBreakGoal extends GolemMoveGoal {
 	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float searchRadius) {
 		super(entity, searchRadius, 1);
 	}
