@@ -11,8 +11,8 @@ import java.util.*;
 
 public class GolemMoveGoal extends Goal {
 	protected final AbstractGolemEntity entity;
-	private final float searchRadius;
-	private final float maxYDifference;
+	protected final float searchRadius;
+	protected final float maxYDifference;
 	
 	private List<Block> filter;
 	protected BlockPos targetPos;
