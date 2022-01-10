@@ -4,6 +4,8 @@ import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.pathing.Path;
+import net.minecraft.entity.ai.pathing.PathNode;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
@@ -32,7 +34,7 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		return this.findTargetPos();
+		return this.findTargetPos() && this.canReachPos(targetPos);
 	}
 	
 	public boolean shouldContinue() {
@@ -91,5 +93,13 @@ public class GolemMoveGoal extends Goal {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		BlockState state = world.getBlockState(pos);
 		return this.filter.isEmpty() || this.filter.contains(state.getBlock());
+	}
+
+	public boolean canReachPos(BlockPos pos) {
+		Path path = this.entity.getNavigation().findPathTo(pos, 0);
+		if (path == null) { return false; }
+		PathNode pathNode = path.getEnd();
+		if (pathNode == null) { return false; }
+		return this.entity.isInWalkTargetRange(pos) && path.reachesTarget();
 	}
 }

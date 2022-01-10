@@ -43,7 +43,7 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
         if (list.isEmpty()) { return false; }
         for (ItemEntity itemEntity: list) {
             BlockPos pos = itemEntity.getBlockPos();
-            if (GolemHelper.canReach(entity, pos) && this.isTargetPos(pos)) {
+            if (this.entity.isInWalkTargetRange(pos) && this.isTargetPos(pos)) {
                 this.targetPos = pos;
                 return true;
             }
