@@ -18,7 +18,6 @@ public class WeepingGolemEntity extends AbstractGolemEntity {
 	@Override 
 	protected void initGoals() {
 		super.initGoals();
-		this.goalSelector.add(5, new GolemHealGoal(this, 5.0F));
 		this.goalSelector.add(6, new GolemMoveToHealGoal(this, 10.0F, 5.0F));
 	}
 	
