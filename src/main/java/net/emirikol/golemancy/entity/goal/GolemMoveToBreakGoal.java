@@ -59,7 +59,7 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 	}
 
 	public boolean canBreak(BlockPos pos) {
-		 if (pos.isWithinDistance(this.entity.getPos(), 2.0D)) {
+		 if (pos.isWithinDistance(this.entity.getPos(), 3.0D)) {
 			 BlockState state = this.entity.world.getBlockState(pos);
 			 if (state == null) { return false; }
 			 Block linkedBlock = this.entity.getLinkedBlock();
