@@ -63,7 +63,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 	}
 
 	public boolean canHeal(TameableEntity healTarget) {
-		float r = this.searchRadius + (10.0F * this.entity.getGolemSmarts());
+		float r = this.searchRadius + (3.0F * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
 			if (tameable == this.friend) {
