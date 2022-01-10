@@ -34,7 +34,7 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		return this.findTargetPos() && this.canReachPos(targetPos);
+		return this.findTargetPos();
 	}
 	
 	public boolean shouldContinue() {
@@ -93,13 +93,5 @@ public class GolemMoveGoal extends Goal {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		BlockState state = world.getBlockState(pos);
 		return this.filter.isEmpty() || this.filter.contains(state.getBlock());
-	}
-
-	public boolean canReachPos(BlockPos pos) {
-		Path path = this.entity.getNavigation().findPathTo(pos, 0);
-		if (path == null) { return false; }
-		PathNode pathNode = path.getEnd();
-		if (pathNode == null) { return false; }
-		return this.entity.isInWalkTargetRange(pos) && path.reachesTarget();
 	}
 }

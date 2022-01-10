@@ -50,5 +50,4 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
         }
         return false;
     }
-
 }
