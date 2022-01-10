@@ -15,16 +15,14 @@ public class GolemFollowOwnerGoal extends Goal {
 	private final double speed;
 	private final EntityNavigation navigation;
 	private int updateCountdownTicks;
-	private final float maxDistance;
 	private final float minDistance;
 	private float oldWaterPathfindingPenalty;
 
-	public GolemFollowOwnerGoal(AbstractGolemEntity entity, double speed, float minDistance, float maxDistance) {
+	public GolemFollowOwnerGoal(AbstractGolemEntity entity, double speed, float minDistance) {
 		this.entity = entity;
 		this.speed = speed;
 		this.navigation = this.entity.getNavigation();
 		this.minDistance = minDistance;
-		this.maxDistance = maxDistance;
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 		if (!(this.entity.getNavigation() instanceof MobNavigation) && !(this.entity.getNavigation() instanceof BirdNavigation)) {
 			throw new IllegalArgumentException("Unsupported mob type for GolemFollowOwnerGoal");
@@ -33,28 +31,18 @@ public class GolemFollowOwnerGoal extends Goal {
 
 	public boolean canStart() {
 		LivingEntity livingEntity = this.entity.getOwner();
-		if (livingEntity == null) {
-			return false;
-		} else if (livingEntity.isSpectator()) {
-			return false;
-		} else if (this.entity.isSitting()) {
-			return false;
-		} else if (this.entity.squaredDistanceTo(livingEntity) < (double)(this.minDistance * this.minDistance)) {
-			return false;
-		} else {
-			this.owner = livingEntity;
-			return true;
-		}
+		if (livingEntity == null) return false;
+		if (livingEntity.isSpectator()) return false;
+		if (this.entity.isSitting()) return false;
+		if (this.entity.squaredDistanceTo(livingEntity) < (double)(this.minDistance * this.minDistance)) return false;
+		if (!this.entity.isFollowingWand()) return false;
+
+		this.owner = livingEntity;
+		return true;
 	}
 
 	public boolean shouldContinue() {
-		if (this.navigation.isIdle()) {
-			return false;
-		} else if (this.entity.isSitting()) {
-			return false;
-		} else {
-			return this.canStart();
-		}
+		return !this.navigation.isIdle() && this.canStart();
 	}
 
 	public void start() {
