@@ -190,7 +190,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 
 	public void linkToBlockPos(BlockPos pos) {
 		this.linkedBlockPos = pos;
-		this.linkedBlock = this.world.getBlockState(pos).getBlock();
+		if (pos != null) {
+			this.linkedBlock = this.world.getBlockState(pos).getBlock();
+		} else {
+			this.linkedBlock = null;
+		}
 		this.toComponent();
 	}
 
