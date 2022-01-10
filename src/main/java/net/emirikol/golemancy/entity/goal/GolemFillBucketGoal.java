@@ -13,6 +13,8 @@ import net.minecraft.server.world.*;
 
 
 public class GolemFillBucketGoal extends Goal {
+	private static final int FILL_RANGE = 5;
+
 	private final AbstractGolemEntity entity;
 	
 	private BlockPos fluidPos;
@@ -42,7 +44,7 @@ public class GolemFillBucketGoal extends Goal {
 		BlockPos pos = this.entity.getBlockPos();
 		ServerWorld world = (ServerWorld) this.entity.world;
 
-		for (BlockPos curPos: BlockPos.iterateOutwards(pos, 3, 3, 3)) {
+		for (BlockPos curPos: BlockPos.iterateOutwards(pos, FILL_RANGE, FILL_RANGE, FILL_RANGE)) {
 			if (isFluidDrainable(curPos, world)) {
 				this.fluidPos = curPos;
 				return true;
