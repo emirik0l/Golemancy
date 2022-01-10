@@ -4,8 +4,6 @@ import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.ai.pathing.Path;
-import net.minecraft.entity.ai.pathing.PathNode;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
