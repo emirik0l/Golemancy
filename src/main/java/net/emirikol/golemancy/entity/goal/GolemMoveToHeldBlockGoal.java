@@ -3,14 +3,18 @@ package net.emirikol.golemancy.entity.goal;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.EnumSet;
 
 public class GolemMoveToHeldBlockGoal extends GolemMoveGoal {
 
     public GolemMoveToHeldBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         super(entity, searchRadius, maxYDifference);
+        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     @Override
@@ -19,6 +23,14 @@ public class GolemMoveToHeldBlockGoal extends GolemMoveGoal {
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         if (stack.isEmpty()) { return false; }
         return stack.getItem() instanceof BlockItem && super.canStart();
+    }
+
+    @Override
+    public void tick() {
+        //Attempt to look at block.
+        this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ());
+        //Continue towards targetPos.
+        super.tick();
     }
 
     @Override
