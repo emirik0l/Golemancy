@@ -7,9 +7,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
-public class GolemMoveToBlockGoal extends GolemMoveGoal {
+public class GolemMoveToHeldBlockGoal extends GolemMoveGoal {
 
-    public GolemMoveToBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+    public GolemMoveToHeldBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         super(entity, searchRadius, maxYDifference);
     }
 
