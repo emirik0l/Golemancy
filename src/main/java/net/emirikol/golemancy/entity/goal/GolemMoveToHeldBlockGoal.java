@@ -41,4 +41,10 @@ public class GolemMoveToHeldBlockGoal extends GolemMoveGoal {
         Block block = item.getBlock();
         return block == this.entity.world.getBlockState(pos).getBlock();
     }
+
+    @Override
+    public boolean canReachPos(BlockPos pos) {
+        //Curious golems should move towards matching blocks, even if they can't reach them.
+        return true;
+    }
 }

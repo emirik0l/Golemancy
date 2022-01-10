@@ -9,7 +9,7 @@ import net.minecraft.util.math.*;
 import java.util.EnumSet;
 
 public class GolemMoveToBreakGoal extends GolemMoveGoal {
-	private static final double BREAK_RANGE = 3.0D;
+	private static final double BREAK_RANGE = 5.0D;
 
 	protected int breakProgress;
 	protected int prevBreakProgress;
