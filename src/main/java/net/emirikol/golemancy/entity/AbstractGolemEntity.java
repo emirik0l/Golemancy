@@ -43,7 +43,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	@Override 
 	protected void initGoals() {
 		this.goalSelector.add(10, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-		this.goalSelector.add(15, new GolemReturnHomeGoal(this, 1.0D));
+		this.goalSelector.add(15, new GolemMoveToHomeGoal(this));
 		this.goalSelector.add(16, new GolemFollowWandGoal(this, 1.0D, 6.0F, 500.0F));
 	}
 	
