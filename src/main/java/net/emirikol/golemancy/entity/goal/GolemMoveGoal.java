@@ -42,7 +42,7 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public void start() {
-		this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
+		this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
 		this.tryingTime = 0;
 		this.safeWaitingTime = this.entity.getRandom().nextInt(this.entity.getRandom().nextInt(1200) + 1200) + 1200;
 	}
@@ -52,7 +52,7 @@ public class GolemMoveGoal extends Goal {
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
 			++this.tryingTime;
 			if (this.shouldResetPath()) {
-				this.entity.getNavigation().startMovingTo((double)((float)this.targetPos.getX()) + 0.5D, (this.targetPos.getY() + 1), (double)((float)this.targetPos.getZ()) + 0.5D, 1);
+				this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
 			}
 		} else {
 			--this.tryingTime;
