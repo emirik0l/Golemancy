@@ -4,7 +4,6 @@ import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
@@ -33,11 +32,11 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean canStart() {
-		return this.findTargetPos();
+		return this.findTargetPos() && this.canReachPos(this.targetPos);
 	}
 	
 	public boolean shouldContinue() {
-		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && canStart();
+		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos();
 	}
 	
 	public void start() {
@@ -80,7 +79,7 @@ public class GolemMoveGoal extends Goal {
 		
 		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
 		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
-			if (this.entity.isInWalkTargetRange(curPos) && isTargetPos(curPos) && canReachPos(curPos)) {
+			if (this.entity.isInWalkTargetRange(curPos) && isTargetPos(curPos)) {
 				this.targetPos = curPos;
 				return true;
 			}
@@ -96,14 +95,6 @@ public class GolemMoveGoal extends Goal {
 
 	public boolean canReachPos(BlockPos pos) {
 		//Check that the specified BlockPos is not surrounded by impassable blocks.
-		ServerWorld world = (ServerWorld) this.entity.world;
-		BlockPos[] posArray = {pos, pos.up(), pos.north(), pos.south(), pos.east(), pos.west(), pos.down()};
-		for (BlockPos curPos : posArray) {
-			BlockState state = world.getBlockState(curPos);
-			if (state != null && state.canPathfindThrough(world, curPos, NavigationType.LAND)) {
-				return true;
-			}
-		}
-		return false;
+		return this.entity.getNavigation().findPathTo(pos, 0) != null;
 	}
 }

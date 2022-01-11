@@ -4,6 +4,7 @@ import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.pathing.EntityNavigation;
 import net.minecraft.util.math.*;
 
 import java.util.EnumSet;
@@ -58,6 +59,16 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 		if (linkedBlock == null) { return false; }
 		
 		return (state.getBlock() == linkedBlock) && super.isTargetPos(pos);
+	}
+
+	@Override
+	public boolean canReachPos(BlockPos pos) {
+		//Check if we can path to any block within BREAK_RANGE.
+		EntityNavigation nav = this.entity.getNavigation();
+		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int) BREAK_RANGE, (int) BREAK_RANGE, (int) BREAK_RANGE)) {
+			if (nav.findPathTo(curPos, 0) != null) return true;
+		}
+		return false;
 	}
 
 	public boolean canBreak(BlockPos pos) {
