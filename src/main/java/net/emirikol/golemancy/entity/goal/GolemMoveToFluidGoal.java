@@ -19,6 +19,9 @@ public class GolemMoveToFluidGoal extends GolemMoveGoal {
 	public boolean canStart() {
 		return GolemHelper.hasEmptyBucket(this.entity) && super.canStart();
 	}
+
+	@Override
+	public boolean shouldContinue() { return GolemHelper.hasEmptyBucket(this.entity) && super.shouldContinue(); }
 	
 	@Override
 	public boolean isTargetPos(BlockPos pos) {
