@@ -24,6 +24,9 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
     }
 
     @Override
+    public boolean shouldContinue() { return super.shouldContinue() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty(); }
+
+    @Override
     public void tick() {
         //Check if there is an item within 1.5 blocks and the golem's hand is empty.
         List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), (entity) -> true);
