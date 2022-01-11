@@ -21,16 +21,6 @@ public class GolemMoveToHarvestGoal extends GolemMoveToBreakGoal {
     }
 
     @Override
-    public boolean canBreak(BlockPos pos) {
-        if (pos.isWithinDistance(this.entity.getPos(), BREAK_RANGE)) {
-            BlockState state = this.entity.world.getBlockState(pos);
-            Block block = state.getBlock();
-            return block instanceof CropBlock && ((CropBlock) block).isMature(state);
-        }
-        return false;
-    }
-
-    @Override
     protected int getMaxProgress() {
         return 40;
     }

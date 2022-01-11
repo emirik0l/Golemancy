@@ -73,14 +73,12 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 	}
 
 	public boolean canBreak(BlockPos pos) {
+		//Check if a block is close enough to break, and if we are strong enough to break it.
 		 if (pos.isWithinDistance(this.entity.getPos(), BREAK_RANGE)) {
 			 BlockState state = this.entity.world.getBlockState(pos);
 			 if (state == null) { return false; }
-			 Block linkedBlock = this.entity.getLinkedBlock();
-			 if (linkedBlock == null) { return false; }
 			 float hardness = state.getHardness(this.entity.world, pos);
-			 //To break a block: must be valid for breaking; must be strong enough; must be same type as linked block.
-			 return (hardness >= 0) && (hardness <= getBreakingStrength()) && (state.getBlock() == linkedBlock) && !state.isAir();
+			 return (hardness >= 0) && (hardness <= getBreakingStrength()) && !state.isAir();
 		 }
 		 return false;
 	}
