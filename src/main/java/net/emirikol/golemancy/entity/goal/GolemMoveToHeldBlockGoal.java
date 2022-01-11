@@ -26,6 +26,13 @@ public class GolemMoveToHeldBlockGoal extends GolemMoveGoal {
     }
 
     @Override
+    public boolean shouldContinue() {
+        ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
+        if (stack.isEmpty()) { return false; }
+        return stack.getItem() instanceof BlockItem && super.shouldContinue();
+    }
+
+    @Override
     public void tick() {
         //Attempt to look at block.
         this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ());
