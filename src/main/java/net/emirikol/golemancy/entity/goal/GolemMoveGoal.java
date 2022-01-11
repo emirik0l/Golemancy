@@ -88,13 +88,16 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean isTargetPos(BlockPos pos) {
+		//Used to determine whether a given BlockPos qualifies to be our targetPos.
+		//Override to tell your golem which BlockPos to target.
 		ServerWorld world = (ServerWorld) this.entity.world;
 		BlockState state = world.getBlockState(pos);
 		return this.filter.isEmpty() || this.filter.contains(state.getBlock());
 	}
 
 	public boolean canReachPos(BlockPos pos) {
-		//Check that the specified BlockPos is not surrounded by impassable blocks.
+		//For most golems, we want to be able to path to the targetPos itself in order to consider it reachable.
+		//Override for certain golems where this isn't the case (i.e. you want to get within X blocks of targetPos).
 		return this.entity.getNavigation().findPathTo(pos, 0) != null;
 	}
 }
