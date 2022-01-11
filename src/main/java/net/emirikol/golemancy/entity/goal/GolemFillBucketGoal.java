@@ -13,7 +13,7 @@ import net.minecraft.server.world.*;
 
 
 public class GolemFillBucketGoal extends Goal {
-	private static final int FILL_RANGE = 5;
+	private static final int FILL_RANGE = 3;
 
 	private final AbstractGolemEntity entity;
 	
