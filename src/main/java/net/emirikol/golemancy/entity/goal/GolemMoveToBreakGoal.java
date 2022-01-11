@@ -53,6 +53,7 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 	
 	@Override
 	public boolean isTargetPos(BlockPos pos) {
+		//Must match the Block type of the golem's linked block.
 		BlockState state = this.entity.world.getBlockState(pos);
 		if (state == null) { return false; }
 		Block linkedBlock = this.entity.getLinkedBlock();
