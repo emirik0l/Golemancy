@@ -18,10 +18,10 @@ Next you'll need to kill some mobs. If you kill a mob whose soul can be captured
 
 ![a filled soulstone](/readme/filled-soulstone.png)
 
-The following soul types are currently implemented:
+The following soul types can be obtained from mobs:
 
 * Covetous Soul - comes from Endermen. They can pick up items and put them in their linked inventory.
-* Curious Soul - comes from Slimes. You can give them an item to hold, and they'll lead you to nearby instances of that block nearby (even through walls).
+* Curious Soul - comes from Slimes. If you give them a "block" item (i.e. a silk-touched diamond ore) to hold, they will stare at any nearby instances of that item - even through walls!
 * Entropic Soul - comes from Creepers and Silverfish. Link them to a block, and they'll break any instances of that block they find nearby. They'll need a high strength to break very hard blocks!
 * Hungry Soul - comes from Hoglins and Zombies. They'll pick up items and eat them, destroying them. They can eat any item.
 * Intrepid Soul - comes from Shulkers. They are ranged golems that throw clay balls at enemies.
@@ -30,6 +30,10 @@ The following soul types are currently implemented:
 * Tactile Soul - comes from Phantoms. They'll right-click their linked block every few seconds, like a player.
 * Valiant Soul - comes from Ravagers and Guardians. You can equip them with tools by right-clicking, and they'll fight off enemies.
 * Weeping Soul - comes from Ghasts. They can heal other golems and even other types of pets, like wolves.
+
+The following soul types can be obtained by random mutation in the soul grafter:
+
+* Rustic Soul - comes from grafting Covetous and Entropic souls. They are similar to Entropic golems, but they'll break any crops, gourds, or 2-block sugarcanes they find nearby.
 
 ## Making Golems
 
@@ -51,7 +55,7 @@ The golem wand can be used to interact with your golems:
 
 ![golem wand recipe](/readme/golem-wand.png)
 
-Hold the golem wand in your hand and right-click on one of your golems to make them follow you. Right click again to tell them to stop. If you right-click a golem while sneaking, you'll enter "linking mode". You can then right-click on a block to link the golem to that block.
+Hold the golem wand in your hand and right-click on one of your golems to make them follow you. Right click again to tell them to stop. If you right-click a golem while sneaking, you'll enter "linking mode". You can then right-click on a block to link the golem to that block. Link a golem to itself to unlink it.
 
 Golems consider their linked block as "home" and will return to it when they're not busy doing something else. Some golems can, if linked to a chest or other inventory, extract or insert items into their linked block.
 
@@ -77,8 +81,7 @@ The soul grafter is what you use to breed soulstones. You'll need a good supply 
 
 # Planned Features
 
-* Random mutations - breed "natural" souls together for a chance to create otherwise unattainable golem types.
-* More advanced golem types, such as harvesters, butchers, ore-finding golems, etc.
+* More advanced golem types, such as harvesters, butchers, etc.
 * In-game documentation via Patchouli.
 
 # Credits
