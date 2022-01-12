@@ -119,6 +119,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 		return super.interactMob(player, hand);
 	}
+
+	@Override
+	public boolean canTarget(LivingEntity target) {
+		return !(target instanceof AbstractGolemEntity) && super.canTarget(target);
+	}
 	
 	private ActionResult tryHealGolem(PlayerEntity player, Hand hand) {
 		if (this.getHealth() >= this.getMaxHealth()) {

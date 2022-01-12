@@ -64,8 +64,8 @@ public class ClayballEntity extends ThrownItemEntity {
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
 		Entity entity = entityHitResult.getEntity();
-		double i = entity instanceof AbstractGolemEntity ? 0 : this.damage;
-		entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)i);
+		if (entity instanceof AbstractGolemEntity) { return; }
+		entity.damage(DamageSource.thrownProjectile(this, this.getOwner()), (float)this.damage);
 	}
 
 	@Override
