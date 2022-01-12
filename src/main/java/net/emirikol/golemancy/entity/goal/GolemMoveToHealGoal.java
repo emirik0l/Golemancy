@@ -37,7 +37,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 				Particles.healParticle(this.entity);
 			}
 			if (this.healingTimer == 0) {
-				this.friend.heal(HEAL_AMOUNT);
+				this.friend.heal(this.getHealAmount());
 				Particles.healParticle(this.friend);
 				friend.world.playSound(null, friend.getBlockPos(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 1F, 1F);
 			}
@@ -71,6 +71,10 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 			}
 		}
 		return false;
+	}
+
+	public float getHealAmount() {
+		return HEAL_AMOUNT + this.entity.getGolemSmarts();
 	}
 	
 	public boolean wounded(LivingEntity entity) {
