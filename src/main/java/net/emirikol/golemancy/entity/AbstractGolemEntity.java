@@ -287,7 +287,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 			case 2:
 				return 0.3D;
 			case 3:
-				return 0.5D;
+				return 0.4D;
 			default:
 				return 0.0D;
 		}
