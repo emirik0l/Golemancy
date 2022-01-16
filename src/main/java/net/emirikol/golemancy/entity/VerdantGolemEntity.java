@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.Golemancy;
+import net.emirikol.golemancy.entity.goal.GolemExtractSeedsGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToPlantGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -17,6 +18,7 @@ public class VerdantGolemEntity extends AbstractGolemEntity {
     @Override
     protected void initGoals() {
         super.initGoals();
+        this.goalSelector.add(5, new GolemExtractSeedsGoal(this));
         this.goalSelector.add(6, new GolemMoveToPlantGoal(this, 10.0F, 3.0F));
     }
 
