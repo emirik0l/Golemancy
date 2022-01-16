@@ -68,17 +68,13 @@ public class GolemWand extends Item {
 			//Linking a golem to itself causes it to become unlinked.
 			nbt.putInt("golem_id", 0);
 			entity.linkToBlockPos(null);
-			MutableText text = new LiteralText("");
-			text.append(entity.getName());
-			text.append(new TranslatableText("text.golemancy.unlink_linking_wand"));
+			TranslatableText text = new TranslatableText("text.golemancy.unlink_linking_wand", entity.getName());
 			user.sendMessage(text, false);
 			return ActionResult.SUCCESS;
 		} else {
 			//Otherwise, save the golem's entity ID to the wand's NBT.
 			nbt.putInt("golem_id", identifier);
-			MutableText text = new LiteralText("");
-			text.append(entity.getName());
-			text.append(new TranslatableText("text.golemancy.linking_wand"));
+			TranslatableText text = new TranslatableText("text.golemancy.linking_wand", entity.getName());
 			user.sendMessage(text, false);
 			return ActionResult.SUCCESS;
 		}
@@ -89,11 +85,8 @@ public class GolemWand extends Item {
 		entity.linkToBlockPos(pos);
 		NbtCompound nbt = stack.getOrCreateNbt();
 		nbt.putInt("golem_id", 0);
-		MutableText text = new LiteralText("");
-		text.append(entity.getName());
-		text.append(new TranslatableText("text.golemancy.finished_linking_wand"));
-		text.append(new TranslatableText(world.getBlockState(pos).getBlock().getTranslationKey()));
-		text.append(new LiteralText("!"));
+		String blockKey = world.getBlockState(pos).getBlock().getTranslationKey();
+		TranslatableText text = new TranslatableText("text.golemancy.finished_linking_wand", entity.getName(), new TranslatableText(blockKey));
 		user.sendMessage(text, false);
 		return ActionResult.SUCCESS;
 	}
@@ -101,13 +94,11 @@ public class GolemWand extends Item {
 	public ActionResult toggleFollow(AbstractGolemEntity entity, PlayerEntity user) {
 		//Following functionality.
 		entity.toggleFollowingWand();
-		MutableText text = new LiteralText("");
+		TranslatableText text;
 		if (entity.isFollowingWand()) {
-			text.append(entity.getName());
-			text.append(new TranslatableText("text.golemancy.following_wand"));
+			text = new TranslatableText("text.golemancy.following_wand", entity.getName());
 		} else {
-			text.append(entity.getName());
-			text.append(new TranslatableText("text.golemancy.stop_following_wand"));
+			text = new TranslatableText("text.golemancy.stop_following_wand", entity.getName());
 		}
 		user.sendMessage(text, false);
 		return ActionResult.SUCCESS;
