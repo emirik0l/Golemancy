@@ -34,7 +34,8 @@ public class GolemancyItemGroup {
 				creativeGenome(SoulTypes.VALIANT),
 				creativeGenome(SoulTypes.WEEPING),
 				//Mutated genomes
-				creativeGenome(SoulTypes.RUSTIC)
+				creativeGenome(SoulTypes.RUSTIC),
+				creativeGenome(SoulTypes.VERDANT)
 			);
 			for(Genome genome: genomes) {
 				ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);

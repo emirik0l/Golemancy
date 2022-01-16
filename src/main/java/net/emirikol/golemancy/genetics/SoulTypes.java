@@ -23,9 +23,10 @@ public class SoulTypes {
     public static final SoulType RUSTIC = new SoulType("Rustic", Golemancy.RUSTIC_GOLEM_ENTITY);
     public static final SoulType TACTILE = new SoulType("Tactile", Golemancy.TACTILE_GOLEM_ENTITY);
     public static final SoulType VALIANT = new SoulType("Valiant", Golemancy.VALIANT_GOLEM_ENTITY);
+    public static final SoulType VERDANT = new SoulType("Verdant", Golemancy.VERDANT_GOLEM_ENTITY);
     public static final SoulType WEEPING = new SoulType("Weeping", Golemancy.WEEPING_GOLEM_ENTITY);
 
-    public static final List<SoulType> SOUL_TYPES = Arrays.asList(GENERIC, COVETOUS, CURIOUS, ENTROPIC, HUNGRY, INTREPID, PARCHED, RESTLESS, RUSTIC, TACTILE, VALIANT, WEEPING);
+    public static final List<SoulType> SOUL_TYPES = Arrays.asList(GENERIC, COVETOUS, CURIOUS, ENTROPIC, HUNGRY, INTREPID, PARCHED, RESTLESS, RUSTIC, TACTILE, VALIANT, VERDANT, WEEPING);
 
     public static SoulType get(String typeString) {
         //Find a SoulType from the type string, i.e. "Curious".
