@@ -34,17 +34,20 @@ public class GolemMoveGoal extends Goal {
 	public boolean canStart() {
 		return this.findTargetPos() && this.canReachPos(this.targetPos);
 	}
-	
+
+	@Override
 	public boolean shouldContinue() {
 		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos();
 	}
-	
+
+	@Override
 	public void start() {
 		this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
 		this.tryingTime = 0;
 		this.safeWaitingTime = this.entity.getRandom().nextInt(this.entity.getRandom().nextInt(1200) + 1200) + 1200;
 	}
 
+	@Override
 	public void tick() {
 		//Continue towards targetPos.
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
@@ -55,6 +58,11 @@ public class GolemMoveGoal extends Goal {
 		} else {
 			--this.tryingTime;
 		}
+	}
+
+	@Override
+	public boolean shouldRunEveryTick() {
+		return true;
 	}
 	
 	public void add(Block... blocks) {
