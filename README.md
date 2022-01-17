@@ -34,6 +34,7 @@ The following soul types can be obtained from mobs:
 The following soul types can be obtained by random mutation in the soul grafter:
 
 * Rustic Soul - comes from grafting Covetous and Entropic souls. They are similar to Entropic golems, but they'll break any crops, gourds, or 2-block sugarcanes they find nearby.
+* Verdant Soul - comes from grafting Covetous and Tactile souls. They will take seeds from a linked chest and plant them on any empty farmland they find nearby.
 
 ## Making Golems
 
@@ -81,7 +82,7 @@ The soul grafter is what you use to breed soulstones. You'll need a good supply 
 
 # Planned Features
 
-* More advanced golem types, such as harvesters, butchers, etc.
+* More advanced golem types, such as anglers, smelters, butchers, etc.
 * In-game documentation via Patchouli.
 
 # Credits
