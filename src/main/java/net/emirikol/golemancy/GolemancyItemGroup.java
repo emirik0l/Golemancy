@@ -28,6 +28,7 @@ public class GolemancyItemGroup {
 				creativeGenome(SoulTypes.ENTROPIC),
 				creativeGenome(SoulTypes.HUNGRY),
 				creativeGenome(SoulTypes.INTREPID),
+				creativeGenome(SoulTypes.MARSHY),
 				creativeGenome(SoulTypes.PARCHED),
 				creativeGenome(SoulTypes.RESTLESS),
 				creativeGenome(SoulTypes.TACTILE),

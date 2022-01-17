@@ -31,6 +31,15 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(1));
 	}};
+
+	public static final Genome DROWNED = new Genome() {{
+		put("type", new Gene<SoulType>(SoulTypes.MARSHY));
+		put("potency", new Gene<Integer>(3));
+		put("strength", new Gene<Integer>(1));
+		put("agility", new Gene<Integer>(0));
+		put("vigor", new Gene<Integer>(1));
+		put("smarts", new Gene<Integer>(0));
+	}};
 	
 	public static final Genome ENDERMAN = new Genome() {{
 		put("type", new Gene<SoulType>(SoulTypes.COVETOUS));
@@ -227,6 +236,7 @@ public class Genomes {
 		put(SoulTypes.WEEPING, 10);
 		put(SoulTypes.RUSTIC, 11);
 		put(SoulTypes.VERDANT, 12);
+		put(SoulTypes.MARSHY, 13);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
@@ -234,6 +244,7 @@ public class Genomes {
 		put(EntityType.CREEPER, CREEPER);
 		put(EntityType.ENDERMAN, ENDERMAN);
 		put(EntityType.ENDERMITE, ENDERMITE);
+		put(EntityType.DROWNED, DROWNED);
 		put(EntityType.GHAST, GHAST);
 		put(EntityType.GUARDIAN, GUARDIAN);
 		put(EntityType.HOGLIN, HOGLIN);
@@ -252,7 +263,6 @@ public class Genomes {
 		put(EntityType.VEX, VEX);
 		put(EntityType.WITHER_SKELETON, WITHER_SKELETON);
 		put(EntityType.ZOGLIN, ZOGLIN);
-		put(EntityType.DROWNED, ZOMBIE);
 		put(EntityType.ZOMBIE, ZOMBIE);
 		put(EntityType.ZOMBIE_HORSE, ZOMBIE);
 		put(EntityType.ZOMBIE_VILLAGER, ZOMBIE);
