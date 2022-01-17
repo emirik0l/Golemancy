@@ -268,6 +268,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	//Called when the soulstone grafting process completes; performs the actual grafting and breeding logic.
 	public void graft() {
 		Random rand = new Random();
+		if (this.world != null) rand = this.world.getRandom();
 		int x;
 		//Get parent itemstacks.
 		ItemStack[] parents = { null, null };
