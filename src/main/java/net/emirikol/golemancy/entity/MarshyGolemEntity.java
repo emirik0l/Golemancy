@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.Golemancy;
+import net.emirikol.golemancy.entity.goal.GolemMoveToFishGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -16,6 +17,7 @@ public class MarshyGolemEntity extends AbstractGolemEntity {
     @Override
     protected void initGoals() {
         super.initGoals();
+        this.goalSelector.add(6, new GolemMoveToFishGoal(this, 10.0F, 5.0F));
     }
 
     @Override
