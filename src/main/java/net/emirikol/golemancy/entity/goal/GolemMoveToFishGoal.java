@@ -84,12 +84,10 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
         ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 
         Vec3d originPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
-        FakePlayerEntity dummyPlayer = new FakePlayerEntity(world, pos, 0);
-        FishingBobberEntity dummyBobber = new FishingBobberEntity(dummyPlayer, world, EnchantmentHelper.getLure(stack), EnchantmentHelper.getLuckOfTheSea(stack));
         LootContext.Builder builder = new LootContext.Builder(world)
                 .parameter(LootContextParameters.ORIGIN, originPos)
                 .parameter(LootContextParameters.TOOL, stack)
-                .parameter(LootContextParameters.THIS_ENTITY, dummyBobber)
+                .parameter(LootContextParameters.THIS_ENTITY, this.entity)
                 .random(this.entity.getRandom())
                 .luck(this.entity.getLuckFromSmarts() + EnchantmentHelper.getLuckOfTheSea(stack)); //Each level of Smarts adds 1 point of luck.
         LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
@@ -98,8 +96,6 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
             ItemEntity itemEntity = new ItemEntity(world, this.entity.getX(), this.entity.getY(), this.entity.getZ(), fishy);
             world.spawnEntity(itemEntity);
         }
-        dummyPlayer.discard();
-        dummyBobber.discard();
         world.playSound(null, this.entity.getX(), this.entity.getY(), this.entity.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 1.5F, 1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F);
     }
 
