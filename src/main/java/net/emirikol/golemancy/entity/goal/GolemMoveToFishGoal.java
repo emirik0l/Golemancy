@@ -23,7 +23,7 @@ import java.util.List;
 
 public class GolemMoveToFishGoal extends GolemMoveGoal {
     protected static final double FISH_RANGE = 3.0D;
-    protected static final int FISH_TIME = 600;
+    protected static final int BASE_FISH_TIME = 1200;
 
     public GolemMoveToFishGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         super(entity, searchRadius, maxYDifference);
@@ -45,7 +45,7 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
         //Attempt to fish.
         if (this.canFish(this.targetPos)) {
             this.entity.getNavigation().stop();
-            if (this.entity.getRandom().nextInt(FISH_TIME) == 0) {
+            if (this.entity.getRandom().nextInt(this.getFishTime()) == 0) {
                 this.entity.tryAttack();
                 this.fish();
             }
@@ -81,7 +81,8 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
         LootContext.Builder builder = new LootContext.Builder(world)
                 .parameter(LootContextParameters.ORIGIN, this.entity.getPos())
                 .parameter(LootContextParameters.TOOL, stack)
-                .random(this.entity.getRandom());
+                .random(this.entity.getRandom())
+                .luck(this.entity.getLuckFromSmarts()); //Each level of Smarts adds 1 point of luck.
         LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
         List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
         for (ItemStack fishy : list) {
@@ -89,5 +90,12 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
             world.spawnEntity(itemEntity);
         }
         world.playSound(null, this.entity.getX(), this.entity.getY(), this.entity.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 1.5F, 1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F);
+    }
+
+    public int getFishTime() {
+        //Each level of Agility reduces fishing time by 10% - to a minimum of 200 ticks, or 10 seconds.
+        float modifier = this.entity.getGolemAgility() * (BASE_FISH_TIME / 10.0F);
+        float fishTime = BASE_FISH_TIME - modifier;
+        return Math.max(200, (int) fishTime);
     }
 }

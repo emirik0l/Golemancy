@@ -313,7 +313,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 				return 0.0D;
 		}
 	}
-	
+
 	public double getFollowRangeFromSmarts() {
 		int smarts = this.getGolemSmarts();
 		switch(smarts) {
@@ -328,6 +328,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 			default:
 				return 0.0D;
 		}
+	}
+
+	public float getLuckFromSmarts() {
+		int smarts = this.getGolemSmarts();
+		return (float) smarts;
 	}
 	
 	@Override
