@@ -336,8 +336,19 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.world.sendEntityStatus(this, (byte)4);
 		return super.tryAttack(target);
 	}
+
+	public boolean tryAttack() {
+		//Alternate overload used to swing the arm without actually attacking a target.
+		if (this.attackTicksLeft > 0) {
+			return false;
+		}
+		this.attackTicksLeft = 5;
+		this.world.sendEntityStatus(this, (byte)4);
+		return true;
+	}
 	
 	public boolean trySwing() {
+		//Used to swing both arms.
 		if (this.swingTicksLeft > 0) {
 			return false;
 		}

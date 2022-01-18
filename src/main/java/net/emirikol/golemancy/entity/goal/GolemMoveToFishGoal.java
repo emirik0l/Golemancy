@@ -46,7 +46,7 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
         if (this.canFish(this.targetPos)) {
             this.entity.getNavigation().stop();
             if (this.entity.getRandom().nextInt(FISH_TIME) == 0) {
-                this.entity.trySwing();
+                this.entity.tryAttack();
                 this.fish();
             }
         }
