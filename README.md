@@ -25,6 +25,7 @@ The following soul types can be obtained from mobs:
 * Entropic Soul - comes from Creepers and Silverfish. Link them to a block, and they'll break any instances of that block they find nearby. They'll need a high strength to break very hard blocks!
 * Hungry Soul - comes from Hoglins and Zombies. They'll pick up items and eat them, destroying them. They can eat any item.
 * Intrepid Soul - comes from Shulkers. They are ranged golems that throw clay balls at enemies.
+* Marshy Soul - comes from Drowned. Give them a fishing rod, and they will fish for you - smarter and more agile golems will fish faster and produce less junk. However, they can't fish treasure.
 * Parched Soul - comes from Blazes and Husks. They can fill buckets from fluid blocks and store them in their linked inventory. They can also get empty buckets from their linked inventory.
 * Restless Soul - comes from Skeletons. They wander around randomly, but don't do much else.
 * Tactile Soul - comes from Phantoms. They'll right-click their linked block every few seconds, like a player.
@@ -56,9 +57,9 @@ The golem wand can be used to interact with your golems:
 
 ![golem wand recipe](/readme/golem-wand.png)
 
-Hold the golem wand in your hand and right-click on one of your golems to make them follow you. Right click again to tell them to stop. If you right-click a golem while sneaking, you'll enter "linking mode". You can then right-click on a block to link the golem to that block. Link a golem to itself to unlink it.
+Hold the golem wand in your hand and right-click on one of your golems to make them follow you. Right click again to tell them to stop. You can also right-click on blocks, which will cause any nearby golems who are currently following you to instantly teleport to you.
 
-Golems consider their linked block as "home" and will return to it when they're not busy doing something else. Some golems can, if linked to a chest or other inventory, extract or insert items into their linked block.
+If you right-click a golem while sneaking, you'll enter "linking mode". You can then right-click on a block to link the golem to that block. Link a golem to itself to unlink it. Golems consider their linked block as "home" and will return to it when they're not busy doing something else. Some golems can, if linked to a chest or other inventory, extract or insert items into their linked block.
 
 ## The Soul Mirror
 
