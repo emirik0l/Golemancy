@@ -1,11 +1,15 @@
 package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
+import net.emirikol.golemancy.entity.FakePlayerEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
@@ -17,6 +21,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -47,7 +52,7 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
             this.entity.getNavigation().stop();
             if (this.entity.getRandom().nextInt(this.getFishTime()) == 0) {
                 this.entity.tryAttack();
-                this.fish();
+                this.fish(this.targetPos);
             }
         }
         //Continue towards targetPos.
@@ -74,21 +79,27 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
         return false;
     }
 
-    public void fish() {
+    public void fish(BlockPos pos) {
         ServerWorld world = (ServerWorld) this.entity.world;
         ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 
+        Vec3d originPos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+        FakePlayerEntity dummyPlayer = new FakePlayerEntity(world, pos, 0);
+        FishingBobberEntity dummyBobber = new FishingBobberEntity(dummyPlayer, world, EnchantmentHelper.getLure(stack), EnchantmentHelper.getLuckOfTheSea(stack));
         LootContext.Builder builder = new LootContext.Builder(world)
-                .parameter(LootContextParameters.ORIGIN, this.entity.getPos())
+                .parameter(LootContextParameters.ORIGIN, originPos)
                 .parameter(LootContextParameters.TOOL, stack)
+                .parameter(LootContextParameters.THIS_ENTITY, dummyBobber)
                 .random(this.entity.getRandom())
-                .luck(this.entity.getLuckFromSmarts()); //Each level of Smarts adds 1 point of luck.
+                .luck(this.entity.getLuckFromSmarts() + EnchantmentHelper.getLuckOfTheSea(stack)); //Each level of Smarts adds 1 point of luck.
         LootTable lootTable = world.getServer().getLootManager().getTable(LootTables.FISHING_GAMEPLAY);
         List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
         for (ItemStack fishy : list) {
             ItemEntity itemEntity = new ItemEntity(world, this.entity.getX(), this.entity.getY(), this.entity.getZ(), fishy);
             world.spawnEntity(itemEntity);
         }
+        dummyPlayer.discard();
+        dummyBobber.discard();
         world.playSound(null, this.entity.getX(), this.entity.getY(), this.entity.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 1.5F, 1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F);
     }
 
