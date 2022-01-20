@@ -98,9 +98,9 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 	protected void init() {
 		super.init();
 	}
-	
+
 	public TranslatableText typeToText(String type) {
-		return new TranslatableText("text.golemancy.type." + type.toLowerCase());
+		return new TranslatableText(type);
 	}
 	
 	public Text geneToText(String geneValue) {

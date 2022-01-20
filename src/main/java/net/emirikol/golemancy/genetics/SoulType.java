@@ -20,6 +20,6 @@ public class SoulType {
 
     @Override
     public String toString() {
-        return getTypeText().getString();
+        return getTypeString();
     }
 }
