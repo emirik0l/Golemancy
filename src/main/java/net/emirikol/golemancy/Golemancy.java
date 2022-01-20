@@ -25,7 +25,11 @@ import net.minecraft.screen.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Golemancy implements ModInitializer {
+	public static final Logger LOGGER = LoggerFactory.getLogger("Golemancy");
 	
 	public static SoulstoneEmpty SOULSTONE_EMPTY;
 	public static SoulstoneFilled SOULSTONE_FILLED;
@@ -75,6 +79,7 @@ public class Golemancy implements ModInitializer {
 		GolemancyConfig.syncConfigHook(); //add event hook for syncing server and client configs when a player connects
 		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
 		AutoConfig.register(GolemancyConfig.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
+		LOGGER.info("Arise, my minions!");
 	}
 	
 	public static void doInstantiation() {

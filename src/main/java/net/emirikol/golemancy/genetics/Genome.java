@@ -43,6 +43,9 @@ public class Genome {
 				return false;
 			}
 		}
+		// Check if the type gene is valid.
+		if (SoulTypes.get(nbt.getString("type_active")) == null) return false;
+		if (SoulTypes.get(nbt.getString("type_dormant")) == null) return false;
 		return true;
 	}
 	
