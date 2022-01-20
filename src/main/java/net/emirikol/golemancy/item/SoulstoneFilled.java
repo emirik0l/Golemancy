@@ -13,14 +13,14 @@ public class SoulstoneFilled extends Item {
 	
 	@Override
 	public Text getName(ItemStack stack) {
-		Text baseName = new TranslatableText(this.getTranslationKey(stack));
 		Genome genome = new Genome(stack);
 		Gene<SoulType> gene = genome.get("type");
 		String type = gene.getActive().getTypeString();
 		if (type.length() > 0) {
-			return typeToText(type).append(new LiteralText(" ")).append(baseName);
+			TranslatableText name = new TranslatableText(this.getTranslationKey(stack), typeToText(type));
+			return name;
 		} else {
-			return baseName;
+			return super.getName(stack);
 		}
 	}
 	
