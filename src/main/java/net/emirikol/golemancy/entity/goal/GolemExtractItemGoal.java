@@ -12,7 +12,7 @@ import net.minecraft.server.world.*;
 import java.util.*;
 
 public class GolemExtractItemGoal extends Goal {
-	private final AbstractGolemEntity entity;
+	protected final AbstractGolemEntity entity;
 	
 	private Inventory container;
 	private List<Item> filter;
