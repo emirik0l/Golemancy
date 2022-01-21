@@ -51,18 +51,21 @@ public class GolemHelper {
 		if (stack.isEmpty()) return false;
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack slotStack = inventory.getStack(i);
+			if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areNbtEqual(stack, slotStack)) && (slotStack.getCount() < inventory.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount()) && inventory.isValid(i, stack)) {
+				//If you find a non-empty slot you can insert into...
+				stack.decrement(1);
+				slotStack.increment(1);
+				return true;
+			}
+		}
+		for (int i = 0; i < inventory.size(); i++) {
+			ItemStack slotStack = inventory.getStack(i);
 			if (slotStack.isEmpty() && inventory.isValid(i, stack)) {
 				//If you find an empty slot you can insert into...
 				ItemStack newStack = stack.copy();
 				newStack.setCount(1);
 				inventory.setStack(i, newStack);
 				stack.decrement(1);
-				return true;
-			}
-			if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areNbtEqual(stack, slotStack)) && (slotStack.getCount() < inventory.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount()) && inventory.isValid(i, stack)) {
-				//If you find a non-empty slot you can insert into...
-				stack.decrement(1);
-				slotStack.increment(1);
 				return true;
 			}
 		}
