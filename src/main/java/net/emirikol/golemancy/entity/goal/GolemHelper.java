@@ -27,6 +27,10 @@ public class GolemHelper {
 			ChestBlock block = (ChestBlock) state.getBlock();
 			return ChestBlock.getInventory(block, state, world, pos, true);
 		}
+		if (state.getBlock() instanceof InventoryProvider) {
+			InventoryProvider provider = (InventoryProvider) state.getBlock();
+			return provider.getInventory(state, world, pos);
+		}
 		if (blockEntity instanceof Inventory) {
 			return (Inventory) blockEntity;
 		}
