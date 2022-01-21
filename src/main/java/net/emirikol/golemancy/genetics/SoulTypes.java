@@ -6,7 +6,6 @@ import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.minecraft.entity.EntityType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,22 +27,23 @@ public class SoulTypes {
     public static final SoulType VERDANT = new SoulType("text.golemancy.type.verdant", Golemancy.VERDANT_GOLEM_ENTITY);
     public static final SoulType WEEPING = new SoulType("text.golemancy.type.weeping", Golemancy.WEEPING_GOLEM_ENTITY);
 
-    public static final List<SoulType> SOUL_TYPES = Arrays.asList(
-            GENERIC,
-            COVETOUS,
-            CURIOUS,
-            ENTROPIC,
-            HUNGRY,
-            INTREPID,
-            MARSHY,
-            METICULOUS,
-            PARCHED,
-            RESTLESS,
-            RUSTIC,
-            TACTILE,
-            VALIANT,
-            VERDANT,
-            WEEPING);
+    public static final List<SoulType> SOUL_TYPES = new ArrayList<SoulType>() {{
+        add(GENERIC);
+        add(COVETOUS);
+        add(CURIOUS);
+        add(ENTROPIC);
+        add(HUNGRY);
+        add(INTREPID);
+        add(MARSHY);
+        add(METICULOUS);
+        add(PARCHED);
+        add(RESTLESS);
+        add(RUSTIC);
+        add(TACTILE);
+        add(VALIANT);
+        add(VERDANT);
+        add(WEEPING);
+    }};
 
     public static SoulType get(String typeString) {
         //Find a SoulType from the type string, i.e. "text.golemancy.type.curious".
