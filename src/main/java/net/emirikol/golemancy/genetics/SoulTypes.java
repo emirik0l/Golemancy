@@ -19,6 +19,7 @@ public class SoulTypes {
     public static final SoulType HUNGRY = new SoulType("text.golemancy.type.hungry", Golemancy.HUNGRY_GOLEM_ENTITY);
     public static final SoulType INTREPID = new SoulType("text.golemancy.type.intrepid", Golemancy.INTREPID_GOLEM_ENTITY);
     public static final SoulType MARSHY = new SoulType("text.golemancy.type.marshy", Golemancy.MARSHY_GOLEM_ENTITY);
+    public static final SoulType METICULOUS = new SoulType("text.golemancy.type.meticulous", Golemancy.METICULOUS_GOLEM_ENTITY);
     public static final SoulType PARCHED = new SoulType("text.golemancy.type.parched", Golemancy.PARCHED_GOLEM_ENTITY);
     public static final SoulType RESTLESS = new SoulType("text.golemancy.type.restless", Golemancy.RESTLESS_GOLEM_ENTITY);
     public static final SoulType RUSTIC = new SoulType("text.golemancy.type.rustic", Golemancy.RUSTIC_GOLEM_ENTITY);
@@ -27,7 +28,22 @@ public class SoulTypes {
     public static final SoulType VERDANT = new SoulType("text.golemancy.type.verdant", Golemancy.VERDANT_GOLEM_ENTITY);
     public static final SoulType WEEPING = new SoulType("text.golemancy.type.weeping", Golemancy.WEEPING_GOLEM_ENTITY);
 
-    public static final List<SoulType> SOUL_TYPES = Arrays.asList(GENERIC, COVETOUS, CURIOUS, ENTROPIC, HUNGRY, INTREPID, MARSHY, PARCHED, RESTLESS, RUSTIC, TACTILE, VALIANT, VERDANT, WEEPING);
+    public static final List<SoulType> SOUL_TYPES = Arrays.asList(
+            GENERIC,
+            COVETOUS,
+            CURIOUS,
+            ENTROPIC,
+            HUNGRY,
+            INTREPID,
+            MARSHY,
+            METICULOUS,
+            PARCHED,
+            RESTLESS,
+            RUSTIC,
+            TACTILE,
+            VALIANT,
+            VERDANT,
+            WEEPING);
 
     public static SoulType get(String typeString) {
         //Find a SoulType from the type string, i.e. "text.golemancy.type.curious".

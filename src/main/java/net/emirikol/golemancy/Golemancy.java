@@ -55,6 +55,7 @@ public class Golemancy implements ModInitializer {
 	public static EntityType<EntropicGolemEntity> ENTROPIC_GOLEM_ENTITY;
 	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;
 	public static EntityType<IntrepidGolemEntity> INTREPID_GOLEM_ENTITY;
+	public static EntityType<MeticulousGolemEntity> METICULOUS_GOLEM_ENTITY;
 	public static EntityType<MarshyGolemEntity> MARSHY_GOLEM_ENTITY;
 	public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;	
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
@@ -120,6 +121,7 @@ public class Golemancy implements ModInitializer {
 		HUNGRY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HungryGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		INTREPID_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, IntrepidGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		MARSHY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MarshyGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
+		METICULOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MeticulousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		PARCHED_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ParchedGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		RUSTIC_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RusticGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
@@ -158,6 +160,7 @@ public class Golemancy implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_hungry", HUNGRY_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_intrepid", INTREPID_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_marshy", MARSHY_GOLEM_ENTITY);
+		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_meticulous", METICULOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_parched", PARCHED_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_restless", RESTLESS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_rustic", RUSTIC_GOLEM_ENTITY);

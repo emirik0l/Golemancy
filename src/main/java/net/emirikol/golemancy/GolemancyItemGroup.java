@@ -35,6 +35,7 @@ public class GolemancyItemGroup {
 				creativeGenome(SoulTypes.VALIANT),
 				creativeGenome(SoulTypes.WEEPING),
 				//Mutated genomes
+				creativeGenome(SoulTypes.METICULOUS),
 				creativeGenome(SoulTypes.RUSTIC),
 				creativeGenome(SoulTypes.VERDANT)
 			);
