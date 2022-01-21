@@ -12,13 +12,13 @@ import java.util.List;
 public class SoulTypes {
     public static final SoulType GENERIC = new SoulType("text.golemancy.type.generic", Golemancy.RESTLESS_GOLEM_ENTITY);
 
+    public static final SoulType CAREFUL = new SoulType("text.golemancy.type.careful", Golemancy.CAREFUL_GOLEM_ENTITY);
     public static final SoulType COVETOUS = new SoulType("text.golemancy.type.covetous", Golemancy.COVETOUS_GOLEM_ENTITY);
     public static final SoulType CURIOUS = new SoulType("text.golemancy.type.curious", Golemancy.CURIOUS_GOLEM_ENTITY);
     public static final SoulType ENTROPIC =  new SoulType("text.golemancy.type.entropic", Golemancy.ENTROPIC_GOLEM_ENTITY);
     public static final SoulType HUNGRY = new SoulType("text.golemancy.type.hungry", Golemancy.HUNGRY_GOLEM_ENTITY);
     public static final SoulType INTREPID = new SoulType("text.golemancy.type.intrepid", Golemancy.INTREPID_GOLEM_ENTITY);
     public static final SoulType MARSHY = new SoulType("text.golemancy.type.marshy", Golemancy.MARSHY_GOLEM_ENTITY);
-    public static final SoulType METICULOUS = new SoulType("text.golemancy.type.meticulous", Golemancy.METICULOUS_GOLEM_ENTITY);
     public static final SoulType PARCHED = new SoulType("text.golemancy.type.parched", Golemancy.PARCHED_GOLEM_ENTITY);
     public static final SoulType RESTLESS = new SoulType("text.golemancy.type.restless", Golemancy.RESTLESS_GOLEM_ENTITY);
     public static final SoulType RUSTIC = new SoulType("text.golemancy.type.rustic", Golemancy.RUSTIC_GOLEM_ENTITY);
@@ -29,13 +29,13 @@ public class SoulTypes {
 
     public static final List<SoulType> SOUL_TYPES = new ArrayList<SoulType>() {{
         add(GENERIC);
+        add(CAREFUL);
         add(COVETOUS);
         add(CURIOUS);
         add(ENTROPIC);
         add(HUNGRY);
         add(INTREPID);
         add(MARSHY);
-        add(METICULOUS);
         add(PARCHED);
         add(RESTLESS);
         add(RUSTIC);

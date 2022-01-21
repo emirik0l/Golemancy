@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 import java.util.UUID;
 
-public class MeticulousGolemEntity extends AbstractGolemEntity {
-    public MeticulousGolemEntity(EntityType<? extends MeticulousGolemEntity> entityType, World world) {
+public class CarefulGolemEntity extends AbstractGolemEntity {
+    public CarefulGolemEntity(EntityType<? extends CarefulGolemEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -20,8 +20,8 @@ public class MeticulousGolemEntity extends AbstractGolemEntity {
     }
 
     @Override
-    public MeticulousGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        MeticulousGolemEntity golemEntity = Golemancy.METICULOUS_GOLEM_ENTITY.create(serverWorld);
+    public CarefulGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
+        CarefulGolemEntity golemEntity = Golemancy.CAREFUL_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

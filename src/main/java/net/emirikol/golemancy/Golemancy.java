@@ -50,12 +50,12 @@ public class Golemancy implements ModInitializer {
 	public static TerracottaEffigy TERRACOTTA_EFFIGY;
 	public static EntityType<TerracottaEffigyEntity> TERRACOTTA_EFFIGY_ENTITY;
 
+	public static EntityType<CarefulGolemEntity> CAREFUL_GOLEM_ENTITY;
 	public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
 	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
 	public static EntityType<EntropicGolemEntity> ENTROPIC_GOLEM_ENTITY;
 	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;
 	public static EntityType<IntrepidGolemEntity> INTREPID_GOLEM_ENTITY;
-	public static EntityType<MeticulousGolemEntity> METICULOUS_GOLEM_ENTITY;
 	public static EntityType<MarshyGolemEntity> MARSHY_GOLEM_ENTITY;
 	public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;	
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
@@ -115,13 +115,13 @@ public class Golemancy implements ModInitializer {
 		TERRACOTTA_EFFIGY = new TerracottaEffigy(effigy_settings);
 		TERRACOTTA_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TerracottaEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		//Instantiate golems.
+		CAREFUL_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CarefulGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		CURIOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CuriousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		ENTROPIC_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, EntropicGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		HUNGRY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, HungryGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		INTREPID_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, IntrepidGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		MARSHY_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MarshyGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
-		METICULOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, MeticulousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		PARCHED_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ParchedGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		RESTLESS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RestlessGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		RUSTIC_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, RusticGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
@@ -154,13 +154,13 @@ public class Golemancy implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY_ENTITY);
 		FabricDefaultAttributeRegistry.register(TERRACOTTA_EFFIGY_ENTITY, TerracottaEffigyEntity.createEffigyAttributes());
 		//Register golems.
+		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_careful", CAREFUL_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_covetous", COVETOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_curious", CURIOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_entropic", ENTROPIC_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_hungry", HUNGRY_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_intrepid", INTREPID_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_marshy", MARSHY_GOLEM_ENTITY);
-		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_meticulous", METICULOUS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_parched", PARCHED_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_restless", RESTLESS_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_rustic", RUSTIC_GOLEM_ENTITY);

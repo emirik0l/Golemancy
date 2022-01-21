@@ -17,6 +17,6 @@
 	{"predicate": { "custom_model_data": 11 }, "model": "golemancy:item/soulstone_rustic"},
 	{"predicate": { "custom_model_data": 12 }, "model": "golemancy:item/soulstone_verdant"},
 	{"predicate": { "custom_model_data": 13 }, "model": "golemancy:item/soulstone_marshy"},
-	{"predicate": { "custom_model_data": 14 }, "model": "golemancy:item/soulstone_meticulous"}
+	{"predicate": { "custom_model_data": 14 }, "model": "golemancy:item/soulstone_careful"}
   ]
 }
