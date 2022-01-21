@@ -24,7 +24,7 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
     protected boolean canTake(ItemStack stack) {
         for (Inventory inventory : this.findInventories()) {
             if (GolemHelper.canInsert(stack, inventory) && this.validForSorting(stack, inventory) && super.canTake(stack)) {
-                return super.canTake(stack);
+                return true;
             }
         }
         return false;
