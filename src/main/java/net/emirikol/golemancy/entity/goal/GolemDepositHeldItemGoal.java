@@ -64,12 +64,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 	
 	protected boolean linkedBlockCanInsert() {
 		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-		for (int i = 0; i < this.container.size(); i++) {
-			if (this.container.isValid(i, stack)) {
-				return true;
-			}
-		}
-		return false;
+		return GolemHelper.canInsert(stack, this.container);
 	}
 	
 	public double getDesiredSquaredDistanceToTarget() {

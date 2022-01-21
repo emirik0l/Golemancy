@@ -18,7 +18,8 @@ public class GolemHelper {
 		return stack.getItem() == Items.BUCKET;
 	}
 	
-	// Helper function to get inventory from a BlockPos; supports double chests.
+	// Helper functions for inventory management.
+
 	public static Inventory getInventory(BlockPos pos, ServerWorld world) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		BlockState state = world.getBlockState(pos);
@@ -35,6 +36,15 @@ public class GolemHelper {
 			return (Inventory) blockEntity;
 		}
 		return null;
+	}
+
+	public static boolean canInsert(ItemStack stack, Inventory inventory) {
+		for (int i = 0; i < inventory.size(); i++) {
+			if (inventory.isValid(i, stack)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// Helper functions for golem teleportation.
