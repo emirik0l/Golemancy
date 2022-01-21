@@ -18,7 +18,7 @@ public class GolemHelper {
 		return stack.getItem() == Items.BUCKET;
 	}
 	
-	// Helper functions for inventory management.
+	// Helper functions for golem inventory management.
 
 	public static Inventory getInventory(BlockPos pos, ServerWorld world) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -78,6 +78,18 @@ public class GolemHelper {
 			}
 		}
 		return false;
+	}
+
+	public static boolean sameDoubleInventory(BlockPos left, BlockPos right, ServerWorld world) {
+		//Check whether two BlockPos are part of the same DoubleInventory, i.e. in the case of a double chest.
+		Inventory inventory = GolemHelper.getInventory(left, world);
+		BlockEntity leftEntity = world.getBlockEntity(left);
+		BlockEntity rightEntity = world.getBlockEntity(right);
+		if (!(inventory instanceof DoubleInventory) || !(leftEntity instanceof  Inventory) || !(rightEntity instanceof Inventory)) {
+			return false;
+		}
+		DoubleInventory doubleInventory = (DoubleInventory) inventory;
+		return (doubleInventory.isPart((Inventory) leftEntity)) && (doubleInventory.isPart((Inventory) rightEntity));
 	}
 
 	// Helper functions for golem teleportation.

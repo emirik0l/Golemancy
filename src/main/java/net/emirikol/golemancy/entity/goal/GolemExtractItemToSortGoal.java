@@ -34,13 +34,15 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
         List<Inventory> output = new ArrayList<>();
 
         ServerWorld world = (ServerWorld) this.entity.world;
-        BlockPos pos = this.entity.getLinkedBlockPos();
-        if (pos == null) { return output; } //only search around linked block
+        BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
+        if (linkedBlockPos == null) { return output; } //only search around linked block
 
         float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-        for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
+        for (BlockPos curPos: BlockPos.iterateOutwards(linkedBlockPos, (int)r, (int) this.maxYDifference, (int)r)) {
             Inventory result = GolemHelper.getInventory(curPos, world);
-            if (result != null && !curPos.equals(pos)) output.add(result);
+            if (result != null && !GolemHelper.sameDoubleInventory(curPos, linkedBlockPos, world)) {
+                output.add(result);
+            }
         }
         return output;
     }

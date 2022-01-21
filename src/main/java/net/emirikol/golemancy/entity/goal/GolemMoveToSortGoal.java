@@ -45,13 +45,13 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
     public boolean isTargetPos(BlockPos pos) {
         //We should move to a block if it is an inventory that we can insert our currently held item into, and if it already contains the item in question.
         //Also, it can't be the same as our linked inventory.
-        BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
-        if (pos.equals(linkedBlockPos)) return false;
-
         ServerWorld world = (ServerWorld) this.entity.world;
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
+
         Inventory inventory = GolemHelper.getInventory(pos, world);
-        if (inventory == null) return false;
+        BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
+        if (inventory == null || GolemHelper.sameDoubleInventory(pos, linkedBlockPos, world)) return false;
+
         return GolemHelper.canInsert(stack, inventory) && this.validForSorting(stack, inventory);
     }
 
