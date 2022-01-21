@@ -33,7 +33,7 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
     public void tick() {
         //Attempt to look at block.
         this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ());
-        //Attempt to plant block.
+        //Attempt to deposit into block.
         if (this.canDeposit(this.targetPos)) {
             this.deposit(this.targetPos);
         }

@@ -38,9 +38,17 @@ public class GolemHelper {
 		return null;
 	}
 
+	public static boolean canInsertInSlot(ItemStack stack, Inventory inventory, int slot) {
+		ItemStack slotStack = inventory.getStack(slot);
+		boolean isValid = inventory.isValid(slot, stack);
+		boolean isEmpty = slotStack.isEmpty();
+		boolean canStack = (ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areNbtEqual(stack, slotStack)) && (slotStack.getCount() < inventory.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount());
+		return isValid && (isEmpty || canStack);
+	}
+
 	public static boolean canInsert(ItemStack stack, Inventory inventory) {
 		for (int i = 0; i < inventory.size(); i++) {
-			if (inventory.isValid(i, stack)) {
+			if (GolemHelper.canInsertInSlot(stack, inventory, i)) {
 				return true;
 			}
 		}
@@ -50,18 +58,18 @@ public class GolemHelper {
 	public static boolean tryInsert(ItemStack stack, Inventory inventory) {
 		if (stack.isEmpty()) return false;
 		for (int i = 0; i < inventory.size(); i++) {
+			//First attempt to find existing stacks we can add to.
 			ItemStack slotStack = inventory.getStack(i);
-			if ((ItemStack.areItemsEqual(stack, slotStack)) && (ItemStack.areNbtEqual(stack, slotStack)) && (slotStack.getCount() < inventory.getMaxCountPerStack()) && (slotStack.getCount() < slotStack.getMaxCount()) && inventory.isValid(i, stack)) {
-				//If you find a non-empty slot you can insert into...
+			if (GolemHelper.canInsertInSlot(stack, inventory, i) && slotStack.getCount() > 0) {
 				stack.decrement(1);
 				slotStack.increment(1);
 				return true;
 			}
 		}
 		for (int i = 0; i < inventory.size(); i++) {
+			//On the second pass, find empty stacks we can add to.
 			ItemStack slotStack = inventory.getStack(i);
-			if (slotStack.isEmpty() && inventory.isValid(i, stack)) {
-				//If you find an empty slot you can insert into...
+			if (GolemHelper.canInsertInSlot(stack, inventory, i) && slotStack.isEmpty()) {
 				ItemStack newStack = stack.copy();
 				newStack.setCount(1);
 				inventory.setStack(i, newStack);
