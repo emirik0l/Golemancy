@@ -40,7 +40,7 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
         float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
         for (BlockPos curPos: BlockPos.iterateOutwards(linkedBlockPos, (int)r, (int) this.maxYDifference, (int)r)) {
             Inventory result = GolemHelper.getInventory(curPos, world);
-            if (result != null && !GolemHelper.sameDoubleInventory(curPos, linkedBlockPos, world)) {
+            if (result != null && !curPos.equals(linkedBlockPos) && !GolemHelper.sameDoubleInventory(curPos, linkedBlockPos, world)) {
                 output.add(result);
             }
         }

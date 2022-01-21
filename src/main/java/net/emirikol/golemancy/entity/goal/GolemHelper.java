@@ -85,7 +85,7 @@ public class GolemHelper {
 		Inventory inventory = GolemHelper.getInventory(left, world);
 		BlockEntity leftEntity = world.getBlockEntity(left);
 		BlockEntity rightEntity = world.getBlockEntity(right);
-		if (!(inventory instanceof DoubleInventory) || !(leftEntity instanceof  Inventory) || !(rightEntity instanceof Inventory)) {
+		if (!(inventory instanceof DoubleInventory) || !(leftEntity instanceof Inventory) || !(rightEntity instanceof Inventory)) {
 			return false;
 		}
 		DoubleInventory doubleInventory = (DoubleInventory) inventory;
