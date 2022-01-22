@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
@@ -37,7 +38,7 @@ public class GolemMoveGoal extends Goal {
 			--this.cooldown;
 			return false;
 		}
-		this.cooldown = this.getCooldown();
+		this.cooldown = GolemancyConfig.getGolemCooldown();
 		return this.findTargetPos() && this.canReachPos(this.targetPos);
 	}
 
@@ -86,8 +87,6 @@ public class GolemMoveGoal extends Goal {
 	public boolean shouldResetPath() {
 		return this.tryingTime % 40 == 0;
 	}
-
-	protected int getCooldown() { return 10; }
 	
 	public boolean findTargetPos() {
 		BlockPos pos = this.entity.getLinkedBlockPos();

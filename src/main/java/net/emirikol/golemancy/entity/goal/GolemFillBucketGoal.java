@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
@@ -29,7 +30,7 @@ public class GolemFillBucketGoal extends Goal {
 			--this.cooldown;
 			return false;
 		}
-		this.cooldown = this.getCooldown();
+		this.cooldown = GolemancyConfig.getGolemCooldown();
 		return isFluidNearby() && GolemHelper.hasEmptyBucket(this.entity);
 	}
 
@@ -64,6 +65,4 @@ public class GolemFillBucketGoal extends Goal {
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
 		return fluidState.isStill() && !fluidState.isEmpty() && block instanceof FluidDrainable;
 	}
-
-	protected int getCooldown() { return 10; }
 }

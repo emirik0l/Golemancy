@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import net.minecraft.block.Block;
@@ -31,7 +32,7 @@ public class GolemLookAtHeldBlockGoal extends Goal {
             --this.cooldown;
             return false;
         }
-        this.cooldown = this.getCooldown();
+        this.cooldown = GolemancyConfig.getGolemCooldown();
         //Can only search for the block in your hand if you're actually holding something.
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         return !stack.isEmpty() && stack.getItem() instanceof BlockItem && this.findTargetPos();
@@ -61,6 +62,4 @@ public class GolemLookAtHeldBlockGoal extends Goal {
         BlockItem item = (BlockItem) stack.getItem();
         return item.getBlock() == this.entity.world.getBlockState(pos).getBlock();
     }
-
-    protected int getCooldown() { return 10; }
 }

@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -28,7 +29,7 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
             --this.cooldown;
             return false;
         }
-        this.cooldown = this.getCooldown();
+        this.cooldown = GolemancyConfig.getGolemCooldown();
         return super.canStart();
     }
 
@@ -63,6 +64,4 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
         Item item = stack.getItem();
         return inventory.count(item) > 0;
     }
-
-    protected int getCooldown() { return 10; }
 }
