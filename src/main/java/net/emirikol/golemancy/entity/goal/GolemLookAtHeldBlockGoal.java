@@ -39,6 +39,13 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     }
 
     @Override
+    public boolean shouldContinue() {
+        //Ignore cooldown on shouldContinue() to stop golem looking away from targetPos during the cooldown.
+        ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
+        return !stack.isEmpty() && stack.getItem() instanceof BlockItem && this.findTargetPos();
+    }
+
+    @Override
     public void tick() {
         //Attempt to look at block.
         this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ());
