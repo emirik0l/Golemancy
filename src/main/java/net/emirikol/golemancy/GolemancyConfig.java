@@ -1,19 +1,21 @@
 package net.emirikol.golemancy;
 
 import me.shedaniel.autoconfig.*;
-import me.shedaniel.autoconfig.annotation.*;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.Tooltip;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 
 @Config(name = "golemancy")
-public class GolemancyConfig implements ConfigData {	
-	public float GRAFT_SPEED_MULTIPLIER = 1.0F;
-	public float GRAFT_FUEL_MULTIPLIER = 1.0F;
-	public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
-	public double TERRACOTTA_ARMOR_VALUE = 8.0D;
-	public int GOLEM_AI_COOLDOWN = 10;
+public class GolemancyConfig implements ConfigData {
+
+	@Tooltip public float GRAFT_SPEED_MULTIPLIER = 1.0F;
+	@Tooltip public float GRAFT_FUEL_MULTIPLIER = 1.0F;
+	@Tooltip public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
+	@Tooltip public double TERRACOTTA_ARMOR_VALUE = 8.0D;
+	@Tooltip public int GOLEM_AI_COOLDOWN = 10;
 
 	public static void syncConfigHook() {
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
