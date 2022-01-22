@@ -14,10 +14,22 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
     protected final float searchRadius;
     protected final float maxYDifference;
 
+    protected int cooldown;
+
     public GolemExtractItemToSortGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         super(entity);
         this.searchRadius = searchRadius;
         this.maxYDifference = maxYDifference;
+    }
+
+    @Override
+    public boolean canStart() {
+        if (this.cooldown > 0) {
+            --this.cooldown;
+            return false;
+        }
+        this.cooldown = this.getCooldown();
+        return super.canStart();
     }
 
     @Override
@@ -51,4 +63,6 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
         Item item = stack.getItem();
         return inventory.count(item) > 0;
     }
+
+    protected int getCooldown() { return 10; }
 }

@@ -18,6 +18,7 @@ public class GolemMoveGoal extends Goal {
 	protected BlockPos targetPos;
 	protected int tryingTime;
 	protected int safeWaitingTime;
+	protected int cooldown;
 	
 	public GolemMoveGoal(AbstractGolemEntity entity, float searchRadius) {
 		this(entity, searchRadius, 1);
@@ -32,6 +33,11 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean canStart() {
+		if (this.cooldown > 0) {
+			--this.cooldown;
+			return false;
+		}
+		this.cooldown = this.getCooldown();
 		return this.findTargetPos() && this.canReachPos(this.targetPos);
 	}
 
@@ -80,6 +86,8 @@ public class GolemMoveGoal extends Goal {
 	public boolean shouldResetPath() {
 		return this.tryingTime % 40 == 0;
 	}
+
+	protected int getCooldown() { return 10; }
 	
 	public boolean findTargetPos() {
 		BlockPos pos = this.entity.getLinkedBlockPos();

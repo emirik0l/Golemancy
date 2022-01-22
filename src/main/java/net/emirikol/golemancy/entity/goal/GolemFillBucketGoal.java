@@ -16,6 +16,7 @@ public class GolemFillBucketGoal extends Goal {
 	private static final int FILL_RANGE = 3;
 
 	private final AbstractGolemEntity entity;
+	protected int cooldown;
 	
 	private BlockPos fluidPos;
 	
@@ -24,6 +25,11 @@ public class GolemFillBucketGoal extends Goal {
 	}
 	
 	public boolean canStart() {
+		if (this.cooldown > 0) {
+			--this.cooldown;
+			return false;
+		}
+		this.cooldown = this.getCooldown();
 		return isFluidNearby() && GolemHelper.hasEmptyBucket(this.entity);
 	}
 
@@ -58,4 +64,6 @@ public class GolemFillBucketGoal extends Goal {
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
 		return fluidState.isStill() && !fluidState.isEmpty() && block instanceof FluidDrainable;
 	}
+
+	protected int getCooldown() { return 10; }
 }

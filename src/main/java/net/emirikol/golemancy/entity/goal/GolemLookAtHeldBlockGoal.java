@@ -15,6 +15,7 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     protected final AbstractGolemEntity entity;
     protected float searchRadius;
     protected float maxYDifference;
+    protected int cooldown;
 
     protected BlockPos targetPos;
 
@@ -26,6 +27,11 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     }
 
     public boolean canStart() {
+        if (this.cooldown > 0) {
+            --this.cooldown;
+            return false;
+        }
+        this.cooldown = this.getCooldown();
         //Can only search for the block in your hand if you're actually holding something.
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         return !stack.isEmpty() && stack.getItem() instanceof BlockItem && this.findTargetPos();
@@ -55,4 +61,6 @@ public class GolemLookAtHeldBlockGoal extends Goal {
         BlockItem item = (BlockItem) stack.getItem();
         return item.getBlock() == this.entity.world.getBlockState(pos).getBlock();
     }
+
+    protected int getCooldown() { return 10; }
 }
