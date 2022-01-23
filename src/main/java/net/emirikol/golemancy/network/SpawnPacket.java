@@ -1,19 +1,13 @@
 package net.emirikol.golemancy.network;
 
-import net.fabricmc.api.Environment;
-import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.networking.v1.*;
 import net.minecraft.entity.*;
-import net.minecraft.particle.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
-import net.minecraft.client.*;
-
-import java.util.*;
 
 public class SpawnPacket {
 	public static final Identifier SPAWN_PACKET_ID = new Identifier("golemancy", "spawn_packet");
@@ -29,7 +23,7 @@ public class SpawnPacket {
 		writeAngle(buf, target.getYaw());
 		
 		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
-			ServerPlayNetworking.send((ServerPlayerEntity) user, SPAWN_PACKET_ID, buf);
+			ServerPlayNetworking.send(user, SPAWN_PACKET_ID, buf);
 		}
 	};
 	

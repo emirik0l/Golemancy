@@ -2,7 +2,6 @@ package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.goal.*;
-import net.emirikol.golemancy.network.*;
 import net.emirikol.golemancy.component.*;
 
 import net.fabricmc.api.Environment;
