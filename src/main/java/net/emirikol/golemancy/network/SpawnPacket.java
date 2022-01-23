@@ -25,7 +25,7 @@ public class SpawnPacket {
 		for (ServerPlayerEntity user : PlayerLookup.tracking((ServerWorld) target.world, target.getBlockPos())) {
 			ServerPlayNetworking.send(user, SPAWN_PACKET_ID, buf);
 		}
-	};
+	}
 	
 	public static void writeVec3d(PacketByteBuf byteBuf, Vec3d vec3d) {
 		byteBuf.writeDouble(vec3d.x);
