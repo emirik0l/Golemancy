@@ -6,9 +6,9 @@ import net.minecraft.util.math.*;
 import net.minecraft.client.model.*;
 import net.minecraft.util.*;
 
-public class ClayGolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEntity> {
+public class GolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEntity> {
 
-	public ClayGolemEntityModel(ModelPart modelPart) {
+	public GolemEntityModel(ModelPart modelPart) {
 		super(modelPart);
 	}
 	

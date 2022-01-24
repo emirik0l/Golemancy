@@ -1,7 +1,6 @@
 package net.emirikol.golemancy;
 
 import me.shedaniel.autoconfig.AutoConfig;
-import net.emirikol.golemancy.entity.*;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
@@ -35,7 +34,7 @@ public class GolemancyClient implements ClientModInitializer {
 		registerConfigPacket();
 		
 		EntityModelLayerRegistry.registerModelLayer(MODEL_EFFIGY_LAYER, ClayEffigyEntityModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, ClayGolemEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
 	}
 	
 	public void registerEntities() {
@@ -54,7 +53,7 @@ public class GolemancyClient implements ClientModInitializer {
 		//Register Golem Renderers
 		for(EntityType type: SoulTypes.getEntityTypes()) {
 			EntityRendererRegistry.register(type, (context) -> {
-				return new ClayGolemEntityRenderer(context);
+				return new GolemEntityRenderer(context);
 			});
 		}
 		//Register Clayball Renderer
