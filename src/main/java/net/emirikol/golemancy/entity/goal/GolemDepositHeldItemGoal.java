@@ -6,6 +6,8 @@ import net.minecraft.item.*;
 import net.minecraft.inventory.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
@@ -27,6 +29,7 @@ public class GolemDepositHeldItemGoal extends Goal {
 	public void tick() {
 		ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 		GolemHelper.tryInsert(stack, this.container);
+		this.entity.world.playSound(null, this.entity.getBlockPos(), SoundEvents.ITEM_BUNDLE_INSERT, SoundCategory.NEUTRAL, 1F, 1F);
 	}
 	
 	private boolean linkedBlockIsContainer() {

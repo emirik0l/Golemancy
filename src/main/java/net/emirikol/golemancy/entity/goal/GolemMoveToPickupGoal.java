@@ -5,6 +5,8 @@ import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
@@ -34,6 +36,7 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
             //Take 1 item from the stack.
             ItemStack stack = list.get(0).getStack();
             entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
+            this.entity.world.playSound(null, this.entity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.NEUTRAL, 1F, 1F);
         }
         //Continue towards targetPos.
         super.tick();
