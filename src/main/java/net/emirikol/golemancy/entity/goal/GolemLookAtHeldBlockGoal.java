@@ -3,7 +3,6 @@ package net.emirikol.golemancy.entity.goal;
 import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.BlockItem;
@@ -19,6 +18,8 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     protected int cooldown;
 
     protected BlockPos targetPos;
+
+    private int lookModifier = 1;
 
     public GolemLookAtHeldBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         this.entity = entity;
@@ -48,7 +49,9 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     @Override
     public void tick() {
         //Attempt to look at block.
-        this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ());
+        //Look modifier is applied to make golems bob their heads when they have found something.
+        if (this.entity.getRandom().nextInt(5) == 0) lookModifier = -lookModifier;
+        this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY() + lookModifier, this.targetPos.getZ());
     }
 
     public boolean findTargetPos() {
