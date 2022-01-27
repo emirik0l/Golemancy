@@ -7,6 +7,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.EnumSet;
@@ -36,6 +38,7 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
         //Attempt to deposit into block.
         if (this.canDeposit(this.targetPos)) {
             this.deposit(this.targetPos);
+            this.entity.world.playSound(null, this.entity.getBlockPos(), SoundEvents.ITEM_BUNDLE_INSERT, SoundCategory.NEUTRAL, 1F, 1F);
         }
         //Continue towards targetPos.
         super.tick();

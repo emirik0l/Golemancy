@@ -6,6 +6,8 @@ import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.inventory.*;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
@@ -33,6 +35,7 @@ public class GolemExtractItemGoal extends Goal {
 				ItemStack stack = this.container.getStack(i);
 				if (!stack.isEmpty() && canTake(stack)) {
 					this.entity.equipStack(EquipmentSlot.MAINHAND, stack.split(1));
+					this.entity.world.playSound(null, this.entity.getBlockPos(), SoundEvents.ITEM_BUNDLE_REMOVE_ONE, SoundCategory.NEUTRAL, 1F, 1F);
 					return;
 				}
 			}
