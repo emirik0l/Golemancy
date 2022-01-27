@@ -61,6 +61,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 		double h = Math.sqrt(e * e + g * g) * (double)0.2f;
 		clayballEntity.setVelocity(e, f + h, g, 1.6f, 12.0f);
 		this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+		this.tryAttack(target);
 		this.world.spawnEntity(clayballEntity);
 	}
 }
