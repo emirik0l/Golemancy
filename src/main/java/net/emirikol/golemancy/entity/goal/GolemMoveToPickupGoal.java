@@ -12,9 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.List;
 
 public class GolemMoveToPickupGoal extends GolemMoveGoal {
-    public GolemMoveToPickupGoal(AbstractGolemEntity entity, float searchRadius) {
-        super(entity, searchRadius);
-    }
+    protected static final float PICKUP_RANGE = 1.5F;
 
     public GolemMoveToPickupGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         super(entity, searchRadius, maxYDifference);
@@ -31,7 +29,7 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
     @Override
     public void tick() {
         //Check if there is an item within 1.5 blocks and the golem's hand is empty.
-        List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(1.5F,1.5F,1.5F), (entity) -> true);
+        List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(PICKUP_RANGE, PICKUP_RANGE, PICKUP_RANGE), (entity) -> true);
         if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
             //Take 1 item from the stack.
             ItemStack stack = list.get(0).getStack();
