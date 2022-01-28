@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.EnumSet;
 
@@ -51,7 +52,8 @@ public class GolemLookAtHeldBlockGoal extends Goal {
         //Attempt to look at block.
         //Look modifier is applied to make golems bob their heads when they have found something.
         if (this.entity.getRandom().nextInt(5) == 0) lookModifier = -lookModifier;
-        this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY() + lookModifier, this.targetPos.getZ());
+        Vec3d lookPos = Vec3d.ofCenter(this.targetPos);
+        this.entity.getLookControl().lookAt(lookPos.getX(), lookPos.getY() + lookModifier, lookPos.getZ());
     }
 
     public boolean findTargetPos() {
