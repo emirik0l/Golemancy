@@ -30,17 +30,11 @@ public class Mutation {
         return rand.nextFloat() <= this.chance;
     }
 
-    public Genome applyMutation(Genome genome, Gene<SoulType> leftParent, Gene<SoulType> rightParent) {
-        //Attempt to roll for and potentially apply this mutation to a genome based on two parent genes.
-        //Returns the modified Genome object after any mutations have been applied.
+    public Genome applyMutation(Genome genome) {
         Gene<SoulType> gene = genome.get("type");
-        //Attempt to mutate active genes.
-        if (areParentsValid(leftParent.getActive(), rightParent.getActive()) && rollMutation()) {
-            gene.setActive(this.childType);
-        }
-        //Attempt to mutate dormant genes.
-        if (areParentsValid(leftParent.getDormant(), rightParent.getDormant()) && rollMutation()) {
-            gene.setDormant(this.childType);
+        if (areParentsValid(gene.getActive(), gene.getDormant())) {
+            if (this.rollMutation()) gene.setActive(this.childType);
+            if (this.rollMutation()) gene.setDormant(this.childType);
         }
         genome.put("type", gene);
         return genome;
