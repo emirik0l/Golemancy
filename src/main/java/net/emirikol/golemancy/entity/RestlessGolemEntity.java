@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.*;
+import net.emirikol.golemancy.entity.goal.GolemMoveToPickupFlowerGoal;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
@@ -19,6 +20,7 @@ public class RestlessGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(7, new GolemMoveToPickupFlowerGoal(this, 10.0F, 5.0F));
 	}
 	
 	@Override

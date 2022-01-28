@@ -29,7 +29,7 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
     @Override
     public void tick() {
         //Check if there is an item within 1.5 blocks and the golem's hand is empty.
-        List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(PICKUP_RANGE, PICKUP_RANGE, PICKUP_RANGE), (entity) -> true);
+        List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(PICKUP_RANGE, PICKUP_RANGE, PICKUP_RANGE), (entity) -> this.canPickUp(entity));
         if (!list.isEmpty() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
             //Take 1 item from the stack.
             ItemStack stack = list.get(0).getStack();
@@ -43,7 +43,7 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
     @Override
     public boolean findTargetPos() {
         float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
-        List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r, this.maxYDifference, r), (entity) -> true);
+        List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r, this.maxYDifference, r), (entity) -> this.canPickUp(entity));
         if (list.isEmpty()) { return false; }
         for (ItemEntity itemEntity: list) {
             BlockPos pos = itemEntity.getBlockPos();
@@ -53,5 +53,9 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
             }
         }
         return false;
+    }
+
+    public boolean canPickUp(ItemEntity entity) {
+        return entity != null;
     }
 }
