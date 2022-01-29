@@ -58,7 +58,7 @@ public class GolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEnti
 		int headRollTicks = i % 20;
 		float headRoll = MathHelper.sin(headRollTicks * 0.314159F) * 0.3F;
 		setRotationAngle(head, 0, 0, headRoll);
-		//Arms go up and down alternating like cha-cha-cha, once every per second (20 ticks).
+		//Arms go up and down alternating like cha-cha-cha, once per second (20 ticks).
 		int armPitchTicks = i % 20;
 		float leftArmPitch = 5.25F + (MathHelper.sin(armPitchTicks * 0.314159F) * 0.75F);
 		float rightArmPitch = 5.25F + (MathHelper.sin(armPitchTicks * -0.314159F) * 0.75F);

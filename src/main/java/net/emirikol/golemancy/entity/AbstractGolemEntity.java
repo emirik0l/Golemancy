@@ -407,5 +407,5 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 
 	public int getMaxAttackTicks() { return 5; }
 	public int getMaxSwingTicks() { return 10; }
-	public int getMaxDanceTicks() { return 80; }
+	public int getMaxDanceTicks() { return 300; }
 }
