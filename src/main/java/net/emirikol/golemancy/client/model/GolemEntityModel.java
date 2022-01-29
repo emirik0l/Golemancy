@@ -52,9 +52,9 @@ public class GolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEnti
 	public void danceAnimation(AbstractGolemEntity entity) {
 		int i = entity.getDanceTicksLeft();
 		ModelPart head = this.getHead();
-		//Head rolls from side to side.
-		float headRoll = 0;
-		System.out.println(headRoll);
+		//Head rolls from side to side once per second (20 ticks).
+		int headRollTicks = i % 20;
+		float headRoll = MathHelper.sin(headRollTicks * 0.314159F) * 0.3F;
 		setRotationAngle(head, 0, 0, headRoll);
 	}
 }
