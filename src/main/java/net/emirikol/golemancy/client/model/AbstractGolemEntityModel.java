@@ -71,6 +71,7 @@ public class AbstractGolemEntityModel<T extends Entity> extends EntityModel<T> i
 	protected ModelPart getArm(Arm arm) {
 		return arm == Arm.LEFT ? this.LeftArm : this.RightArm;
 	}
+	protected ModelPart getHead() { return this.Head; }
 	
 	@Override
 	public void render(MatrixStack matrixStack, VertexConsumer	buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

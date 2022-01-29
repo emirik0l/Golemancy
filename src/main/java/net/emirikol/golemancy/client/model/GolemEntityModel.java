@@ -27,6 +27,12 @@ public class GolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEnti
 			this.armSwingAnimation(entity);
 			return;
 		}
+
+		//Dancing animation.
+		if (entity.getDanceTicksLeft() > 0) {
+			this.danceAnimation(entity);
+			return;
+		}
 	}
 
 	public void attackAnimation(AbstractGolemEntity entity) {
@@ -41,5 +47,14 @@ public class GolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEnti
 		float swingPitch = -0.5F + MathHelper.wrap((float)i, 1.25F);
 		setRotationAngle(this.getArm(Arm.LEFT), swingPitch, 0, 0);
 		setRotationAngle(this.getArm(Arm.RIGHT), swingPitch, 0, 0);
+	}
+
+	public void danceAnimation(AbstractGolemEntity entity) {
+		int i = entity.getDanceTicksLeft();
+		ModelPart head = this.getHead();
+		//Head rolls from side to side.
+		float headRoll = 0;
+		System.out.println(headRoll);
+		setRotationAngle(head, 0, 0, headRoll);
 	}
 }

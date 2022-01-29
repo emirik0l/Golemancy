@@ -27,6 +27,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	private boolean golemWandFollow;
 	private int attackTicksLeft;
 	private int swingTicksLeft;
+	private int danceTicksLeft;
 	
 	public AbstractGolemEntity(EntityType<? extends AbstractGolemEntity> entityType, World world) {
 		super(entityType, world);
@@ -323,7 +324,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	
 	@Override
 	public boolean tryAttack(Entity target) {
-		this.attackTicksLeft = 5;
+		this.attackTicksLeft = this.getMaxAttackTicks();
 		this.world.sendEntityStatus(this, (byte)4);
 		return super.tryAttack(target);
 	}
@@ -333,7 +334,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		if (this.attackTicksLeft > 0) {
 			return false;
 		}
-		this.attackTicksLeft = 5;
+		this.attackTicksLeft = this.getMaxAttackTicks();
 		this.world.sendEntityStatus(this, (byte)4);
 		return true;
 	}
@@ -343,8 +344,18 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		if (this.swingTicksLeft > 0) {
 			return false;
 		}
-		this.swingTicksLeft = 10;
+		this.swingTicksLeft = this.getMaxSwingTicks();
 		this.world.sendEntityStatus(this, (byte)66);
+		return true;
+	}
+
+	public boolean tryDance() {
+		//Used to make a golem dance.
+		if (this.danceTicksLeft > 0) {
+			return false;
+		}
+		this.danceTicksLeft = this.getMaxDanceTicks();
+		this.world.sendEntityStatus(this, (byte)67);
 		return true;
 	}
 
@@ -357,6 +368,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		if (this.swingTicksLeft > 0) {
 			--this.swingTicksLeft;
 		}
+		if (this.danceTicksLeft > 0) {
+			--this.danceTicksLeft;
+		}
 	}
 	
 	@Override
@@ -364,10 +378,13 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	public void handleStatus(byte status) {
 		switch(status) {
 			case 4:
-				this.attackTicksLeft = 5;
+				this.attackTicksLeft = this.getMaxAttackTicks();
 				break;
 			case 66:
-				this.swingTicksLeft = 10;
+				this.swingTicksLeft = this.getMaxSwingTicks();
+				break;
+			case 67:
+				this.danceTicksLeft = this.getMaxDanceTicks();
 				break;
 			default:
 				super.handleStatus(status);
@@ -384,4 +401,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	public int getSwingTicksLeft() {
 		return this.swingTicksLeft;
 	}
+
+	@Environment(EnvType.CLIENT)
+	public int getDanceTicksLeft() { return this.danceTicksLeft; }
+
+	public int getMaxAttackTicks() { return 5; }
+	public int getMaxSwingTicks() { return 10; }
+	public int getMaxDanceTicks() { return 20; }
 }
