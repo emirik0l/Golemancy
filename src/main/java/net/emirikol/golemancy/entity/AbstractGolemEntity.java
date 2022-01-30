@@ -27,6 +27,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	private boolean golemWandFollow;
 	private int attackTicksLeft;
 	private int swingTicksLeft;
+	private int prayTicksLeft;
 	private int danceTicksLeft;
 	
 	public AbstractGolemEntity(EntityType<? extends AbstractGolemEntity> entityType, World world) {
@@ -349,6 +350,16 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return true;
 	}
 
+	public boolean tryPray() {
+		//Used to raise arms, as if praying.
+		if (this.prayTicksLeft > 0) {
+			return false;
+		}
+		this.prayTicksLeft = this.getMaxPrayTicks();
+		this.world.sendEntityStatus(this, (byte)67);
+		return true;
+	}
+
 	public boolean tryDance() {
 		//Used to make a golem dance.
 		if (this.danceTicksLeft%10 != 0) {
@@ -357,7 +368,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 			return false;
 		}
 		this.danceTicksLeft = this.getMaxDanceTicks();
-		this.world.sendEntityStatus(this, (byte)67);
+		this.world.sendEntityStatus(this, (byte)68);
 		return true;
 	}
 
@@ -369,6 +380,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 		if (this.swingTicksLeft > 0) {
 			--this.swingTicksLeft;
+		}
+		if (this.prayTicksLeft > 0) {
+			--this.prayTicksLeft;
 		}
 		if (this.danceTicksLeft > 0) {
 			--this.danceTicksLeft;
@@ -386,6 +400,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 				this.swingTicksLeft = this.getMaxSwingTicks();
 				break;
 			case 67:
+				this.prayTicksLeft = this.getMaxPrayTicks();
+				break;
+			case 68:
 				this.danceTicksLeft = this.getMaxDanceTicks();
 				break;
 			default:
@@ -405,9 +422,13 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	}
 
 	@Environment(EnvType.CLIENT)
+	public int getPrayTicksLeft() { return this.prayTicksLeft; }
+
+	@Environment(EnvType.CLIENT)
 	public int getDanceTicksLeft() { return this.danceTicksLeft; }
 
 	public int getMaxAttackTicks() { return 5; }
 	public int getMaxSwingTicks() { return 10; }
+	public int getMaxPrayTicks() { return 80; }
 	public int getMaxDanceTicks() { return 60; }
 }

@@ -42,10 +42,18 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 				friend.world.playSound(null, friend.getBlockPos(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.NEUTRAL, 1F, 1F);
 			}
 		} else {
-			if (canHeal(friend)) { this.setHealing(); }
+			if (canHeal(friend)) {
+				this.setHealing();
+				this.entity.tryPray();
+			}
 		}
 		//Continue towards targetPos.
 		super.tick();
+	}
+
+	@Override
+	public void stop() {
+		this.healingTimer = 0;
 	}
 
 	@Override
