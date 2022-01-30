@@ -54,14 +54,14 @@ public class GolemEntityModel extends AbstractGolemEntityModel<AbstractGolemEnti
 		ModelPart head = this.getHead();
 		ModelPart leftArm = this.getArm(Arm.LEFT);
 		ModelPart rightArm = this.getArm(Arm.RIGHT);
-		//Head rolls from side to side once per second (20 ticks).
-		int headRollTicks = i % 20;
-		float headRoll = MathHelper.sin(headRollTicks * 0.314159F) * 0.3F;
+		//Head rolls from side to side twice per second (10 ticks).
+		int headRollTicks = i % 10;
+		float headRoll = MathHelper.sin(headRollTicks * 0.628319F) * 0.3F;
 		setRotationAngle(head, 0, 0, headRoll);
-		//Arms go up and down alternating like cha-cha-cha, once per second (20 ticks).
-		int armPitchTicks = i % 20;
-		float leftArmPitch = 5.25F + (MathHelper.sin(armPitchTicks * 0.314159F) * 0.75F);
-		float rightArmPitch = 5.25F + (MathHelper.sin(armPitchTicks * -0.314159F) * 0.75F);
+		//Arms go up and down alternating like cha-cha-cha, twice per second (10 ticks).
+		int armPitchTicks = i % 10;
+		float leftArmPitch = 5.25F + (MathHelper.sin(armPitchTicks * 0.628319F) * 0.75F);
+		float rightArmPitch = 5.25F + (MathHelper.sin(armPitchTicks * -0.628319F) * 0.75F);
 		setRotationAngle(leftArm, leftArmPitch, 0, 0);
 		setRotationAngle(rightArm, rightArmPitch, 0, 0);
 	}
