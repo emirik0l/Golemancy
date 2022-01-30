@@ -19,7 +19,13 @@ public class GolemUseBlockGoal extends Goal {
 	}
 	
 	public void tick() {
+		//Look at target.
+		Vec3d lookPos = Vec3d.ofCenter(this.entity.getLinkedBlockPos());
+		this.entity.getLookControl().lookAt(lookPos.getX(), lookPos.getY(), lookPos.getZ());
+
 		if (canUseBlock()) {
+			//Swing the arm.
+			this.entity.tryAttack();
 			//Calculate pertinent details.
 			BlockPos pos = this.entity.getLinkedBlockPos();
 			//Create a fake player and equip them with the golem's item.
@@ -30,7 +36,7 @@ public class GolemUseBlockGoal extends Goal {
 			//Remove the fake player and set the cooldown.
 			fakePlayer.copyToEntity(this.entity);
 			fakePlayer.discard();
-			this.useCooldown = 60;
+			this.useCooldown = this.getUseCooldown();
 		} else {
 			this.useCooldown--;
 		}
@@ -45,7 +51,8 @@ public class GolemUseBlockGoal extends Goal {
 	public boolean canUseBlock() {
 		return this.useCooldown <= 0;
 	}
-	
+
+	public int getUseCooldown() { return 60; }
 	public double getDesiredSquaredDistanceToTarget() {
 		return 3.0D;
 	}
