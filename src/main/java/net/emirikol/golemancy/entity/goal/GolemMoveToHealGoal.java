@@ -16,11 +16,6 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 
 	private TameableEntity friend;
 	private int healingTimer;
-	
-	public GolemMoveToHealGoal(AbstractGolemEntity entity, float searchRadius) {
-		super(entity, searchRadius);
-		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
-	}
 
 	public GolemMoveToHealGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
 		super(entity, searchRadius, maxYDifference);
@@ -74,7 +69,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 		float r = this.searchRadius + (3.0F * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
-			if (tameable == healTarget) {
+			if (tameable == healTarget && this.wounded(tameable)) {
 				return true;
 			}
 		}
