@@ -10,6 +10,8 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.EnumSet;
@@ -39,6 +41,8 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
         //Attempt to plant block.
         if (this.canPlant(this.targetPos)) {
             this.plant(this.targetPos);
+            this.entity.world.playSound(null, this.entity.getBlockPos(), SoundEvents.ITEM_CROP_PLANT, SoundCategory.NEUTRAL, 1F, 1F);
+            this.entity.tryAttack();
         }
         //Continue towards targetPos.
         super.tick();
