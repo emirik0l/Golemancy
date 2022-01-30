@@ -351,7 +351,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 
 	public boolean tryDance() {
 		//Used to make a golem dance.
-		if (this.danceTicksLeft > 0) {
+		if (this.danceTicksLeft%10 != 0) {
+			//Dance animation takes 10 ticks, so only "top up" the animation if remaining ticks are evenly divisible by 10.
+			//This allows the animation to be "topped up" for seamless looping when called from an entity goal that runs once per tick.
 			return false;
 		}
 		this.danceTicksLeft = this.getMaxDanceTicks();
@@ -407,5 +409,5 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 
 	public int getMaxAttackTicks() { return 5; }
 	public int getMaxSwingTicks() { return 10; }
-	public int getMaxDanceTicks() { return 300; }
+	public int getMaxDanceTicks() { return 60; }
 }
