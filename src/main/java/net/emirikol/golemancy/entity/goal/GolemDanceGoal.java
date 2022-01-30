@@ -3,10 +3,9 @@ package net.emirikol.golemancy.entity.goal;
 import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.JukeboxBlock;
+import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -56,10 +55,12 @@ public class GolemDanceGoal extends Goal {
         BlockPos pos = this.entity.getBlockPos();
         float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
         for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int)r, (int)r)) {
-            BlockState state = world.getBlockState(curPos);
-            if (state.getBlock() == Blocks.JUKEBOX) {
-                this.targetPos = curPos;
-                return state.get(JukeboxBlock.HAS_RECORD);
+            if (world.getBlockEntity(curPos) instanceof JukeboxBlockEntity) {
+                JukeboxBlockEntity entity = (JukeboxBlockEntity) world.getBlockEntity(curPos);
+                if (!entity.getRecord().isEmpty() && (entity.getRecord().getItem() instanceof MusicDiscItem)) {
+                    this.targetPos = curPos;
+                    return true;
+                }
             }
         }
         return false;
