@@ -114,8 +114,7 @@ public class GolemHelper {
 		if (pathNodeType != PathNodeType.WALKABLE) {
 			return false;
 		}
-		BlockPos blockPos = pos.subtract(entity.getBlockPos());
-		return entity.world.isSpaceEmpty(entity, entity.getBoundingBox().offset(blockPos));
+		return entity.world.getBlockState(pos).isAir() && entity.world.getBlockState(pos.up()).isAir();
 	}
 
 	public static int getRandomInt(Random rand, int min, int max) {
