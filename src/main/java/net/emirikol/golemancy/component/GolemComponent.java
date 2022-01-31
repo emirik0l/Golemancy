@@ -23,6 +23,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	private BlockPos linkedBlockPos = null;
 	private Block linkedBlock = null;
 	private Boolean baked = false;
+	private String color = "";
 	private Object provider;
 	
 	public GolemComponent(Object provider) {
@@ -60,6 +61,13 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		this.baked = flag;
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
+
+	public String getColor() { return this.color; }
+
+	public void setColor(String color) {
+		this.color = color;
+		GolemancyComponents.GOLEM.sync(this.provider);
+	}
 	
 	@Override
 	public void readFromNbt(NbtCompound nbt) { 
@@ -78,6 +86,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		this.linkedBlock = Registry.BLOCK.get(linkId);
 
 		this.baked = nbt.getBoolean("golemancy_baked");
+		this.color = nbt.getString("golemancy_color");
 	}
 	
 	@Override
@@ -99,5 +108,6 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		}
 
 		nbt.putBoolean("golemancy_baked", this.baked);
+		nbt.putString("golemancy_color", this.color);
 	}
 } 

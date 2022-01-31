@@ -23,6 +23,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	private BlockPos linkedBlockPos;
 	private Block linkedBlock;
 	private boolean baked;
+	private DyeColor color;
 	
 	private boolean golemWandFollow;
 	private int attackTicksLeft;
@@ -81,6 +82,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		component.setLinkedBlockPos(this.linkedBlockPos);
 		component.setLinkedBlock(this.linkedBlock);
 		component.setBaked(this.baked);
+		component.setColor(this.color != null ? this.color.getName() : "");
 	}
 	
 	public void fromComponent() {
@@ -92,6 +94,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.linkedBlockPos = component.getLinkedBlockPos();
 		this.linkedBlock = component.getLinkedBlock();
 		this.baked = component.isBaked();
+		this.color = DyeColor.byName(component.getColor(), null);
 	}
 	
 	
@@ -181,6 +184,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.toComponent();
 	}
 
+	public void setColor(DyeColor color) {
+		this.color = color;
+		this.toComponent();
+	}
+
 	public void linkToBlockPos(BlockPos pos) {
 		this.linkedBlockPos = pos;
 		if (pos != null) {
@@ -225,7 +233,12 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.fromComponent();
 		return this.baked;
 	}
-	
+
+	public DyeColor getColor() {
+		this.fromComponent();
+		return this.color;
+	}
+
 	public boolean isFollowingWand() {
 		return this.golemWandFollow;
 	}
