@@ -113,6 +113,10 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		}
 		//The following functionality is only available to the golem's owner.
 		if (this.isOwner(player)) {
+			//Try to dye a terracotta golem.
+			if (player.getStackInHand(hand).getItem() instanceof DyeItem && this.isBaked()) {
+				return tryDyeGolem(player.getStackInHand(hand));
+			}
 			//Try to take items from the golem.
 			if (!this.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty()) {
 				return tryTakeFromGolem(player);
@@ -128,6 +132,13 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	@Override
 	public boolean canTarget(LivingEntity target) {
 		return !(target instanceof AbstractGolemEntity) && super.canTarget(target);
+	}
+
+	private ActionResult tryDyeGolem(ItemStack stack) {
+		DyeItem item = (DyeItem) stack.getItem();
+		this.setColor(item.getColor());
+		stack.decrement(1);
+		return ActionResult.SUCCESS;
 	}
 	
 	private ActionResult tryTakeFromGolem(PlayerEntity player) {
