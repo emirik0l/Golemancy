@@ -154,7 +154,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return ActionResult.SUCCESS;
 	}
 	
-	protected void updateAttributes() {
+	public void updateAttributes() {
 		//Updates the golem's attributes based on its golemancy stats.
 		//Call whenever the golem's stats are updated.
 		this.fromComponent();
