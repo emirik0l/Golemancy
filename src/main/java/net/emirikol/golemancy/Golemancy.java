@@ -112,6 +112,7 @@ public class Golemancy implements ModInitializer {
 		clay_effigy_settings.strength(0.6F).nonOpaque();
 		CLAY_EFFIGY_BLOCK = new ClayEffigyBlock(clay_effigy_settings);
 		FabricItemSettings effigy_settings = new FabricItemSettings();
+		effigy_settings.group(null);
 		CLAY_EFFIGY = new BlockItem(CLAY_EFFIGY_BLOCK, effigy_settings);
 		//Instantiate terracotta effigy.
 		TERRACOTTA_EFFIGY_BLOCK = new TerracottaEffigyBlock(clay_effigy_settings);
