@@ -36,6 +36,7 @@ public class GolemancyClient implements ClientModInitializer {
 		registerConfigPacket();
 
 		BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.CLAY_EFFIGY_BLOCK, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.TERRACOTTA_EFFIGY_BLOCK, RenderLayer.getCutout());
 		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
 	}
 	
