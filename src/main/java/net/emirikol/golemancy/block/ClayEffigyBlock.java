@@ -22,6 +22,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class ClayEffigyBlock extends Block {
@@ -52,6 +55,21 @@ public class ClayEffigyBlock extends Block {
         stateManager.add(FACING);
     }
 
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
+        Direction blockFacing = state.get(FACING);
+        switch (blockFacing) {
+            case EAST:
+            case WEST:
+                return VoxelShapes.cuboid(0.3F, 0F, 0.13F, 0.65F, 1.05F, 0.87F);
+            case NORTH:
+            case SOUTH:
+                return VoxelShapes.cuboid(0.13F, 0F, 0.3F, 0.87F, 1.05F, 0.65F);
+            default:
+                return super.getOutlineShape(state, view, pos, context);
+        }
+
+    }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -71,10 +89,10 @@ public class ClayEffigyBlock extends Block {
             //Get entity type.
             EntityType<? extends AbstractGolemEntity> golemType = typeGene.getActive().getEntityType();
             if (golemType == null) { return ActionResult.PASS; } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
-            AbstractGolemEntity entity = golemType.create(serverWorld, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
-            if (entity == null) { throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!"); }
             //Replace this block with air and spawn the new entity.
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            AbstractGolemEntity entity = golemType.create(serverWorld, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
+            if (entity == null) { throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!"); }
             serverWorld.spawnEntityAndPassengers(entity);
             //Update tracked values from genome.
             entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
