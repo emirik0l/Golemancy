@@ -8,9 +8,11 @@ import net.emirikol.golemancy.client.render.*;
 import net.emirikol.golemancy.client.model.*;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.screenhandler.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -32,7 +34,8 @@ public class GolemancyClient implements ClientModInitializer {
 		registerParticles();
 		registerSpawnPacket();
 		registerConfigPacket();
-		
+
+		BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.CLAY_EFFIGY_BLOCK, RenderLayer.getCutout());
 		EntityModelLayerRegistry.registerModelLayer(MODEL_EFFIGY_LAYER, ClayEffigyEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
 	}
