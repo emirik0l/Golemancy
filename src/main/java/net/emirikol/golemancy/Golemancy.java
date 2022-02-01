@@ -44,12 +44,10 @@ public class Golemancy implements ModInitializer {
 	public static BlockEntityType<SoulGrafterBlockEntity> SOUL_GRAFTER_ENTITY;
 	public static ScreenHandlerType<SoulGrafterScreenHandler> SOUL_GRAFTER_SCREEN_HANDLER;
 	
-	public static ClayEffigy CLAY_EFFIGY;
+	public static BlockItem CLAY_EFFIGY;
 	public static ClayEffigyBlock CLAY_EFFIGY_BLOCK;
-	public static EntityType<ClayEffigyEntity> CLAY_EFFIGY_ENTITY;
 
-	public static TerracottaEffigy TERRACOTTA_EFFIGY;
-	public static EntityType<TerracottaEffigyEntity> TERRACOTTA_EFFIGY_ENTITY;
+	public static BlockItem TERRACOTTA_EFFIGY;
 
 	public static EntityType<CarefulGolemEntity> CAREFUL_GOLEM_ENTITY;
 	public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
@@ -109,15 +107,13 @@ public class Golemancy implements ModInitializer {
 		SOUL_GRAFTER_ENTITY = FabricBlockEntityTypeBuilder.create(SoulGrafterBlockEntity::new, SOUL_GRAFTER).build(null);
 		SOUL_GRAFTER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(new Identifier("golemancy", "soul_grafter"), SoulGrafterScreenHandler::new);
 		//Instantiate clay effigy.
-		FabricItemSettings effigy_settings = new FabricItemSettings();
-		CLAY_EFFIGY = new ClayEffigy(effigy_settings);
 		FabricBlockSettings clay_effigy_settings = FabricBlockSettings.of(Material.DECORATION);
 		clay_effigy_settings.strength(0.6F).nonOpaque();
 		CLAY_EFFIGY_BLOCK = new ClayEffigyBlock(clay_effigy_settings);
-		CLAY_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ClayEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
+		FabricItemSettings effigy_settings = new FabricItemSettings();
+		CLAY_EFFIGY = new BlockItem(CLAY_EFFIGY_BLOCK, effigy_settings);
 		//Instantiate terracotta effigy.
-		TERRACOTTA_EFFIGY = new TerracottaEffigy(effigy_settings);
-		TERRACOTTA_EFFIGY_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TerracottaEffigyEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
+		TERRACOTTA_EFFIGY = new BlockItem(Blocks.DIRT, effigy_settings);
 		//Instantiate golems.
 		CAREFUL_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CarefulGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
@@ -152,12 +148,8 @@ public class Golemancy implements ModInitializer {
 		//Register clay effigy.
 		Registry.register(Registry.ITEM, "golemancy:clay_effigy", CLAY_EFFIGY);
 		Registry.register(Registry.BLOCK, "golemancy:clay_effigy", CLAY_EFFIGY_BLOCK);
-		Registry.register(Registry.ENTITY_TYPE, "golemancy:clay_effigy", CLAY_EFFIGY_ENTITY);
-		FabricDefaultAttributeRegistry.register(CLAY_EFFIGY_ENTITY, ClayEffigyEntity.createEffigyAttributes());
 		//Register terracotta effigy.
 		Registry.register(Registry.ITEM, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY);
-		Registry.register(Registry.ENTITY_TYPE, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY_ENTITY);
-		FabricDefaultAttributeRegistry.register(TERRACOTTA_EFFIGY_ENTITY, TerracottaEffigyEntity.createEffigyAttributes());
 		//Register golems.
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_careful", CAREFUL_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_covetous", COVETOUS_GOLEM_ENTITY);

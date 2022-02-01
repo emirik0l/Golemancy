@@ -36,7 +36,6 @@ public class GolemancyClient implements ClientModInitializer {
 		registerConfigPacket();
 
 		BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.CLAY_EFFIGY_BLOCK, RenderLayer.getCutout());
-		EntityModelLayerRegistry.registerModelLayer(MODEL_EFFIGY_LAYER, ClayEffigyEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
 	}
 	
@@ -45,10 +44,6 @@ public class GolemancyClient implements ClientModInitializer {
 		ScreenRegistry.register(Golemancy.SOUL_MIRROR_SCREEN_HANDLER, SoulMirrorScreen::new);
 		//Register Soul Grafter Screen
 		ScreenRegistry.register(Golemancy.SOUL_GRAFTER_SCREEN_HANDLER, SoulGrafterScreen::new);
-		//Register Clay Effigy Renderer
-		EntityRendererRegistry.register(Golemancy.CLAY_EFFIGY_ENTITY, ClayEffigyEntityRenderer::new);
-		//Register Terracotta Effigy Renderer
-		EntityRendererRegistry.register(Golemancy.TERRACOTTA_EFFIGY_ENTITY, TerracottaEffigyEntityRenderer::new);
 		//Register Golem Renderers
 		for(EntityType type: SoulTypes.getEntityTypes()) {
 			EntityRendererRegistry.register(type, GolemEntityRenderer::new);
