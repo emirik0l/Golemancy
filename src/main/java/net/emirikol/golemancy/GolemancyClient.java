@@ -25,7 +25,6 @@ import java.util.*;
 
 public class GolemancyClient implements ClientModInitializer {
 
-	public static final EntityModelLayer MODEL_EFFIGY_LAYER = new EntityModelLayer(new Identifier("golemancy", "clay_effigy"), "main");
 	public static final EntityModelLayer MODEL_GOLEM_LAYER = new EntityModelLayer(new Identifier("golemancy", "clay_golem"), "main");
 	
 	@Override
@@ -70,6 +69,14 @@ public class GolemancyClient implements ClientModInitializer {
 			client.execute(() -> {
 				Entity e = MinecraftClient.getInstance().world.getEntityById(entityId);
 				Particles.spawnFoodParticle(pos, e);
+			});
+		});
+		//Register Smoke Particles
+		ClientPlayNetworking.registerGlobalReceiver(Particles.SMOKE_PARTICLE_ID, (client, handler, buf, responseSender) -> {
+			BlockPos pos = buf.readBlockPos();
+
+			client.execute(() -> {
+				Particles.spawnSmokeParticle(pos);
 			});
 		});
 	}
