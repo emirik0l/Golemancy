@@ -2,6 +2,7 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
+import net.emirikol.golemancy.network.Particles;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.pathing.EntityNavigation;
@@ -46,6 +47,9 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 				this.prevBreakProgress = 0;
 				this.entity.world.syncWorldEvent(2001, this.targetPos, Block.getRawIdFromState(this.entity.world.getBlockState(this.targetPos)));
 			}
+		} else if (this.entity.getRandom().nextInt(20) == 0) {
+			//Frustration particle if block can't be broken.
+			Particles.smokeParticle(this.entity);
 		}
 		//Continue towards targetPos.
 		super.tick();
