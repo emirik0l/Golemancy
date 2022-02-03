@@ -31,25 +31,27 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 		//Attempt to look at block.
 		this.entity.getLookControl().lookAt(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ());
 		//Attempt to break block.
-		if (this.canBreak(this.targetPos)) {
-			if (this.entity.getRandom().nextInt(5) == 0) this.entity.trySwing();
+		if (this.isWithinBreakRange(this.targetPos)) {
+			if (this.canBreak(this.targetPos)) {
+				if (this.entity.getRandom().nextInt(5) == 0) this.entity.trySwing();
 
-			this.breakProgress++;
-			int i = (int)((float)this.breakProgress / (float)this.getMaxProgress() * 10.0F);
-			if (i != this.prevBreakProgress) {
-				this.entity.world.setBlockBreakingInfo(this.entity.getId(), this.targetPos, i);
-				this.prevBreakProgress = i;
-			}
+				this.breakProgress++;
+				int i = (int) ((float) this.breakProgress / (float) this.getMaxProgress() * 10.0F);
+				if (i != this.prevBreakProgress) {
+					this.entity.world.setBlockBreakingInfo(this.entity.getId(), this.targetPos, i);
+					this.prevBreakProgress = i;
+				}
 
-			if (this.breakProgress == this.getMaxProgress()) {
-				this.entity.world.breakBlock(this.targetPos, true);
-				this.breakProgress = 0;
-				this.prevBreakProgress = 0;
-				this.entity.world.syncWorldEvent(2001, this.targetPos, Block.getRawIdFromState(this.entity.world.getBlockState(this.targetPos)));
+				if (this.breakProgress == this.getMaxProgress()) {
+					this.entity.world.breakBlock(this.targetPos, true);
+					this.breakProgress = 0;
+					this.prevBreakProgress = 0;
+					this.entity.world.syncWorldEvent(2001, this.targetPos, Block.getRawIdFromState(this.entity.world.getBlockState(this.targetPos)));
+				}
+			} else if (this.entity.getRandom().nextInt(20) == 0) {
+				//Frustration particle if block can't be broken.
+				Particles.smokeParticle(this.entity);
 			}
-		} else if (this.entity.getRandom().nextInt(20) == 0) {
-			//Frustration particle if block can't be broken.
-			Particles.smokeParticle(this.entity);
 		}
 		//Continue towards targetPos.
 		super.tick();
@@ -76,15 +78,17 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 		return false;
 	}
 
+	public boolean isWithinBreakRange(BlockPos pos) {
+		//Check if a block is close enough to break.
+		return pos.isWithinDistance(this.entity.getPos(), BREAK_RANGE);
+	}
+
 	public boolean canBreak(BlockPos pos) {
-		//Check if a block is close enough to break, and if we are strong enough to break it.
-		 if (pos.isWithinDistance(this.entity.getPos(), BREAK_RANGE)) {
-			 BlockState state = this.entity.world.getBlockState(pos);
-			 if (state == null) { return false; }
-			 float hardness = state.getHardness(this.entity.world, pos);
-			 return (hardness >= 0) && (hardness <= getBreakingStrength()) && !state.isAir();
-		 }
-		 return false;
+		//Check if we are strong enough to break a block.
+		BlockState state = this.entity.world.getBlockState(pos);
+		if (state == null) { return false; }
+		float hardness = state.getHardness(this.entity.world, pos);
+		return (hardness >= 0) && (hardness <= getBreakingStrength()) && !state.isAir();
 	}
 
 	public float getBreakingStrength() {
