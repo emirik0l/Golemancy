@@ -28,9 +28,6 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 		//Try to heal friend.
 		if (this.isHealing()) {
 			this.healingTimer--;
-			if (this.healingTimer % 40 == 0) {
-				Particles.healParticle(this.entity);
-			}
 			if (this.healingTimer == 0) {
 				this.friend.heal(this.getHealAmount());
 				Particles.healParticle(this.friend);
