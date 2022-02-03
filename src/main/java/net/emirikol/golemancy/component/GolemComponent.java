@@ -5,6 +5,7 @@ import net.emirikol.golemancy.*;
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.nbt.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
@@ -83,7 +84,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 
 		String linkIdString = nbt.getString("golemancy_linked_block");
 		Identifier linkId = new Identifier(linkIdString);
-		this.linkedBlock = Registry.BLOCK.get(linkId);
+		if (Registry.BLOCK.get(linkId) != Blocks.AIR) this.linkedBlock = Registry.BLOCK.get(linkId);
 
 		this.baked = nbt.getBoolean("golemancy_baked");
 		this.color = nbt.getString("golemancy_color");
