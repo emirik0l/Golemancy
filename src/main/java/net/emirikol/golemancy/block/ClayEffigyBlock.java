@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.block;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
+import net.emirikol.golemancy.entity.GolemMaterial;
 import net.emirikol.golemancy.genetics.Gene;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.genetics.SoulType;
@@ -110,5 +111,5 @@ public class ClayEffigyBlock extends Block {
         return ActionResult.PASS;
     }
 
-    public AbstractGolemEntity.MATERIAL getEffigyMaterial() { return AbstractGolemEntity.MATERIAL.CLAY; }
+    public GolemMaterial getEffigyMaterial() { return GolemMaterial.CLAY; }
 }

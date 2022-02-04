@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.block;
 
-import net.emirikol.golemancy.entity.AbstractGolemEntity;
+import net.emirikol.golemancy.entity.GolemMaterial;
 
 public class TerracottaEffigyBlock extends ClayEffigyBlock {
     public TerracottaEffigyBlock(Settings settings) {
@@ -8,5 +8,5 @@ public class TerracottaEffigyBlock extends ClayEffigyBlock {
     }
 
     @Override
-    public AbstractGolemEntity.MATERIAL getEffigyMaterial() { return AbstractGolemEntity.MATERIAL.TERRACOTTA; }
+    public GolemMaterial getEffigyMaterial() { return GolemMaterial.TERRACOTTA; }
 }

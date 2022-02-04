@@ -19,15 +19,10 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 public abstract class AbstractGolemEntity extends TameableEntity {
-	public static enum MATERIAL {
-		CLAY,
-		TERRACOTTA
-	}
-
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
 	private Block linkedBlock;
-	private MATERIAL material;
+	private GolemMaterial material;
 	private DyeColor color;
 	
 	private boolean golemWandFollow;
@@ -119,7 +114,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//The following functionality is only available to the golem's owner.
 		if (this.isOwner(player)) {
 			//Try to dye a terracotta golem.
-			if (player.getStackInHand(hand).getItem() instanceof DyeItem && (this.getMaterial() == MATERIAL.TERRACOTTA)) {
+			if (player.getStackInHand(hand).getItem() instanceof DyeItem && (this.getMaterial() == GolemMaterial.TERRACOTTA)) {
 				return tryDyeGolem(player.getStackInHand(hand));
 			}
 			//Try to take items from the golem.
@@ -178,7 +173,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
 		entityAttributeInstance.setBaseValue(getFollowRangeFromSmarts());
 		//Update armor based on whether this golem is made of terracotta.
-		if (this.getMaterial() == MATERIAL.TERRACOTTA) {
+		if (this.getMaterial() == GolemMaterial.TERRACOTTA) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
 			double armorValue = GolemancyConfig.getTerracottaArmorValue();
 			entityAttributeInstance.setBaseValue(armorValue);
@@ -194,7 +189,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.toComponent();
 	}
 
-	public void setMaterial(MATERIAL material) {
+	public void setMaterial(GolemMaterial material) {
 		//Call updateAttributes() after using this to ensure entity attributes are correct.
 		this.material = material;
 		this.toComponent();
@@ -245,7 +240,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return this.linkedBlock;
 	}
 
-	public MATERIAL getMaterial() {
+	public GolemMaterial getMaterial() {
 		this.fromComponent();
 		return this.material;
 	}

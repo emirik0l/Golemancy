@@ -1,10 +1,10 @@
 package net.emirikol.golemancy.component;
 
 import net.emirikol.golemancy.*;
-import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import net.emirikol.golemancy.entity.GolemMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.*;
@@ -24,7 +24,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	}};
 	private BlockPos linkedBlockPos = null;
 	private Block linkedBlock = null;
-	private AbstractGolemEntity.MATERIAL material;
+	private GolemMaterial material;
 	private String color = "";
 	private Object provider;
 	
@@ -57,9 +57,9 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
 
-	public AbstractGolemEntity.MATERIAL getMaterial() { return this.material; }
+	public GolemMaterial getMaterial() { return this.material; }
 
-	public void setMaterial(AbstractGolemEntity.MATERIAL material) {
+	public void setMaterial(GolemMaterial material) {
 		this.material = material;
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
@@ -87,8 +87,8 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		Identifier linkId = new Identifier(linkIdString);
 		if (Registry.BLOCK.get(linkId) != Blocks.AIR) this.linkedBlock = Registry.BLOCK.get(linkId);
 
-		this.material = AbstractGolemEntity.MATERIAL.CLAY;
-		if (nbt.getBoolean("golemancy_baked")) this.material = AbstractGolemEntity.MATERIAL.TERRACOTTA;
+		this.material = GolemMaterial.CLAY;
+		if (nbt.getBoolean("golemancy_baked")) this.material = GolemMaterial.TERRACOTTA;
 
 		this.color = nbt.getString("golemancy_color");
 	}
@@ -111,7 +111,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			nbt.putString("golemancy_linked_block", linkIdString);
 		}
 
-		if (this.material == AbstractGolemEntity.MATERIAL.TERRACOTTA) nbt.putBoolean("golemancy_baked", true);
+		if (this.material == GolemMaterial.TERRACOTTA) nbt.putBoolean("golemancy_baked", true);
 
 		nbt.putString("golemancy_color", this.color);
 	}
