@@ -23,10 +23,7 @@ public class Gene<T> {
 		}};
 	}
 	
-	public T getActive() {
-		return active;
-	}
-	
+	public T getActive() { return active; }
 	public T getDormant() {
 		return dormant;
 	}
@@ -40,7 +37,6 @@ public class Gene<T> {
 	public void setActive(T value) {
 		active = value;
 	}
-	
 	public void setDormant(T value) {
 		dormant = value;
 	}
