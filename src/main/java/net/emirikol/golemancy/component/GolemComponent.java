@@ -87,8 +87,16 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		Identifier linkId = new Identifier(linkIdString);
 		if (Registry.BLOCK.get(linkId) != Blocks.AIR) this.linkedBlock = Registry.BLOCK.get(linkId);
 
-		this.material = GolemMaterial.CLAY;
-		if (nbt.getBoolean("golemancy_baked")) this.material = GolemMaterial.TERRACOTTA;
+		int materialID = nbt.getInt("golemancy_material");
+		switch(materialID) {
+			case 0:
+				this.material = GolemMaterial.CLAY;
+				break;
+			case 1:
+				this.material = GolemMaterial.TERRACOTTA;
+				break;
+		}
+		if (nbt.getBoolean("golemancy_baked")) this.material = GolemMaterial.TERRACOTTA; //legacy support for old system
 
 		this.color = nbt.getString("golemancy_color");
 	}
@@ -111,7 +119,13 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			nbt.putString("golemancy_linked_block", linkIdString);
 		}
 
-		if (this.material == GolemMaterial.TERRACOTTA) nbt.putBoolean("golemancy_baked", true);
+		switch (this.material) {
+			case CLAY:
+				nbt.putInt("golemancy_material", 0);
+				break;
+			case TERRACOTTA:
+				nbt.putInt("golemancy_material", 1);
+		}
 
 		nbt.putString("golemancy_color", this.color);
 	}
