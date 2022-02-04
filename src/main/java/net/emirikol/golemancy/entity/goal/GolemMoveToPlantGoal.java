@@ -1,13 +1,15 @@
 package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
+import net.emirikol.golemancy.util.ModSeed;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.StemBlock;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.item.AliasedBlockItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -59,11 +61,14 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
     public boolean hasSeed() {
         //Check whether a given ItemStack is a "seed", i.e. an AliasedBlockItem that places something which extends CropBlock or StemBlock.
         ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-        if (!(stack.getItem() instanceof AliasedBlockItem)) return false;
-        AliasedBlockItem item = (AliasedBlockItem) stack.getItem();
+        if (!(stack.getItem() instanceof BlockItem)) return false;
+
+        BlockItem item = (BlockItem) stack.getItem();
         boolean crop = item.getBlock() instanceof CropBlock;
         boolean stem = item.getBlock() instanceof StemBlock;
-        return crop || stem;
+        boolean modSeed = ModSeed.isModSeed(stack);
+
+        return crop || stem || modSeed;
     }
 
     public boolean canPlant(BlockPos pos) {
@@ -78,7 +83,7 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
         //Plant the equipped seed on a piece of farmland.
         ServerWorld world = (ServerWorld) this.entity.world;
         ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-        AliasedBlockItem item = (AliasedBlockItem) stack.getItem(); //we already checked this is OK in hasSeed()
+        BlockItem item = (BlockItem) stack.getItem(); //we already checked this is OK in hasSeed()
         world.setBlockState(pos.up(), item.getBlock().getDefaultState());
         stack.decrement(1);
     }
