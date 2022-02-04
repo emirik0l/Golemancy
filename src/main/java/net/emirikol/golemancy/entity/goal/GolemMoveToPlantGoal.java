@@ -1,7 +1,7 @@
 package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
-import net.emirikol.golemancy.util.ModSeed;
+import net.emirikol.golemancy.util.ModSupport;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -66,7 +66,7 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
         BlockItem item = (BlockItem) stack.getItem();
         boolean crop = item.getBlock() instanceof CropBlock;
         boolean stem = item.getBlock() instanceof StemBlock;
-        boolean modSeed = ModSeed.isModSeed(stack);
+        boolean modSeed = ModSupport.isModdedSeed(stack);
 
         return crop || stem || modSeed;
     }
