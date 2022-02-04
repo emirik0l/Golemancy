@@ -95,6 +95,9 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			case 1:
 				this.material = GolemMaterial.TERRACOTTA;
 				break;
+			default:
+				this.material = GolemMaterial.CLAY;
+				break;
 		}
 		if (nbt.getBoolean("golemancy_baked")) this.material = GolemMaterial.TERRACOTTA; //legacy support for old system
 
