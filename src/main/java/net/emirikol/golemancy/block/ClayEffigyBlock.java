@@ -94,7 +94,7 @@ public class ClayEffigyBlock extends Block {
             if (entity == null) { throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!"); }
             //Update tracked values from genome.
             entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
-            //Update golem "baked" value based on whether effigy was terracotta.
+            //Update golem material based on what kind of effigy this is.
             entity.setMaterial(this.getEffigyMaterial());
             //Update golem attack damage, speed, and so on based on their stats.
             entity.updateAttributes();
