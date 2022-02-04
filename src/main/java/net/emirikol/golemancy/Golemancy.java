@@ -169,7 +169,7 @@ public class Golemancy implements ModInitializer {
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_valiant", VALIANT_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_verdant", VERDANT_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_weeping", WEEPING_GOLEM_ENTITY);
-		for (EntityType type: SoulTypes.getEntityTypes()) {
+		for (EntityType<? extends AbstractGolemEntity> type: SoulTypes.getEntityTypes()) {
 			FabricDefaultAttributeRegistry.register(type, AbstractGolemEntity.createGolemAttributes());
 		}
 		//Register clayball projectile.

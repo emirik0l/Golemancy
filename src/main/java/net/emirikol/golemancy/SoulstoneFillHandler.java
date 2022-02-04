@@ -41,8 +41,8 @@ public class SoulstoneFillHandler {
 	
 	//Check if an entity has a capturable soul.
 	private static boolean checkSoul(LivingEntity entity) {
-		EntityType entityType = entity.getType();
-		for (EntityType key : Genomes.getEntityTypes()) {
+		EntityType<?> entityType = entity.getType();
+		for (EntityType<?> key : Genomes.getEntityTypes()) {
 			if (entityType == key) {
 				return true;
 			}

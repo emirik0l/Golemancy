@@ -1,6 +1,7 @@
 package net.emirikol.golemancy;
 
 import me.shedaniel.autoconfig.AutoConfig;
+import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
@@ -45,7 +46,7 @@ public class GolemancyClient implements ClientModInitializer {
 		//Register Soul Grafter Screen
 		ScreenRegistry.register(Golemancy.SOUL_GRAFTER_SCREEN_HANDLER, SoulGrafterScreen::new);
 		//Register Golem Renderers
-		for(EntityType type: SoulTypes.getEntityTypes()) {
+		for(EntityType<? extends AbstractGolemEntity> type: SoulTypes.getEntityTypes()) {
 			EntityRendererRegistry.register(type, GolemEntityRenderer::new);
 		}
 		//Register Clayball Renderer
@@ -68,7 +69,7 @@ public class GolemancyClient implements ClientModInitializer {
 			
 			client.execute(() -> {
 				Entity e = MinecraftClient.getInstance().world.getEntityById(entityId);
-				Particles.spawnFoodParticle(pos, e);
+				if (e != null) Particles.spawnFoodParticle(pos, e);
 			});
 		});
 		//Register Smoke Particles
