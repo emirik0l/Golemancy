@@ -24,7 +24,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	}};
 	private BlockPos linkedBlockPos = null;
 	private Block linkedBlock = null;
-	private GolemMaterial material;
+	private GolemMaterial material = null;
 	private String color = "";
 	private Object provider;
 	
