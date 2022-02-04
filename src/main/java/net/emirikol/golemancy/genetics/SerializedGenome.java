@@ -9,11 +9,11 @@ public class SerializedGenome {
 	//Create a SerializedGenome from a Genome (serialization).
 	//Gene<T>.getActive().toString() is used to generate the data that will be displayed on client screens.
 	public SerializedGenome(Genome genome) {
-		activeAlleles = new HashMap<String,String>();
+		activeAlleles = new HashMap<>();
 		for (String key: genome.getKeys()) {
 			activeAlleles.put(key, genome.get(key).getActive().toString());
 		}
-		dormantAlleles = new HashMap<String,String>();
+		dormantAlleles = new HashMap<>();
 		for (String key: genome.getKeys()) {
 			dormantAlleles.put(key, genome.get(key).getDormant().toString());
 		}
@@ -26,14 +26,14 @@ public class SerializedGenome {
 			return;
 		}
 		
-		activeAlleles = new HashMap<String,String>();
+		activeAlleles = new HashMap<>();
 		for (String part: entries[0].split(";")) {
 			String[] keyval = part.split(",");
 			if (keyval.length == 2) {
 				activeAlleles.put(keyval[0], keyval[1]);
 			}
 		}
-		dormantAlleles = new HashMap<String,String>();
+		dormantAlleles = new HashMap<>();
 		for (String part: entries[1].split(";")) {
 			String[] keyval = part.split(",");
 			if (keyval.length == 2) {

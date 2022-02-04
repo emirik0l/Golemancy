@@ -5,7 +5,6 @@ import net.emirikol.golemancy.network.*;
 
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.sound.*;
 

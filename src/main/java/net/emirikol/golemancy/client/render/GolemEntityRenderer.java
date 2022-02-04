@@ -14,7 +14,7 @@ public class GolemEntityRenderer extends MobEntityRenderer<AbstractGolemEntity, 
 		//First argument is provided to the constructor.
 		//The second argument is an instance of our entity model, third argument is the size of the entity's shadow.
 		super(context, new GolemEntityModel(context.getPart(GolemancyClient.MODEL_GOLEM_LAYER)), 0.35f);
-		this.addFeature(new HeldItemFeatureRenderer(this));
+		this.addFeature(new HeldItemFeatureRenderer<>(this));
 	}
 	
 	@Override
