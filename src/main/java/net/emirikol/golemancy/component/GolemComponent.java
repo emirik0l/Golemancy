@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.component;
 
 import net.emirikol.golemancy.*;
+import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
@@ -23,7 +24,7 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 	}};
 	private BlockPos linkedBlockPos = null;
 	private Block linkedBlock = null;
-	private Boolean baked = false;
+	private AbstractGolemEntity.MATERIAL material;
 	private String color = "";
 	private Object provider;
 	
@@ -56,10 +57,10 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
 
-	public boolean isBaked() { return this.baked; }
+	public AbstractGolemEntity.MATERIAL getMaterial() { return this.material; }
 
-	public void setBaked(boolean flag) {
-		this.baked = flag;
+	public void setMaterial(AbstractGolemEntity.MATERIAL material) {
+		this.material = material;
 		GolemancyComponents.GOLEM.sync(this.provider);
 	}
 
@@ -86,7 +87,9 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 		Identifier linkId = new Identifier(linkIdString);
 		if (Registry.BLOCK.get(linkId) != Blocks.AIR) this.linkedBlock = Registry.BLOCK.get(linkId);
 
-		this.baked = nbt.getBoolean("golemancy_baked");
+		this.material = AbstractGolemEntity.MATERIAL.CLAY;
+		if (nbt.getBoolean("golemancy_baked")) this.material = AbstractGolemEntity.MATERIAL.TERRACOTTA;
+
 		this.color = nbt.getString("golemancy_color");
 	}
 	
@@ -108,7 +111,8 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			nbt.putString("golemancy_linked_block", linkIdString);
 		}
 
-		nbt.putBoolean("golemancy_baked", this.baked);
+		if (this.material == AbstractGolemEntity.MATERIAL.TERRACOTTA) nbt.putBoolean("golemancy_baked", true);
+
 		nbt.putString("golemancy_color", this.color);
 	}
 } 

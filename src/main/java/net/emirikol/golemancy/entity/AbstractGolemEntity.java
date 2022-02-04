@@ -19,10 +19,15 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 public abstract class AbstractGolemEntity extends TameableEntity {
+	public static enum MATERIAL {
+		CLAY,
+		TERRACOTTA
+	}
+
 	private int strength,agility,vigor,smarts;
 	private BlockPos linkedBlockPos;
 	private Block linkedBlock;
-	private boolean baked;
+	private MATERIAL material;
 	private DyeColor color;
 	
 	private boolean golemWandFollow;
@@ -81,7 +86,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		component.setAttribute("smarts", this.smarts);
 		component.setLinkedBlockPos(this.linkedBlockPos);
 		component.setLinkedBlock(this.linkedBlock);
-		component.setBaked(this.baked);
+		component.setMaterial(this.material);
 		component.setColor(this.color != null ? this.color.getName() : "");
 	}
 	
@@ -93,7 +98,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.smarts = component.getAttribute("smarts");
 		this.linkedBlockPos = component.getLinkedBlockPos();
 		this.linkedBlock = component.getLinkedBlock();
-		this.baked = component.isBaked();
+		this.material = component.getMaterial();
 		this.color = DyeColor.byName(component.getColor(), null);
 	}
 	
@@ -114,7 +119,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//The following functionality is only available to the golem's owner.
 		if (this.isOwner(player)) {
 			//Try to dye a terracotta golem.
-			if (player.getStackInHand(hand).getItem() instanceof DyeItem && this.isBaked()) {
+			if (player.getStackInHand(hand).getItem() instanceof DyeItem && (this.getMaterial() == MATERIAL.TERRACOTTA)) {
 				return tryDyeGolem(player.getStackInHand(hand));
 			}
 			//Try to take items from the golem.
@@ -173,7 +178,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
 		entityAttributeInstance.setBaseValue(getFollowRangeFromSmarts());
 		//Update armor based on whether this golem is made of terracotta.
-		if (this.isBaked()) {
+		if (this.getMaterial() == MATERIAL.TERRACOTTA) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
 			double armorValue = GolemancyConfig.getTerracottaArmorValue();
 			entityAttributeInstance.setBaseValue(armorValue);
@@ -189,9 +194,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		this.toComponent();
 	}
 
-	public void setBaked(boolean flag) {
+	public void setMaterial(MATERIAL material) {
 		//Call updateAttributes() after using this to ensure entity attributes are correct.
-		this.baked = flag;
+		this.material = material;
 		this.toComponent();
 	}
 
@@ -240,9 +245,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return this.linkedBlock;
 	}
 
-	public boolean isBaked() {
+	public MATERIAL getMaterial() {
 		this.fromComponent();
-		return this.baked;
+		return this.material;
 	}
 
 	public DyeColor getColor() {

@@ -89,26 +89,26 @@ public class ClayEffigyBlock extends Block {
             //Get entity type.
             EntityType<? extends AbstractGolemEntity> golemType = typeGene.getActive().getEntityType();
             if (golemType == null) { return ActionResult.PASS; } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
-            //Replace this block with air and spawn the new entity.
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
             AbstractGolemEntity entity = golemType.create(serverWorld, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
             if (entity == null) { throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!"); }
-            serverWorld.spawnEntityAndPassengers(entity);
             //Update tracked values from genome.
             entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
             //Update golem "baked" value based on whether effigy was terracotta.
-            entity.setBaked(this.isTerracotta());
+            entity.setMaterial(this.getEffigyMaterial());
             //Update golem attack damage, speed, and so on based on their stats.
             entity.updateAttributes();
             //Set the golem as tamed.
             entity.setOwner(player);
             //Remove the soulstone.
             stack.decrement(1);
+            //Replace this block with air and spawn the new entity.
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            serverWorld.spawnEntityAndPassengers(entity);
 
             return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }
 
-    public boolean isTerracotta() { return false; }
+    public AbstractGolemEntity.MATERIAL getEffigyMaterial() { return AbstractGolemEntity.MATERIAL.CLAY; }
 }
