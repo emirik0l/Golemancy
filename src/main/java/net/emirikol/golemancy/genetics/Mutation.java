@@ -31,7 +31,7 @@ public class Mutation {
     }
 
     public Genome applyMutation(Genome genome) {
-        Gene<SoulType> gene = genome.get("type");
+        Gene<SoulType> gene = genome.getSoulType("type");
         if (areParentsValid(gene.getActive(), gene.getDormant())) {
             if (this.rollMutation()) gene.setActive(this.childType);
             if (this.rollMutation()) gene.setDormant(this.childType);

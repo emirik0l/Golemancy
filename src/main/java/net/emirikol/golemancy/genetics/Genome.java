@@ -6,10 +6,10 @@ import net.minecraft.nbt.*;
 import java.util.*;
 
 public class Genome {
-	private final Map<String,Gene> genes;
+	private final Map<String,Gene<?>> genes;
 	
 	public Genome() {
-		genes = new HashMap<String,Gene>();
+		genes = new HashMap<>();
 		genes.put("type", null);
 		genes.put("potency", null);
 		genes.put("strength", null);
@@ -23,11 +23,25 @@ public class Genome {
 		this.fromItemStack(stack);
 	}
 	
-	public Gene get(String key) {
+	public Gene<?> get(String key) {
 		return genes.get(key);
 	}
+
+	public Gene<Integer> getInteger(String key) {
+		if (genes.get(key) != null && genes.get(key).getActive() instanceof Integer) {
+			return (Gene<Integer>) genes.get(key);
+		}
+		return null;
+	}
+
+	public Gene<SoulType> getSoulType(String key) {
+		if (genes.get(key) != null && genes.get(key).getActive() instanceof SoulType) {
+			return (Gene<SoulType>) genes.get(key);
+		}
+		return null;
+	}
 	
-	public void put(String key, Gene gene) {
+	public void put(String key, Gene<?> gene) {
 		genes.put(key, gene);
 	}
 	
@@ -52,22 +66,22 @@ public class Genome {
 	//Apply this genome to an ItemStack's NBT data.
 	public void toItemStack(ItemStack stack) {
 		NbtCompound nbt = stack.getOrCreateNbt();
-		Gene<SoulType> type = genes.get("type");
+		Gene<SoulType> type = this.getSoulType("type");
 		nbt.putString("type_active", type.getActive().getTypeString());
 		nbt.putString("type_dormant", type.getDormant().getTypeString());
-		Gene<Integer> potency = genes.get("potency");
+		Gene<Integer> potency = this.getInteger("potency");
 		nbt.putInt("potency_active", potency.getActive());
 		nbt.putInt("potency_dormant", potency.getDormant());
-		Gene<Integer> strength = genes.get("strength");
+		Gene<Integer> strength = this.getInteger("strength");
 		nbt.putInt("strength_active", strength.getActive());
 		nbt.putInt("strength_dormant", strength.getDormant());
-		Gene<Integer> agility = genes.get("agility");
+		Gene<Integer> agility = this.getInteger("agility");
 		nbt.putInt("agility_active", agility.getActive());
 		nbt.putInt("agility_dormant", agility.getDormant());
-		Gene<Integer> vigor = genes.get("vigor");
+		Gene<Integer> vigor = this.getInteger("vigor");
 		nbt.putInt("vigor_active", vigor.getActive());
 		nbt.putInt("vigor_dormant", vigor.getDormant());
-		Gene<Integer> smarts = genes.get("smarts");
+		Gene<Integer> smarts = this.getInteger("smarts");
 		nbt.putInt("smarts_active", smarts.getActive());
 		nbt.putInt("smarts_dormant", smarts.getDormant());
 		

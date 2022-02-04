@@ -81,11 +81,11 @@ public class ClayEffigyBlock extends Block {
         if (stack.getItem() instanceof SoulstoneFilled) {
             //Load genome from soulstone.
             Genome genome = new Genome(stack);
-            Gene<SoulType> typeGene = genome.get("type");
-            Gene<Integer> strengthGene = genome.get("strength");
-            Gene<Integer> agilityGene = genome.get("agility");
-            Gene<Integer> vigorGene = genome.get("vigor");
-            Gene<Integer> smartsGene = genome.get("smarts");
+            Gene<SoulType> typeGene = genome.getSoulType("type");
+            Gene<Integer> strengthGene = genome.getInteger("strength");
+            Gene<Integer> agilityGene = genome.getInteger("agility");
+            Gene<Integer> vigorGene = genome.getInteger("vigor");
+            Gene<Integer> smartsGene = genome.getInteger("smarts");
             //Get entity type.
             EntityType<? extends AbstractGolemEntity> golemType = typeGene.getActive().getEntityType();
             if (golemType == null) { return ActionResult.PASS; } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
