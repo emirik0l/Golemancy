@@ -119,12 +119,15 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			nbt.putString("golemancy_linked_block", linkIdString);
 		}
 
-		switch (this.material) {
-			case CLAY:
-				nbt.putInt("golemancy_material", 0);
-				break;
-			case TERRACOTTA:
-				nbt.putInt("golemancy_material", 1);
+		if (this.material != null) {
+			switch (this.material) {
+				case CLAY:
+					nbt.putInt("golemancy_material", 0);
+					break;
+				case TERRACOTTA:
+					nbt.putInt("golemancy_material", 1);
+					break;
+			}
 		}
 
 		nbt.putString("golemancy_color", this.color);
