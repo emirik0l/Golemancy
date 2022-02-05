@@ -5,9 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
-public class GolemMoveToBreakBlockGoal extends GolemMoveToBreakGoal {
+public class GolemMoveToMineGoal extends GolemMoveToBreakGoal {
 
-    public GolemMoveToBreakBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+    public GolemMoveToMineGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
         super(entity, searchRadius, maxYDifference);
     }
 
