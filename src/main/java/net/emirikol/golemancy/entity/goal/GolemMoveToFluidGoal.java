@@ -10,10 +10,7 @@ import net.minecraft.server.world.*;
 import java.util.EnumSet;
 
 public class GolemMoveToFluidGoal extends GolemMoveGoal {
-	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float searchRadius) {
-		super(entity, searchRadius, 1);
-		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
-	}
+	private static final int FILL_RANGE = 3;
 	
 	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
 		super(entity, searchRadius, maxYDifference);
@@ -41,5 +38,10 @@ public class GolemMoveToFluidGoal extends GolemMoveGoal {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
 		return fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+	}
+
+	@Override
+	public double getDesiredDistanceToTarget() {
+		return FILL_RANGE;
 	}
 }
