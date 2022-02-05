@@ -180,7 +180,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//Update armor based on whether this golem is made of terracotta.
 		if (this.getMaterial() == GolemMaterial.TERRACOTTA) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
-			double armorValue = GolemancyConfig.getTerracottaArmorValue();
+			double armorValue = GolemancyConfig.getGolemArmorValue();
 			entityAttributeInstance.setBaseValue(armorValue);
 		}
 	}

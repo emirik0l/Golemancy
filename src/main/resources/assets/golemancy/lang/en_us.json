@@ -67,8 +67,8 @@
 	"text.autoconfig.golemancy.option.GRAFT_FUEL_MULTIPLIER.@Tooltip": "How long bonemeal lasts in the soul grafter.",
 	"text.autoconfig.golemancy.option.GRAFT_POTENCY_MULTIPLIER": "Graft Potency Multiplier",
 	"text.autoconfig.golemancy.option.GRAFT_POTENCY_MULTIPLIER.@Tooltip": "Multiplier on soulstones produced by soul grafting.",
-	"text.autoconfig.golemancy.option.TERRACOTTA_ARMOR_VALUE": "Terracotta Golem Armor",
-	"text.autoconfig.golemancy.option.TERRACOTTA_ARMOR_VALUE.@Tooltip": "Points of armor added to terracotta golems.",
+	"text.autoconfig.golemancy.option.GOLEM_ARMOR_VALUE": "Terracotta/Obsidian Golem Armor",
+	"text.autoconfig.golemancy.option.GOLEM_ARMOR_VALUE.@Tooltip": "Points of armor added to terracotta and obsidian golems.",
 	"text.autoconfig.golemancy.option.GOLEM_AI_COOLDOWN": "Golem AI Cooldown",
 	"text.autoconfig.golemancy.option.GOLEM_AI_COOLDOWN.@Tooltip": "Cooldown (in ticks) for certain expensive AI tasks."
 }

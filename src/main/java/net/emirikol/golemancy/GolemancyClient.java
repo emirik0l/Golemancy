@@ -114,7 +114,7 @@ public class GolemancyClient implements ClientModInitializer {
 			float graftSpeedMultiplier = buf.readFloat();
 			float graftFuelMultiplier = buf.readFloat();
 			float graftPotencyMultiplier = buf.readFloat();
-			double terracottaArmorValue = buf.readDouble();
+			double golemArmorValue = buf.readDouble();
 			int golemAICooldown = buf.readInt();
 
 			client.execute(() -> {
@@ -122,7 +122,7 @@ public class GolemancyClient implements ClientModInitializer {
 				config.GRAFT_SPEED_MULTIPLIER = graftSpeedMultiplier;
 				config.GRAFT_FUEL_MULTIPLIER = graftFuelMultiplier;
 				config.GRAFT_POTENCY_MULTIPLIER = graftPotencyMultiplier;
-				config.TERRACOTTA_ARMOR_VALUE = terracottaArmorValue;
+				config.GOLEM_ARMOR_VALUE = golemArmorValue;
 				config.GOLEM_AI_COOLDOWN = golemAICooldown;
 				AutoConfig.getConfigHolder(GolemancyConfig.class).save();
 			});

@@ -14,7 +14,7 @@ public class GolemancyConfig implements ConfigData {
 	@Tooltip public float GRAFT_SPEED_MULTIPLIER = 1.0F;
 	@Tooltip public float GRAFT_FUEL_MULTIPLIER = 1.0F;
 	@Tooltip public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
-	@Tooltip public double TERRACOTTA_ARMOR_VALUE = 8.0D;
+	@Tooltip public double GOLEM_ARMOR_VALUE = 8.0D;
 	@Tooltip public int GOLEM_AI_COOLDOWN = 10;
 
 	public static void syncConfigHook() {
@@ -24,7 +24,7 @@ public class GolemancyConfig implements ConfigData {
 			buf.writeFloat(config.GRAFT_SPEED_MULTIPLIER);
 			buf.writeFloat(config.GRAFT_FUEL_MULTIPLIER);
 			buf.writeFloat(config.GRAFT_POTENCY_MULTIPLIER);
-			buf.writeDouble(config.TERRACOTTA_ARMOR_VALUE);
+			buf.writeDouble(config.GOLEM_ARMOR_VALUE);
 			buf.writeInt(config.GOLEM_AI_COOLDOWN);
 			ServerPlayNetworking.send(handler.player, Golemancy.ConfigPacketID, buf);
 		});
@@ -54,10 +54,10 @@ public class GolemancyConfig implements ConfigData {
 		return config.GRAFT_POTENCY_MULTIPLIER;
 	}
 
-	public static double getTerracottaArmorValue() {
+	public static double getGolemArmorValue() {
 		//How much armor should a terracotta golem have?
 		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
-		return Math.max(config.TERRACOTTA_ARMOR_VALUE, 0.5D);
+		return Math.max(config.GOLEM_ARMOR_VALUE, 0.5D);
 	}
 
 	public static int getGolemCooldown() {
