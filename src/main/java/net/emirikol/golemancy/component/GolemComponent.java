@@ -95,6 +95,9 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 			case 1:
 				this.material = GolemMaterial.TERRACOTTA;
 				break;
+			case 2:
+				this.material = GolemMaterial.OBSIDIAN;
+				break;
 			default:
 				this.material = GolemMaterial.CLAY;
 				break;
@@ -129,6 +132,9 @@ public class GolemComponent implements ComponentV3,AutoSyncedComponent {
 					break;
 				case TERRACOTTA:
 					nbt.putInt("golemancy_material", 1);
+					break;
+				case OBSIDIAN:
+					nbt.putInt("golemancy_material", 2);
 					break;
 			}
 		}

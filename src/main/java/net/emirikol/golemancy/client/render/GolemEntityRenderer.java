@@ -30,6 +30,8 @@ public class GolemEntityRenderer extends MobEntityRenderer<AbstractGolemEntity, 
 					texturePath = String.format("textures/entity/clay_golem/terracotta_golem_%s.png", color.getName());
 				}
 				return new Identifier("golemancy", texturePath);
+			case OBSIDIAN:
+				return new Identifier("golemancy", "textures/entity/clay_golem/obsidian_golem.png");
 		}
 
 		return new Identifier("golemancy", "textures/entity/clay_golem/clay_golem.png");
