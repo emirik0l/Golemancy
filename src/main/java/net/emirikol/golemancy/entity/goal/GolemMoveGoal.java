@@ -43,8 +43,8 @@ public class GolemMoveGoal extends Goal {
 
 	@Override
 	public boolean shouldContinue() {
-		//Continue as long as targetPos is valid and 20 seconds have not elapsed.
-		return this.idleTime < 400 && this.isTargetPos(this.targetPos);
+		//Continue as long as targetPos is valid and less than 40 ticks of idling have occurred.
+		return this.idleTime < 40 && this.isTargetPos(this.targetPos);
 	}
 
 	@Override
@@ -57,14 +57,13 @@ public class GolemMoveGoal extends Goal {
 	public void tick() {
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
 			//Continue towards targetPos.
-			this.idleTime++;
-			if (this.idleTime % 40 == 0) {
-				//Reset navigation after every 2 seconds of movement.
-				this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
-			}
-			if (this.idleTime >= 400) {
-				//Give up on this target after 20 seconds have elapsed.
+			if (this.entity.getNavigation().isIdle()) this.idleTime++;
+
+			if (this.idleTime >= 40) {
+				//Give up after 40 ticks of idling, and add the targetPos to the list of failed targets.
 				this.failedTargets.add(this.targetPos);
+			} else {
+				this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
 			}
 		}
 	}
