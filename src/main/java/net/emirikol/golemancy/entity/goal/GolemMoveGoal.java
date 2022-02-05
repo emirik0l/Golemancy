@@ -98,7 +98,7 @@ public class GolemMoveGoal extends Goal {
 	public boolean isTargetPos(BlockPos pos) {
 		//Used to determine whether a given BlockPos qualifies to be our targetPos.
 		//By default, just disallows any targetPos we have already tried and failed to reach.
-		return this.failedTargets.isEmpty() || !this.failedTargets.contains(pos);
+		return !this.failedTargets.contains(pos);
 	}
 
 	public boolean canReachPos(BlockPos pos) {
