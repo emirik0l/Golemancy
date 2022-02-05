@@ -3,10 +3,8 @@ package net.emirikol.golemancy.entity.goal;
 import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.*;
 
-import net.minecraft.block.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.util.math.*;
-import net.minecraft.server.world.*;
 
 import java.util.*;
 
@@ -15,7 +13,7 @@ public class GolemMoveGoal extends Goal {
 	protected final float searchRadius;
 	protected final float maxYDifference;
 	
-	private List<Block> filter;
+	private List<BlockPos> failedTargets;
 	protected BlockPos targetPos;
 	protected int tryingTime;
 	protected int safeWaitingTime;
@@ -29,7 +27,7 @@ public class GolemMoveGoal extends Goal {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
 		this.maxYDifference = maxYDifference;
-		this.filter = new ArrayList<>();
+		this.failedTargets = new ArrayList<>();
 		this.setControls(EnumSet.of(Goal.Control.MOVE));
 	}
 	
@@ -68,16 +66,14 @@ public class GolemMoveGoal extends Goal {
 	}
 
 	@Override
+	public void stop() {
+		//When we can no longer find a targetPos, clear the list of failed targets.
+		this.failedTargets.clear();
+	}
+
+	@Override
 	public boolean shouldRunEveryTick() {
 		return true;
-	}
-	
-	public void add(Block... blocks) {
-		//Add blocks to the filter, marking them as "allowed" to move to.
-		//If the filter is empty, any block will be moved to.
-		for (Block block: blocks) {
-			this.filter.add(block);
-		}
 	}
 	
 	public double getDesiredDistanceToTarget() {
@@ -85,7 +81,12 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean shouldResetPath() {
-		return this.tryingTime % 40 == 0;
+		//If we have spent 2 seconds idle while trying to reach a targetPos, add it to the list of failed targets.
+		if (this.tryingTime % 40 == 0) {
+			this.failedTargets.add(this.targetPos);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean findTargetPos() {
@@ -104,10 +105,8 @@ public class GolemMoveGoal extends Goal {
 	
 	public boolean isTargetPos(BlockPos pos) {
 		//Used to determine whether a given BlockPos qualifies to be our targetPos.
-		//Override to tell your golem which BlockPos to target.
-		ServerWorld world = (ServerWorld) this.entity.world;
-		BlockState state = world.getBlockState(pos);
-		return this.filter.isEmpty() || this.filter.contains(state.getBlock());
+		//By default, just disallows any targetPos we have already tried and failed to reach.
+		return this.failedTargets.isEmpty() || !this.failedTargets.contains(pos);
 	}
 
 	public boolean canReachPos(BlockPos pos) {
