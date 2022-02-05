@@ -21,7 +21,6 @@ public class GolemMoveToHarvestGoal extends GolemMoveToBreakGoal {
         return (isCrop || isGourd || isCane) && super.isTargetPos(pos);
     }
 
-    @Override
     protected int getMaxProgress() {
         return 40;
     }
