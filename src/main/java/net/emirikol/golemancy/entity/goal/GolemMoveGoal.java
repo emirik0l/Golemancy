@@ -14,9 +14,8 @@ public class GolemMoveGoal extends Goal {
 	protected final float maxYDifference;
 	
 	private List<BlockPos> failedTargets;
+	private int idleTime;
 	protected BlockPos targetPos;
-	protected int tryingTime;
-	protected int safeWaitingTime;
 	protected int cooldown;
 	
 	public GolemMoveGoal(AbstractGolemEntity entity, float searchRadius) {
@@ -42,26 +41,28 @@ public class GolemMoveGoal extends Goal {
 
 	@Override
 	public boolean shouldContinue() {
-		return this.tryingTime >= -this.safeWaitingTime && this.tryingTime <= 1200 && this.findTargetPos();
+		return this.findTargetPos();
 	}
 
 	@Override
 	public void start() {
 		this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
-		this.tryingTime = 0;
-		this.safeWaitingTime = this.entity.getRandom().nextInt(this.entity.getRandom().nextInt(1200) + 1200) + 1200;
+		this.idleTime = 0;
 	}
 
 	@Override
 	public void tick() {
-		//Continue towards targetPos.
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
-			++this.tryingTime;
-			if (this.shouldResetPath()) {
+			if (this.entity.getNavigation().isIdle()) this.idleTime++;
+
+			if (this.idleTime % 40 == 0) {
+				//If we have spent 2 seconds idle while trying to reach a targetPos, add it to the list of failed targets.
+				this.failedTargets.add(this.targetPos);
+			} else {
+				//Continue towards targetPos.
 				this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
 			}
-		} else {
-			--this.tryingTime;
+
 		}
 	}
 
@@ -78,15 +79,6 @@ public class GolemMoveGoal extends Goal {
 	
 	public double getDesiredDistanceToTarget() {
 		return 1.0D;
-	}
-	
-	public boolean shouldResetPath() {
-		//If we have spent 2 seconds idle while trying to reach a targetPos, add it to the list of failed targets.
-		if (this.tryingTime % 40 == 0) {
-			this.failedTargets.add(this.targetPos);
-			return true;
-		}
-		return false;
 	}
 	
 	public boolean findTargetPos() {
