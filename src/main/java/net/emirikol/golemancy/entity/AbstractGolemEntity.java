@@ -72,6 +72,11 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	protected int getXpToDrop(PlayerEntity player) {
 		return 0;
 	}
+
+	@Override
+	public boolean isSitting() {
+		return !this.isFollowingWand();
+	}
 	
 	public void toComponent() {
 		GolemComponent component = GolemancyComponents.GOLEM.get(this);
