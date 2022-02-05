@@ -58,6 +58,11 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
         return GolemHelper.canInsert(stack, inventory) && this.validForSorting(stack, inventory) && super.isTargetPos(pos);
     }
 
+    @Override
+    public double getDesiredDistanceToTarget() {
+        return DEPOSIT_RANGE;
+    }
+
     public boolean hasSomething() {
         ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
         return !stack.isEmpty();
