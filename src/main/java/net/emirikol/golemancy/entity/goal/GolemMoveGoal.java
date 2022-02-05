@@ -18,10 +18,6 @@ public class GolemMoveGoal extends Goal {
 	protected BlockPos targetPos;
 	protected int cooldown;
 	
-	public GolemMoveGoal(AbstractGolemEntity entity, float searchRadius) {
-		this(entity, searchRadius, 1);
-	}
-	
 	public GolemMoveGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
 		this.entity = entity;
 		this.searchRadius = searchRadius;
@@ -36,12 +32,19 @@ public class GolemMoveGoal extends Goal {
 			return false;
 		}
 		this.cooldown = GolemancyConfig.getGolemCooldown();
-		return this.findTargetPos() && this.canReachPos(this.targetPos);
+		if (this.findTargetPos() && this.canReachPos(this.targetPos)) {
+			return true;
+		} else {
+			//If you can't find any targetPos at all, empty out the failed target list.
+			this.failedTargets.clear();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean shouldContinue() {
-		return this.findTargetPos();
+		//Continue as long as targetPos is valid and 20 seconds have not elapsed.
+		return this.idleTime < 400 && this.isTargetPos(this.targetPos);
 	}
 
 	@Override
@@ -53,23 +56,17 @@ public class GolemMoveGoal extends Goal {
 	@Override
 	public void tick() {
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
-			if (this.entity.getNavigation().isIdle()) this.idleTime++;
-
+			//Continue towards targetPos.
+			this.idleTime++;
 			if (this.idleTime % 40 == 0) {
-				//If we have spent 2 seconds idle while trying to reach a targetPos, add it to the list of failed targets.
-				this.failedTargets.add(this.targetPos);
-			} else {
-				//Continue towards targetPos.
+				//Reset navigation after every 2 seconds of movement.
 				this.entity.getNavigation().startMovingTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ(), 1);
 			}
-
+			if (this.idleTime >= 400) {
+				//Give up on this target after 20 seconds have elapsed.
+				this.failedTargets.add(this.targetPos);
+			}
 		}
-	}
-
-	@Override
-	public void stop() {
-		//When we can no longer find a targetPos, clear the list of failed targets.
-		this.failedTargets.clear();
 	}
 
 	@Override
