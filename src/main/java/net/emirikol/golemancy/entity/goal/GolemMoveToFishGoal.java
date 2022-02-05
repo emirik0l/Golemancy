@@ -63,6 +63,11 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
         return (fluidState.getFluid() == Fluids.WATER) && fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
     }
 
+    @Override
+    public double getDesiredDistanceToTarget() {
+        return FISH_RANGE;
+    }
+
     public boolean hasRod() {
         ItemStack stack = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
         return stack.getItem() == Items.FISHING_ROD;

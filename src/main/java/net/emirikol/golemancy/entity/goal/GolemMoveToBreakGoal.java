@@ -10,16 +10,11 @@ import net.minecraft.util.math.*;
 
 import java.util.EnumSet;
 
-public class GolemMoveToBreakGoal extends GolemMoveGoal {
+public abstract class GolemMoveToBreakGoal extends GolemMoveGoal {
 	protected static final double BREAK_RANGE = 5.0D;
 
 	protected int breakProgress;
 	protected int prevBreakProgress;
-
-	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float searchRadius) {
-		super(entity, searchRadius, 1);
-		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
-	}
 	
 	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
 		super(entity, searchRadius, maxYDifference);
@@ -59,13 +54,8 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 	
 	@Override
 	public boolean isTargetPos(BlockPos pos) {
-		//Must match the Block type of the golem's linked block.
-		BlockState state = this.entity.world.getBlockState(pos);
-		if (state == null) { return false; }
-		Block linkedBlock = this.entity.getLinkedBlock();
-		if (linkedBlock == null) { return false; }
-		
-		return (state.getBlock() == linkedBlock) && super.isTargetPos(pos);
+		//Override in subclasses to determine exactly what kinds of block are broken.
+		return super.isTargetPos(pos);
 	}
 
 	@Override
@@ -76,6 +66,11 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 			if (nav.findPathTo(curPos, 0) != null) return true;
 		}
 		return false;
+	}
+
+	@Override
+	public double getDesiredDistanceToTarget() {
+		return BREAK_RANGE;
 	}
 
 	public boolean isWithinBreakRange(BlockPos pos) {
@@ -95,7 +90,5 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 		return this.entity.getBlockBreakHardnessFromStrength();
 	}
 
-	protected int getMaxProgress() {
-		return 120;
-	}
+	protected abstract int getMaxProgress();
 }

@@ -55,6 +55,11 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
         return false;
     }
 
+    @Override
+    public double getDesiredDistanceToTarget() {
+        return PICKUP_RANGE;
+    }
+
     public boolean canPickUp(ItemEntity entity) {
         return entity != null;
     }

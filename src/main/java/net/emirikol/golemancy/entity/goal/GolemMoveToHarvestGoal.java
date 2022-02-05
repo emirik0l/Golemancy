@@ -18,10 +18,9 @@ public class GolemMoveToHarvestGoal extends GolemMoveToBreakGoal {
         boolean isCrop = block instanceof CropBlock && ((CropBlock) block).isMature(state);
         boolean isGourd = block instanceof GourdBlock;
         boolean isCane = block instanceof SugarCaneBlock && this.entity.world.getBlockState(pos.down()).getBlock() instanceof SugarCaneBlock;
-        return isCrop || isGourd || isCane;
+        return (isCrop || isGourd || isCane) && super.isTargetPos(pos);
     }
 
-    @Override
     protected int getMaxProgress() {
         return 40;
     }
