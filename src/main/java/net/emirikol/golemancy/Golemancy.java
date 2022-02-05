@@ -50,6 +50,9 @@ public class Golemancy implements ModInitializer {
 	public static BlockItem TERRACOTTA_EFFIGY;
 	public static TerracottaEffigyBlock TERRACOTTA_EFFIGY_BLOCK;
 
+	public static BlockItem OBSIDIAN_EFFIGY;
+	public static ObsidianEffigyBlock OBSIDIAN_EFFIGY_BLOCK;
+
 	public static EntityType<CarefulGolemEntity> CAREFUL_GOLEM_ENTITY;
 	public static EntityType<CovetousGolemEntity> COVETOUS_GOLEM_ENTITY;
 	public static EntityType<CuriousGolemEntity> CURIOUS_GOLEM_ENTITY;
@@ -117,6 +120,9 @@ public class Golemancy implements ModInitializer {
 		//Instantiate terracotta effigy.
 		TERRACOTTA_EFFIGY_BLOCK = new TerracottaEffigyBlock(clay_effigy_settings);
 		TERRACOTTA_EFFIGY = new BlockItem(TERRACOTTA_EFFIGY_BLOCK, effigy_settings);
+		//Instantiate obsidian effigy.
+		OBSIDIAN_EFFIGY_BLOCK = new ObsidianEffigyBlock(clay_effigy_settings);
+		OBSIDIAN_EFFIGY = new BlockItem(OBSIDIAN_EFFIGY_BLOCK, effigy_settings);
 		//Instantiate golems.
 		CAREFUL_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CarefulGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
 		COVETOUS_GOLEM_ENTITY = FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, CovetousGolemEntity::new).dimensions(EntityDimensions.fixed(GOLEM_WIDTH, GOLEM_HEIGHT)).build();
@@ -154,6 +160,9 @@ public class Golemancy implements ModInitializer {
 		//Register terracotta effigy.
 		Registry.register(Registry.ITEM, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY);
 		Registry.register(Registry.BLOCK, "golemancy:terracotta_effigy", TERRACOTTA_EFFIGY_BLOCK);
+		//Register obsidian effigy.
+		Registry.register(Registry.ITEM, "golemancy:obsidian_effigy", OBSIDIAN_EFFIGY);
+		Registry.register(Registry.BLOCK, "golemancy:obsidian_effigy", OBSIDIAN_EFFIGY_BLOCK);
 		//Register golems.
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_careful", CAREFUL_GOLEM_ENTITY);
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:golem_covetous", COVETOUS_GOLEM_ENTITY);
