@@ -78,6 +78,11 @@ public class GolemMoveToBreakGoal extends GolemMoveGoal {
 		return false;
 	}
 
+	@Override
+	public double getDesiredDistanceToTarget() {
+		return BREAK_RANGE;
+	}
+
 	public boolean isWithinBreakRange(BlockPos pos) {
 		//Check if a block is close enough to break.
 		return pos.isWithinDistance(this.entity.getPos(), BREAK_RANGE);
