@@ -55,7 +55,7 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
         BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
         if (inventory == null || pos.equals(linkedBlockPos) || (linkedBlockPos != null && GolemHelper.sameDoubleInventory(pos, linkedBlockPos, world))) return false;
 
-        return GolemHelper.canInsert(stack, inventory) && this.validForSorting(stack, inventory);
+        return GolemHelper.canInsert(stack, inventory) && this.validForSorting(stack, inventory) && super.isTargetPos(pos);
     }
 
     public boolean hasSomething() {

@@ -55,7 +55,7 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
         //We can plant seeds on a block if it is farmland and has nothing above it (including existing crops).
         ServerWorld world = (ServerWorld) this.entity.world;
         BlockState state = world.getBlockState(pos);
-        return (state.getBlock() == Blocks.FARMLAND) && world.getBlockState(pos.up()).isAir();
+        return (state.getBlock() == Blocks.FARMLAND) && world.getBlockState(pos.up()).isAir() && super.isTargetPos(pos);
     }
 
     public boolean hasSeed() {
