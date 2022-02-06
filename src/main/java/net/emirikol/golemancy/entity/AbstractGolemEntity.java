@@ -8,6 +8,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
@@ -76,6 +77,18 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	@Override
 	public boolean isSitting() {
 		return !this.isFollowingWand();
+	}
+
+	@Override
+	public boolean isInvulnerableTo(DamageSource source) {
+		if (this.getMaterial() == GolemMaterial.OBSIDIAN) {
+			//Obsidian golems are fireproof.
+			if (source == DamageSource.HOT_FLOOR) return true;
+			if (source == DamageSource.LAVA) return true;
+			if (source == DamageSource.IN_FIRE) return true;
+			if (source == DamageSource.ON_FIRE) return true;
+		}
+		return super.isInvulnerableTo(source);
 	}
 	
 	public void toComponent() {
