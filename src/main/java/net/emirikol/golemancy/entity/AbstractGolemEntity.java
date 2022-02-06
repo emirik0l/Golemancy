@@ -177,11 +177,17 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//Update follow range based on smarts.
 		entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_FOLLOW_RANGE);
 		entityAttributeInstance.setBaseValue(getFollowRangeFromSmarts());
-		//Update armor based on whether this golem is made of terracotta.
-		if (this.getMaterial() == GolemMaterial.TERRACOTTA) {
+		//Update armor based on whether this golem is made of terracotta or obsidian.
+		if (this.getMaterial() == GolemMaterial.TERRACOTTA || this.getMaterial() == GolemMaterial.OBSIDIAN) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
 			double armorValue = GolemancyConfig.getGolemArmorValue();
 			entityAttributeInstance.setBaseValue(armorValue);
+		}
+		//Update armor toughness based on whether this golem is made of obsidian.
+		if (this.getMaterial() == GolemMaterial.OBSIDIAN) {
+			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS);
+			double armorToughnessValue = 8.0D;
+			entityAttributeInstance.setBaseValue(armorToughnessValue);
 		}
 	}
 	
