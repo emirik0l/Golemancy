@@ -11,7 +11,7 @@ For more information on how to get started with this mod, check out [the wiki](h
 ## Requirements
 
 - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
-- [Cloth Config API](https://www.curseforge.com/minecraft/mc-mods/cloth-config) v6.1.48+
+- [Cloth Config API](https://www.curseforge.com/minecraft/mc-mods/cloth-config) v6.2.57+
 - [ModMenu](https://www.curseforge.com/minecraft/mc-mods/modmenu) is not required, but is supported.
 
 # Credits

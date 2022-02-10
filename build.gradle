@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.10-SNAPSHOT'
+	id 'fabric-loom' version '0.11-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -38,12 +38,12 @@ dependencies {
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	
-	modApi "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:4.0.1"
-	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.1"
-	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:4.0.1"
-	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:4.0.1"
+	modApi "dev.onyxstudios.cardinal-components-api:cardinal-components-base:4.1.2"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:4.1.2"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:4.1.2"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:4.1.2"
 	
-	modApi("me.shedaniel.cloth:cloth-config-fabric:6.1.48") {
+	modApi("me.shedaniel.cloth:cloth-config-fabric:6.2.57") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	modImplementation "com.terraformersmc:modmenu:3.0.1"
