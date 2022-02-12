@@ -266,7 +266,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 
 	public GolemMaterial getMaterial() {
 		this.fromComponent();
-		return this.material != null ? this.material : GolemMaterial.CLAY;
+		return this.material;
 	}
 
 	public DyeColor getColor() {

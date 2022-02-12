@@ -20,7 +20,8 @@ public class GolemEntityRenderer extends MobEntityRenderer<AbstractGolemEntity, 
 	@Override
 	public Identifier getTexture(AbstractGolemEntity entity) {
 		//Tells Minecraft where the find the entity's texture.
-		switch(entity.getMaterial()) {
+		GolemMaterial material = entity.getMaterial() != null ? entity.getMaterial() : GolemMaterial.CLAY;
+		switch(material) {
 			case CLAY:
 				return new Identifier("golemancy", "textures/entity/clay_golem/clay_golem.png");
 			case TERRACOTTA:
