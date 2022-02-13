@@ -1,10 +1,6 @@
 package net.emirikol.golemancy.test;
 
-import net.emirikol.golemancy.GolemancyItemGroup;
-import net.emirikol.golemancy.genetics.Gene;
-import net.emirikol.golemancy.genetics.Genome;
-import net.emirikol.golemancy.genetics.SerializedGenome;
-import net.emirikol.golemancy.genetics.SoulTypes;
+import net.emirikol.golemancy.genetics.*;
 import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
 import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
@@ -15,7 +11,7 @@ public class GeneticsTest implements FabricGameTest {
     @GameTest(structureName = FabricGameTest.EMPTY_STRUCTURE)
     public void genomeSerialization(TestContext context) {
         //Create a Curious genome and serialize it.
-        Genome genome = GolemancyItemGroup.creativeGenome(SoulTypes.CURIOUS);
+        Genome genome = Genomes.creativeGenome(SoulTypes.CURIOUS);
         SerializedGenome serializedGenome = new SerializedGenome(genome);
         //Generate a string from the serialized genome, and deserialize it.
         String genomeString = serializedGenome.toString();

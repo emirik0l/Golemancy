@@ -281,4 +281,16 @@ public class Genomes {
 	public static Genome get(EntityType entityType) {
 		return GENOMES.get(entityType);
 	}
+
+	public static Genome creativeGenome(SoulType soulType) {
+		//Create a "perfect" genome of the given type, for use in the creative menu.
+		return new Genome() {{
+			put("type", new Gene<SoulType>(soulType));
+			put("potency", new Gene<Integer>(5));
+			put("strength", new Gene<Integer>(3));
+			put("agility", new Gene<Integer>(3));
+			put("vigor", new Gene<Integer>(3));
+			put("smarts", new Gene<Integer>(3));
+		}};
+	}
 }

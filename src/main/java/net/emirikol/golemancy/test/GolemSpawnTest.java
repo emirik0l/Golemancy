@@ -1,8 +1,8 @@
 package net.emirikol.golemancy.test;
 
 import net.emirikol.golemancy.Golemancy;
-import net.emirikol.golemancy.GolemancyItemGroup;
 import net.emirikol.golemancy.genetics.Genome;
+import net.emirikol.golemancy.genetics.Genomes;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
 import net.fabricmc.fabric.impl.gametest.FabricGameTestHelper;
@@ -43,7 +43,7 @@ public class GolemSpawnTest implements FabricGameTest {
         BlockState state = context.getBlockState(startPos);
         // Create a Curious soulstone and give it to the dummy player.
         ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
-        Genome genome = GolemancyItemGroup.creativeGenome(SoulTypes.CURIOUS);
+        Genome genome = Genomes.creativeGenome(SoulTypes.CURIOUS);
         genome.toItemStack(stack);
         player.setStackInHand(player.getActiveHand(), stack);
         // Call onUse() and check whether it returns a success.

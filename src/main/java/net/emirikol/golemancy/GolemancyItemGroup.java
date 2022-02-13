@@ -24,21 +24,21 @@ public class GolemancyItemGroup {
 			stacks.add(new ItemStack(Golemancy.SOULSTONE_EMPTY));
 			List<Genome> genomes = Arrays.asList(
 				//Natural genomes
-				creativeGenome(SoulTypes.COVETOUS),
-				creativeGenome(SoulTypes.CURIOUS),
-				creativeGenome(SoulTypes.ENTROPIC),
-				creativeGenome(SoulTypes.HUNGRY),
-				creativeGenome(SoulTypes.INTREPID),
-				creativeGenome(SoulTypes.MARSHY),
-				creativeGenome(SoulTypes.PARCHED),
-				creativeGenome(SoulTypes.RESTLESS),
-				creativeGenome(SoulTypes.TACTILE),
-				creativeGenome(SoulTypes.VALIANT),
-				creativeGenome(SoulTypes.WEEPING),
+				Genomes.creativeGenome(SoulTypes.COVETOUS),
+				Genomes.creativeGenome(SoulTypes.CURIOUS),
+				Genomes.creativeGenome(SoulTypes.ENTROPIC),
+				Genomes.creativeGenome(SoulTypes.HUNGRY),
+				Genomes.creativeGenome(SoulTypes.INTREPID),
+				Genomes.creativeGenome(SoulTypes.MARSHY),
+				Genomes.creativeGenome(SoulTypes.PARCHED),
+				Genomes.creativeGenome(SoulTypes.RESTLESS),
+				Genomes.creativeGenome(SoulTypes.TACTILE),
+				Genomes.creativeGenome(SoulTypes.VALIANT),
+				Genomes.creativeGenome(SoulTypes.WEEPING),
 				//Mutated genomes
-				creativeGenome(SoulTypes.CAREFUL),
-				creativeGenome(SoulTypes.RUSTIC),
-				creativeGenome(SoulTypes.VERDANT)
+				Genomes.creativeGenome(SoulTypes.CAREFUL),
+				Genomes.creativeGenome(SoulTypes.RUSTIC),
+				Genomes.creativeGenome(SoulTypes.VERDANT)
 			);
 			for(Genome genome: genomes) {
 				ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
@@ -49,15 +49,4 @@ public class GolemancyItemGroup {
 		.build();
 	}
 
-	public static Genome creativeGenome(SoulType soulType) {
-		//Create a "perfect" genome of the given type, for use in the creative menu.
-		return new Genome() {{
-			put("type", new Gene<SoulType>(soulType));
-			put("potency", new Gene<Integer>(5));
-			put("strength", new Gene<Integer>(3));
-			put("agility", new Gene<Integer>(3));
-			put("vigor", new Gene<Integer>(3));
-			put("smarts", new Gene<Integer>(3));
-		}};
-	}
 }
