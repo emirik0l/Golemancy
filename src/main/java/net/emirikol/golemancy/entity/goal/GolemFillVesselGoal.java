@@ -66,7 +66,7 @@ public class GolemFillVesselGoal extends Goal {
 
 	public ItemStack drainFluid(BlockPos pos) {
 		ServerWorld world = (ServerWorld) this.entity.world;
-		BlockState state = world.getBlockState(this.fluidPos);
+		BlockState state = world.getBlockState(pos);
 		FluidDrainable fluidBlock = (FluidDrainable) state.getBlock();
 		ItemStack vessel = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
 

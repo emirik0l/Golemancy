@@ -24,6 +24,7 @@
 	"modmenu": ["net.emirikol.golemancy.GolemancyModMenu"],
     "fabric-gametest": [
       "net.emirikol.golemancy.test.GeneticsTest",
+      "net.emirikol.golemancy.test.GolemBehaviorTest",
       "net.emirikol.golemancy.test.GolemSpawnTest"
     ]
   },
