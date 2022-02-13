@@ -35,12 +35,15 @@ public class GolemBehaviorTest implements FabricGameTest {
 
     @GameTest(structureName = FabricGameTest.EMPTY_STRUCTURE)
     public void drainWaterloggedBlock(TestContext context) {
+        //Generate a waterlogged oak fence and put it in the world.
         BlockState state = Blocks.OAK_FENCE.getDefaultState();
         ((FluidFillable) Blocks.OAK_FENCE).tryFillWithFluid(this.world, this.startPos, state, Fluids.WATER.getDefaultState());
         context.setBlockState(this.startPos, state);
+        //Create a golem entity and equip them with an empty bucket.
         ParchedGolemEntity entity = context.spawnEntity(Golemancy.PARCHED_GOLEM_ENTITY, this.startPos.north());
         GolemFillVesselGoal goal = new GolemFillVesselGoal(entity);
         entity.equipStack(EquipmentSlot.MAINHAND, Items.BUCKET.getDefaultStack());
+        //Attempt to drain the waterlogged block and check the result.
         ItemStack result = goal.drainFluid(this.startPos);
         assertTrue(result.getItem() == Items.WATER_BUCKET, "Draining a waterlogged block with a bucket did not produce a water bucket!");
         context.complete();
