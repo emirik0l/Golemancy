@@ -19,6 +19,7 @@ public class TactileGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(5, new GolemUseBlockGoal(this));
+		this.goalSelector.add(6, new GolemPickupGoal(this));
 	}
 	
 	@Override
