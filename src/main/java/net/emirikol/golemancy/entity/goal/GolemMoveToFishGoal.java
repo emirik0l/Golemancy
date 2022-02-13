@@ -27,8 +27,8 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
     protected static final double FISH_RANGE = 3.0D;
     protected static final int BASE_FISH_TIME = 1200;
 
-    public GolemMoveToFishGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-        super(entity, searchRadius, maxYDifference);
+    public GolemMoveToFishGoal(AbstractGolemEntity entity, float maxYDifference) {
+        super(entity, maxYDifference);
         this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 

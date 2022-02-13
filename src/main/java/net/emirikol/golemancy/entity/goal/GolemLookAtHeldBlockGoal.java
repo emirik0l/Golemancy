@@ -14,7 +14,6 @@ import java.util.EnumSet;
 
 public class GolemLookAtHeldBlockGoal extends Goal {
     protected final AbstractGolemEntity entity;
-    protected float searchRadius;
     protected float maxYDifference;
     protected int cooldown;
 
@@ -22,9 +21,8 @@ public class GolemLookAtHeldBlockGoal extends Goal {
 
     private int lookModifier = 1;
 
-    public GolemLookAtHeldBlockGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+    public GolemLookAtHeldBlockGoal(AbstractGolemEntity entity, float maxYDifference) {
         this.entity = entity;
-        this.searchRadius = searchRadius;
         this.maxYDifference = maxYDifference;
         this.setControls(EnumSet.of(Goal.Control.LOOK));
     }
@@ -57,8 +55,9 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     }
 
     public boolean findTargetPos() {
+        float searchRadius = GolemancyConfig.getGolemRadius();
         BlockPos pos = this.entity.getBlockPos();
-        float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
+        float r = searchRadius + (searchRadius * entity.getGolemSmarts());
         for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
             if (isTargetPos(curPos)) {
                 this.targetPos = curPos;

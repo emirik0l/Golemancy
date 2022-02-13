@@ -21,8 +21,8 @@ public class RestlessGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(8, new WanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(7, new GolemMoveToPickupFlowerGoal(this, 10.0F, 5.0F));
-		this.goalSelector.add(6, new GolemDanceGoal(this, 10.0F));
+		this.goalSelector.add(7, new GolemMoveToPickupFlowerGoal(this, 5.0F));
+		this.goalSelector.add(6, new GolemDanceGoal(this));
 	}
 	
 	@Override

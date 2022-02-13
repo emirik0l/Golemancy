@@ -16,6 +16,7 @@ public class GolemancyConfig implements ConfigData {
 	@Tooltip public float GRAFT_POTENCY_MULTIPLIER = 1.0F;
 	@Tooltip public double GOLEM_ARMOR_VALUE = 8.0D;
 	@Tooltip public int GOLEM_AI_COOLDOWN = 10;
+	@Tooltip public int GOLEM_AI_RADIUS = 10;
 
 	public static void syncConfigHook() {
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
@@ -26,6 +27,7 @@ public class GolemancyConfig implements ConfigData {
 			buf.writeFloat(config.GRAFT_POTENCY_MULTIPLIER);
 			buf.writeDouble(config.GOLEM_ARMOR_VALUE);
 			buf.writeInt(config.GOLEM_AI_COOLDOWN);
+			buf.writeInt(config.GOLEM_AI_RADIUS);
 			ServerPlayNetworking.send(handler.player, Golemancy.ConfigPacketID, buf);
 		});
 	}
@@ -64,5 +66,11 @@ public class GolemancyConfig implements ConfigData {
 		//How many ticks should a golem wait after certain search-heavy goals?
 		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
 		return Math.max(config.GOLEM_AI_COOLDOWN, 0);
+	}
+
+	public static int getGolemRadius() {
+		//What is the "base" search radius for a golem?
+		GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
+		return Math.max(config.GOLEM_AI_RADIUS, 3);
 	}
 }

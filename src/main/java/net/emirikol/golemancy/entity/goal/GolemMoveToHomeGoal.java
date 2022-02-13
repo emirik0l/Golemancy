@@ -7,7 +7,7 @@ public class GolemMoveToHomeGoal extends GolemMoveGoal {
 	
 	public GolemMoveToHomeGoal(AbstractGolemEntity entity) {
 		// Search radius and y difference are ignored for GolemMoveToHomeGoal, as it should always try to return home.
-		super(entity, 0.0F, 0.0F);
+		super(entity, 0.0F);
 	}
 
 	@Override

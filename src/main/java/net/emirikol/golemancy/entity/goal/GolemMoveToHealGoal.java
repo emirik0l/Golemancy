@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.*;
 
 import net.emirikol.golemancy.network.Particles;
@@ -17,8 +18,8 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 	private TameableEntity friend;
 	private int healingTimer;
 
-	public GolemMoveToHealGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-		super(entity, searchRadius, maxYDifference);
+	public GolemMoveToHealGoal(AbstractGolemEntity entity, float maxYDifference) {
+		super(entity, maxYDifference);
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 	}
 
@@ -50,7 +51,8 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 
 	@Override
 	public boolean findTargetPos() {
-		float r = this.searchRadius + (this.searchRadius * this.entity.getGolemSmarts());
+		float searchRadius = GolemancyConfig.getGolemRadius();
+		float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,this.maxYDifference,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
 			if (wounded(tameable) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(tameable.getOwnerUuid()))) {
@@ -63,7 +65,8 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 	}
 
 	public boolean canHeal(TameableEntity healTarget) {
-		float r = this.searchRadius + (this.searchRadius * this.entity.getGolemSmarts());
+		float searchRadius = GolemancyConfig.getGolemRadius();
+		float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
 			if (tameable == healTarget && this.wounded(tameable)) {

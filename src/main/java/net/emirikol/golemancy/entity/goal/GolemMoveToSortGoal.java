@@ -16,8 +16,8 @@ import java.util.EnumSet;
 public class GolemMoveToSortGoal extends GolemMoveGoal {
     protected static final double DEPOSIT_RANGE = 3.0D;
 
-    public GolemMoveToSortGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-        super(entity, searchRadius, maxYDifference);
+    public GolemMoveToSortGoal(AbstractGolemEntity entity, float maxYDifference) {
+        super(entity, maxYDifference);
         this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 

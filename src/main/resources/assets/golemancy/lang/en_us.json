@@ -70,5 +70,7 @@
 	"text.autoconfig.golemancy.option.GOLEM_ARMOR_VALUE": "Terracotta/Obsidian Golem Armor",
 	"text.autoconfig.golemancy.option.GOLEM_ARMOR_VALUE.@Tooltip": "Points of armor added to terracotta and obsidian golems.",
 	"text.autoconfig.golemancy.option.GOLEM_AI_COOLDOWN": "Golem AI Cooldown",
-	"text.autoconfig.golemancy.option.GOLEM_AI_COOLDOWN.@Tooltip": "Cooldown (in ticks) for certain expensive AI tasks."
+	"text.autoconfig.golemancy.option.GOLEM_AI_COOLDOWN.@Tooltip": "Cooldown (in ticks) for certain expensive AI tasks.",
+	"text.autoconfig.golemancy.option.GOLEM_AI_RADIUS": "Golem Search Radius",
+	"text.autoconfig.golemancy.option.GOLEM_AI_RADIUS.@Tooltip": "Base search radius (in blocks) for a golem's AI."
 }

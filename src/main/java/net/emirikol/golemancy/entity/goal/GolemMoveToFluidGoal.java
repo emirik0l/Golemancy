@@ -12,8 +12,8 @@ import java.util.EnumSet;
 public class GolemMoveToFluidGoal extends GolemMoveGoal {
 	private static final int FILL_RANGE = 3;
 	
-	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-		super(entity, searchRadius, maxYDifference);
+	public GolemMoveToFluidGoal(AbstractGolemEntity entity, float maxYDifference) {
+		super(entity, maxYDifference);
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 	}
 	

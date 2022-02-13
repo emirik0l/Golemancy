@@ -26,7 +26,7 @@ public class ParchedGolemEntity extends AbstractGolemEntity {
 			add(Items.BUCKET);
 		}});
 		this.goalSelector.add(5, new GolemDepositBucketGoal(this));
-		this.goalSelector.add(6, new GolemMoveToFluidGoal(this, 10.0F, 5.0F));
+		this.goalSelector.add(6, new GolemMoveToFluidGoal(this, 5.0F));
 	}
 	
 	@Override

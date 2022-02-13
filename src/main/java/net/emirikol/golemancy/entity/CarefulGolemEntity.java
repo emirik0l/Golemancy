@@ -19,8 +19,8 @@ public class CarefulGolemEntity extends AbstractGolemEntity {
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(5, new GolemExtractItemToSortGoal(this, 10.0F, 5.0F));
-        this.goalSelector.add(6, new GolemMoveToSortGoal(this, 10.0F, 5.0F));
+        this.goalSelector.add(5, new GolemExtractItemToSortGoal(this, 5.0F));
+        this.goalSelector.add(6, new GolemMoveToSortGoal(this, 5.0F));
     }
 
     @Override

@@ -16,8 +16,8 @@ public abstract class GolemMoveToBreakGoal extends GolemMoveGoal {
 	protected int breakProgress;
 	protected int prevBreakProgress;
 	
-	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-		super(entity, searchRadius, maxYDifference);
+	public GolemMoveToBreakGoal(AbstractGolemEntity entity, float maxYDifference) {
+		super(entity, maxYDifference);
 		this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 	}
 

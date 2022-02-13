@@ -116,6 +116,7 @@ public class GolemancyClient implements ClientModInitializer {
 			float graftPotencyMultiplier = buf.readFloat();
 			double golemArmorValue = buf.readDouble();
 			int golemAICooldown = buf.readInt();
+			int golemAIRadius = buf.readInt();
 
 			client.execute(() -> {
 				GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
@@ -124,6 +125,7 @@ public class GolemancyClient implements ClientModInitializer {
 				config.GRAFT_POTENCY_MULTIPLIER = graftPotencyMultiplier;
 				config.GOLEM_ARMOR_VALUE = golemArmorValue;
 				config.GOLEM_AI_COOLDOWN = golemAICooldown;
+				config.GOLEM_AI_RADIUS = golemAIRadius;
 				AutoConfig.getConfigHolder(GolemancyConfig.class).save();
 			});
 		});

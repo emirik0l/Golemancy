@@ -18,7 +18,7 @@ public class RusticGolemEntity extends AbstractGolemEntity {
     @Override
     protected void initGoals() {
         super.initGoals();
-        this.goalSelector.add(6, new GolemMoveToHarvestGoal(this, 10.0F, 3.0F));
+        this.goalSelector.add(6, new GolemMoveToHarvestGoal(this, 3.0F));
     }
 
     @Override

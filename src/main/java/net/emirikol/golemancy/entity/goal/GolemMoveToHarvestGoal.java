@@ -6,8 +6,8 @@ import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 
 public class GolemMoveToHarvestGoal extends GolemMoveToBreakGoal {
-    public GolemMoveToHarvestGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-        super(entity, searchRadius, maxYDifference);
+    public GolemMoveToHarvestGoal(AbstractGolemEntity entity, float maxYDifference) {
+        super(entity, maxYDifference);
     }
 
     @Override

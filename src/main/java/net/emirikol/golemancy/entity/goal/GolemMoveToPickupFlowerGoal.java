@@ -7,8 +7,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
 public class GolemMoveToPickupFlowerGoal extends GolemMoveToPickupGoal{
-    public GolemMoveToPickupFlowerGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-        super(entity, searchRadius, maxYDifference);
+    public GolemMoveToPickupFlowerGoal(AbstractGolemEntity entity, float maxYDifference) {
+        super(entity, maxYDifference);
     }
 
     @Override

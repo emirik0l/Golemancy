@@ -10,7 +10,6 @@ import java.util.*;
 
 public class GolemMoveGoal extends Goal {
 	protected final AbstractGolemEntity entity;
-	protected final float searchRadius;
 	protected final float maxYDifference;
 	
 	private List<BlockPos> failedTargets;
@@ -18,9 +17,8 @@ public class GolemMoveGoal extends Goal {
 	protected BlockPos targetPos;
 	protected int cooldown;
 	
-	public GolemMoveGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+	public GolemMoveGoal(AbstractGolemEntity entity, float maxYDifference) {
 		this.entity = entity;
-		this.searchRadius = searchRadius;
 		this.maxYDifference = maxYDifference;
 		this.failedTargets = new ArrayList<>();
 		this.setControls(EnumSet.of(Goal.Control.MOVE));
@@ -78,10 +76,11 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean findTargetPos() {
+		float searchRadius = GolemancyConfig.getGolemRadius();
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { pos = this.entity.getBlockPos(); }
 		
-		float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
+		float r = searchRadius + (searchRadius * entity.getGolemSmarts());
 		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
 			if (this.entity.isInWalkTargetRange(curPos) && isTargetPos(curPos)) {
 				this.targetPos = curPos;

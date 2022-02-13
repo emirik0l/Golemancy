@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
-    protected final float searchRadius;
     protected final float maxYDifference;
 
     protected int cooldown;
 
-    public GolemExtractItemToSortGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
+    public GolemExtractItemToSortGoal(AbstractGolemEntity entity, float maxYDifference) {
         super(entity);
-        this.searchRadius = searchRadius;
         this.maxYDifference = maxYDifference;
     }
 
@@ -45,12 +43,13 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
 
     protected List<Inventory> findInventories() {
         List<Inventory> output = new ArrayList<>();
+        float searchRadius = GolemancyConfig.getGolemRadius();
 
         ServerWorld world = (ServerWorld) this.entity.world;
         BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
         if (linkedBlockPos == null) { return output; } //only search around linked block
 
-        float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
+        float r = searchRadius + (searchRadius * entity.getGolemSmarts());
         for (BlockPos curPos: BlockPos.iterateOutwards(linkedBlockPos, (int)r, (int) this.maxYDifference, (int)r)) {
             Inventory result = GolemHelper.getInventory(curPos, world);
             if (result != null && !curPos.equals(linkedBlockPos) && !GolemHelper.sameDoubleInventory(curPos, linkedBlockPos, world)) {

@@ -21,8 +21,8 @@ import java.util.EnumSet;
 public class GolemMoveToPlantGoal extends GolemMoveGoal {
     protected static final double PLANT_RANGE = 5.0D;
 
-    public GolemMoveToPlantGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-        super(entity, searchRadius, maxYDifference);
+    public GolemMoveToPlantGoal(AbstractGolemEntity entity, float maxYDifference) {
+        super(entity, maxYDifference);
         this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 

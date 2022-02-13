@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import net.emirikol.golemancy.GolemancyConfig;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import net.minecraft.entity.EquipmentSlot;
@@ -14,8 +15,8 @@ import java.util.List;
 public class GolemMoveToPickupGoal extends GolemMoveGoal {
     protected static final float PICKUP_RANGE = 1.5F;
 
-    public GolemMoveToPickupGoal(AbstractGolemEntity entity, float searchRadius, float maxYDifference) {
-        super(entity, searchRadius, maxYDifference);
+    public GolemMoveToPickupGoal(AbstractGolemEntity entity, float maxYDifference) {
+        super(entity, maxYDifference);
     }
 
     @Override
@@ -42,7 +43,8 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
 
     @Override
     public boolean findTargetPos() {
-        float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
+        float searchRadius = GolemancyConfig.getGolemRadius();
+        float r = searchRadius + (searchRadius * entity.getGolemSmarts());
         List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r, this.maxYDifference, r), (entity) -> this.canPickUp(entity));
         if (list.isEmpty()) { return false; }
         for (ItemEntity itemEntity: list) {
