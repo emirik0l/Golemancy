@@ -2,8 +2,11 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.fluid.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
@@ -19,11 +22,11 @@ public class GolemMoveToFluidGoal extends GolemMoveGoal {
 	
 	@Override
 	public boolean canStart() {
-		return GolemHelper.hasEmptyBucket(this.entity) && super.canStart();
+		return GolemHelper.hasEmptyVessel(this.entity) && super.canStart();
 	}
 
 	@Override
-	public boolean shouldContinue() { return GolemHelper.hasEmptyBucket(this.entity) && super.shouldContinue(); }
+	public boolean shouldContinue() { return GolemHelper.hasEmptyVessel(this.entity) && super.shouldContinue(); }
 
 	@Override
 	public void tick() {
@@ -37,7 +40,18 @@ public class GolemMoveToFluidGoal extends GolemMoveGoal {
 	public boolean isTargetPos(BlockPos pos) {
 		ServerWorld world = (ServerWorld) this.entity.world;
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
-		return fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+		ItemStack vessel = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
+
+		if (vessel.getItem() == Items.BUCKET) {
+			//Buckets should be able to drain any fluid.
+			return fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+		}
+		if (vessel.getItem() == Items.GLASS_BOTTLE) {
+			//Glass bottles can only drain water.
+			return fluidState.getFluid() == Fluids.WATER && fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+		}
+
+		return false;
 	}
 
 	@Override
