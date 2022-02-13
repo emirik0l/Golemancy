@@ -42,7 +42,7 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
 
     @Override
     public boolean findTargetPos() {
-        float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
+        float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
         List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r, this.maxYDifference, r), (entity) -> this.canPickUp(entity));
         if (list.isEmpty()) { return false; }
         for (ItemEntity itemEntity: list) {

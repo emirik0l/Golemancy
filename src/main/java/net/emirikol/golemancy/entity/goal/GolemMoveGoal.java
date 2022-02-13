@@ -81,7 +81,7 @@ public class GolemMoveGoal extends Goal {
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { pos = this.entity.getBlockPos(); }
 		
-		float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
+		float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
 		for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
 			if (this.entity.isInWalkTargetRange(curPos) && isTargetPos(curPos)) {
 				this.targetPos = curPos;

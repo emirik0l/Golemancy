@@ -58,7 +58,7 @@ public class GolemLookAtHeldBlockGoal extends Goal {
 
     public boolean findTargetPos() {
         BlockPos pos = this.entity.getBlockPos();
-        float r = this.searchRadius + (10.0F * entity.getGolemSmarts());
+        float r = this.searchRadius + (this.searchRadius * entity.getGolemSmarts());
         for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
             if (isTargetPos(curPos)) {
                 this.targetPos = curPos;

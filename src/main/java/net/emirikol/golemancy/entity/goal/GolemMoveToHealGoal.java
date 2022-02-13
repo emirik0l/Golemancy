@@ -50,7 +50,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 
 	@Override
 	public boolean findTargetPos() {
-		float r = this.searchRadius + (10.0F * this.entity.getGolemSmarts());
+		float r = this.searchRadius + (this.searchRadius * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,this.maxYDifference,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
 			if (wounded(tameable) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(tameable.getOwnerUuid()))) {
@@ -63,7 +63,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 	}
 
 	public boolean canHeal(TameableEntity healTarget) {
-		float r = this.searchRadius + (3.0F * this.entity.getGolemSmarts());
+		float r = this.searchRadius + (this.searchRadius * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
 			if (tameable == healTarget && this.wounded(tameable)) {
