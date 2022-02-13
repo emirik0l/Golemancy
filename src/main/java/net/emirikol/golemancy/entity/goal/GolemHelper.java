@@ -13,9 +13,9 @@ import net.minecraft.server.world.*;
 import java.util.Random;
 
 public class GolemHelper {
-	public static boolean hasEmptyVessel(LivingEntity entity) {
+	public static boolean hasEmptyBucket(LivingEntity entity) {
 		ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
-		return stack.getItem() == Items.BUCKET || stack.getItem() == Items.GLASS_BOTTLE;
+		return stack.getItem() == Items.BUCKET;
 	}
 	
 	// Helper functions for golem inventory management.

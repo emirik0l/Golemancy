@@ -21,12 +21,11 @@ public class ParchedGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(1, new SwimGoal(this));
-		this.goalSelector.add(5, new GolemFillVesselGoal(this));
+		this.goalSelector.add(5, new GolemFillBucketGoal(this));
 		this.goalSelector.add(5, new GolemExtractItemGoal(this) {{
 			add(Items.BUCKET);
-			add(Items.GLASS_BOTTLE);
 		}});
-		this.goalSelector.add(5, new GolemDepositVesselGoal(this));
+		this.goalSelector.add(5, new GolemDepositBucketGoal(this));
 		this.goalSelector.add(6, new GolemMoveToFluidGoal(this, 5.0F));
 	}
 	

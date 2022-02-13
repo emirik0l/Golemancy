@@ -2,15 +2,15 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.*;
 
-public class GolemDepositVesselGoal extends GolemDepositHeldItemGoal {
+public class GolemDepositBucketGoal extends GolemDepositHeldItemGoal {
 	
-	public GolemDepositVesselGoal(AbstractGolemEntity entity) {
+	public GolemDepositBucketGoal(AbstractGolemEntity entity) {
 		super(entity);
 	}
 	
 	@Override
 	protected boolean linkedBlockCanInsert() {
 		//If the golem has anything OTHER than an empty bucket, they can insert.
-		return !GolemHelper.hasEmptyVessel(this.entity) && super.linkedBlockCanInsert();
+		return !GolemHelper.hasEmptyBucket(this.entity) && super.linkedBlockCanInsert();
 	}
 }

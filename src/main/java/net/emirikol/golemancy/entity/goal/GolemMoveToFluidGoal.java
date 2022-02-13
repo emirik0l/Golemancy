@@ -19,11 +19,11 @@ public class GolemMoveToFluidGoal extends GolemMoveGoal {
 	
 	@Override
 	public boolean canStart() {
-		return GolemHelper.hasEmptyVessel(this.entity) && super.canStart();
+		return GolemHelper.hasEmptyBucket(this.entity) && super.canStart();
 	}
 
 	@Override
-	public boolean shouldContinue() { return GolemHelper.hasEmptyVessel(this.entity) && super.shouldContinue(); }
+	public boolean shouldContinue() { return GolemHelper.hasEmptyBucket(this.entity) && super.shouldContinue(); }
 
 	@Override
 	public void tick() {

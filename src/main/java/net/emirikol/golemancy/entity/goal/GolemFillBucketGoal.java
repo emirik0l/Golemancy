@@ -8,14 +8,12 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.potion.Potions;
 import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.server.world.*;
 
 
-public class GolemFillVesselGoal extends Goal {
+public class GolemFillBucketGoal extends Goal {
 	private static final int FILL_RANGE = 3;
 
 	private final AbstractGolemEntity entity;
@@ -23,7 +21,7 @@ public class GolemFillVesselGoal extends Goal {
 	
 	private BlockPos fluidPos;
 	
-	public GolemFillVesselGoal(AbstractGolemEntity entity) {
+	public GolemFillBucketGoal(AbstractGolemEntity entity) {
 		this.entity = entity;
 	}
 	
@@ -33,15 +31,18 @@ public class GolemFillVesselGoal extends Goal {
 			return false;
 		}
 		this.cooldown = GolemancyConfig.getGolemCooldown();
-		return isFluidNearby() && GolemHelper.hasEmptyVessel(this.entity);
+		return isFluidNearby() && GolemHelper.hasEmptyBucket(this.entity);
 	}
 
 	@Override
 	public void tick() {
-		ItemStack vessel = this.entity.getEquippedStack(EquipmentSlot.MAINHAND);
-		ItemStack stack = this.fillVessel(vessel, this.fluidPos);
+		BlockState state = this.entity.world.getBlockState(this.fluidPos);
+		ServerWorld world = (ServerWorld) this.entity.world;
+		FluidDrainable fluidBlock = (FluidDrainable) state.getBlock();
+		ItemStack stack = fluidBlock.tryDrainFluid(world, this.fluidPos, state);
 		if (stack != ItemStack.EMPTY) {
-			entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_BUCKET_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
+			SoundEvent sound = fluidBlock.getBucketFillSound().orElse(SoundEvents.ITEM_BUCKET_FILL);
+			entity.world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), sound, SoundCategory.NEUTRAL, 1.0F, 1.0F + (entity.world.random.nextFloat() - entity.world.random.nextFloat()) * 0.4F);
 			this.entity.equipStack(EquipmentSlot.MAINHAND, stack);
 		}
 	}
@@ -63,22 +64,5 @@ public class GolemFillVesselGoal extends Goal {
 		Block block = world.getBlockState(pos).getBlock();
 		FluidState fluidState = world.getBlockState(pos).getFluidState();
 		return fluidState.isStill() && !fluidState.isEmpty() && block instanceof FluidDrainable;
-	}
-
-	public ItemStack fillVessel(ItemStack vessel, BlockPos pos) {
-		ServerWorld world = (ServerWorld) this.entity.world;
-		BlockState state = world.getBlockState(this.fluidPos);
-
-		if (vessel.getItem() instanceof BucketItem) {
-			FluidDrainable fluidBlock = (FluidDrainable) state.getBlock();
-			return fluidBlock.tryDrainFluid(world, pos, state);
-		}
-		if (vessel.getItem() instanceof GlassBottleItem) {
-			FluidState fluidState = state.getFluidState();
-			if (fluidState.getFluid() == Fluids.WATER) {
-				return PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER);
-			}
-		}
-		return ItemStack.EMPTY;
 	}
 }
