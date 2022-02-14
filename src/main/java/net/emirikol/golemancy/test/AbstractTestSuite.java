@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.test;
 
+import net.emirikol.golemancy.Golemancy;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.BlockPos;
@@ -28,8 +29,14 @@ public abstract class AbstractTestSuite {
     public abstract void test();
 
     public void printMessage(String msg) {
-        System.out.println(msg);
-        if (!this.world.isClient) this.player.sendMessage(new LiteralText(msg), false);
+        if (this.world.isClient) {
+            String clientMsg = String.format("%s [CLIENT]", msg);
+            Golemancy.LOGGER.info(clientMsg);
+        } else {
+            String serverMsg = String.format("%s [SERVER]", msg);
+            Golemancy.LOGGER.info(serverMsg);
+            this.player.sendMessage(new LiteralText(msg), false);
+        }
     }
 
     public World getWorld() { return this.world; }
