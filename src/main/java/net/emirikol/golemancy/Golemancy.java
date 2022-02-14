@@ -11,9 +11,7 @@ import net.emirikol.golemancy.screen.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
-import net.emirikol.golemancy.test.GeneticsTestSuite;
-import net.emirikol.golemancy.test.GolemBehaviorTestSuite;
-import net.emirikol.golemancy.test.GolemSpawnTestSuite;
+import net.emirikol.golemancy.test.Tests;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
@@ -23,15 +21,14 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -198,11 +195,8 @@ public class Golemancy implements ModInitializer {
 			// Command to run all test suites.
 			// For best results, run on a superflat world in creative.
 			dispatcher.register(CommandManager.literal("golemancytest").executes(context -> {
-				World world = context.getSource().getWorld();
-				PlayerEntity player = context.getSource().getPlayer();
-				new GeneticsTestSuite(world, player).invokeTest();
-				new GolemBehaviorTestSuite(world, player).invokeTest();
-				new GolemSpawnTestSuite(world, player).invokeTest();
+				ServerCommandSource source = context.getSource();
+				Tests.runAll(source);
 				return 0;
 			}));
 		});
