@@ -106,13 +106,3 @@ publishing {
 		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	}
 }
-
-loom {
-	runs {
-		gameTest {
-			server()
-			ideConfigGenerated(true)
-			vmArg "-Dfabric-api.gametest=1"
-		}
-	}
-}

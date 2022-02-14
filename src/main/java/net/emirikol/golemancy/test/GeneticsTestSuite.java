@@ -1,15 +1,26 @@
 package net.emirikol.golemancy.test;
 
-import net.emirikol.golemancy.genetics.*;
-import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
-import net.minecraft.test.GameTest;
-import net.minecraft.test.TestContext;
+import net.emirikol.golemancy.genetics.Genome;
+import net.emirikol.golemancy.genetics.Genomes;
+import net.emirikol.golemancy.genetics.SerializedGenome;
+import net.emirikol.golemancy.genetics.SoulTypes;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 import static net.emirikol.golemancy.test.Assertions.assertTrue;
 
-public class GeneticsTest implements FabricGameTest {
-    @GameTest(structureName = FabricGameTest.EMPTY_STRUCTURE)
-    public void genomeSerialization(TestContext context) {
+public class GeneticsTestSuite extends AbstractTestSuite {
+    public GeneticsTestSuite(World world, PlayerEntity player) {
+        super(world, player);
+    }
+
+    @Override
+    public void test() {
+        genomeSerialization();
+        this.printMessage("Genetics test completed successfully!");
+    }
+
+    public void genomeSerialization() {
         //Create a Curious genome and serialize it.
         Genome genome = Genomes.creativeGenome(SoulTypes.CURIOUS);
         SerializedGenome serializedGenome = new SerializedGenome(genome);
@@ -19,6 +30,5 @@ public class GeneticsTest implements FabricGameTest {
         //Check that the two SerializedGenome instances have the same active and dormant alleles.
         assertTrue(serializedGenome.activeAlleles.equals(deserializedGenome.activeAlleles), "Genome corruption during serialization of active alleles!");
         assertTrue(serializedGenome.dormantAlleles.equals(deserializedGenome.dormantAlleles), "Genome corruption during serialization of dormant alleles!");
-        context.complete();
     }
 }

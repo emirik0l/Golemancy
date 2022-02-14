@@ -21,12 +21,7 @@
     "main": ["net.emirikol.golemancy.Golemancy"],
 	"client": ["net.emirikol.golemancy.GolemancyClient"],
 	"cardinal-components-entity": ["net.emirikol.golemancy.GolemancyComponents"],
-	"modmenu": ["net.emirikol.golemancy.GolemancyModMenu"],
-    "fabric-gametest": [
-      "net.emirikol.golemancy.test.GeneticsTest",
-      "net.emirikol.golemancy.test.GolemBehaviorTest",
-      "net.emirikol.golemancy.test.GolemSpawnTest"
-    ]
+	"modmenu": ["net.emirikol.golemancy.GolemancyModMenu"]
   },
   "mixins": [],
 
