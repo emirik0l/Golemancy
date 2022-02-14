@@ -33,7 +33,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         if (this.getWorld().isClient) return;
         //Generate a waterlogged oak fence and put it in the world.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
-        BlockPos startPos = this.getPlayer().getBlockPos().north(2);
+        BlockPos startPos = this.getRandomBlockPos();
         BlockState state = Blocks.OAK_FENCE.getDefaultState();
         serverWorld.setBlockState(startPos, state);
         ((FluidFillable) Blocks.OAK_FENCE).tryFillWithFluid(serverWorld, startPos, state, Fluids.WATER.getDefaultState());

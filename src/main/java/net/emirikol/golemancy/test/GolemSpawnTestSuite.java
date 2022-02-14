@@ -35,7 +35,7 @@ public class GolemSpawnTestSuite extends AbstractTestSuite {
         if (this.getWorld().isClient) return;
         // Create a clay effigy block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
-        BlockPos startPos = this.getPlayer().getBlockPos().north(2);
+        BlockPos startPos = this.getRandomBlockPos();
         serverWorld.setBlockState(startPos, Golemancy.CLAY_EFFIGY_BLOCK.getDefaultState());
         BlockState state = serverWorld.getBlockState(startPos);
         // Create a Curious soulstone and give it to the dummy player.
