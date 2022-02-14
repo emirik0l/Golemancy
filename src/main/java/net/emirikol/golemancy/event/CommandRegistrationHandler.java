@@ -27,7 +27,6 @@ public class CommandRegistrationHandler {
 
     public static void golemancyTest(CommandContext<ServerCommandSource> context) {
         World world = context.getSource().getWorld();
-
         PlayerEntity player;
 
         try {

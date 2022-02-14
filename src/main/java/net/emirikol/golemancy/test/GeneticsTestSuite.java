@@ -17,7 +17,7 @@ public class GeneticsTestSuite extends AbstractTestSuite {
     @Override
     public void test() {
         genomeSerialization();
-        this.printMessage("Genetics test completed successfully!");
+        this.printMessage("Genetics test suite completed successfully!");
     }
 
     public void genomeSerialization() {

@@ -26,7 +26,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
     @Override
     public void test() {
         drainWaterloggedBlock();
-        this.printMessage("Golem behavior test completed successfully!");
+        this.printMessage("Golem behavior test suite completed successfully!");
     }
 
     public void drainWaterloggedBlock() {

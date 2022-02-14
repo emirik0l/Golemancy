@@ -28,7 +28,7 @@ public class GolemSpawnTestSuite extends AbstractTestSuite {
     @Override
     public void test() {
         clayEffigyBlockSpawnsGolem();
-        this.printMessage("Golem spawning test completed successfully!");
+        this.printMessage("Golem spawning test suite completed successfully!");
     }
 
     public void clayEffigyBlockSpawnsGolem() {
