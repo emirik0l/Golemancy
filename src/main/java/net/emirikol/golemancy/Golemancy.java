@@ -11,7 +11,11 @@ import net.emirikol.golemancy.screen.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
+import net.emirikol.golemancy.test.GeneticsTestSuite;
+import net.emirikol.golemancy.test.GolemBehaviorTestSuite;
+import net.emirikol.golemancy.test.GolemSpawnTestSuite;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
@@ -19,31 +23,34 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.screen.*;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
+import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Golemancy implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("Golemancy");
-	
+
 	public static SoulstoneEmpty SOULSTONE_EMPTY;
 	public static SoulstoneFilled SOULSTONE_FILLED;
-	
+
 	public static SoulMirror SOUL_MIRROR;
 	public static ScreenHandlerType<SoulMirrorScreenHandler> SOUL_MIRROR_SCREEN_HANDLER;
-	
+
 	public static GolemWand GOLEM_WAND;
-	
+
 	public static SoulGrafterBlock SOUL_GRAFTER;
 	public static BlockItem SOUL_GRAFTER_ITEM;
 	public static BlockEntityType<SoulGrafterBlockEntity> SOUL_GRAFTER_ENTITY;
 	public static ScreenHandlerType<SoulGrafterScreenHandler> SOUL_GRAFTER_SCREEN_HANDLER;
-	
+
 	public static BlockItem CLAY_EFFIGY;
 	public static ClayEffigyBlock CLAY_EFFIGY_BLOCK;
 
@@ -60,32 +67,33 @@ public class Golemancy implements ModInitializer {
 	public static EntityType<HungryGolemEntity> HUNGRY_GOLEM_ENTITY;
 	public static EntityType<IntrepidGolemEntity> INTREPID_GOLEM_ENTITY;
 	public static EntityType<MarshyGolemEntity> MARSHY_GOLEM_ENTITY;
-	public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;	
+	public static EntityType<ParchedGolemEntity> PARCHED_GOLEM_ENTITY;
 	public static EntityType<RestlessGolemEntity> RESTLESS_GOLEM_ENTITY;
 	public static EntityType<RusticGolemEntity> RUSTIC_GOLEM_ENTITY;
 	public static EntityType<TactileGolemEntity> TACTILE_GOLEM_ENTITY;
 	public static EntityType<ValiantGolemEntity> VALIANT_GOLEM_ENTITY;
 	public static EntityType<VerdantGolemEntity> VERDANT_GOLEM_ENTITY;
 	public static EntityType<WeepingGolemEntity> WEEPING_GOLEM_ENTITY;
-	
+
 	public static EntityType<ClayballEntity> CLAYBALL;
-	
+
 	private static final float GOLEM_WIDTH = 0.7f;
 	private static final float GOLEM_HEIGHT = 1.30f;
 
 	public static final Identifier ConfigPacketID = new Identifier("golemancy", "config_packet");
-	
+
 	@Override
 	public void onInitialize() {
 		doInstantiation();
 		doRegistration();
+		registerCommands();
 		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
 		GolemancyConfig.syncConfigHook(); //add event hook for syncing server and client configs when a player connects
 		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
 		AutoConfig.register(GolemancyConfig.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
 		LOGGER.info("Arise, my minions!");
 	}
-	
+
 	public static void doInstantiation() {
 		//Instantiate soulstones.
 		FabricItemSettings soulstone_settings = new FabricItemSettings();
@@ -141,7 +149,7 @@ public class Golemancy implements ModInitializer {
 		//Instantiate clayball projectile.
 		CLAYBALL = FabricEntityTypeBuilder.<ClayballEntity>create(SpawnGroup.MISC, ClayballEntity::new).dimensions(EntityDimensions.fixed(0.25F, 0.25F)).trackRangeBlocks(4).trackedUpdateRate(10).build();
 	}
-	
+
 	public static void doRegistration() {
 		//Register soulstones.
 		Registry.register(Registry.ITEM, "golemancy:soulstone_empty", SOULSTONE_EMPTY);
@@ -183,5 +191,20 @@ public class Golemancy implements ModInitializer {
 		}
 		//Register clayball projectile.
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:clayball", CLAYBALL);
+	}
+
+	public static void registerCommands() {
+		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+			// Command to run all test suites.
+			// For best results, run on a superflat world in creative.
+			dispatcher.register(CommandManager.literal("golemancytest").executes(context -> {
+				World world = context.getSource().getWorld();
+				PlayerEntity player = context.getSource().getPlayer();
+				new GeneticsTestSuite(world, player).invokeTest();
+				new GolemBehaviorTestSuite(world, player).invokeTest();
+				new GolemSpawnTestSuite(world, player).invokeTest();
+				return 0;
+			}));
+		});
 	}
 }

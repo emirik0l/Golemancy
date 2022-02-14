@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public abstract class AbstractTestSuite {
-    private World world;
-    private PlayerEntity player;
+    private final World world;
+    private final PlayerEntity player;
 
     public AbstractTestSuite(World world, PlayerEntity player) {
         this.world = world;
