@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.GolemancyConfig;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -27,7 +27,7 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
             --this.cooldown;
             return false;
         }
-        this.cooldown = GolemancyConfig.getGolemCooldown();
+        this.cooldown = ConfigurationHandler.getGolemCooldown();
         return super.canStart();
     }
 
@@ -43,7 +43,7 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
 
     protected List<Inventory> findInventories() {
         List<Inventory> output = new ArrayList<>();
-        float searchRadius = GolemancyConfig.getGolemRadius();
+        float searchRadius = ConfigurationHandler.getGolemRadius();
 
         ServerWorld world = (ServerWorld) this.entity.world;
         BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();

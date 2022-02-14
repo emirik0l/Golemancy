@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.GolemancyConfig;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.block.*;
@@ -32,7 +32,7 @@ public class GolemFillVesselGoal extends Goal {
 			--this.cooldown;
 			return false;
 		}
-		this.cooldown = GolemancyConfig.getGolemCooldown();
+		this.cooldown = ConfigurationHandler.getGolemCooldown();
 		return isFluidNearby() && GolemHelper.hasEmptyVessel(this.entity);
 	}
 

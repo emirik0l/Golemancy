@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.GolemancyConfig;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import net.minecraft.block.entity.JukeboxBlockEntity;
@@ -28,7 +28,7 @@ public class GolemDanceGoal extends Goal {
             --this.cooldown;
             return false;
         }
-        this.cooldown = GolemancyConfig.getGolemCooldown();
+        this.cooldown = ConfigurationHandler.getGolemCooldown();
         return this.canHearMusic();
     }
 
@@ -49,7 +49,7 @@ public class GolemDanceGoal extends Goal {
     }
 
     public boolean canHearMusic() {
-        float searchRadius = GolemancyConfig.getGolemRadius();
+        float searchRadius = ConfigurationHandler.getGolemRadius();
         ServerWorld world = (ServerWorld) this.entity.world;
         BlockPos pos = this.entity.getBlockPos();
         float r = searchRadius + (searchRadius * entity.getGolemSmarts());

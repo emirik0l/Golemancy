@@ -1,7 +1,6 @@
 package net.emirikol.golemancy.screen;
 
-import net.emirikol.golemancy.*;
-
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.minecraft.entity.player.*;
 import net.minecraft.screen.*;
 import net.minecraft.text.*;
@@ -41,14 +40,14 @@ public class SoulGrafterScreen extends HandledScreen<ScreenHandler> {
 		//Graft Progress Bubbles
 		int graft_time = ((SoulGrafterScreenHandler) this.handler).getGraftTime();
 		if (graft_time > 0) {
-			float graft_factor = 1.00F - ((float) graft_time / (float) GolemancyConfig.getGraftDuration());
+			float graft_factor = 1.00F - ((float) graft_time / (float) ConfigurationHandler.getGraftDuration());
 			int progress_width = Math.round((float)BUBBLE_WIDTH * graft_factor);
 			drawTexture(matrices, x + 59, y + 21, BUBBLE_STARTX, BUBBLE_STARTY, progress_width, BUBBLE_HEIGHT);
 		}
 		//Bonemeal Fuel Indicator
 		int fuel_time = ((SoulGrafterScreenHandler) this.handler).getFuelTime();
 		if (fuel_time > 0) {
-			float fuel_factor = (float) fuel_time / (float) GolemancyConfig.getFuelValue();
+			float fuel_factor = (float) fuel_time / (float) ConfigurationHandler.getFuelValue();
 			int fuel_height = Math.round((float) FLAME_HEIGHT * fuel_factor);
 			int fuel_offset = FLAME_HEIGHT - fuel_height;
 			drawTexture(matrices, x + 63, y + 55 + fuel_offset, FLAME_STARTX, FLAME_STARTY + fuel_offset, FLAME_WIDTH, fuel_height);

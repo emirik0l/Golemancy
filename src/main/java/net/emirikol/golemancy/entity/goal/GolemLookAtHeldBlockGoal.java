@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.GolemancyConfig;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import net.minecraft.entity.EquipmentSlot;
@@ -32,7 +32,7 @@ public class GolemLookAtHeldBlockGoal extends Goal {
             --this.cooldown;
             return false;
         }
-        this.cooldown = GolemancyConfig.getGolemCooldown();
+        this.cooldown = ConfigurationHandler.getGolemCooldown();
         //Can only search for the block in your hand if you're actually holding something.
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
         return !stack.isEmpty() && stack.getItem() instanceof BlockItem && this.findTargetPos();
@@ -55,7 +55,7 @@ public class GolemLookAtHeldBlockGoal extends Goal {
     }
 
     public boolean findTargetPos() {
-        float searchRadius = GolemancyConfig.getGolemRadius();
+        float searchRadius = ConfigurationHandler.getGolemRadius();
         BlockPos pos = this.entity.getBlockPos();
         float r = searchRadius + (searchRadius * entity.getGolemSmarts());
         for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {

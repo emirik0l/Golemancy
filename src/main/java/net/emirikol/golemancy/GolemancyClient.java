@@ -2,6 +2,7 @@ package net.emirikol.golemancy;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.screen.*;
 import net.emirikol.golemancy.network.*;
@@ -119,14 +120,14 @@ public class GolemancyClient implements ClientModInitializer {
 			int golemAIRadius = buf.readInt();
 
 			client.execute(() -> {
-				GolemancyConfig config = AutoConfig.getConfigHolder(GolemancyConfig.class).getConfig();
+				ConfigurationHandler config = AutoConfig.getConfigHolder(ConfigurationHandler.class).getConfig();
 				config.GRAFT_SPEED_MULTIPLIER = graftSpeedMultiplier;
 				config.GRAFT_FUEL_MULTIPLIER = graftFuelMultiplier;
 				config.GRAFT_POTENCY_MULTIPLIER = graftPotencyMultiplier;
 				config.GOLEM_ARMOR_VALUE = golemArmorValue;
 				config.GOLEM_AI_COOLDOWN = golemAICooldown;
 				config.GOLEM_AI_RADIUS = golemAIRadius;
-				AutoConfig.getConfigHolder(GolemancyConfig.class).save();
+				AutoConfig.getConfigHolder(ConfigurationHandler.class).save();
 			});
 		});
 	}

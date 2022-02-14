@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.GolemancyConfig;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.*;
 
 import net.minecraft.entity.ai.goal.*;
@@ -29,7 +29,7 @@ public class GolemMoveGoal extends Goal {
 			--this.cooldown;
 			return false;
 		}
-		this.cooldown = GolemancyConfig.getGolemCooldown();
+		this.cooldown = ConfigurationHandler.getGolemCooldown();
 		if (this.findTargetPos() && this.canReachPos(this.targetPos)) {
 			return true;
 		} else {
@@ -76,7 +76,7 @@ public class GolemMoveGoal extends Goal {
 	}
 	
 	public boolean findTargetPos() {
-		float searchRadius = GolemancyConfig.getGolemRadius();
+		float searchRadius = ConfigurationHandler.getGolemRadius();
 		BlockPos pos = this.entity.getLinkedBlockPos();
 		if (pos == null) { pos = this.entity.getBlockPos(); }
 		

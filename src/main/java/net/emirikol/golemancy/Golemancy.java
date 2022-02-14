@@ -2,6 +2,9 @@ package net.emirikol.golemancy;
 
 import net.emirikol.golemancy.block.*;
 import net.emirikol.golemancy.block.entity.*;
+import net.emirikol.golemancy.event.CommandRegistrationHandler;
+import net.emirikol.golemancy.event.ConfigurationHandler;
+import net.emirikol.golemancy.event.SoulstoneFillHandler;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.item.*;
 import net.emirikol.golemancy.entity.*;
@@ -11,9 +14,7 @@ import net.emirikol.golemancy.screen.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
-import net.emirikol.golemancy.test.Tests;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
@@ -24,8 +25,6 @@ import net.minecraft.block.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.screen.*;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
@@ -83,11 +82,11 @@ public class Golemancy implements ModInitializer {
 	public void onInitialize() {
 		doInstantiation();
 		doRegistration();
-		registerCommands();
+		CommandRegistrationHandler.commandRegistrationHook(); //add event hook for registering this mod's commands
 		SoulstoneFillHandler.soulstoneFillHook(); //add event hook for replacing soulstones with mob soulstones when you kill mobs
-		GolemancyConfig.syncConfigHook(); //add event hook for syncing server and client configs when a player connects
+		ConfigurationHandler.syncConfigHook(); //add event hook for syncing server and client configs when a player connects
 		GolemancyItemGroup.buildGolemancyItemGroup(); ////add custom ItemGroup that contains all mod items including custom soulstones
-		AutoConfig.register(GolemancyConfig.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
+		AutoConfig.register(ConfigurationHandler.class, GsonConfigSerializer::new); //register the AutoConfig handler - see GolemancyConfig for details
 		LOGGER.info("Arise, my minions!");
 	}
 
@@ -188,17 +187,5 @@ public class Golemancy implements ModInitializer {
 		}
 		//Register clayball projectile.
 		Registry.register(Registry.ENTITY_TYPE, "golemancy:clayball", CLAYBALL);
-	}
-
-	public static void registerCommands() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-			// Command to run all test suites.
-			// For best results, run on a superflat world in creative.
-			dispatcher.register(CommandManager.literal("golemancytest").executes(context -> {
-				ServerCommandSource source = context.getSource();
-				Tests.runAll(source);
-				return 0;
-			}));
-		});
 	}
 }

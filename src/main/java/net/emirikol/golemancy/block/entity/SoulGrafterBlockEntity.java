@@ -2,6 +2,7 @@ package net.emirikol.golemancy.block.entity;
 
 import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.block.*;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.item.*;
 import net.emirikol.golemancy.genetics.*;
 import net.emirikol.golemancy.inventory.*;
@@ -207,11 +208,11 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		boolean dirty = false;
 		boolean grafting = isGrafting();
 		//Sanity check to deal with config value changes.
-		if (fuel_time > GolemancyConfig.getFuelValue()) {
-			fuel_time = GolemancyConfig.getFuelValue();
+		if (fuel_time > ConfigurationHandler.getFuelValue()) {
+			fuel_time = ConfigurationHandler.getFuelValue();
 		}
-		if (graft_time > GolemancyConfig.getGraftDuration()) {
-			graft_time = GolemancyConfig.getGraftDuration();
+		if (graft_time > ConfigurationHandler.getGraftDuration()) {
+			graft_time = ConfigurationHandler.getGraftDuration();
 		}
 		//If the grafter is burning, decrement the fuel timer.
 		if (isBurning()) {
@@ -226,7 +227,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 				Item item = stack.getItem();
 				if (item == Items.BONE_MEAL) {
 					stack.decrement(1);
-					fuel_time = GolemancyConfig.getFuelValue();
+					fuel_time = ConfigurationHandler.getFuelValue();
 					dirty = true;
 				}
 			}
@@ -242,7 +243,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 					}
 				} else {
 					//If the graft timer is not running, start it.
-					graft_time = GolemancyConfig.getGraftDuration();
+					graft_time = ConfigurationHandler.getGraftDuration();
 					dirty = true;
 				}
 			} else if (graft_time > 0) {
@@ -281,7 +282,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 		x = rand.nextInt(2);
 		Genome potencyGenome = new Genome(parents[x]);
 		Gene<Integer> potencyGene = potencyGenome.getInteger("potency");
-		int potency = Math.round((float) potencyGene.getActive() * GolemancyConfig.getPotencyMultiplier());
+		int potency = Math.round((float) potencyGene.getActive() * ConfigurationHandler.getPotencyMultiplier());
 		for (int i = 0; i < potency; i++) {
 			//Check if there are empty soulstones available to fill.
 			if (emptySoulstones.getCount() > 0) {

@@ -4,6 +4,7 @@ import net.emirikol.golemancy.*;
 import net.emirikol.golemancy.entity.goal.*;
 import net.emirikol.golemancy.component.*;
 
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 import net.minecraft.block.Block;
@@ -193,7 +194,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		//Update armor based on whether this golem is made of terracotta or obsidian.
 		if (this.getMaterial() == GolemMaterial.TERRACOTTA || this.getMaterial() == GolemMaterial.OBSIDIAN) {
 			entityAttributeInstance = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
-			double armorValue = GolemancyConfig.getGolemArmorValue();
+			double armorValue = ConfigurationHandler.getGolemArmorValue();
 			entityAttributeInstance.setBaseValue(armorValue);
 		}
 		//Update armor toughness based on whether this golem is made of obsidian.

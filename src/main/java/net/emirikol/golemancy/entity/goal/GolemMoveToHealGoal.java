@@ -1,6 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.GolemancyConfig;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.*;
 
 import net.emirikol.golemancy.network.Particles;
@@ -51,7 +51,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 
 	@Override
 	public boolean findTargetPos() {
-		float searchRadius = GolemancyConfig.getGolemRadius();
+		float searchRadius = ConfigurationHandler.getGolemRadius();
 		float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,this.maxYDifference,r), (entity) -> true);
 		for (TameableEntity tameable: list) {
@@ -65,7 +65,7 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 	}
 
 	public boolean canHeal(TameableEntity healTarget) {
-		float searchRadius = GolemancyConfig.getGolemRadius();
+		float searchRadius = ConfigurationHandler.getGolemRadius();
 		float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
 		List<TameableEntity> list = entity.world.getEntitiesByClass(TameableEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> true);
 		for (TameableEntity tameable: list) {

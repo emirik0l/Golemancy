@@ -1,5 +1,6 @@
-package net.emirikol.golemancy;
+package net.emirikol.golemancy.event;
 
+import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.genetics.*;
 
 import net.fabricmc.fabric.api.entity.event.v1.*;
