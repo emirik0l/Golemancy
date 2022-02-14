@@ -1,6 +1,5 @@
 package net.emirikol.golemancy.test;
 
-import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.emirikol.golemancy.entity.FakePlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
