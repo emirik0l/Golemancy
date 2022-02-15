@@ -3,9 +3,12 @@ package net.emirikol.golemancy.test;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.ParchedGolemEntity;
 import net.emirikol.golemancy.entity.goal.GolemFillVesselGoal;
+import net.emirikol.golemancy.entity.goal.GolemHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.block.FluidFillable;
+import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,8 +28,26 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
 
     @Override
     public void test() {
+        doubleChestSameInventory();
         drainWaterloggedBlock();
         this.printMessage("Golem behavior test suite completed successfully!");
+    }
+
+    public void doubleChestSameInventory() {
+        if (this.getWorld().isClient) return;
+        //Place two chests next to each other.
+        ServerWorld serverWorld = (ServerWorld) this.getWorld();
+        BlockPos pos1 = this.getRandomBlockPos();
+        BlockPos pos2 = pos1.east();
+        serverWorld.setBlockState(pos1, Blocks.CHEST.getDefaultState().with(ChestBlock.CHEST_TYPE, ChestType.LEFT));
+        serverWorld.setBlockState(pos2, Blocks.CHEST.getDefaultState().with(ChestBlock.CHEST_TYPE, ChestType.RIGHT));
+        serverWorld.getBlockState(pos1).neighborUpdate(serverWorld, pos1, Blocks.CHEST, pos2, false);
+        //Test whether they are considered to be part of the same inventory and check the result.
+        boolean result = GolemHelper.sameDoubleInventory(pos1, pos2, serverWorld);
+        assertTrue(result, "Two adjacent sides of a double chest are not part of the same inventory!");
+        //Tear everything down.
+        serverWorld.setBlockState(pos1, Blocks.AIR.getDefaultState());
+        serverWorld.setBlockState(pos2, Blocks.AIR.getDefaultState());
     }
 
     public void drainWaterloggedBlock() {
