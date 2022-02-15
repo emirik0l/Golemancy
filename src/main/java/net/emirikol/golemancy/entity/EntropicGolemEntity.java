@@ -19,6 +19,7 @@ public class EntropicGolemEntity extends AbstractGolemEntity {
 	protected void initGoals() {
 		super.initGoals();
 		this.goalSelector.add(6, new GolemMoveToMineGoal(this, 3.0F));
+		this.goalSelector.add(7, new GolemDropHeldItemGoal(this));
 	}
 	
 	@Override

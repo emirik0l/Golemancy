@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.Golemancy;
+import net.emirikol.golemancy.entity.goal.GolemDropHeldItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToHarvestGoal;
 
 import net.minecraft.entity.EntityType;
@@ -19,6 +20,7 @@ public class RusticGolemEntity extends AbstractGolemEntity {
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(6, new GolemMoveToHarvestGoal(this, 3.0F));
+        this.goalSelector.add(7, new GolemDropHeldItemGoal(this));
     }
 
     @Override

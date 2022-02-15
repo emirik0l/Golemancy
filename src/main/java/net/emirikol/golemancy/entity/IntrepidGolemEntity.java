@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.*;
+import net.emirikol.golemancy.entity.goal.GolemDropHeldItemGoal;
 import net.emirikol.golemancy.entity.projectile.*;
 
 import net.minecraft.entity.*;
@@ -31,6 +32,7 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 		this.targetSelector.add(3, new ActiveTargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity) -> {
 			return livingEntity instanceof Monster && !(livingEntity instanceof CreeperEntity);
 		}));
+		this.goalSelector.add(7, new GolemDropHeldItemGoal(this));
 	}
 	
 	@Override
@@ -43,11 +45,6 @@ public class IntrepidGolemEntity extends AbstractGolemEntity implements RangedAt
 			golemEntity.setTamed(true);
 		}
 		return golemEntity;
-	}
-	
-	@Override
-	protected ActionResult tryGiveToGolem(PlayerEntity player, Hand hand) {
-		return ActionResult.PASS;
 	}
 	
 	@Override
