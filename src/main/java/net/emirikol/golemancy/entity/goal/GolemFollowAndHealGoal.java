@@ -23,10 +23,12 @@ public class GolemFollowAndHealGoal extends Goal {
     protected final AbstractGolemEntity entity;
     private LivingEntity friend;
     private final EntityNavigation navigation;
+    private final boolean canHealOwner;
+
     private int updateCountdownTicks;
     private int healingTimer;
+    protected int cooldown;
     private float oldWaterPathfindingPenalty;
-    private final boolean canHealOwner;
 
     public GolemFollowAndHealGoal(AbstractGolemEntity entity, boolean canHealOwner) {
         this.entity = entity;
@@ -39,24 +41,12 @@ public class GolemFollowAndHealGoal extends Goal {
     }
 
     public boolean canStart() {
-        float searchRadius = ConfigurationHandler.getGolemRadius();
-        float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
-        List<LivingEntity> list = this.entity.world.getEntitiesByClass(LivingEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> {
-            if (entity instanceof TameableEntity) {
-                TameableEntity tameable = (TameableEntity) entity;
-                return this.isWounded(tameable) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(tameable.getOwnerUuid()));
-            }
-            if (entity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) entity;
-                return this.canHealOwner && this.isWounded(player) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(player.getUuid()));
-            }
+        if (this.cooldown > 0) {
+            --this.cooldown;
             return false;
-        });
-        if (list.size() > 0) {
-            this.friend = list.get(0);
-            return true;
         }
-        return false;
+        this.cooldown = ConfigurationHandler.getGolemCooldown();
+        return this.findTarget();
     }
 
     @Override
@@ -106,6 +96,27 @@ public class GolemFollowAndHealGoal extends Goal {
     @Override
     public boolean shouldRunEveryTick() {
         return true;
+    }
+
+    public boolean findTarget() {
+        float searchRadius = ConfigurationHandler.getGolemRadius();
+        float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
+        List<LivingEntity> list = this.entity.world.getEntitiesByClass(LivingEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> {
+            if (entity instanceof TameableEntity) {
+                TameableEntity tameable = (TameableEntity) entity;
+                return this.isWounded(tameable) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(tameable.getOwnerUuid()));
+            }
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
+                return this.canHealOwner && this.isWounded(player) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(player.getUuid()));
+            }
+            return false;
+        });
+        if (list.size() > 0) {
+            this.friend = list.get(0);
+            return true;
+        }
+        return false;
     }
 
     public boolean isWounded(LivingEntity entity) {
