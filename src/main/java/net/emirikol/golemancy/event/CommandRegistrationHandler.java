@@ -5,7 +5,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.emirikol.golemancy.entity.FakePlayerEntity;
 import net.emirikol.golemancy.test.GeneticsTestSuite;
 import net.emirikol.golemancy.test.GolemBehaviorTestSuite;
-import net.emirikol.golemancy.test.GolemSpawnTestSuite;
+import net.emirikol.golemancy.test.EffigyTestSuite;
 import net.emirikol.golemancy.test.SoulGrafterTestSuite;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,9 +36,9 @@ public class CommandRegistrationHandler {
             player = new FakePlayerEntity(world, BlockPos.ORIGIN, 0);
         }
 
+        new EffigyTestSuite(world, player).invokeTest();
         new GeneticsTestSuite(world, player).invokeTest();
         new GolemBehaviorTestSuite(world, player).invokeTest();
-        new GolemSpawnTestSuite(world, player).invokeTest();
         new SoulGrafterTestSuite(world, player).invokeTest();
     }
 }
