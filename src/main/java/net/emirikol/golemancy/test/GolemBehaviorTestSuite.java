@@ -44,7 +44,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         serverWorld.getBlockState(pos1).neighborUpdate(serverWorld, pos1, Blocks.CHEST, pos2, false);
         //Test whether they are considered to be part of the same inventory and check the result.
         boolean result = GolemHelper.sameDoubleInventory(pos1, pos2, serverWorld);
-        assertTrue(result, "Two adjacent sides of a double chest are not part of the same inventory!");
+        assertTrue(result, "adjacent sides of a double chest are not part of the same inventory");
         //Tear everything down.
         serverWorld.setBlockState(pos1, Blocks.AIR.getDefaultState());
         serverWorld.setBlockState(pos2, Blocks.AIR.getDefaultState());
@@ -65,7 +65,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         entity.equipStack(EquipmentSlot.MAINHAND, Items.BUCKET.getDefaultStack());
         //Attempt to drain the waterlogged block and check the result.
         ItemStack result = goal.drainFluid(startPos);
-        assertTrue(result.getItem() == Items.WATER_BUCKET, "Draining a waterlogged block with a bucket did not produce a water bucket!");
+        assertTrue(result.getItem() == Items.WATER_BUCKET, "draining a waterlogged block with a bucket did not produce a water bucket");
         //Tear everything down.
         entity.discard();
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());

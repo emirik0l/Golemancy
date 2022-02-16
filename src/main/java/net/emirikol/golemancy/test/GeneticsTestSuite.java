@@ -28,7 +28,7 @@ public class GeneticsTestSuite extends AbstractTestSuite {
         String genomeString = serializedGenome.toString();
         SerializedGenome deserializedGenome = new SerializedGenome(genomeString);
         //Check that the two SerializedGenome instances have the same active and dormant alleles.
-        assertTrue(serializedGenome.activeAlleles.equals(deserializedGenome.activeAlleles), "Genome corruption during serialization of active alleles!");
-        assertTrue(serializedGenome.dormantAlleles.equals(deserializedGenome.dormantAlleles), "Genome corruption during serialization of dormant alleles!");
+        assertTrue(serializedGenome.activeAlleles.equals(deserializedGenome.activeAlleles), "genome corruption during serialization of active alleles");
+        assertTrue(serializedGenome.dormantAlleles.equals(deserializedGenome.dormantAlleles), "genome corruption during serialization of dormant alleles");
     }
 }

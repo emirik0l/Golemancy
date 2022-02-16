@@ -46,7 +46,7 @@ public class GolemSpawnTestSuite extends AbstractTestSuite {
         // Call onUse() and check whether it returns a success.
         BlockHitResult hit = new BlockHitResult(new Vec3d(startPos.getX(), startPos.getY(), startPos.getZ()), Direction.NORTH, startPos, false);
         ActionResult result = Golemancy.CLAY_EFFIGY_BLOCK.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
-        assertTrue(result == ActionResult.SUCCESS, "Clay Effigy Block did not return ActionResult.SUCCESS when spawning a golem!");
+        assertTrue(result == ActionResult.SUCCESS, "clay effigy did not return ActionResult.SUCCESS when spawning a golem");
         //Tear everything down.
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());
         for (CuriousGolemEntity entity : serverWorld.getEntitiesByClass(CuriousGolemEntity.class, new Box(startPos).expand(3), x -> true)) {
