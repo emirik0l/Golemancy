@@ -24,13 +24,13 @@ import static net.emirikol.golemancy.test.Assertions.assertTrue;
 public class GolemBehaviorTestSuite extends AbstractTestSuite {
     public GolemBehaviorTestSuite(World world, PlayerEntity player) {
         super(world, player);
+        this.testName = "test_golem_behavior";
     }
 
     @Override
     public void test() {
         doubleChestSameInventory();
         drainWaterloggedBlock();
-        this.printMessage("Golem behavior test suite completed successfully!");
     }
 
     public void doubleChestSameInventory() {

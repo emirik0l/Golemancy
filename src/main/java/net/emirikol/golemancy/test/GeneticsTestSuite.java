@@ -12,12 +12,12 @@ import static net.emirikol.golemancy.test.Assertions.assertTrue;
 public class GeneticsTestSuite extends AbstractTestSuite {
     public GeneticsTestSuite(World world, PlayerEntity player) {
         super(world, player);
+        this.testName = "test_genetics";
     }
 
     @Override
     public void test() {
         genomeSerialization();
-        this.printMessage("Genetics test suite completed successfully!");
     }
 
     public void genomeSerialization() {

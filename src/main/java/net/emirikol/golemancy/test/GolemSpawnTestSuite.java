@@ -23,12 +23,12 @@ import static net.emirikol.golemancy.test.Assertions.assertTrue;
 public class GolemSpawnTestSuite extends AbstractTestSuite {
     public GolemSpawnTestSuite(World world, PlayerEntity player) {
         super(world, player);
+        this.testName = "test_golem_spawning";
     }
 
     @Override
     public void test() {
         clayEffigyBlockSpawnsGolem();
-        this.printMessage("Golem spawning test suite completed successfully!");
     }
 
     public void clayEffigyBlockSpawnsGolem() {

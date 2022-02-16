@@ -17,14 +17,16 @@ import static net.emirikol.golemancy.test.Assertions.assertFalse;
 import static net.emirikol.golemancy.test.Assertions.assertTrue;
 
 public class SoulGrafterTestSuite extends AbstractTestSuite {
-    public SoulGrafterTestSuite(World world, PlayerEntity player) { super(world,player); }
+    public SoulGrafterTestSuite(World world, PlayerEntity player) {
+        super(world,player);
+        this.testName = "test_soul_grafter";
+    }
 
     @Override
     public void test() {
         canInsert();
         canExtract();
         checkGraft();
-        this.printMessage("Soul grafter test suite completed successfully!");
     }
 
     public void canInsert() {

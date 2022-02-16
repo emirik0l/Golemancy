@@ -11,6 +11,7 @@ import java.util.Random;
 public abstract class AbstractTestSuite {
     private final World world;
     private final PlayerEntity player;
+    protected String testName = "test_generic";
 
     public AbstractTestSuite(World world, PlayerEntity player) {
         this.world = world;
@@ -20,8 +21,10 @@ public abstract class AbstractTestSuite {
     public void invokeTest() {
         try {
             this.test();
+            String msg = String.format("PASS: %s", this.testName);
+            this.printMessage(msg);
         } catch (Exception e) {
-            String msg = e.getMessage();
+            String msg = String.format("FAIL: %s (%s)", this.testName, e.getMessage());
             this.printMessage(msg);
         }
     }
