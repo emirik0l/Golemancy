@@ -6,6 +6,7 @@ import net.emirikol.golemancy.entity.FakePlayerEntity;
 import net.emirikol.golemancy.test.GeneticsTestSuite;
 import net.emirikol.golemancy.test.GolemBehaviorTestSuite;
 import net.emirikol.golemancy.test.GolemSpawnTestSuite;
+import net.emirikol.golemancy.test.SoulGrafterTestSuite;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
@@ -38,5 +39,6 @@ public class CommandRegistrationHandler {
         new GeneticsTestSuite(world, player).invokeTest();
         new GolemBehaviorTestSuite(world, player).invokeTest();
         new GolemSpawnTestSuite(world, player).invokeTest();
+        new SoulGrafterTestSuite(world, player).invokeTest();
     }
 }
