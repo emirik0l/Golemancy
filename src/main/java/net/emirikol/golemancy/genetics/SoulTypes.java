@@ -20,6 +20,7 @@ public class SoulTypes {
     public static final SoulType INTREPID = new SoulType("text.golemancy.type.intrepid", Golemancy.INTREPID_GOLEM_ENTITY);
     public static final SoulType MARSHY = new SoulType("text.golemancy.type.marshy", Golemancy.MARSHY_GOLEM_ENTITY);
     public static final SoulType PARCHED = new SoulType("text.golemancy.type.parched", Golemancy.PARCHED_GOLEM_ENTITY);
+    public static final SoulType PIOUS = new SoulType("text.golemancy.type.pious", Golemancy.PIOUS_GOLEM_ENTITY);
     public static final SoulType RESTLESS = new SoulType("text.golemancy.type.restless", Golemancy.RESTLESS_GOLEM_ENTITY);
     public static final SoulType RUSTIC = new SoulType("text.golemancy.type.rustic", Golemancy.RUSTIC_GOLEM_ENTITY);
     public static final SoulType TACTILE = new SoulType("text.golemancy.type.tactile", Golemancy.TACTILE_GOLEM_ENTITY);
@@ -37,6 +38,7 @@ public class SoulTypes {
         add(INTREPID);
         add(MARSHY);
         add(PARCHED);
+        add(PIOUS);
         add(RESTLESS);
         add(RUSTIC);
         add(TACTILE);

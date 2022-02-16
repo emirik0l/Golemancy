@@ -238,6 +238,7 @@ public class Genomes {
 		put(SoulTypes.VERDANT, 12);
 		put(SoulTypes.MARSHY, 13);
 		put(SoulTypes.CAREFUL, 14);
+		put(SoulTypes.PIOUS, 15);
 	}};
 	
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
