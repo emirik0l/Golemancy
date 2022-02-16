@@ -11,8 +11,7 @@ import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.server.world.ServerWorld;
 
 public class CommandRegistrationHandler {
     public static void commandRegistrationHook() {
@@ -27,13 +26,13 @@ public class CommandRegistrationHandler {
     }
 
     public static void golemancyTest(CommandContext<ServerCommandSource> context) {
-        World world = context.getSource().getWorld();
+        ServerWorld world = context.getSource().getWorld();
         PlayerEntity player;
 
         try {
             player = context.getSource().getPlayer();
         } catch (CommandSyntaxException e) {
-            player = new FakePlayerEntity(world, BlockPos.ORIGIN, 0);
+            player = new FakePlayerEntity(world, world.getSpawnPos(), 0);
         }
 
         new EffigyTestSuite(world, player).invokeTest();
