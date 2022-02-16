@@ -29,6 +29,8 @@ public abstract class AbstractTestSuite {
         }
     }
 
+    //To create a test suite, implement this method and call your unit tests.
+    //To create test cases that can fail with an appropriate error, use the Assertions class or throw exceptions.
     public abstract void test();
 
     public void printMessage(String msg) {

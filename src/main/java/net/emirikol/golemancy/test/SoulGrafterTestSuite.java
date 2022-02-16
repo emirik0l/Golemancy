@@ -115,6 +115,9 @@ public class SoulGrafterTestSuite extends AbstractTestSuite {
         //Perform graft validity check and test result.
         assertTrue(entity.checkGraft(), "soul grafting failed despite valid inputs");
         //Tear everything down.
+        for (int slot : SoulGrafterBlockEntity.ALL_SLOTS) {
+            entity.setStack(slot, ItemStack.EMPTY);
+        }
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());
     }
 }

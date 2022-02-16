@@ -46,11 +46,11 @@ public class Gene<T> {
 		dormant = value;
 	}
 	
-	public Gene<T> breed(Gene<T> gene) {
+	public Gene<T> breed(Gene<T> otherGene) {
 		Random rand = new Random();
 		T a,d;
-		if (rand.nextBoolean()) { a = this.getRandom(); } else { a = gene.getRandom(); }
-		if (rand.nextBoolean()) { d = this.getRandom(); } else { d = gene.getRandom(); }
+		if (rand.nextBoolean()) { a = this.getRandom(); } else { a = otherGene.getRandom(); }
+		if (rand.nextBoolean()) { d = this.getRandom(); } else { d = otherGene.getRandom(); }
 		return new Gene<>(a, d);
 	}
 }
