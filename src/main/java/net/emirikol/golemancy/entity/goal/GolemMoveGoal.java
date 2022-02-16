@@ -55,7 +55,7 @@ public class GolemMoveGoal extends Goal {
 	public void tick() {
 		if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
 			//Continue towards targetPos.
-			if (this.isIdle()) this.idleTime++;
+			if (this.entity.getNavigation().isIdle()) this.idleTime++;
 
 			if (this.idleTime >= 40) {
 				//Give up after 40 ticks of idling, and add the targetPos to the list of failed targets.
@@ -100,9 +100,5 @@ public class GolemMoveGoal extends Goal {
 		//For most golems, we want to be able to path to the targetPos itself in order to consider it reachable.
 		//Override for certain golems where this isn't the case (i.e. you want to get within X blocks of targetPos).
 		return this.entity.getNavigation().findPathTo(pos, 0) != null;
-	}
-
-	public boolean isIdle() {
-		return this.entity.getNavigation().isIdle();
 	}
 }
