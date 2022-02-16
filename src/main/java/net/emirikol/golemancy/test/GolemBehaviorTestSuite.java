@@ -30,7 +30,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
     @Override
     public void test() {
         doubleChestSameInventory();
-        drainWaterloggedBlock();
+        goalFillVesselFromWaterloggedBlock();
     }
 
     public void doubleChestSameInventory() {
@@ -50,7 +50,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         serverWorld.setBlockState(pos2, Blocks.AIR.getDefaultState());
     }
 
-    public void drainWaterloggedBlock() {
+    public void goalFillVesselFromWaterloggedBlock() {
         if (this.getWorld().isClient) return;
         //Generate a waterlogged oak fence and put it in the world.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
