@@ -75,6 +75,7 @@ public class GolemFollowAndHealGoal extends Goal {
     public void stop() {
         this.friend = null;
         this.healingTimer = 0;
+        this.entity.interruptPray();
         this.navigation.stop();
         this.entity.setPathfindingPenalty(PathNodeType.WATER, this.oldWaterPathfindingPenalty);
     }

@@ -421,6 +421,12 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 		return true;
 	}
 
+	public boolean interruptPray() {
+		this.prayTicksLeft = 0;
+		this.world.sendEntityStatus(this, (byte)69);
+		return true;
+	}
+
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
@@ -453,6 +459,9 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 				break;
 			case 68:
 				this.danceTicksLeft = this.getMaxDanceTicks();
+				break;
+			case 69:
+				this.prayTicksLeft = 0;
 				break;
 			default:
 				super.handleStatus(status);
