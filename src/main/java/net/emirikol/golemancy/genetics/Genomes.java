@@ -222,25 +222,7 @@ public class Genomes {
 		put("vigor", new Gene<Integer>(1));
 		put("smarts", new Gene<Integer>(2));
 	}};
-	
-	public static final Map<SoulType,Integer> TEXTURE_VARIANTS = new HashMap<SoulType,Integer>() {{
-		put(SoulTypes.RESTLESS, 1);
-		put(SoulTypes.CURIOUS, 2);
-		put(SoulTypes.HUNGRY, 3);
-		put(SoulTypes.COVETOUS, 4);
-		put(SoulTypes.VALIANT, 5);
-		put(SoulTypes.PARCHED, 6);
-		put(SoulTypes.ENTROPIC, 7);
-		put(SoulTypes.TACTILE, 8);
-		put(SoulTypes.INTREPID, 9);
-		put(SoulTypes.WEEPING, 10);
-		put(SoulTypes.RUSTIC, 11);
-		put(SoulTypes.VERDANT, 12);
-		put(SoulTypes.MARSHY, 13);
-		put(SoulTypes.CAREFUL, 14);
-		put(SoulTypes.PIOUS, 15);
-	}};
-	
+
 	public static final Map<EntityType,Genome> GENOMES = new HashMap<EntityType,Genome>() {{
 		put(EntityType.BLAZE, BLAZE);
 		put(EntityType.CREEPER, CREEPER);

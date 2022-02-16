@@ -85,7 +85,7 @@ public class Genome {
 		nbt.putInt("smarts_active", smarts.getActive());
 		nbt.putInt("smarts_dormant", smarts.getDormant());
 		
-		Integer textureId = Genomes.TEXTURE_VARIANTS.get(type.getActive());
+		Integer textureId = SoulTypes.TEXTURE_VARIANTS.get(type.getActive());
 		if (textureId != null) {
 			nbt.putInt("CustomModelData", textureId);
 		}

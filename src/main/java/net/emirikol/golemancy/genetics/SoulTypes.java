@@ -5,9 +5,7 @@ import net.emirikol.golemancy.entity.AbstractGolemEntity;
 
 import net.minecraft.entity.EntityType;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class SoulTypes {
     public static final SoulType GENERIC = new SoulType("text.golemancy.type.generic", Golemancy.RESTLESS_GOLEM_ENTITY);
@@ -45,6 +43,24 @@ public class SoulTypes {
         add(VALIANT);
         add(VERDANT);
         add(WEEPING);
+    }};
+
+    public static final Map<SoulType,Integer> TEXTURE_VARIANTS = new HashMap<SoulType,Integer>() {{
+        put(RESTLESS, 1);
+        put(CURIOUS, 2);
+        put(HUNGRY, 3);
+        put(COVETOUS, 4);
+        put(VALIANT, 5);
+        put(PARCHED, 6);
+        put(ENTROPIC, 7);
+        put(TACTILE, 8);
+        put(INTREPID, 9);
+        put(WEEPING, 10);
+        put(RUSTIC, 11);
+        put(VERDANT, 12);
+        put(MARSHY, 13);
+        put(CAREFUL, 14);
+        put(PIOUS, 15);
     }};
 
     public static SoulType get(String typeString) {
