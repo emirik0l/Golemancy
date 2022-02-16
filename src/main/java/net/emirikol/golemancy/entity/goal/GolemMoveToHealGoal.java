@@ -64,6 +64,12 @@ public class GolemMoveToHealGoal extends GolemMoveGoal {
 		return false;
 	}
 
+	@Override
+	public boolean isIdle() {
+		//Weeping golems are only idle if they're not currently healing someone.
+		return super.isIdle() && !this.isHealing();
+	}
+
 	public boolean canHeal(TameableEntity healTarget) {
 		float searchRadius = ConfigurationHandler.getGolemRadius();
 		float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
