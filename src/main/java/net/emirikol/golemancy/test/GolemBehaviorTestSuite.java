@@ -102,6 +102,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         assertFalse(goal.canStart(), "parched golem thinks it can extract when unlinked");
         //Tear everything down.
         entity.discard();
+        blockEntity.setStack(0, ItemStack.EMPTY);
         serverWorld.setBlockState(chestPos, Blocks.AIR.getDefaultState());
     }
 
