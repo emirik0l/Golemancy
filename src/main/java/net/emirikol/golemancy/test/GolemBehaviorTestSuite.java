@@ -10,7 +10,6 @@ import net.minecraft.block.ChestBlock;
 import net.minecraft.block.FluidFillable;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
-import net.minecraft.datafixer.fix.ItemIdFix;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.SpawnReason;
