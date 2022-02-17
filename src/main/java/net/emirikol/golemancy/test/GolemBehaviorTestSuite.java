@@ -1,13 +1,17 @@
 package net.emirikol.golemancy.test;
 
 import net.emirikol.golemancy.Golemancy;
+import net.emirikol.golemancy.entity.CovetousGolemEntity;
 import net.emirikol.golemancy.entity.ParchedGolemEntity;
+import net.emirikol.golemancy.entity.goal.GolemDepositHeldItemGoal;
+import net.emirikol.golemancy.entity.goal.GolemExtractItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemFillVesselGoal;
 import net.emirikol.golemancy.entity.goal.GolemHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.FluidFillable;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnReason;
@@ -19,6 +23,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import static net.emirikol.golemancy.test.Assertions.assertFalse;
 import static net.emirikol.golemancy.test.Assertions.assertTrue;
 
 public class GolemBehaviorTestSuite extends AbstractTestSuite {
@@ -30,6 +35,8 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
     @Override
     public void test() {
         doubleChestSameInventory();
+        goalDepositItem();
+        goalExtractItem();
         goalFillVesselFromWaterloggedBlock();
     }
 
@@ -48,6 +55,54 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         //Tear everything down.
         serverWorld.setBlockState(pos1, Blocks.AIR.getDefaultState());
         serverWorld.setBlockState(pos2, Blocks.AIR.getDefaultState());
+    }
+
+    public void goalDepositItem() {
+        if (this.getWorld().isClient) return;
+        //Create a golem and give it an item, and give it a nearby chest.
+        ServerWorld serverWorld = (ServerWorld) this.getWorld();
+        BlockPos startPos = this.getRandomBlockPos();
+        BlockPos chestPos = startPos.north();
+        CovetousGolemEntity entity = Golemancy.COVETOUS_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnNewEntityAndPassengers(entity);
+        entity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.DIRT));
+        serverWorld.setBlockState(chestPos, Blocks.CHEST.getDefaultState());
+        GolemDepositHeldItemGoal goal = new GolemDepositHeldItemGoal(entity);
+        //Link the golem to the chest and check whether it can deposit.
+        entity.linkToBlockPos(chestPos);
+        assertTrue(goal.canStart(), "golem could not deposit into a nearby linked container");
+        //Unlink the golem and check whether it can deposit.
+        entity.linkToBlockPos(null);
+        assertFalse(goal.canStart(), "golem thinks it can deposit when unlinked");
+        //Tear everything down.
+        entity.discard();
+        serverWorld.setBlockState(chestPos, Blocks.AIR.getDefaultState());
+    }
+
+    public void goalExtractItem() {
+        if (this.getWorld().isClient) return;
+        //Initialise world parameters.
+        ServerWorld serverWorld = (ServerWorld) this.getWorld();
+        BlockPos startPos = this.getRandomBlockPos();
+        BlockPos chestPos = startPos.north();
+        //Create a parched golem with a GolemExtractItemGoal goal.
+        ParchedGolemEntity entity = Golemancy.PARCHED_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnNewEntityAndPassengers(entity);
+        GolemExtractItemGoal goal = new GolemExtractItemGoal(entity);
+        goal.add(Items.BUCKET);
+        //Create a chest with a bucket in it.
+        serverWorld.setBlockState(chestPos, Blocks.CHEST.getDefaultState());
+        ChestBlockEntity blockEntity = (ChestBlockEntity) serverWorld.getBlockEntity(chestPos);
+        blockEntity.setStack(0, new ItemStack(Items.BUCKET));
+        //Link the golem to the chest and check whether it can extract.
+        entity.linkToBlockPos(chestPos);
+        assertTrue(goal.canStart(), "parched golem could not extract from chest containing bucket");
+        //Unlink the golem and check whether it can extract.
+        entity.linkToBlockPos(null);
+        assertFalse(goal.canStart(), "parched golem thinks it can extract when unlinked");
+        //Tear everything down.
+        entity.discard();
+        serverWorld.setBlockState(chestPos, Blocks.AIR.getDefaultState());
     }
 
     public void goalFillVesselFromWaterloggedBlock() {
