@@ -20,21 +20,24 @@ public class GolemEntityRenderer extends MobEntityRenderer<AbstractGolemEntity, 
 	@Override
 	public Identifier getTexture(AbstractGolemEntity entity) {
 		//Tells Minecraft where the find the entity's texture.
+		String texturePath = "textures/entity/golem/clay_golem.png";
 		GolemMaterial material = entity.getMaterial() != null ? entity.getMaterial() : GolemMaterial.CLAY;
 		switch(material) {
 			case CLAY:
-				return new Identifier("golemancy", "textures/entity/clay_golem/clay_golem.png");
+				texturePath = "textures/entity/golem/clay_golem.png";
+				break;
 			case TERRACOTTA:
-				String texturePath = "textures/entity/clay_golem/terracotta_golem.png";
+				texturePath = "textures/entity/golem/terracotta_golem.png";
 				DyeColor color = entity.getColor();
 				if (color != null) {
-					texturePath = String.format("textures/entity/clay_golem/terracotta_golem_%s.png", color.getName());
+					texturePath = String.format("textures/entity/golem/terracotta_golem_%s.png", color.getName());
 				}
-				return new Identifier("golemancy", texturePath);
+				break;
 			case OBSIDIAN:
-				return new Identifier("golemancy", "textures/entity/clay_golem/obsidian_golem.png");
+				texturePath = "textures/entity/golem/obsidian_golem.png";
+				break;
 		}
 
-		return new Identifier("golemancy", "textures/entity/clay_golem/clay_golem.png");
+		return new Identifier("golemancy", texturePath);
 	}
 }
