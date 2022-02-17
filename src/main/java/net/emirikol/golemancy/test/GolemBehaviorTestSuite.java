@@ -3,17 +3,16 @@ package net.emirikol.golemancy.test;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.CovetousGolemEntity;
 import net.emirikol.golemancy.entity.ParchedGolemEntity;
-import net.emirikol.golemancy.entity.goal.GolemDepositHeldItemGoal;
-import net.emirikol.golemancy.entity.goal.GolemExtractItemGoal;
-import net.emirikol.golemancy.entity.goal.GolemFillVesselGoal;
-import net.emirikol.golemancy.entity.goal.GolemHelper;
+import net.emirikol.golemancy.entity.goal.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.FluidFillable;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
+import net.minecraft.datafixer.fix.ItemIdFix;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -38,6 +37,7 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         goalDepositItem();
         goalExtractItem();
         goalFillVesselFromWaterloggedBlock();
+        goalFindItemForPickup();
     }
 
     public void doubleChestSameInventory() {
@@ -125,5 +125,22 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         //Tear everything down.
         entity.discard();
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());
+    }
+
+    public void goalFindItemForPickup() {
+        if (this.getWorld().isClient) return;
+        //Create a golem and associated movement goal.
+        ServerWorld serverWorld = (ServerWorld) this.getWorld();
+        BlockPos startPos = this.getRandomBlockPos();
+        BlockPos itemPos = startPos.north();
+        CovetousGolemEntity entity = Golemancy.COVETOUS_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnNewEntityAndPassengers(entity);
+        GolemMoveToPickupGoal goal = new GolemMoveToPickupGoal(entity, 5.0F);
+        //Spawn an item near the golem.
+        ItemEntity itemEntity = new ItemEntity(serverWorld, itemPos.getX(), itemPos.getY(), itemPos.getZ(), new ItemStack(Items.DIAMOND));
+        serverWorld.spawnEntity(itemEntity);
+        //Tick the entity and test findTargetPos().
+        serverWorld.tickEntity(entity);
+        assertTrue(goal.findTargetPos(), "GolemMoveToPickupGoal failed to identify a nearby item");
     }
 }
