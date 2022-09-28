@@ -82,7 +82,7 @@ public class SoulGrafterBlock extends BlockWithEntity {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, Golemancy.SOUL_GRAFTER_ENTITY, (world1, pos, state1, blockEntity) -> SoulGrafterBlockEntity.tick(world1, pos, state1, blockEntity));
+        return checkType(type, Golemancy.SOUL_GRAFTER_ENTITY, SoulGrafterBlockEntity::tick);
     }
 
     @Environment(EnvType.CLIENT)
