@@ -2,7 +2,6 @@ package net.emirikol.golemancy.genetics;
 
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
-
 import net.minecraft.entity.EntityType;
 
 import java.util.*;
@@ -13,7 +12,7 @@ public class SoulTypes {
     public static final SoulType CAREFUL = new SoulType("text.golemancy.type.careful", Golemancy.CAREFUL_GOLEM_ENTITY);
     public static final SoulType COVETOUS = new SoulType("text.golemancy.type.covetous", Golemancy.COVETOUS_GOLEM_ENTITY);
     public static final SoulType CURIOUS = new SoulType("text.golemancy.type.curious", Golemancy.CURIOUS_GOLEM_ENTITY);
-    public static final SoulType ENTROPIC =  new SoulType("text.golemancy.type.entropic", Golemancy.ENTROPIC_GOLEM_ENTITY);
+    public static final SoulType ENTROPIC = new SoulType("text.golemancy.type.entropic", Golemancy.ENTROPIC_GOLEM_ENTITY);
     public static final SoulType HUNGRY = new SoulType("text.golemancy.type.hungry", Golemancy.HUNGRY_GOLEM_ENTITY);
     public static final SoulType INTREPID = new SoulType("text.golemancy.type.intrepid", Golemancy.INTREPID_GOLEM_ENTITY);
     public static final SoulType MARSHY = new SoulType("text.golemancy.type.marshy", Golemancy.MARSHY_GOLEM_ENTITY);
@@ -45,7 +44,7 @@ public class SoulTypes {
         add(WEEPING);
     }};
 
-    public static final Map<SoulType,Integer> TEXTURE_VARIANTS = new HashMap<SoulType,Integer>() {{
+    public static final Map<SoulType, Integer> TEXTURE_VARIANTS = new HashMap<SoulType, Integer>() {{
         put(RESTLESS, 1);
         put(CURIOUS, 2);
         put(HUNGRY, 3);
@@ -66,13 +65,15 @@ public class SoulTypes {
     public static SoulType get(String typeString) {
         //Find a SoulType from the type string, i.e. "text.golemancy.type.curious".
         for (SoulType soulType : SOUL_TYPES) {
-            if (soulType.getTypeString().equals(typeString)) { return soulType; }
+            if (soulType.getTypeString().equals(typeString)) {
+                return soulType;
+            }
         }
         return null;
     }
 
     public static Collection<EntityType<? extends AbstractGolemEntity>> getEntityTypes() {
-        return new ArrayList<EntityType<? extends  AbstractGolemEntity>>() {{
+        return new ArrayList<EntityType<? extends AbstractGolemEntity>>() {{
             for (SoulType soulType : SOUL_TYPES) {
                 add(soulType.getEntityType());
             }

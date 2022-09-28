@@ -1,13 +1,11 @@
 package net.emirikol.golemancy.event;
 
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.emirikol.golemancy.entity.FakePlayerEntity;
+import net.emirikol.golemancy.test.EffigyTestSuite;
 import net.emirikol.golemancy.test.GeneticsTestSuite;
 import net.emirikol.golemancy.test.GolemBehaviorTestSuite;
-import net.emirikol.golemancy.test.EffigyTestSuite;
 import net.emirikol.golemancy.test.SoulGrafterTestSuite;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -15,7 +13,7 @@ import net.minecraft.server.world.ServerWorld;
 
 public class CommandRegistrationHandler {
     public static void commandRegistrationHook() {
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated, environment) -> {
             // Command to run all test suites.
             // For best results, run on a superflat world in creative.
             dispatcher.register(CommandManager.literal("golemancytest").executes(context -> {

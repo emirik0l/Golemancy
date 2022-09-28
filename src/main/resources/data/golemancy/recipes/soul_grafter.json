@@ -1,26 +1,26 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-	" S ",
-	"EWE",
-	"BBB"
+    " S ",
+    "EWE",
+    "BBB"
   ],
   "key": {
-	"B": {
-	  "item": "minecraft:brick"
-	},
-	"W": {
-	  "tag": "minecraft:wool"
-	},
-	"S": {
-	  "item": "golemancy:soulstone_filled"
-	},
-	"E": {
-	  "item": "minecraft:emerald"
-	}
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    },
+    "S": {
+      "item": "golemancy:soulstone_filled"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    }
   },
   "result": {
-	"item": "golemancy:soul_grafter",
-	"count": 1
+    "item": "golemancy:soul_grafter",
+    "count": 1
   }
 }

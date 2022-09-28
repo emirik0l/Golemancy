@@ -5,9 +5,9 @@ import java.util.Random;
 public class Mutation {
     //The strings in this class each represent a soulstone "type string", such as "Restless" or "Curious".
 
-    private SoulType[] parentTypes;
-    private SoulType childType;
-    private float chance;
+    private final SoulType[] parentTypes;
+    private final SoulType childType;
+    private final float chance;
 
     public Mutation(SoulType leftParent, SoulType rightParent, SoulType childType, float chance) {
         parentTypes = new SoulType[2];

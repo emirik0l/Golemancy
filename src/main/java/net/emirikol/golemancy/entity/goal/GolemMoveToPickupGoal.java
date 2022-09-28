@@ -1,8 +1,7 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
-
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,9 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
     }
 
     @Override
-    public boolean shouldContinue() { return super.shouldContinue() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty(); }
+    public boolean shouldContinue() {
+        return super.shouldContinue() && entity.getEquippedStack(EquipmentSlot.MAINHAND).isEmpty();
+    }
 
     @Override
     public void tick() {
@@ -46,8 +47,10 @@ public class GolemMoveToPickupGoal extends GolemMoveGoal {
         float searchRadius = ConfigurationHandler.getGolemRadius();
         float r = searchRadius + (searchRadius * entity.getGolemSmarts());
         List<ItemEntity> list = entity.world.getEntitiesByClass(ItemEntity.class, entity.getBoundingBox().expand(r, this.maxYDifference, r), (entity) -> this.canPickUp(entity));
-        if (list.isEmpty()) { return false; }
-        for (ItemEntity itemEntity: list) {
+        if (list.isEmpty()) {
+            return false;
+        }
+        for (ItemEntity itemEntity : list) {
             BlockPos pos = itemEntity.getBlockPos();
             if (this.entity.isInWalkTargetRange(pos) && this.isTargetPos(pos)) {
                 this.targetPos = pos;

@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-	"NNN",
-	"NQN",
-	"NNN"
+    "NNN",
+    "NQN",
+    "NNN"
   ],
   "key": {
-	"Q": {
-	  "item": "minecraft:quartz"
-	},
-	"N": {
-	  "item": "minecraft:gold_nugget"
-	}
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "N": {
+      "item": "minecraft:gold_nugget"
+    }
   },
   "result": {
-	"item": "golemancy:soul_mirror",
-	"count": 1
+    "item": "golemancy:soul_mirror",
+    "count": 1
   }
 }

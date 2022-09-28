@@ -8,5 +8,7 @@ public class ObsidianEffigyBlock extends ClayEffigyBlock {
     }
 
     @Override
-    public GolemMaterial getEffigyMaterial() { return GolemMaterial.OBSIDIAN; }
+    public GolemMaterial getEffigyMaterial() {
+        return GolemMaterial.OBSIDIAN;
+    }
 }

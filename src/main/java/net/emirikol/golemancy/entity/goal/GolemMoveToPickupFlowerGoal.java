@@ -6,7 +6,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
-public class GolemMoveToPickupFlowerGoal extends GolemMoveToPickupGoal{
+public class GolemMoveToPickupFlowerGoal extends GolemMoveToPickupGoal {
     public GolemMoveToPickupFlowerGoal(AbstractGolemEntity entity, float maxYDifference) {
         super(entity, maxYDifference);
     }

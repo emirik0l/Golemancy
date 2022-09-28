@@ -18,7 +18,7 @@ import static net.emirikol.golemancy.test.Assertions.assertTrue;
 
 public class SoulGrafterTestSuite extends AbstractTestSuite {
     public SoulGrafterTestSuite(World world, PlayerEntity player) {
-        super(world,player);
+        super(world, player);
         this.testName = "test_soul_grafter";
     }
 

@@ -6,7 +6,6 @@ import net.emirikol.golemancy.genetics.Gene;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.genetics.SoulType;
 import net.emirikol.golemancy.item.SoulstoneFilled;
-
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -89,9 +88,13 @@ public class ClayEffigyBlock extends Block {
             Gene<Integer> smartsGene = genome.getInteger("smarts");
             //Get entity type.
             EntityType<? extends AbstractGolemEntity> golemType = typeGene.getActive().getEntityType();
-            if (golemType == null) { return ActionResult.PASS; } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
+            if (golemType == null) {
+                return ActionResult.PASS;
+            } //shouldn't throw an error, as this can happen w/ soulstones that have invalid data (i.e. "generic soulstone")
             AbstractGolemEntity entity = golemType.create(serverWorld, null, null, null, pos, SpawnReason.SPAWN_EGG, true, true);
-            if (entity == null) { throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!"); }
+            if (entity == null) {
+                throw new java.lang.RuntimeException("Attempt to create golem entity from soulstone returned NULL entity!");
+            }
             //Update tracked values from genome.
             entity.setGolemStats(strengthGene.getActive(), agilityGene.getActive(), vigorGene.getActive(), smartsGene.getActive());
             //Update golem material based on what kind of effigy this is.
@@ -111,5 +114,7 @@ public class ClayEffigyBlock extends Block {
         return ActionResult.PASS;
     }
 
-    public GolemMaterial getEffigyMaterial() { return GolemMaterial.CLAY; }
+    public GolemMaterial getEffigyMaterial() {
+        return GolemMaterial.CLAY;
+    }
 }

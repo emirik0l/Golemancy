@@ -38,7 +38,9 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
     }
 
     @Override
-    public boolean shouldContinue() { return this.hasRod() && super.shouldContinue(); }
+    public boolean shouldContinue() {
+        return this.hasRod() && super.shouldContinue();
+    }
 
     @Override
     public void tick() {

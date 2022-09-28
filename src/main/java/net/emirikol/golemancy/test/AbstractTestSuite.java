@@ -44,8 +44,13 @@ public abstract class AbstractTestSuite {
         }
     }
 
-    public World getWorld() { return this.world; }
-    public PlayerEntity getPlayer() { return player; }
+    public World getWorld() {
+        return this.world;
+    }
+
+    public PlayerEntity getPlayer() {
+        return player;
+    }
 
     public BlockPos getRandomBlockPos() {
         Random rand = (Random) this.world.getRandom();

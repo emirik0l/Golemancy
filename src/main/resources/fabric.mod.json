@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "golemancy",
   "version": "${version}",
-
   "name": "Golemancy",
   "description": "A mod about golems and magical genetics.",
   "authors": [
@@ -12,28 +11,35 @@
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/golemancy",
     "sources": "https://github.com/emirik0l/Golemancy"
   },
-
   "license": "LGPL2.1",
   "icon": "assets/golemancy/icon.png",
-
   "environment": "*",
   "entrypoints": {
-    "main": ["net.emirikol.golemancy.Golemancy"],
-	"client": ["net.emirikol.golemancy.GolemancyClient"],
-	"cardinal-components-entity": ["net.emirikol.golemancy.GolemancyComponents"],
-	"modmenu": ["net.emirikol.golemancy.GolemancyModMenu"]
+    "main": [
+      "net.emirikol.golemancy.Golemancy"
+    ],
+    "client": [
+      "net.emirikol.golemancy.GolemancyClient"
+    ],
+    "cardinal-components-entity": [
+      "net.emirikol.golemancy.GolemancyComponents"
+    ],
+    "modmenu": [
+      "net.emirikol.golemancy.GolemancyModMenu"
+    ]
   },
   "mixins": [],
-
   "depends": {
     "fabricloader": ">=0.12.12",
     "fabric": "*",
     "minecraft": "1.19.2",
-	"cloth-config2": ">=6.1.48"
+    "cloth-config2": ">=6.1.48"
   },
   "suggests": {
   },
   "custom": {
-      "cardinal-components": ["golemancy:golem"]
+    "cardinal-components": [
+      "golemancy:golem"
+    ]
   }
 }

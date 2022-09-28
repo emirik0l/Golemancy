@@ -1,8 +1,7 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
-
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.minecraft.block.entity.JukeboxBlockEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.MusicDiscItem;
@@ -20,7 +19,7 @@ public class GolemDanceGoal extends Goal {
 
     public GolemDanceGoal(AbstractGolemEntity entity) {
         this.entity = entity;
-        this.setControls(EnumSet.of(Goal.Control.MOVE,Goal.Control.LOOK));
+        this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
     }
 
     public boolean canStart() {
@@ -53,7 +52,7 @@ public class GolemDanceGoal extends Goal {
         ServerWorld world = (ServerWorld) this.entity.world;
         BlockPos pos = this.entity.getBlockPos();
         float r = searchRadius + (searchRadius * entity.getGolemSmarts());
-        for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int)r, (int)r)) {
+        for (BlockPos curPos : BlockPos.iterateOutwards(pos, (int) r, (int) r, (int) r)) {
             if (world.getBlockEntity(curPos) instanceof JukeboxBlockEntity) {
                 JukeboxBlockEntity entity = (JukeboxBlockEntity) world.getBlockEntity(curPos);
                 if (!entity.getRecord().isEmpty() && (entity.getRecord().getItem() instanceof MusicDiscItem)) {
