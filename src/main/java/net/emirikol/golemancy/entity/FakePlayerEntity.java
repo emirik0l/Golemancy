@@ -5,18 +5,21 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.network.encryption.PlayerPublicKey;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.*;
 import net.minecraft.util.math.*;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 public class FakePlayerEntity extends PlayerEntity {
-	public FakePlayerEntity(World world, BlockPos pos, float yaw) {
-		super(world, pos, yaw, new GameProfile(UUID.randomUUID(), UUID.randomUUID().toString()));
+
+	public FakePlayerEntity(World world, BlockPos pos, float yaw, GameProfile gameProfile, @Nullable PlayerPublicKey publicKey) {
+		super(world, pos, yaw, gameProfile, publicKey);
 	}
-	
+
 	public boolean isCreative() {
 		return false;
 	}

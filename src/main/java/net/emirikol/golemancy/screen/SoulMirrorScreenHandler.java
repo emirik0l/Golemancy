@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.screen;
 
 import net.minecraft.entity.player.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.*;
 import net.minecraft.network.*;
 
@@ -18,7 +19,12 @@ public class SoulMirrorScreenHandler extends ScreenHandler {
 		super(Golemancy.SOUL_MIRROR_SCREEN_HANDLER, syncId);
 		soulData = buf.readString();
 	}
-	
+
+	@Override
+	public ItemStack transferSlot(PlayerEntity player, int index) {
+		return null;
+	}
+
 	@Override
 	public boolean canUse(PlayerEntity player) {
 		return true;

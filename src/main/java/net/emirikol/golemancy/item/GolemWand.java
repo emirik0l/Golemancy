@@ -85,13 +85,13 @@ public class GolemWand extends Item {
 			//Linking a golem to itself causes it to become unlinked.
 			nbt.putInt("golem_id", 0);
 			entity.linkToBlockPos(null);
-			TranslatableText text = new TranslatableText("text.golemancy.unlink_linking_wand", entity.getName());
+			Text text = Text.translatable("text.golemancy.unlink_linking_wand", entity.getName());
 			user.sendMessage(text, false);
 			return ActionResult.SUCCESS;
 		} else {
 			//Otherwise, save the golem's entity ID to the wand's NBT.
 			nbt.putInt("golem_id", identifier);
-			TranslatableText text = new TranslatableText("text.golemancy.linking_wand", entity.getName());
+			Text text = Text.translatable("text.golemancy.linking_wand", entity.getName());
 			user.sendMessage(text, false);
 			return ActionResult.SUCCESS;
 		}
@@ -103,7 +103,7 @@ public class GolemWand extends Item {
 		NbtCompound nbt = stack.getOrCreateNbt();
 		nbt.putInt("golem_id", 0);
 		String blockKey = world.getBlockState(pos).getBlock().getTranslationKey();
-		TranslatableText text = new TranslatableText("text.golemancy.finished_linking_wand", entity.getName(), new TranslatableText(blockKey));
+		Text text = Text.translatable("text.golemancy.finished_linking_wand", entity.getName(), Text.translatable(blockKey));
 		user.sendMessage(text, false);
 		return ActionResult.SUCCESS;
 	}
@@ -111,11 +111,11 @@ public class GolemWand extends Item {
 	public ActionResult toggleFollow(AbstractGolemEntity entity, PlayerEntity user) {
 		//Following functionality.
 		entity.toggleFollowingWand();
-		TranslatableText text;
+		Text text;
 		if (entity.isFollowingWand()) {
-			text = new TranslatableText("text.golemancy.following_wand", entity.getName());
+			text = Text.translatable("text.golemancy.following_wand", entity.getName());
 		} else {
-			text = new TranslatableText("text.golemancy.stop_following_wand", entity.getName());
+			text = Text.translatable("text.golemancy.stop_following_wand", entity.getName());
 		}
 		user.sendMessage(text, false);
 		return ActionResult.SUCCESS;

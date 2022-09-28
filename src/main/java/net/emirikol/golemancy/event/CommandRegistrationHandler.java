@@ -29,11 +29,7 @@ public class CommandRegistrationHandler {
         ServerWorld world = context.getSource().getWorld();
         PlayerEntity player;
 
-        try {
-            player = context.getSource().getPlayer();
-        } catch (CommandSyntaxException e) {
-            player = new FakePlayerEntity(world, world.getSpawnPos(), 0);
-        }
+        player = context.getSource().getPlayer();
 
         new EffigyTestSuite(world, player).invokeTest();
         new GeneticsTestSuite(world, player).invokeTest();

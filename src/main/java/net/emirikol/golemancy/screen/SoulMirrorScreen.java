@@ -47,41 +47,41 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		String soulData = ((SoulMirrorScreenHandler) this.handler).getSoulData();
 		SerializedGenome serializedGenome = new SerializedGenome(soulData);
 		//Draw title.
-		Text titleText = new TranslatableText("item.golemancy.soul_mirror");
+		Text titleText = Text.translatable("item.golemancy.soul_mirror");
 		int x = (backgroundWidth - textRenderer.getWidth(titleText)) / 2;
 		this.textRenderer.draw(matrices, titleText, (float) x, (float) TITLE_Y, 4210752);
 		//Draw column headers.
-		Text activeText = new TranslatableText("text.golemancy.active_column");
-		Text dormantText = new TranslatableText("text.golemancy.dormant_column");
+		Text activeText = Text.translatable("text.golemancy.active_column");
+		Text dormantText = Text.translatable("text.golemancy.dormant_column");
 		this.textRenderer.draw(matrices, activeText, (float) COLUMN_DOM_X, (float) COLUMN_HEADER_Y, 0xff0000);
 		this.textRenderer.draw(matrices, dormantText, (float) COLUMN_REC_X, (float) COLUMN_HEADER_Y, 0x00acff);
 		//Draw type row.
-		Text typeText = new TranslatableText("text.golemancy.type");
+		Text typeText = Text.translatable("text.golemancy.type");
 		this.textRenderer.draw(matrices, typeText, (float) ROW_START_X, (float) TYPE_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, typeToText(serializedGenome.activeAlleles.get("type")), (float) COLUMN_DOM_X, (float) TYPE_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, typeToText(serializedGenome.dormantAlleles.get("type")), (float) COLUMN_REC_X, (float) TYPE_ROW_Y, 4210752);
 		//Draw potency row.
-		Text potencyText = new TranslatableText("text.golemancy.potency");
+		Text potencyText = Text.translatable("text.golemancy.potency");
 		this.textRenderer.draw(matrices, potencyText, (float) ROW_START_X, (float) POTENCY_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, potencyToText(serializedGenome.activeAlleles.get("potency")), (float) COLUMN_DOM_X, (float) POTENCY_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, potencyToText(serializedGenome.dormantAlleles.get("potency")), (float) COLUMN_REC_X, (float) POTENCY_ROW_Y, 4210752);
 		//Draw strength row.
-		Text strengthText = new TranslatableText("text.golemancy.strength");
+		Text strengthText = Text.translatable("text.golemancy.strength");
 		this.textRenderer.draw(matrices, strengthText, (float) ROW_START_X, (float) STRENGTH_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("strength")), (float) COLUMN_DOM_X, (float) STRENGTH_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("strength")), (float) COLUMN_REC_X, (float) STRENGTH_ROW_Y, 4210752);
 		//Draw agility row.
-		Text agilityText = new TranslatableText("text.golemancy.agility");
+		Text agilityText = Text.translatable("text.golemancy.agility");
 		this.textRenderer.draw(matrices, agilityText, (float) ROW_START_X, (float) AGILITY_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("agility")), (float) COLUMN_DOM_X, (float) AGILITY_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("agility")), (float) COLUMN_REC_X, (float) AGILITY_ROW_Y, 4210752);
 		//Draw vigor row.
-		Text vigorText = new TranslatableText("text.golemancy.vigor");
+		Text vigorText = Text.translatable("text.golemancy.vigor");
 		this.textRenderer.draw(matrices, vigorText, (float) ROW_START_X, (float) VIGOR_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("vigor")), (float) COLUMN_DOM_X, (float) VIGOR_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("vigor")), (float) COLUMN_REC_X, (float) VIGOR_ROW_Y, 4210752);
 		//Draw smarts row.
-		Text smartsText = new TranslatableText("text.golemancy.smarts");
+		Text smartsText = Text.translatable("text.golemancy.smarts");
 		this.textRenderer.draw(matrices, smartsText, (float) ROW_START_X, (float) SMARTS_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.activeAlleles.get("smarts")), (float) COLUMN_DOM_X, (float) SMARTS_ROW_Y, 4210752);
 		this.textRenderer.draw(matrices, geneToText(serializedGenome.dormantAlleles.get("smarts")), (float) COLUMN_REC_X, (float) SMARTS_ROW_Y, 4210752);
@@ -99,39 +99,39 @@ public class SoulMirrorScreen extends HandledScreen<ScreenHandler> {
 		super.init();
 	}
 
-	public TranslatableText typeToText(String type) {
-		return new TranslatableText(type);
+	public MutableText typeToText(String type) {
+		return Text.translatable(type);
 	}
 	
 	public Text geneToText(String geneValue) {
 		switch (geneValue) {
 			case "0":
-				return new TranslatableText("text.golemancy.gene_low");
+				return Text.translatable("text.golemancy.gene_low");
 			case "1":
-				return new TranslatableText("text.golemancy.gene_average");
+				return Text.translatable("text.golemancy.gene_average");
 			case "2":
-				return new TranslatableText("text.golemancy.gene_high");
+				return Text.translatable("text.golemancy.gene_high");
 			case "3":
-				return new TranslatableText("text.golemancy.gene_perfect");
+				return Text.translatable("text.golemancy.gene_perfect");
 			default:
-				return new LiteralText("???");
+				return Text.literal("???");
 		}
 	}
 	
 	public Text potencyToText(String geneValue) {
 		switch (geneValue) {
 			case "1":
-				return new TranslatableText("text.golemancy.gene_feeble");
+				return Text.translatable("text.golemancy.gene_feeble");
 			case "2":
-				return new TranslatableText("text.golemancy.gene_low");
+				return Text.translatable("text.golemancy.gene_low");
 			case "3":
-				return new TranslatableText("text.golemancy.gene_average");
+				return Text.translatable("text.golemancy.gene_average");
 			case "4":
-				return new TranslatableText("text.golemancy.gene_high");
+				return Text.translatable("text.golemancy.gene_high");
 			case "5":
-				return new TranslatableText("text.golemancy.gene_perfect");
+				return Text.translatable("text.golemancy.gene_perfect");
 			default:
-				return new LiteralText("???");
+				return Text.literal("???");
 		}
 	}
 }

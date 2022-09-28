@@ -96,9 +96,9 @@ public class GolemHelper {
 
 	public static boolean tryTeleportTo(AbstractGolemEntity entity, LivingEntity target) {
 		for (int i = 0; i < 10; ++i) {
-			double x = target.getX() + getRandomInt(entity.getRandom(), -3, 3);
-			double y = target.getY() + getRandomInt(entity.getRandom(), -1, 1);
-			double z = target.getZ() + getRandomInt(entity.getRandom(), -3, 3);
+			double x = target.getX() + getRandomInt((Random) entity.getRandom(), -3, 3);
+			double y = target.getY() + getRandomInt((Random) entity.getRandom(), -1, 1);
+			double z = target.getZ() + getRandomInt((Random) entity.getRandom(), -3, 3);
 			BlockPos pos = new BlockPos(x, y, z);
 			if (canTeleportTo(pos, entity)) {
 				entity.teleport(x, y, z);

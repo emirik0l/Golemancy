@@ -2,7 +2,7 @@ package net.emirikol.golemancy.test;
 
 import net.emirikol.golemancy.Golemancy;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -40,7 +40,7 @@ public abstract class AbstractTestSuite {
         } else {
             String serverMsg = String.format("%s [SERVER]", msg);
             Golemancy.LOGGER.info(serverMsg);
-            this.player.sendMessage(new LiteralText(msg), false);
+            this.player.sendMessage(Text.literal(msg), false);
         }
     }
 
@@ -48,7 +48,7 @@ public abstract class AbstractTestSuite {
     public PlayerEntity getPlayer() { return player; }
 
     public BlockPos getRandomBlockPos() {
-        Random rand = this.world.getRandom();
+        Random rand = (Random) this.world.getRandom();
         int distance = rand.nextInt(10) + 1;
         int direction = rand.nextInt(4);
         switch (direction) {

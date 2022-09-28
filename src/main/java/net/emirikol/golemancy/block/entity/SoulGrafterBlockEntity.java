@@ -99,7 +99,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 
 	@Override
 	public Text getDisplayName() {
-		return new TranslatableText(getCachedState().getBlock().getTranslationKey());
+		return Text.translatable(getCachedState().getBlock().getTranslationKey());
 	}
 	
 	@Override
@@ -270,7 +270,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 	//Called when the soulstone grafting process completes; performs the actual grafting and breeding logic.
 	public void graft() {
 		Random rand = new Random();
-		if (this.world != null) rand = this.world.getRandom();
+		if (this.world != null) rand = (Random) this.world.getRandom();
 		int x;
 		//Get parent itemstacks.
 		ItemStack[] parents = { null, null };

@@ -30,7 +30,7 @@ public class SoulMirror extends Item implements ExtendedScreenHandlerFactory {
 	
     @Override
     public Text getDisplayName() {
-        return new TranslatableText(this.getTranslationKey());
+        return Text.translatable(this.getTranslationKey());
     }
 	
 	@Override

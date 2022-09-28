@@ -3,7 +3,6 @@ package net.emirikol.golemancy.genetics;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public class SoulType {
     private String typeString; // the translation key associated with the soul, i.e. "text.golemancy.type.covetous"
@@ -15,7 +14,7 @@ public class SoulType {
     }
 
     public String getTypeString() { return this.typeString; }
-    public Text getTypeText() { return new TranslatableText(this.typeString); }
+    public Text getTypeText() { return Text.translatable(this.typeString); }
     public EntityType<? extends AbstractGolemEntity> getEntityType() { return this.entityType; }
 
     @Override

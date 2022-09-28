@@ -71,7 +71,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
 	}
 
 	@Override
-	protected int getXpToDrop(PlayerEntity player) {
+	public int getXpToDrop() {
 		return 0;
 	}
 

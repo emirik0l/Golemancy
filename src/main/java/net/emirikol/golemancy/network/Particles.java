@@ -62,7 +62,7 @@ public class Particles {
 	
 	@Environment(EnvType.CLIENT)
 	public static void spawnHealParticle(BlockPos pos) {
-		Random rand = MinecraftClient.getInstance().world.getRandom();
+		Random rand = (Random) MinecraftClient.getInstance().world.getRandom();
 		for(int i = 0; i<15; i++) {
 			double d = 0.5D;
 			double m = (double)pos.getX() + rand.nextDouble() * d;
@@ -77,7 +77,7 @@ public class Particles {
 
 	@Environment(EnvType.CLIENT)
 	public static void spawnSmokeParticle(BlockPos pos) {
-		Random rand = MinecraftClient.getInstance().world.getRandom();
+		Random rand = (Random) MinecraftClient.getInstance().world.getRandom();
 		for(int i = 0; i<15; i++) {
 			double d = 0.5D;
 			double m = (double)pos.getX() + rand.nextDouble() * d;
@@ -92,7 +92,7 @@ public class Particles {
 	
 	@Environment(EnvType.CLIENT)
 	public static void spawnFoodParticle(BlockPos pos, Entity entity) {
-		Random rand = MinecraftClient.getInstance().world.getRandom();
+		Random rand = (Random) MinecraftClient.getInstance().world.getRandom();
 		if (entity instanceof LivingEntity) {
 			ItemStack stack = ((LivingEntity) entity).getEquippedStack(EquipmentSlot.MAINHAND);
 			for(int i = 0; i<15; i++) {

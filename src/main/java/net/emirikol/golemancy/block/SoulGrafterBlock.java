@@ -85,7 +85,7 @@ public class SoulGrafterBlock extends BlockWithEntity {
 		   double d = (double)pos.getX() + 0.5D;
 		   double e = (double)pos.getY() + 0.75D;
 		   double f = (double)pos.getZ() + 0.5D;
-		   Direction direction = Direction.random(random);
+		   Direction direction = Direction.random((net.minecraft.util.math.random.Random) random);
 		   Direction.Axis axis = direction.getAxis();
 		   double h = random.nextDouble() * 0.6D - 0.3D;
 		   double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52D : h;
