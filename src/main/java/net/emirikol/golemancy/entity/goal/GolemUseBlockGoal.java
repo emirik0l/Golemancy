@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
+import com.mojang.authlib.GameProfile;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.emirikol.golemancy.entity.FakePlayerEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -30,7 +31,7 @@ public class GolemUseBlockGoal extends Goal {
             //Calculate pertinent details.
             BlockPos pos = this.entity.getLinkedBlockPos();
             //Create a fake player and equip them with the golem's item.
-            FakePlayerEntity fakePlayer = new FakePlayerEntity(this.entity.world, pos, 0.0F, null, null);
+            FakePlayerEntity fakePlayer = new FakePlayerEntity(this.entity.world, pos, 0.0F, new GameProfile(entity.getUuid(), entity.getEntityName().toString()), null);
             fakePlayer.copyFromEntity(this.entity);
             //Try using the fake player to activate the block.
             fakePlayer.useBlock(pos);
