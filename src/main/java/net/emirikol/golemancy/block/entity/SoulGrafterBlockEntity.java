@@ -24,6 +24,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.CheckedRandom;
+import net.minecraft.util.math.random.RandomSeed;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -275,8 +277,8 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 
     //Called when the soulstone grafting process completes; performs the actual grafting and breeding logic.
     public void graft() {
-        Random rand = new Random();
-        if (this.world != null) rand = (Random) this.world.getRandom();
+        CheckedRandom rand = new CheckedRandom(RandomSeed.getSeed());
+        if (this.world != null) rand = (CheckedRandom) this.world.getRandom();
         int x;
         //Get parent itemstacks.
         ItemStack[] parents = {null, null};
