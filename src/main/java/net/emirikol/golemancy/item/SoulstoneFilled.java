@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.item;
 
+import net.emirikol.golemancy.GolemancyItemGroup;
 import net.emirikol.golemancy.genetics.Gene;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.genetics.SoulType;
@@ -10,7 +11,7 @@ import net.minecraft.text.Text;
 public class SoulstoneFilled extends Item {
 
     public SoulstoneFilled(Settings settings) {
-        super(settings);
+        super(settings.group(GolemancyItemGroup.GOLEMANCY_ITEM_GROUP));
     }
 
     @Override

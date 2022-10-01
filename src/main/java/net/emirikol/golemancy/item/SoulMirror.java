@@ -1,5 +1,6 @@
 package net.emirikol.golemancy.item;
 
+import net.emirikol.golemancy.GolemancyItemGroup;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.genetics.SerializedGenome;
 import net.emirikol.golemancy.screen.SoulMirrorScreenHandler;
@@ -23,7 +24,7 @@ public class SoulMirror extends Item implements ExtendedScreenHandlerFactory {
     private String soulData;
 
     public SoulMirror(Settings settings) {
-        super(settings);
+        super(settings.group(GolemancyItemGroup.GOLEMANCY_ITEM_GROUP));
     }
 
     @Override

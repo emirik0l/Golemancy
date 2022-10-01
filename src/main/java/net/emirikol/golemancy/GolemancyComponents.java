@@ -13,6 +13,6 @@ public class GolemancyComponents implements EntityComponentInitializer {
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerFor(AbstractGolemEntity.class, GOLEM, e -> new GolemComponent(e));
+        registry.registerFor(AbstractGolemEntity.class, GOLEM, GolemComponent::new);
     }
 } 
