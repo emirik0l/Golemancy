@@ -63,9 +63,7 @@ public class GolemancyClient implements ClientModInitializer {
         ClientPlayNetworking.registerGlobalReceiver(Particles.HEAL_PARTICLE_ID, (client, handler, buf, responseSender) -> {
             BlockPos pos = buf.readBlockPos();
 
-            client.execute(() -> {
-                Particles.spawnHealParticle(pos);
-            });
+            client.execute(() -> Particles.spawnHealParticle(pos));
         });
         //Register Food Particles
         ClientPlayNetworking.registerGlobalReceiver(Particles.FOOD_PARTICLE_ID, (client, handler, buf, responseSender) -> {
@@ -81,9 +79,7 @@ public class GolemancyClient implements ClientModInitializer {
         ClientPlayNetworking.registerGlobalReceiver(Particles.SMOKE_PARTICLE_ID, (client, handler, buf, responseSender) -> {
             BlockPos pos = buf.readBlockPos();
 
-            client.execute(() -> {
-                Particles.spawnSmokeParticle(pos);
-            });
+            client.execute(() -> Particles.spawnSmokeParticle(pos));
         });
     }
 
