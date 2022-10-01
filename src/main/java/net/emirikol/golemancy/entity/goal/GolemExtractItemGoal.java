@@ -16,9 +16,8 @@ import java.util.List;
 
 public class GolemExtractItemGoal extends Goal {
     protected final AbstractGolemEntity entity;
-
-    private Inventory container;
     private final List<Item> filter;
+    private Inventory container;
 
     public GolemExtractItemGoal(AbstractGolemEntity entity) {
         this.entity = entity;

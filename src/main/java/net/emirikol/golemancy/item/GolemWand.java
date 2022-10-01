@@ -1,12 +1,12 @@
 package net.emirikol.golemancy.item;
 
-import net.emirikol.golemancy.GolemancyItemGroup;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.emirikol.golemancy.entity.goal.GolemHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
@@ -24,7 +24,7 @@ public class GolemWand extends Item {
     private static final double TELEPORT_RANGE = 120.0D;
 
     public GolemWand(Settings settings) {
-        super(settings.group(GolemancyItemGroup.GOLEMANCY_ITEM_GROUP));
+        super(settings.group(ItemGroup.SEARCH));
 
     }
 

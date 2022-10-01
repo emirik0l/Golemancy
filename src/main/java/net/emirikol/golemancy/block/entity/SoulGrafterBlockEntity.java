@@ -29,8 +29,6 @@ import net.minecraft.util.math.random.RandomSeed;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSidedInventory, NamedScreenHandlerFactory {
     public static final int[] PARENT_SLOTS = {0, 1};
     public static final int[] EMPTYSTONE_SLOTS = {2};

@@ -17,8 +17,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.Random;
+import net.minecraft.util.math.random.CheckedRandom;
 
 public class Particles {
     public static final Identifier HEAL_PARTICLE_ID = new Identifier("golemancy", "heal_particle");
@@ -67,7 +66,8 @@ public class Particles {
 
     @Environment(EnvType.CLIENT)
     public static void spawnHealParticle(BlockPos pos) {
-        Random rand = (Random) MinecraftClient.getInstance().world.getRandom();
+        assert MinecraftClient.getInstance().world != null;
+        CheckedRandom rand = (CheckedRandom) MinecraftClient.getInstance().world.getRandom();
         for (int i = 0; i < 15; i++) {
             double d = 0.5D;
             double m = (double) pos.getX() + rand.nextDouble() * d;
@@ -82,7 +82,8 @@ public class Particles {
 
     @Environment(EnvType.CLIENT)
     public static void spawnSmokeParticle(BlockPos pos) {
-        Random rand = (Random) MinecraftClient.getInstance().world.getRandom();
+        assert MinecraftClient.getInstance().world != null;
+        CheckedRandom rand = (CheckedRandom) MinecraftClient.getInstance().world.getRandom();
         for (int i = 0; i < 15; i++) {
             double d = 0.5D;
             double m = (double) pos.getX() + rand.nextDouble() * d;
@@ -97,7 +98,8 @@ public class Particles {
 
     @Environment(EnvType.CLIENT)
     public static void spawnFoodParticle(BlockPos pos, Entity entity) {
-        Random rand = (Random) MinecraftClient.getInstance().world.getRandom();
+        assert MinecraftClient.getInstance().world != null;
+        CheckedRandom rand = (CheckedRandom) MinecraftClient.getInstance().world.getRandom();
         if (entity instanceof LivingEntity) {
             ItemStack stack = ((LivingEntity) entity).getEquippedStack(EquipmentSlot.MAINHAND);
             for (int i = 0; i < 15; i++) {

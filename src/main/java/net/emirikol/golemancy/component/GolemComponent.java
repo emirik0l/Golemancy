@@ -22,11 +22,11 @@ public class GolemComponent implements ComponentV3, AutoSyncedComponent {
         put("vigor", 0);
         put("smarts", 0);
     }};
+    private final Object provider;
     private BlockPos linkedBlockPos = null;
     private Block linkedBlock = null;
     private GolemMaterial material = null;
     private String color = "";
-    private final Object provider;
 
     public GolemComponent(Object provider) {
         this.provider = provider;

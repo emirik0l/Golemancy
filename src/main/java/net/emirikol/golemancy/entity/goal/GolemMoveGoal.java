@@ -12,9 +12,9 @@ import java.util.List;
 public class GolemMoveGoal extends Goal {
     protected final AbstractGolemEntity entity;
     protected final float maxYDifference;
+    private final List<BlockPos> failedTargets;
     protected BlockPos targetPos;
     protected int cooldown;
-    private final List<BlockPos> failedTargets;
     private int idleTime;
 
     public GolemMoveGoal(AbstractGolemEntity entity, float maxYDifference) {
