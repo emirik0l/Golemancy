@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemDanceGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToPickupFlowerGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -26,7 +27,7 @@ public class RestlessGolemEntity extends AbstractGolemEntity {
 
     @Override
     public RestlessGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        RestlessGolemEntity golemEntity = Golemancy.RESTLESS_GOLEM_ENTITY.create(serverWorld);
+        RestlessGolemEntity golemEntity = GMEntityTypes.RESTLESS_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

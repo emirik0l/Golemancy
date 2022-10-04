@@ -5,6 +5,7 @@ import net.emirikol.golemancy.entity.goal.GolemDepositVesselGoal;
 import net.emirikol.golemancy.entity.goal.GolemExtractItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemFillVesselGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToFluidGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -36,7 +37,7 @@ public class ParchedGolemEntity extends AbstractGolemEntity {
 
     @Override
     public ParchedGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        ParchedGolemEntity golemEntity = Golemancy.PARCHED_GOLEM_ENTITY.create(serverWorld);
+        ParchedGolemEntity golemEntity = GMEntityTypes.PARCHED_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

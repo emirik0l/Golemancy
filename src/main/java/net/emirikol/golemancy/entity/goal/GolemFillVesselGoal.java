@@ -65,7 +65,7 @@ public class GolemFillVesselGoal extends Goal {
     public boolean isFluidDrainable(BlockPos pos, ServerWorld world) {
         Block block = world.getBlockState(pos).getBlock();
         FluidState fluidState = world.getBlockState(pos).getFluidState();
-        return fluidState.isStill() && !fluidState.isEmpty() && block instanceof FluidDrainable;
+        return fluidState.isSource() && !fluidState.isEmpty() && block instanceof FluidDrainable;
     }
 
     public ItemStack drainFluid(BlockPos pos) {

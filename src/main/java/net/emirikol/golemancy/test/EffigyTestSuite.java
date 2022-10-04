@@ -5,6 +5,7 @@ import net.emirikol.golemancy.entity.CuriousGolemEntity;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.genetics.Genomes;
 import net.emirikol.golemancy.genetics.SoulTypes;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,16 +39,16 @@ public class EffigyTestSuite extends AbstractTestSuite {
         // Create a clay effigy block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
-        serverWorld.setBlockState(startPos, Golemancy.CLAY_EFFIGY_BLOCK.getDefaultState());
+        serverWorld.setBlockState(startPos, GMObjects.CLAY_EFFIGY.getDefaultState());
         BlockState state = serverWorld.getBlockState(startPos);
         // Create a Curious soulstone and give it to the dummy player.
-        ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+        ItemStack stack = new ItemStack(GMObjects.SOULSTONE_FILLED);
         Genome genome = Genomes.creativeGenome(SoulTypes.CURIOUS);
         genome.toItemStack(stack);
         this.getPlayer().setStackInHand(this.getPlayer().getActiveHand(), stack);
         // Call onUse() and check whether it returns a success.
         BlockHitResult hit = new BlockHitResult(new Vec3d(startPos.getX(), startPos.getY(), startPos.getZ()), Direction.NORTH, startPos, false);
-        ActionResult result = Golemancy.CLAY_EFFIGY_BLOCK.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
+        ActionResult result = GMObjects.CLAY_EFFIGY.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
         assertTrue(result == ActionResult.SUCCESS, "clay effigy did not return ActionResult.SUCCESS when spawning a golem");
         //Tear everything down.
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());
@@ -61,16 +62,16 @@ public class EffigyTestSuite extends AbstractTestSuite {
         // Create a terracotta effigy block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
-        serverWorld.setBlockState(startPos, Golemancy.TERRACOTTA_EFFIGY_BLOCK.getDefaultState());
+        serverWorld.setBlockState(startPos, GMObjects.TERRACOTTA_EFFIGY.getDefaultState());
         BlockState state = serverWorld.getBlockState(startPos);
         // Create a Curious soulstone and give it to the dummy player.
-        ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+        ItemStack stack = new ItemStack(GMObjects.SOULSTONE_FILLED);
         Genome genome = Genomes.creativeGenome(SoulTypes.CURIOUS);
         genome.toItemStack(stack);
         this.getPlayer().setStackInHand(this.getPlayer().getActiveHand(), stack);
         // Call onUse() and check whether it returns a success.
         BlockHitResult hit = new BlockHitResult(new Vec3d(startPos.getX(), startPos.getY(), startPos.getZ()), Direction.NORTH, startPos, false);
-        ActionResult result = Golemancy.TERRACOTTA_EFFIGY_BLOCK.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
+        ActionResult result = GMObjects.TERRACOTTA_EFFIGY.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
         assertTrue(result == ActionResult.SUCCESS, "terracotta effigy did not return ActionResult.SUCCESS when spawning a golem");
         //Tear everything down.
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());
@@ -84,16 +85,16 @@ public class EffigyTestSuite extends AbstractTestSuite {
         // Create an obsidian effigy block at the specified location.
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
-        serverWorld.setBlockState(startPos, Golemancy.OBSIDIAN_EFFIGY_BLOCK.getDefaultState());
+        serverWorld.setBlockState(startPos, GMObjects.OBSIDIAN_EFFIGY.getDefaultState());
         BlockState state = serverWorld.getBlockState(startPos);
         // Create a Curious soulstone and give it to the dummy player.
-        ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+        ItemStack stack = new ItemStack(GMObjects.SOULSTONE_FILLED);
         Genome genome = Genomes.creativeGenome(SoulTypes.CURIOUS);
         genome.toItemStack(stack);
         this.getPlayer().setStackInHand(this.getPlayer().getActiveHand(), stack);
         // Call onUse() and check whether it returns a success.
         BlockHitResult hit = new BlockHitResult(new Vec3d(startPos.getX(), startPos.getY(), startPos.getZ()), Direction.NORTH, startPos, false);
-        ActionResult result = Golemancy.OBSIDIAN_EFFIGY_BLOCK.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
+        ActionResult result = GMObjects.OBSIDIAN_EFFIGY.onUse(state, serverWorld, startPos, this.getPlayer(), this.getPlayer().getActiveHand(), hit);
         assertTrue(result == ActionResult.SUCCESS, "obsidian effigy did not return ActionResult.SUCCESS when spawning a golem");
         //Tear everything down.
         serverWorld.setBlockState(startPos, Blocks.AIR.getDefaultState());

@@ -53,7 +53,7 @@ public class GolemMoveGoal extends Goal {
 
     @Override
     public void tick() {
-        if (!this.targetPos.isWithinDistance(this.entity.getPos(), this.getDesiredDistanceToTarget())) {
+        if (!this.targetPos.isWithinDistance(this.entity.getBlockPos(), this.getDesiredDistanceToTarget())) {
             //Continue towards targetPos.
             if (this.entity.getNavigation().isIdle()) this.idleTime++;
 
@@ -67,7 +67,7 @@ public class GolemMoveGoal extends Goal {
     }
 
     @Override
-    public boolean shouldRunEveryTick() {
+    public boolean requiresUpdateEveryTick() {
         return true;
     }
 

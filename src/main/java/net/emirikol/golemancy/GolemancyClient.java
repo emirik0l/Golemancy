@@ -8,10 +8,10 @@ import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.genetics.SoulTypes;
 import net.emirikol.golemancy.network.Particles;
 import net.emirikol.golemancy.network.SpawnPacket;
+import net.emirikol.golemancy.registry.GMEntityTypes;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreen;
 import net.emirikol.golemancy.screen.SoulMirrorScreen;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -26,6 +26,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
+import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 
 import java.util.UUID;
 
@@ -34,14 +37,14 @@ public class GolemancyClient implements ClientModInitializer {
     public static final EntityModelLayer MODEL_GOLEM_LAYER = new EntityModelLayer(new Identifier("golemancy", "clay_golem"), "main");
 
     @Override
-    public void onInitializeClient() {
+    public void onInitializeClient(ModContainer container) {
         registerEntities();
         registerParticles();
         registerSpawnPacket();
         registerConfigPacket();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.CLAY_EFFIGY_BLOCK, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(Golemancy.TERRACOTTA_EFFIGY_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.put(RenderLayer.getCutout(), GMObjects.CLAY_EFFIGY);
+        BlockRenderLayerMap.put(RenderLayer.getCutout(), GMObjects.TERRACOTTA_EFFIGY);
         EntityModelLayerRegistry.registerModelLayer(MODEL_GOLEM_LAYER, GolemEntityModel::getTexturedModelData);
     }
 
@@ -55,7 +58,7 @@ public class GolemancyClient implements ClientModInitializer {
             EntityRendererRegistry.register(type, GolemEntityRenderer::new);
         }
         //Register Clayball Renderer
-        EntityRendererRegistry.register(Golemancy.CLAYBALL, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(GMEntityTypes.CLAYBALL, FlyingItemEntityRenderer::new);
     }
 
     public void registerParticles() {
@@ -98,7 +101,7 @@ public class GolemancyClient implements ClientModInitializer {
                 Entity e = et.create(MinecraftClient.getInstance().world);
                 if (e == null)
                     throw new IllegalStateException("Failed to create instance of entity \"" + Registry.ENTITY_TYPE.getId(et) + "\"!");
-                e.updateTrackedPosition(pos.x, pos.y, pos.z);
+                e.updatePosition(pos.x, pos.y, pos.z);
                 e.setPos(pos.x, pos.y, pos.z);
                 e.setPitch(pitch);
                 e.setYaw(yaw);

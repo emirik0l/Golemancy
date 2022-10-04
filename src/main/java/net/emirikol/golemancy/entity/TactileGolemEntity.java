@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemPickupGoal;
 import net.emirikol.golemancy.entity.goal.GolemUseBlockGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class TactileGolemEntity extends AbstractGolemEntity {
 
     @Override
     public TactileGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        TactileGolemEntity golemEntity = Golemancy.TACTILE_GOLEM_ENTITY.create(serverWorld);
+        TactileGolemEntity golemEntity = GMEntityTypes.TACTILE_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

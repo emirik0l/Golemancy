@@ -72,7 +72,7 @@ public class GolemFollowAndHealGoal extends Goal {
     @Override
     public void tick() {
         //Look at friend.
-        this.entity.getLookControl().lookAt(this.friend, 10.0F, (float) this.entity.getMaxLookPitchChange());
+        this.entity.getLookControl().lookAt(this.friend, 10.0F, (float) this.entity.getLookPitchSpeed());
         //Try to heal friend.
         if (this.isHealing()) {
             this.healingTimer--;
@@ -93,10 +93,9 @@ public class GolemFollowAndHealGoal extends Goal {
     }
 
     @Override
-    public boolean shouldRunEveryTick() {
+    public boolean requiresUpdateEveryTick() {
         return true;
     }
-
     public boolean findTarget() {
         float searchRadius = ConfigurationHandler.getGolemRadius();
         float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());

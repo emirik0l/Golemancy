@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemExtractSeedsGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToPlantGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class VerdantGolemEntity extends AbstractGolemEntity {
 
     @Override
     public VerdantGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        VerdantGolemEntity golemEntity = Golemancy.VERDANT_GOLEM_ENTITY.create(serverWorld);
+        VerdantGolemEntity golemEntity = GMEntityTypes.VERDANT_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

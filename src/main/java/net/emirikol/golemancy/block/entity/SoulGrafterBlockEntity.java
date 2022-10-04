@@ -7,6 +7,7 @@ import net.emirikol.golemancy.genetics.Gene;
 import net.emirikol.golemancy.genetics.Genome;
 import net.emirikol.golemancy.inventory.ImplementedSidedInventory;
 import net.emirikol.golemancy.item.SoulstoneFilled;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.SoulGrafterScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -24,8 +25,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.CheckedRandom;
-import net.minecraft.util.math.random.RandomSeed;
+import net.minecraft.util.random.LegacySimpleRandom;
+import net.minecraft.util.random.RandomSeed;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -120,13 +121,13 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
     public boolean isValid(int slot, ItemStack stack) {
         //You can insert filled soulstones into parent slots.
         for (int i : PARENT_SLOTS) {
-            if ((slot == i) && (stack.isItemEqual(new ItemStack(Golemancy.SOULSTONE_FILLED)))) {
+            if ((slot == i) && (stack.isItemEqual(new ItemStack(GMObjects.SOULSTONE_FILLED)))) {
                 return true;
             }
         }
         //You can insert empty soulstones into empty soulstone slots.
         for (int i : EMPTYSTONE_SLOTS) {
-            if ((slot == i) && (stack.isItemEqual(new ItemStack(Golemancy.SOULSTONE_EMPTY)))) {
+            if ((slot == i) && (stack.isItemEqual(new ItemStack(GMObjects.SOULSTONE_EMPTY)))) {
                 return true;
             }
         }
@@ -187,7 +188,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
         }
         //Check if the empty soulstone slot contains at least one empty soulstone.
         Item item = items.get(EMPTYSTONE_SLOTS[0]).getItem();
-        if (!(item == Golemancy.SOULSTONE_EMPTY)) {
+        if (!(item == GMObjects.SOULSTONE_EMPTY)) {
             return false;
         }
         //Check if there is at least one empty output slot.
@@ -275,8 +276,9 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
 
     //Called when the soulstone grafting process completes; performs the actual grafting and breeding logic.
     public void graft() {
-        CheckedRandom rand = new CheckedRandom(RandomSeed.getSeed());
-        if (this.world != null) rand = (CheckedRandom) this.world.getRandom();
+
+        LegacySimpleRandom rand = new LegacySimpleRandom(RandomSeed.generateUniqueSeed());
+        if (this.world != null) rand = (LegacySimpleRandom) this.world.getRandom();
         int x;
         //Get parent itemstacks.
         ItemStack[] parents = {null, null};
@@ -295,7 +297,7 @@ public class SoulGrafterBlockEntity extends BlockEntity implements ImplementedSi
             if (emptySoulstones.getCount() > 0) {
                 //Breed the parents to create a new soulstone with a new genome.
                 Genome childGenome = Genome.breed(new Genome(parents[0]), new Genome(parents[1]));
-                ItemStack child = new ItemStack(Golemancy.SOULSTONE_FILLED);
+                ItemStack child = new ItemStack(GMObjects.SOULSTONE_FILLED);
                 childGenome.toItemStack(child);
                 //Output new soulstone and decrement empty soulstones.
                 graftOutput(child);

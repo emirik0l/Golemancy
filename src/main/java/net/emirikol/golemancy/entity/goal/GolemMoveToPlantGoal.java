@@ -72,7 +72,7 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
 
     public boolean canPlant(BlockPos pos) {
         //Check if a block is close enough to plant, and if it can be planted on.
-        if (pos.isWithinDistance(this.entity.getPos(), PLANT_RANGE)) {
+        if (pos.isWithinDistance(this.entity.getBlockPos(), PLANT_RANGE)) {
             return this.hasSeed() && this.isTargetPos(pos);
         }
         return false;

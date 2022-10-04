@@ -46,11 +46,11 @@ public class GolemMoveToFluidGoal extends GolemMoveGoal {
 
         if (vessel.getItem() == Items.BUCKET) {
             //Buckets should be able to drain any fluid.
-            return fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+            return fluidState.isSource() && !fluidState.isEmpty() && super.isTargetPos(pos);
         }
         if (vessel.getItem() == Items.GLASS_BOTTLE) {
             //Glass bottles can only drain water.
-            return fluidState.getFluid() == Fluids.WATER && fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+            return fluidState.getFluid() == Fluids.WATER && fluidState.isSource() && !fluidState.isEmpty() && super.isTargetPos(pos);
         }
 
         return false;

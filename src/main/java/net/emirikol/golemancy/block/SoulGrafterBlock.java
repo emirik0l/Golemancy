@@ -20,6 +20,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -91,7 +92,7 @@ public class SoulGrafterBlock extends BlockWithEntity {
             double d = (double) pos.getX() + 0.5D;
             double e = (double) pos.getY() + 0.75D;
             double f = (double) pos.getZ() + 0.5D;
-            Direction direction = Direction.random((net.minecraft.util.math.random.Random) random);
+            Direction direction = Direction.random((RandomGenerator) random);
             Direction.Axis axis = direction.getAxis();
             double h = random.nextDouble() * 0.6D - 0.3D;
             double i = axis == Direction.Axis.X ? (double) direction.getOffsetX() * 0.52D : h;

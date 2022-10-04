@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.event;
 
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.emirikol.golemancy.test.EffigyTestSuite;
 import net.emirikol.golemancy.test.GeneticsTestSuite;
 import net.emirikol.golemancy.test.GolemBehaviorTestSuite;
@@ -23,7 +24,7 @@ public class CommandRegistrationHandler {
         });
     }
 
-    public static void golemancyTest(CommandContext<ServerCommandSource> context) {
+    public static void golemancyTest(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerWorld world = context.getSource().getWorld();
         PlayerEntity player;
 

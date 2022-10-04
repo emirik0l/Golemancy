@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemExtractItemToSortGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToSortGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class CarefulGolemEntity extends AbstractGolemEntity {
 
     @Override
     public CarefulGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        CarefulGolemEntity golemEntity = Golemancy.CAREFUL_GOLEM_ENTITY.create(serverWorld);
+        CarefulGolemEntity golemEntity = GMEntityTypes.CAREFUL_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

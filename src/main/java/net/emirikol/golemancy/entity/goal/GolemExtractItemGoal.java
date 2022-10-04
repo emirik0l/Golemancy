@@ -70,7 +70,7 @@ public class GolemExtractItemGoal extends Goal {
         if (pos == null) {
             return false;
         }
-        return pos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget());
+        return pos.isWithinDistance(this.entity.getBlockPos(), this.getDesiredSquaredDistanceToTarget());
     }
 
     private boolean linkedBlockCanExtract() {

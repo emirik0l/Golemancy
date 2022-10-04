@@ -1,6 +1,7 @@
 package net.emirikol.golemancy.screen;
 
 import net.emirikol.golemancy.Golemancy;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.emirikol.golemancy.screen.slot.FilledSoulstoneSlot;
 import net.emirikol.golemancy.screen.slot.OutputSlot;
 import net.emirikol.golemancy.screen.slot.RestrictedSlot;
@@ -38,7 +39,7 @@ public class SoulGrafterScreenHandler extends ScreenHandler {
         this.addSlot(parent_a);
         this.addSlot(parent_b);
         //Place the empty soulstone slot.
-        Slot empty_stones = new RestrictedSlot(inventory, Golemancy.SOULSTONE_EMPTY, 2, 16, 53);
+        Slot empty_stones = new RestrictedSlot(inventory, GMObjects.SOULSTONE_EMPTY, 2, 16, 53);
         this.addSlot(empty_stones);
         //Place the fuel slot.
         Slot fuel = new RestrictedSlot(inventory, Items.BONE_MEAL, 3, 80, 53);

@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity.projectile;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.emirikol.golemancy.network.SpawnPacket;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.Entity;
@@ -29,11 +30,11 @@ public class ClayballEntity extends ThrownItemEntity {
     }
 
     public ClayballEntity(World world, LivingEntity owner) {
-        super(Golemancy.CLAYBALL, owner, world);
+        super(GMEntityTypes.CLAYBALL, owner, world);
     }
 
     public ClayballEntity(World world, double x, double y, double z) {
-        super(Golemancy.CLAYBALL, x, y, z, world);
+        super(GMEntityTypes.CLAYBALL, x, y, z, world);
     }
 
     protected Item getDefaultItem() {

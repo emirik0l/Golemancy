@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemDropHeldItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToMineGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class EntropicGolemEntity extends AbstractGolemEntity {
 
     @Override
     public EntropicGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        EntropicGolemEntity golemEntity = Golemancy.ENTROPIC_GOLEM_ENTITY.create(serverWorld);
+        EntropicGolemEntity golemEntity = GMEntityTypes.ENTROPIC_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

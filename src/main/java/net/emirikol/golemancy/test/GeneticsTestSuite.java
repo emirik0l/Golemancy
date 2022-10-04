@@ -2,6 +2,7 @@ package net.emirikol.golemancy.test;
 
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.genetics.*;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,9 +28,9 @@ public class GeneticsTestSuite extends AbstractTestSuite {
 
     public void genomeHasValidData() {
         //Create ItemStacks with valid and invalid data to test on.
-        ItemStack validStack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+        ItemStack validStack = new ItemStack(GMObjects.SOULSTONE_FILLED);
         Genomes.ZOMBIE.toItemStack(validStack);
-        ItemStack invalidStack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+        ItemStack invalidStack = new ItemStack(GMObjects.SOULSTONE_FILLED);
         ItemStack incorrectStack = new ItemStack(Items.DIRT);
         //Extract NBT data and test whether it is valid.
         boolean valid = Genomes.ZOMBIE.validNbt(validStack.getOrCreateNbt());
@@ -48,7 +49,7 @@ public class GeneticsTestSuite extends AbstractTestSuite {
             put("vigor", new Gene<Integer>(1));
             put("smarts", new Gene<Integer>(0));
         }};
-        ItemStack stack = new ItemStack(Golemancy.SOULSTONE_FILLED);
+        ItemStack stack = new ItemStack(GMObjects.SOULSTONE_FILLED);
         baseGenome.toItemStack(stack);
         //Create an empty genome and load it from the ItemStack.
         Genome newGenome = new Genome();

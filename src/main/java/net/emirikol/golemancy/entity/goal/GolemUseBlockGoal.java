@@ -49,7 +49,7 @@ public class GolemUseBlockGoal extends Goal {
         if (pos == null) {
             return false;
         }
-        return pos.isWithinDistance(this.entity.getPos(), this.getDesiredSquaredDistanceToTarget());
+        return pos.isWithinDistance(this.entity.getBlockPos(), this.getDesiredSquaredDistanceToTarget());
     }
 
     public boolean canUseBlock() {

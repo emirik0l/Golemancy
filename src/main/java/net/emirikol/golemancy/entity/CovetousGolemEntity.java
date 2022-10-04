@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemDepositHeldItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToPickupGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class CovetousGolemEntity extends AbstractGolemEntity {
 
     @Override
     public CovetousGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        CovetousGolemEntity golemEntity = Golemancy.COVETOUS_GOLEM_ENTITY.create(serverWorld);
+        CovetousGolemEntity golemEntity = GMEntityTypes.COVETOUS_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

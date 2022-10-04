@@ -2,6 +2,7 @@ package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemExtractToolGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.CreeperEntity;
@@ -26,14 +27,14 @@ public class ValiantGolemEntity extends AbstractGolemEntity {
         this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
         this.targetSelector.add(2, new AttackWithOwnerGoal(this));
         this.targetSelector.add(3, new RevengeGoal(this, AbstractGolemEntity.class).setGroupRevenge());
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity) -> {
+        this.targetSelector.add(3, new TargetGoal<>(this, MobEntity.class, 5, false, false, (livingEntity) -> {
             return livingEntity instanceof Monster && !(livingEntity instanceof CreeperEntity);
         }));
     }
 
     @Override
     public ValiantGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        ValiantGolemEntity golemEntity = Golemancy.VALIANT_GOLEM_ENTITY.create(serverWorld);
+        ValiantGolemEntity golemEntity = GMEntityTypes.VALIANT_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

@@ -76,7 +76,7 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
 
     public boolean canDeposit(BlockPos pos) {
         //Check if a block is close enough to deposit into, and if it can be deposited into.
-        if (pos.isWithinDistance(this.entity.getPos(), DEPOSIT_RANGE)) {
+        if (pos.isWithinDistance(this.entity.getBlockPos(), DEPOSIT_RANGE)) {
             return this.hasSomething() && this.isTargetPos(pos);
         }
         return false;

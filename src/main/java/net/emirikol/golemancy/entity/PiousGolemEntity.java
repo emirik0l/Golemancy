@@ -3,6 +3,7 @@ package net.emirikol.golemancy.entity;
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemDropHeldItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemFollowAndHealGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -24,7 +25,7 @@ public class PiousGolemEntity extends AbstractGolemEntity {
 
     @Override
     public PiousGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        PiousGolemEntity golemEntity = Golemancy.PIOUS_GOLEM_ENTITY.create(serverWorld);
+        PiousGolemEntity golemEntity = GMEntityTypes.PIOUS_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

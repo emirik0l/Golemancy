@@ -4,6 +4,7 @@ import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemEatHeldItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemExtractItemGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToPickupGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -26,7 +27,7 @@ public class HungryGolemEntity extends AbstractGolemEntity {
 
     @Override
     public HungryGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        HungryGolemEntity golemEntity = Golemancy.HUNGRY_GOLEM_ENTITY.create(serverWorld);
+        HungryGolemEntity golemEntity = GMEntityTypes.HUNGRY_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

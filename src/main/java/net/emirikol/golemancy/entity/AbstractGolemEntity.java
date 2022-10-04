@@ -6,6 +6,7 @@ import net.emirikol.golemancy.component.GolemComponent;
 import net.emirikol.golemancy.entity.goal.GolemFollowOwnerGoal;
 import net.emirikol.golemancy.entity.goal.GolemMoveToHomeGoal;
 import net.emirikol.golemancy.event.ConfigurationHandler;
+import net.emirikol.golemancy.registry.GMObjects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -136,7 +137,7 @@ public abstract class AbstractGolemEntity extends TameableEntity {
             return super.interactMob(player, hand);
         }
         //Ignore the golem wand.
-        if (player.getStackInHand(hand).getItem() == Golemancy.GOLEM_WAND) {
+        if (player.getStackInHand(hand).getItem() == GMObjects.GOLEM_WAND) {
             return super.interactMob(player, hand);
         }
         //The following functionality is only available to the golem's owner.
