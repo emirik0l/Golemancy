@@ -8,7 +8,9 @@
       "name": "Golemancy",
       "description": "A short description of your mod.",
       "contributors": {
-        "DanikingRD": ""
+		"Author": "Emirikol",
+        "Maintainer 1": "DanikingRD",
+        "Maintainer 2": "Sunconure11"		
       },
       "contact": {
         "homepage": "https://www.curseforge.com/minecraft/mc-mods/golemancy",
