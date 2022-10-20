@@ -4,6 +4,7 @@ import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.CovetousGolemEntity;
 import net.emirikol.golemancy.entity.ParchedGolemEntity;
 import net.emirikol.golemancy.entity.goal.*;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
@@ -62,8 +63,8 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
         BlockPos chestPos = startPos.north();
-        CovetousGolemEntity entity = Golemancy.COVETOUS_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
-        serverWorld.spawnNewEntityAndPassengers(entity);
+        CovetousGolemEntity entity = GMEntityTypes.COVETOUS_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnEntityAndPassengers(entity);
         entity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.DIRT));
         serverWorld.setBlockState(chestPos, Blocks.CHEST.getDefaultState());
         GolemDepositHeldItemGoal goal = new GolemDepositHeldItemGoal(entity);
@@ -85,8 +86,8 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         BlockPos startPos = this.getRandomBlockPos();
         BlockPos chestPos = startPos.north();
         //Create a parched golem with a GolemExtractItemGoal goal.
-        ParchedGolemEntity entity = Golemancy.PARCHED_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
-        serverWorld.spawnNewEntityAndPassengers(entity);
+        ParchedGolemEntity entity = GMEntityTypes.PARCHED_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnEntityAndPassengers(entity);
         GolemExtractItemGoal goal = new GolemExtractItemGoal(entity);
         goal.add(Items.BUCKET);
         //Create a chest with a bucket in it.
@@ -114,8 +115,8 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         serverWorld.setBlockState(startPos, state);
         ((FluidFillable) Blocks.OAK_FENCE).tryFillWithFluid(serverWorld, startPos, state, Fluids.WATER.getDefaultState());
         //Create a golem entity and equip them with an empty bucket.
-        ParchedGolemEntity entity = Golemancy.PARCHED_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
-        serverWorld.spawnNewEntityAndPassengers(entity);
+        ParchedGolemEntity entity = GMEntityTypes.PARCHED_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnEntityAndPassengers(entity);
         GolemFillVesselGoal goal = new GolemFillVesselGoal(entity);
         entity.equipStack(EquipmentSlot.MAINHAND, Items.BUCKET.getDefaultStack());
         //Attempt to drain the waterlogged block and check the result.
@@ -132,8 +133,8 @@ public class GolemBehaviorTestSuite extends AbstractTestSuite {
         ServerWorld serverWorld = (ServerWorld) this.getWorld();
         BlockPos startPos = this.getRandomBlockPos();
         BlockPos itemPos = startPos.north();
-        CovetousGolemEntity entity = Golemancy.COVETOUS_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
-        serverWorld.spawnNewEntityAndPassengers(entity);
+        CovetousGolemEntity entity = GMEntityTypes.COVETOUS_GOLEM_ENTITY.create(serverWorld, null, null, null, startPos, SpawnReason.SPAWN_EGG, true, true);
+        serverWorld.spawnEntityAndPassengers(entity);
         GolemMoveToPickupGoal goal = new GolemMoveToPickupGoal(entity, 5.0F);
         //Spawn an item near the golem.
         ItemEntity itemEntity = new ItemEntity(serverWorld, itemPos.getX(), itemPos.getY(), itemPos.getZ(), new ItemStack(Items.DIAMOND));

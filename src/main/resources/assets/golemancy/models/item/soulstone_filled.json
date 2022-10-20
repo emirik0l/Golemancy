@@ -4,20 +4,95 @@
     "layer0": "golemancy:item/soulstone"
   },
   "overrides": [
-	{"predicate": { "custom_model_data": 1 }, "model": "golemancy:item/soulstone_restless"},
-	{"predicate": { "custom_model_data": 2 }, "model": "golemancy:item/soulstone_curious"},
-	{"predicate": { "custom_model_data": 3 }, "model": "golemancy:item/soulstone_hungry"},
-	{"predicate": { "custom_model_data": 4 }, "model": "golemancy:item/soulstone_covetous"},
-	{"predicate": { "custom_model_data": 5 }, "model": "golemancy:item/soulstone_valiant"},
-	{"predicate": { "custom_model_data": 6 }, "model": "golemancy:item/soulstone_parched"},
-	{"predicate": { "custom_model_data": 7 }, "model": "golemancy:item/soulstone_entropic"},
-	{"predicate": { "custom_model_data": 8 }, "model": "golemancy:item/soulstone_tactile"},
-	{"predicate": { "custom_model_data": 9 }, "model": "golemancy:item/soulstone_intrepid"},
-	{"predicate": { "custom_model_data": 10 }, "model": "golemancy:item/soulstone_weeping"},
-	{"predicate": { "custom_model_data": 11 }, "model": "golemancy:item/soulstone_rustic"},
-	{"predicate": { "custom_model_data": 12 }, "model": "golemancy:item/soulstone_verdant"},
-	{"predicate": { "custom_model_data": 13 }, "model": "golemancy:item/soulstone_marshy"},
-	{"predicate": { "custom_model_data": 14 }, "model": "golemancy:item/soulstone_careful"},
-	{"predicate": { "custom_model_data": 15 }, "model": "golemancy:item/soulstone_pious"}
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "golemancy:item/soulstone_restless"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "golemancy:item/soulstone_curious"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3
+      },
+      "model": "golemancy:item/soulstone_hungry"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4
+      },
+      "model": "golemancy:item/soulstone_covetous"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5
+      },
+      "model": "golemancy:item/soulstone_valiant"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 6
+      },
+      "model": "golemancy:item/soulstone_parched"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7
+      },
+      "model": "golemancy:item/soulstone_entropic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 8
+      },
+      "model": "golemancy:item/soulstone_tactile"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9
+      },
+      "model": "golemancy:item/soulstone_intrepid"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10
+      },
+      "model": "golemancy:item/soulstone_weeping"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 11
+      },
+      "model": "golemancy:item/soulstone_rustic"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 12
+      },
+      "model": "golemancy:item/soulstone_verdant"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 13
+      },
+      "model": "golemancy:item/soulstone_marshy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 14
+      },
+      "model": "golemancy:item/soulstone_careful"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 15
+      },
+      "model": "golemancy:item/soulstone_pious"
+    }
   ]
 }

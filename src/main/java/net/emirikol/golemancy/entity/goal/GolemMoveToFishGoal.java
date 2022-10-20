@@ -38,7 +38,9 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
     }
 
     @Override
-    public boolean shouldContinue() { return this.hasRod() && super.shouldContinue(); }
+    public boolean shouldContinue() {
+        return this.hasRod() && super.shouldContinue();
+    }
 
     @Override
     public void tick() {
@@ -60,7 +62,7 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
     public boolean isTargetPos(BlockPos pos) {
         ServerWorld world = (ServerWorld) this.entity.world;
         FluidState fluidState = world.getBlockState(pos).getFluidState();
-        return (fluidState.getFluid() == Fluids.WATER) && fluidState.isStill() && !fluidState.isEmpty() && super.isTargetPos(pos);
+        return (fluidState.getFluid() == Fluids.WATER) && fluidState.isSource() && !fluidState.isEmpty() && super.isTargetPos(pos);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class GolemMoveToFishGoal extends GolemMoveGoal {
 
     public boolean canFish(BlockPos pos) {
         //Check if water is close enough to fish, and if we are holding a rod.
-        if (pos.isWithinDistance(this.entity.getPos(), FISH_RANGE)) {
+        if (pos.isWithinDistance(this.entity.getBlockPos(), FISH_RANGE)) {
             return this.isTargetPos(pos) && this.hasRod();
         }
         return false;

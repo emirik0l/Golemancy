@@ -15,12 +15,18 @@ public class GolemMoveToMineGoal extends GolemMoveToBreakGoal {
     public boolean isTargetPos(BlockPos pos) {
         //Must match the Block type of the golem's linked block.
         BlockState state = this.entity.world.getBlockState(pos);
-        if (state == null) { return false; }
+        if (state == null) {
+            return false;
+        }
         Block linkedBlock = this.entity.getLinkedBlock();
-        if (linkedBlock == null) { return false; }
+        if (linkedBlock == null) {
+            return false;
+        }
 
         return (state.getBlock() == linkedBlock) && super.isTargetPos(pos);
     }
 
-    protected int getMaxProgress() { return 120; }
+    protected int getMaxProgress() {
+        return 120;
+    }
 }

@@ -10,9 +10,9 @@ public class Mutations {
     public static final Mutation VERDANT = new Mutation(SoulTypes.TACTILE, SoulTypes.COVETOUS, SoulTypes.VERDANT, 0.10F);
 
     public static final List<Mutation> MUTATIONS = new ArrayList<Mutation>() {{
-       add(CAREFUL);
-       add(PIOUS);
-       add(RUSTIC);
-       add(VERDANT);
+        add(CAREFUL);
+        add(PIOUS);
+        add(RUSTIC);
+        add(VERDANT);
     }};
 }

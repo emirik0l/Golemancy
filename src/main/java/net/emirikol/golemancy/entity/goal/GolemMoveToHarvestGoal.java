@@ -1,7 +1,6 @@
 package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
-
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 

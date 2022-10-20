@@ -1,19 +1,19 @@
 {
-	"variants": {
-		"facing=north": {
-			"model": "golemancy:block/clay_effigy"
-		},
-		"facing=east": {
-			"model": "golemancy:block/clay_effigy",
-			"y": 90
-		},
-		"facing=south": {
-			"model": "golemancy:block/clay_effigy",
-			"y": 180
-		},
-		"facing=west": {
-			"model": "golemancy:block/clay_effigy",
-			"y": 270
-		}
-	}
+  "variants": {
+    "facing=north": {
+      "model": "golemancy:block/clay_effigy"
+    },
+    "facing=east": {
+      "model": "golemancy:block/clay_effigy",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "golemancy:block/clay_effigy",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "golemancy:block/clay_effigy",
+      "y": 270
+    }
+  }
 }

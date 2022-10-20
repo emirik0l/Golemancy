@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "net.emirikol",
+    "id": "golemancy",
+    "version": "${version}",
+    "metadata": {
+      "name": "Golemancy",
+      "description": "A short description of your mod.",
+      "contributors": {
+		"Author": "Emirikol",
+        "Maintainer 1": "DanikingRD",
+        "Maintainer 2": "Sunconure11"		
+      },
+      "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/golemancy",
+        "issues": "https://github.com/emirik0l/Golemancy/issues",
+        "sources": "https://github.com/emirik0l/Golemancy"
+      },
+      "icon": "assets/golemancy/icon.png"
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "entrypoints": {
+      "init": "net.emirikol.golemancy.Golemancy",
+      "client_init": "net.emirikol.golemancy.GolemancyClient",
+      "cardinal-components-entity": "net.emirikol.golemancy.GolemancyComponents",
+      "modmenu": "net.emirikol.golemancy.GolemancyModMenu"
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "versions": ">=0.17.0-"
+      },
+      {
+        "id": "quilted_fabric_api",
+        "versions": ">=4.0.0-"
+      },
+      {
+        "id": "minecraft",
+        "versions": ">=1.19.2"
+      },
+      {
+        "id": "cloth-config2",
+        "versions": ">=6.1.48"
+      }
+    ]
+  },
+  "cardinal-components": [
+    "golemancy:golem"
+  ]
+}

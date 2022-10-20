@@ -2,7 +2,6 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.emirikol.golemancy.util.ModSupport;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
@@ -73,7 +72,7 @@ public class GolemMoveToPlantGoal extends GolemMoveGoal {
 
     public boolean canPlant(BlockPos pos) {
         //Check if a block is close enough to plant, and if it can be planted on.
-        if (pos.isWithinDistance(this.entity.getPos(), PLANT_RANGE)) {
+        if (pos.isWithinDistance(this.entity.getBlockPos(), PLANT_RANGE)) {
             return this.hasSeed() && this.isTargetPos(pos);
         }
         return false;

@@ -53,7 +53,8 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
 
         Inventory inventory = GolemHelper.getInventory(pos, world);
         BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
-        if (inventory == null || pos.equals(linkedBlockPos) || (linkedBlockPos != null && GolemHelper.sameDoubleInventory(pos, linkedBlockPos, world))) return false;
+        if (inventory == null || pos.equals(linkedBlockPos) || (linkedBlockPos != null && GolemHelper.sameDoubleInventory(pos, linkedBlockPos, world)))
+            return false;
 
         return GolemHelper.canInsert(stack, inventory) && this.validForSorting(stack, inventory) && super.isTargetPos(pos);
     }
@@ -75,7 +76,7 @@ public class GolemMoveToSortGoal extends GolemMoveGoal {
 
     public boolean canDeposit(BlockPos pos) {
         //Check if a block is close enough to deposit into, and if it can be deposited into.
-        if (pos.isWithinDistance(this.entity.getPos(), DEPOSIT_RANGE)) {
+        if (pos.isWithinDistance(this.entity.getBlockPos(), DEPOSIT_RANGE)) {
             return this.hasSomething() && this.isTargetPos(pos);
         }
         return false;

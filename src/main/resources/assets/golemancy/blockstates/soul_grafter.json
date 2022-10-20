@@ -1,5 +1,7 @@
 {
-	"variants": {
-		"": { "model": "golemancy:block/soul_grafter" }
-	}
+  "variants": {
+    "": {
+      "model": "golemancy:block/soul_grafter"
+    }
+  }
 }

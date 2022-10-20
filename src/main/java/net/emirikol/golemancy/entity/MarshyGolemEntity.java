@@ -2,6 +2,7 @@ package net.emirikol.golemancy.entity;
 
 import net.emirikol.golemancy.Golemancy;
 import net.emirikol.golemancy.entity.goal.GolemMoveToFishGoal;
+import net.emirikol.golemancy.registry.GMEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -22,7 +23,7 @@ public class MarshyGolemEntity extends AbstractGolemEntity {
 
     @Override
     public MarshyGolemEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        MarshyGolemEntity golemEntity = Golemancy.MARSHY_GOLEM_ENTITY.create(serverWorld);
+        MarshyGolemEntity golemEntity = GMEntityTypes.MARSHY_GOLEM_ENTITY.create(serverWorld);
         UUID uUID = this.getOwnerUuid();
 
         if ((uUID != null) && (golemEntity != null)) {

@@ -21,13 +21,12 @@ public class GolemFollowAndHealGoal extends Goal {
     private static final float HEAL_AMOUNT = 2.0F;
 
     protected final AbstractGolemEntity entity;
-    private LivingEntity friend;
     private final EntityNavigation navigation;
     private final boolean canHealOwner;
-
+    protected int cooldown;
+    private LivingEntity friend;
     private int updateCountdownTicks;
     private int healingTimer;
-    protected int cooldown;
     private float oldWaterPathfindingPenalty;
 
     public GolemFollowAndHealGoal(AbstractGolemEntity entity, boolean canHealOwner) {
@@ -73,7 +72,7 @@ public class GolemFollowAndHealGoal extends Goal {
     @Override
     public void tick() {
         //Look at friend.
-        this.entity.getLookControl().lookAt(this.friend, 10.0F, (float)this.entity.getMaxLookPitchChange());
+        this.entity.getLookControl().lookAt(this.friend, 10.0F, (float) this.entity.getLookPitchSpeed());
         //Try to heal friend.
         if (this.isHealing()) {
             this.healingTimer--;
@@ -94,14 +93,13 @@ public class GolemFollowAndHealGoal extends Goal {
     }
 
     @Override
-    public boolean shouldRunEveryTick() {
+    public boolean requiresUpdateEveryTick() {
         return true;
     }
-
     public boolean findTarget() {
         float searchRadius = ConfigurationHandler.getGolemRadius();
         float r = searchRadius + (searchRadius * this.entity.getGolemSmarts());
-        List<LivingEntity> list = this.entity.world.getEntitiesByClass(LivingEntity.class, entity.getBoundingBox().expand(r,r,r), (entity) -> {
+        List<LivingEntity> list = this.entity.world.getEntitiesByClass(LivingEntity.class, entity.getBoundingBox().expand(r, r, r), (entity) -> {
             if (entity instanceof TameableEntity) {
                 TameableEntity tameable = (TameableEntity) entity;
                 return this.isWounded(tameable) && (this.entity.getOwnerUuid() != null) && (this.entity.getOwnerUuid().equals(tameable.getOwnerUuid()));
@@ -122,12 +120,15 @@ public class GolemFollowAndHealGoal extends Goal {
     public boolean isWounded(LivingEntity entity) {
         return entity.getHealth() < entity.getMaxHealth();
     }
+
     public boolean isHealing() {
         return this.healingTimer > 0;
     }
+
     public void setHealing() {
         this.healingTimer = 80;
     }
+
     public float getHealAmount() {
         return HEAL_AMOUNT + this.entity.getGolemSmarts();
     }

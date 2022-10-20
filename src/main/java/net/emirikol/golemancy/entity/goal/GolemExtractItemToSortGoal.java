@@ -1,7 +1,7 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -47,10 +47,12 @@ public class GolemExtractItemToSortGoal extends GolemExtractItemGoal {
 
         ServerWorld world = (ServerWorld) this.entity.world;
         BlockPos linkedBlockPos = this.entity.getLinkedBlockPos();
-        if (linkedBlockPos == null) { return output; } //only search around linked block
+        if (linkedBlockPos == null) {
+            return output;
+        } //only search around linked block
 
         float r = searchRadius + (searchRadius * entity.getGolemSmarts());
-        for (BlockPos curPos: BlockPos.iterateOutwards(linkedBlockPos, (int)r, (int) this.maxYDifference, (int)r)) {
+        for (BlockPos curPos : BlockPos.iterateOutwards(linkedBlockPos, (int) r, (int) this.maxYDifference, (int) r)) {
             Inventory result = GolemHelper.getInventory(curPos, world);
             if (result != null && !curPos.equals(linkedBlockPos) && !GolemHelper.sameDoubleInventory(curPos, linkedBlockPos, world)) {
                 output.add(result);

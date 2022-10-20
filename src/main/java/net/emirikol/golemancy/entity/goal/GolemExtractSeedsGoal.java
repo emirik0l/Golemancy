@@ -2,7 +2,6 @@ package net.emirikol.golemancy.entity.goal;
 
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
 import net.emirikol.golemancy.util.ModSupport;
-
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.StemBlock;
 import net.minecraft.item.BlockItem;
@@ -23,7 +22,7 @@ public class GolemExtractSeedsGoal extends GolemExtractItemGoal {
             boolean modSeed = ModSupport.isModdedSeed(stack);
             return (crop || stem || modSeed) && super.canTake(stack);
         }
-        
+
         return false;
     }
 }

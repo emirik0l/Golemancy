@@ -8,5 +8,7 @@ public class TerracottaEffigyBlock extends ClayEffigyBlock {
     }
 
     @Override
-    public GolemMaterial getEffigyMaterial() { return GolemMaterial.TERRACOTTA; }
+    public GolemMaterial getEffigyMaterial() {
+        return GolemMaterial.TERRACOTTA;
+    }
 }

@@ -1,8 +1,7 @@
 package net.emirikol.golemancy.entity.goal;
 
-import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.emirikol.golemancy.entity.AbstractGolemEntity;
-
+import net.emirikol.golemancy.event.ConfigurationHandler;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.item.BlockItem;
@@ -58,7 +57,7 @@ public class GolemLookAtHeldBlockGoal extends Goal {
         float searchRadius = ConfigurationHandler.getGolemRadius();
         BlockPos pos = this.entity.getBlockPos();
         float r = searchRadius + (searchRadius * entity.getGolemSmarts());
-        for (BlockPos curPos: BlockPos.iterateOutwards(pos, (int)r, (int) this.maxYDifference, (int)r)) {
+        for (BlockPos curPos : BlockPos.iterateOutwards(pos, (int) r, (int) this.maxYDifference, (int) r)) {
             if (isTargetPos(curPos)) {
                 this.targetPos = curPos;
                 return true;
@@ -69,7 +68,9 @@ public class GolemLookAtHeldBlockGoal extends Goal {
 
     public boolean isTargetPos(BlockPos pos) {
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.MAINHAND);
-        if (stack.isEmpty() || !(stack.getItem() instanceof BlockItem)) { return false; }
+        if (stack.isEmpty() || !(stack.getItem() instanceof BlockItem)) {
+            return false;
+        }
         BlockItem item = (BlockItem) stack.getItem();
         return item.getBlock() == this.entity.world.getBlockState(pos).getBlock();
     }
